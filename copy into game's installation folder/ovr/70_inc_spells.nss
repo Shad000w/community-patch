@@ -250,7 +250,7 @@ spell.Meta = GetMetaMagicFeat();
     }
    }
   }
-  if(spell.Class == spell.Class == CLASS_TYPE_DRUID && GetModuleSwitchValue("72_SHIFTER_ADDS_CASTER_LEVEL"))
+  if(spell.Class == CLASS_TYPE_DRUID && GetModuleSwitchValue("72_SHIFTER_ADDS_CASTER_LEVEL"))
   {
   spell.Level+= GetLevelByClass(CLASS_TYPE_SHIFTER,spell.Caster);
   }
