@@ -218,6 +218,8 @@ const string MODULE_SWITCH_RESTRICT_MUSICAL_INSTRUMENTS = "71_RESTRICT_MUSICAL_I
 // * 1: apply only when caster isn't PC and target is PC or his associate
 // * 2: apply regardless of who is caster but only when target is PC or his associate
 // * 3: apply regardless of who is caster and who target
+// * Special: can be applied to specific creature, in such case it will force 3 rounds
+// * if that creature is hit by crowd-control regardless of value.
 //------------------------------------------------------------------------------
 const string MODULE_SWITCH_SHORTENED_DURATION_OF_DISABLE_EFFECTS = "71_SHORTENED_DURATION_OF_DISABLE_EFFECTS";
 

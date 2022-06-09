@@ -934,7 +934,7 @@ int nNewDuration = nActualDuration;
    }
   }
  }
- else if(GetModuleSwitchValue("71_SHORTENED_DURATION_OF_DISABLE_EFFECTS") == 3)
+ else if(GetLocalInt(oTarget,"71_SHORTENED_DURATION_OF_DISABLE_EFFECTS") || GetModuleSwitchValue("71_SHORTENED_DURATION_OF_DISABLE_EFFECTS") == 3)
  {
  nNewDuration = 3;
  }
