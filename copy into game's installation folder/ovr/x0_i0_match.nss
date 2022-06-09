@@ -506,7 +506,8 @@ int VerifyCombatMeleeTalent(talent tUse, object oTarget)
         }
         return FALSE;
     case FEAT_FLURRY_OF_BLOWS://1.71: flurry with ranged also stucks the creature
-        if(GetWeaponRanged(oWeapon))
+        if(oWeapon != OBJECT_INVALID && GetBaseItemType(oWeapon) != BASE_ITEM_KAMA//1.72: and not just with ranged weapon
+        && Get2DAString("baseitems","IsMonkWeapon",GetBaseItemType(oWeapon)) != "1")//1.72: now works together with custom monk weapons
             return FALSE;
     break;
     case FEAT_QUIVERING_PALM://1.71: do not waste quivering palm on wrong enemies
