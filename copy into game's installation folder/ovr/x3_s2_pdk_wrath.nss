@@ -67,7 +67,7 @@ void main()
     int nBonus = 2;// Bonus value
 
     effect eAttack = EffectAttackIncrease(nBonus);// Increase attack
-    effect eDamage = EffectDamageIncrease(DAMAGE_BONUS_2, DAMAGE_TYPE_BLUDGEONING);// Increase damage
+    effect eDamage = EffectDamageIncrease(DAMAGE_BONUS_2, DAMAGE_TYPE_BLUDGEONING|DAMAGE_TYPE_SLASHING|DAMAGE_TYPE_PIERCING);// Increase damage
     effect eSave = EffectSavingThrowIncrease(SAVING_THROW_ALL, nBonus);// Increase saving throws
     effect eSkill = EffectSkillIncrease(SKILL_ALL_SKILLS, nBonus);    // Increase skills
 
