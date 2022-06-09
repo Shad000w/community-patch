@@ -383,7 +383,11 @@ object oRight = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND,oTarget);
 object oLeft = GetItemInSlot(INVENTORY_SLOT_LEFTHAND,oTarget);
 int bNoChange = GetLocalObject(oTarget,"ITEM_IN_RIGHT") == oRight && GetLocalObject(oTarget,"ITEM_IN_LEFT") == oLeft;
 int nSpellId = GetEffectSpellId(EffectDazed());//AOE spells workaround
- if(bAOE && bNoChange && !GetIsPC(oTarget) && GetLocalInt(oTarget,"IMMUNE_TO_"+IntToString(nSpellId)) == 1)
+ if(nSpellId == -1)//this will happen if the AOE is created outside of the spellscript
+ {
+ return FALSE;
+ }
+ else if(bAOE && bNoChange && !GetIsPC(oTarget) && GetLocalInt(oTarget,"IMMUNE_TO_"+IntToString(nSpellId)) == 1)
  {
  return TRUE;//immunity to AOE is granted via itemproperty, no reason to repeat whole process again
  }
