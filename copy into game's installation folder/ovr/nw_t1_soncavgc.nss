@@ -24,6 +24,7 @@ void main()
         return;
     }
     //Declare major variables
+    float fDuration = 9.0;
     object oTarget = GetEnteringObject();
     location lTarget = GetLocation(oTarget);
     int nDamage;
@@ -46,7 +47,7 @@ void main()
             //Make a Will roll to avoid being stunned
             if(!MySavingThrow(SAVING_THROW_WILL, oTarget, 14, SAVING_THROW_TYPE_TRAP))
             {
-                ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(2));
+                ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
             }
             //Set the damage effect
             eDam = EffectDamage(nDamage, DAMAGE_TYPE_SONIC);

@@ -4,7 +4,7 @@
 //:: Copyright (c) 2001 Bioware Corp.
 //:://////////////////////////////////////////////
 /*
-1d6 acid, reflex save vs DC 9 or paralysed for 1 round
+1d6 acid, reflex save vs DC 9 or paralysed for 3 seconds
 */
 //:://////////////////////////////////////////////
 //:: Created By: Shadooow for Community Patch 1.70
@@ -21,6 +21,7 @@ void main()
         return;
     }
     //Declare major variables
+    float fDuration = 3.0;
     object oTarget = GetEnteringObject();
     effect eLink = EffectLinkEffects(EffectParalyze(), EffectVisualEffect(VFX_DUR_PARALYZED));
 
@@ -29,7 +30,7 @@ void main()
     if(!MySavingThrow(SAVING_THROW_REFLEX, oTarget, 9, SAVING_THROW_TYPE_TRAP))
     {
         //Apply Hold
-        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(1));
+        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
     }
 
     ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_ACID_S), oTarget);

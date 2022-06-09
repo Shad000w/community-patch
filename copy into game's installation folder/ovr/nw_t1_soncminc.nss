@@ -25,6 +25,7 @@ void main()
         return;
     }
     //Declare major variables
+    float fDuration = 6.0;
     object oTarget = GetEnteringObject();
     location lTarget = GetLocation(oTarget);
     effect eStun = EffectStunned();
@@ -46,7 +47,7 @@ void main()
             //Make a Will roll to avoid being stunned
             if(!MySavingThrow(SAVING_THROW_WILL, oTarget, 12, SAVING_THROW_TYPE_TRAP))
             {
-                ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(2));
+                ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
             }
         }
         oTarget = GetNextObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_MEDIUM, lTarget);
