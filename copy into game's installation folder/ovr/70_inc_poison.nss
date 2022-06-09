@@ -1,5 +1,4 @@
 #include "x2_inc_switches"
-#include "70_inc_nwnx"
 
 void SecondaryDamage(object oTarget, int nPoisonID, effect eTrack)
 {
@@ -86,14 +85,9 @@ effect e = GetFirstEffect(oTarget);
     }while(--nDam > 0);
     if(nDamage < 1) nDamage = 0;//sanity check
    ePoison = EffectLinkEffects(ePoison,EffectAbilityDecrease(nAbility,nDamage));
-    if(bPoisonCanStack)//1.72: with nwnx, poison icon and hp bar color is restored with stacked poisons!
+    if(bPoisonCanStack)//1.72: poison icon and hp bar color is restored with stacked poisons!
     {
-    effect eTemp = EffectPoison(20);
-    effect eIcon = NWNXPatch_SetEffectTrueType(eTemp,EFFECT_TRUETYPE_ICON);
-     if(GetEffectType(eIcon) == EFFECT_TYPE_INVALIDEFFECT)
-     {
-     ePoison = EffectLinkEffects(eIcon,ePoison);
-     }
+    ePoison = EffectLinkEffects(ePoison,EffectIcon(EFFECT_ICON_POISON));
     }
    ePoison = ExtraordinaryEffect(ePoison);
    }
