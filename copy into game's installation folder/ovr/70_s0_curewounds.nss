@@ -54,7 +54,7 @@ void main()
         nDice = spell.Dice; nNumDice = 1; nMaxExtraDamage = 5; vfx_impactHurt = spell.DmgVfxS; vfx_impactHeal = VFX_IMP_HEALING_S;
         break;
         case SPELL_CURE_MINOR_WOUNDS:
-        nDice = spell.Dice; nNumDice = 1; nMaxExtraDamage = 0; vfx_impactHurt = spell.DmgVfxS; vfx_impactHeal = VFX_IMP_HEAD_HEAL;
+        nDice = 1; nNumDice = spell.Dice; nMaxExtraDamage = 0; vfx_impactHurt = spell.DmgVfxS; vfx_impactHeal = VFX_IMP_HEAD_HEAL;
         break;
         case SPELL_CURE_MODERATE_WOUNDS:
         nDice = spell.Dice; nNumDice = 2; nMaxExtraDamage = 10; vfx_impactHurt = spell.DmgVfxS; vfx_impactHeal = VFX_IMP_HEALING_M;

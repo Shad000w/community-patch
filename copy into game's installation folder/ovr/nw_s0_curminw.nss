@@ -41,8 +41,8 @@ void main()
 
     //declare major variables
     spellsDeclareMajorVariables();
-    int nDice = spell.Dice;
-    int nNumDice = 1;
+    int nDice = 1;
+    int nNumDice = spell.Dice;
     int nMaxExtraDamage = 0;
     int vfx_impactHurt = spell.DmgVfxS;
     int vfx_impactHeal = VFX_IMP_HEAD_HEAL;
