@@ -175,6 +175,28 @@ location overrideLocation = GetLocalLocation(spell.Caster,"SPELL_TARGET_OVERRIDE
  spell.Loc = overrideLocation;
  }
 spell.Id = GetSpellId();
+ if(spell.Target == spell.Caster && spell.Loc == GetLocation(spell.Caster))//1.72: fix for cone-like spells being cast by polymorphed characters on themselves
+ {
+ string sHex = GetStringLowerCase(Get2DAString("spells","TargetType",spell.Id));
+ //converts hex value into integer
+ if(GetStringLeft(sHex, 2) == "0x") sHex = GetStringRight(sHex, GetStringLength(sHex) - 2);
+ int allowedTarget, nVal, nLoop = GetStringLength(sHex) - 1;
+ string sConv = "0123456789abcdef";
+  while(sHex != "")
+  {
+  nVal = FindSubString(sConv, GetStringLeft(sHex, 1));
+  nVal = nVal * FloatToInt(pow(16.0, IntToFloat(nLoop)));
+  allowedTarget+= nVal;
+  sHex = GetStringRight(sHex, nLoop--);
+  }
+  if(!(allowedTarget & 1))
+  {
+  vector vFinalPosition = GetPositionFromLocation(spell.Loc);
+  vFinalPosition.x+= cos(GetFacing(spell.Caster));
+  vFinalPosition.y+= sin(GetFacing(spell.Caster));
+  spell.Loc = Location(GetAreaFromLocation(spell.Loc),vFinalPosition,GetFacingFromLocation(spell.Loc));
+  }
+ }
 spell.DC = GetSpellSaveDC();
  if(!spell.SR) spell.SR = TRUE;//unless SR is disabled, we assume its enabled
  if(!spell.Class) spell.Class = GetLastSpellCastClass();//support for feats
