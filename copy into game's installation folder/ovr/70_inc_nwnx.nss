@@ -115,8 +115,9 @@ const int EFFECT_TRUETYPE_SPELL_FAILURE                    = 92;
 const int EFFECT_TRUETYPE_CUTSCENEGHOST                    = 93;
 const int EFFECT_TRUETYPE_CUTSCENEIMMOBILE                 = 94;
 const int EFFECT_TRUETYPE_DEFENSIVESTANCE                  = 95;
-const int EFFECT_TRUETYPE_NWNXPATCH_MODIFYBAB              = 96;
-const int EFFECT_TRUETYPE_NWNXPATCH_IGNORE_ARCANE_SPELL_FAILURE = 97;
+const int EFFECT_TRUETYPE_RUNSCRIPT                        = 96;
+const int EFFECT_TRUETYPE_NWNXPATCH_MODIFYBAB              = 97;
+const int EFFECT_TRUETYPE_NWNXPATCH_IGNORE_ARCANE_SPELL_FAILURE = 98;
 
 struct MemorizedSpellSlot
 {
@@ -235,7 +236,7 @@ int NWNXPatch_GetNoRestFlag(object oArea);
 void NWNXPatch_SetNoRestFlag(object oArea, int bNoRest);
 
 //returns surface material ID used on given position, refers to surfacemat.2da, 0 on error
-int NWNXPatch_GetSurfaceMaterial(location lLocation);
+//int NWNXPatch_GetSurfaceMaterial(location lLocation);
 
 //returns nTh (1-3) animloop value (1/0), -1 on error
 int NWNXPatch_GetTileAnimLoop(location lLocation, int nTh);
@@ -1334,10 +1335,12 @@ void NWNXPatch_SetNoRestFlag(object oArea, int bNoRest)
     DeleteLocalString(GetModule(),"NWNX!PATCH!FUNCS!104");
 }
 
+/*
 int NWNXPatch_GetSurfaceMaterial(location lLocation)
 {
     return GetSurfaceMaterial(lLocation);
 }
+*/
 
 int NWNXPatch_GetPvPSettings(object oArea)
 {
