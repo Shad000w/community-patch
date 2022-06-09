@@ -58,6 +58,7 @@ const int MIN_CLASS_LEVEL_FOR_EPIC_FIEND = 15;
 
 /*
 Patch 1.72
+- prevented exploiting the check for epic spells and epic fiend
 - fixed bug which deleveled palemasters taking EMA and Warding
 */
 int GetXPToLevel(int nLevel)
@@ -76,6 +77,8 @@ SetXP(oPC,GetXPToLevel(nLevel)-1);
 DelayCommand(0.3,SetXP(oPC,nXP));
 }
 
+#include "70_inc_main"
+
 void main()
 {
 object oPC = GetPCLevellingUp();
@@ -89,7 +92,7 @@ effect eEffect = GetFirstEffect(oPC);
   }
  eEffect = GetNextEffect(oPC);
  }
- if(GetHasFeat(FEAT_EPIC_SPELL_MAGE_ARMOUR,oPC) || GetHasFeat(FEAT_EPIC_SPELL_EPIC_WARDING,oPC))
+ if(GetKnowsFeat(FEAT_EPIC_SPELL_MAGE_ARMOUR,oPC) || GetKnowsFeat(FEAT_EPIC_SPELL_EPIC_WARDING,oPC))
  {
   if(GetLevelByClass(CLASS_TYPE_WIZARD,oPC) < MIN_CLASS_LEVEL_FOR_EPIC_SPELLS_WIZARD &&
      GetLevelByClass(CLASS_TYPE_SORCERER,oPC) < MIN_CLASS_LEVEL_FOR_EPIC_SPELLS_SORCERER &&
@@ -99,8 +102,8 @@ effect eEffect = GetFirstEffect(oPC);
   return;//ensures, the default OnLevelUp event will not fire
   }
  }
- if(GetHasFeat(FEAT_EPIC_SPELL_MUMMY_DUST,oPC) || GetHasFeat(FEAT_EPIC_SPELL_HELLBALL,oPC) ||
-         GetHasFeat(FEAT_EPIC_SPELL_RUIN,oPC) || GetHasFeat(FEAT_EPIC_SPELL_DRAGON_KNIGHT,oPC))
+ if(GetKnowsFeat(FEAT_EPIC_SPELL_MUMMY_DUST,oPC) || GetKnowsFeat(FEAT_EPIC_SPELL_HELLBALL,oPC) ||
+    GetKnowsFeat(FEAT_EPIC_SPELL_RUIN,oPC) || GetKnowsFeat(FEAT_EPIC_SPELL_DRAGON_KNIGHT,oPC))
  {
   if(GetLevelByClass(CLASS_TYPE_CLERIC,oPC) < MIN_CLASS_LEVEL_FOR_EPIC_SPELLS_CLERIC &&
      GetLevelByClass(CLASS_TYPE_DRUID,oPC) < MIN_CLASS_LEVEL_FOR_EPIC_SPELLS_DRUID &&
@@ -120,7 +123,7 @@ effect eEffect = GetFirstEffect(oPC);
   return;//ensures, the default OnLevelUp event will not fire
   }
  }
- if(GetHasFeat(FEAT_EPIC_EPIC_FIEND,oPC))
+ if(GetKnowsFeat(FEAT_EPIC_EPIC_FIEND,oPC))
  {
   if(GetLevelByClass(CLASS_TYPE_BLACKGUARD,oPC) < MIN_CLASS_LEVEL_FOR_EPIC_FIEND)
   {
