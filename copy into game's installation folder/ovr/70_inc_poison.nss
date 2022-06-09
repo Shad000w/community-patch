@@ -146,14 +146,12 @@ object GetPoisonEffectCreator(object oTarget)
 object oCreator = GetObjectByTag("70_EC_POISON");
  if(!GetIsObjectValid(oCreator))
  {
- oCreator = CreateObject(OBJECT_TYPE_PLACEABLE,"plc_invisobj",GetLocation(oTarget),FALSE,"70_EC_POISON");
+ location lLocation = GetStartingLocation();
+ vector vPosition = GetPositionFromLocation(lLocation);
+ vPosition.z -= 10.0;
+ oCreator = CreateObject(OBJECT_TYPE_PLACEABLE,"plc_invisobj",Location(GetAreaFromLocation(lLocation),vPosition,0.0),FALSE,"70_EC_POISON");
  ApplyEffectToObject(DURATION_TYPE_PERMANENT,ExtraordinaryEffect(EffectVisualEffect(VFX_DUR_CUTSCENE_INVISIBILITY)),oCreator);
  SetPlotFlag(oCreator,TRUE);
-  if(oCreator == OBJECT_INVALID)
-  {
-  WriteTimestampedLogEntry("ERROR: Poison Effect Creator not found, some features might not work properly!");
-  oCreator = oTarget;
-  }
  }
 return oCreator;
 }
