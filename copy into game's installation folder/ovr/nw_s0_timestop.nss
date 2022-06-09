@@ -19,7 +19,6 @@ Patch 1.70
 - in MP environment, spell affect only current area
 */
 
-//#include "70_inc_nwnx"
 #include "70_inc_spells"
 #include "x0_i0_spells"
 #include "x2_inc_spellhook"
@@ -41,11 +40,6 @@ void main()
     int bForceMPbehavior = FALSE;
     int nTh = 1;
 
-    /*
-    effect eTemp = EffectSanctuary(55);
-    effect eIcon = NWNXPatch_SetEffectTrueType(eTemp,EFFECT_TRUETYPE_ICON);
-    int bNWNXInUse = GetEffectType(eIcon) == EFFECT_TYPE_INVALIDEFFECT;
-    */
     effect eTime, eVis = EffectVisualEffect(VFX_FNF_TIME_STOP);
     ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eVis, GetLocation(spell.Caster));
 
@@ -72,13 +66,7 @@ void main()
     {
         eTime = EffectLinkEffects(EffectCutsceneParalyze(), EffectVisualEffect(VFX_DUR_BLUR));
         eTime = ExtraordinaryEffect(EffectLinkEffects(eTime, EffectVisualEffect(VFX_DUR_FREEZE_ANIMATION)));
-        /*
-        if(bNWNXInUse)
-        {
-            //shows a timestop icon
-            eTime = EffectLinkEffects(eTime,eIcon);
-        }
-        */
+        eTime = EffectLinkEffects(eTime,EffectIcon(EFFECT_ICON_TIMESTOP));
         nTh = 1;
         oTarget = GetNearestObject(OBJECT_TYPE_CREATURE, spell.Caster, nTh);
         while(GetIsObjectValid(oTarget))
