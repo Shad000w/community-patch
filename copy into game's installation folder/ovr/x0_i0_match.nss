@@ -513,8 +513,9 @@ int VerifyCombatMeleeTalent(talent tUse, object oTarget)
     case FEAT_QUIVERING_PALM://1.71: do not waste quivering palm on wrong enemies
      if(GetHitDice(oTarget) >= GetHitDice(OBJECT_SELF))
         return FALSE;
-    case FEAT_SAP:
     case FEAT_STUNNING_FIST:
+        if(oWeapon != OBJECT_INVALID) return FALSE;//1.72: this actually works with improper weapon, but does nothing anyway
+    case FEAT_SAP:
         switch(GetRacialType(oTarget))
         {
         case RACIAL_TYPE_CONSTRUCT:
