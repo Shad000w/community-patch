@@ -75,7 +75,7 @@ void main()
                         //Detemine the damage to inflict to the undead
                         nDamage =  GetCurrentHitPoints(oTarget) - nModify;
                         //1.72: this will do nothing by default, but allows to dynamically enforce saving throw
-                        if(MySavingThrow(spell.SavingThrow, spell.Target, spell.DC, spell.SaveType, spell.Caster))
+                        if(MySavingThrow(spell.SavingThrow, oTarget, spell.DC, spell.SaveType, spell.Caster))
                         {
                             nDamage/= 2;
                         }
