@@ -43,6 +43,10 @@
 //:: Created By:
 //:: Created On:
 //:://////////////////////////////////////////////
+/*
+Patch 1.72
+- fixed feedback message not being multi-languaged when it could have been
+*/
 
 // #include "nw_i0_generic"  //...and through this also x0_inc_generic
 
@@ -432,8 +436,7 @@ int bkAttemptToDisarmTrap(object oTrap, int bWasShout = FALSE)
         //SpeakStringByStrRef(40551); // * Out of game indicator that this trap can never be disarmed by henchman.
         if  (GetLocalInt(OBJECT_SELF, "X0_L_SAWTHISTRAPALREADY" + sID) != 10)
         {
-            string sSpeak = GetStringByStrRef(40551);
-            SendMessageToPC(GetMaster(), sSpeak);
+            SendMessageToPCByStrRef(GetMaster(), 40551);
             SetLocalInt(OBJECT_SELF, "X0_L_SAWTHISTRAPALREADY" + sID, 10);
         }
         if (GetObjectType(oTrap) != OBJECT_TYPE_TRIGGER)
@@ -466,8 +469,7 @@ int bkAttemptToDisarmTrap(object oTrap, int bWasShout = FALSE)
         {
             VoiceCannotDo();
             SetLocalInt(OBJECT_SELF, "X0_L_SAWTHISTRAPALREADY" + sID, 10);
-           string sSpeak = GetStringByStrRef(40551);
-           SendMessageToPC(GetMaster(), sSpeak);
+           SendMessageToPCByStrRef(GetMaster(), 40551);
         }
 
         return FALSE;
