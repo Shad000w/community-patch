@@ -18,8 +18,8 @@
 14    Expertise                  389         1      -1               0
 15    ImpExpertise               390         1      -1               0
 16    SpringAttack               392         1      -1               0
-17    KnockDown                  23          1      -1               1
-18    ImpKnock                   17          1      -1               1
+17    KnockDown                  23          1      -1               0
+18    ImpKnock                   17          1      -1               0
 19    LightngRef                 24          1      -1               0
 20    ImpInit                    377         1      -1               0
 21    WeapSpeClub                47          2      -1               0
