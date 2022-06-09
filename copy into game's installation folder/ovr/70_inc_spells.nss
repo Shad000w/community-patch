@@ -819,7 +819,7 @@ object oNew, oAOE = sTag != "" ? GetObjectByTag(sTag) : GetNearestObjectToLocati
    }
   oNew = oAOE;
   }
- oAOE = GetNearestObjectToLocation(OBJECT_TYPE_AREA_OF_EFFECT,spell.Loc,++nTh);
+ oAOE = sTag != "" ? GetObjectByTag(sTag,++nTh) : GetNearestObjectToLocation(OBJECT_TYPE_AREA_OF_EFFECT,spell.Loc,++nTh);
  }
 int nLimit = GetModuleSwitchValue("72_DISABLE_AOE_SPELLS_STACKING");
  if(nLimit > 0 && oNew != OBJECT_INVALID)
