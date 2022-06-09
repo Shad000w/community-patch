@@ -69,7 +69,7 @@ void main()
 
             // * if in XP2, use an alternative dialog file
             string sDialog = "";
-            if (GetLocalInt(GetModule(), "X2_L_XP2") ==  1 || (GetAssociateType(OBJECT_SELF) != ASSOCIATE_TYPE_NONE && GetAssociateType(OBJECT_SELF) != ASSOCIATE_TYPE_HENCHMAN))
+            if (GetLocalInt(GetModule(), "X2_L_XP2") ==  1 || (oMaster == oShouter && (GetAssociateType(OBJECT_SELF) != ASSOCIATE_TYPE_NONE && GetAssociateType(OBJECT_SELF) != ASSOCIATE_TYPE_HENCHMAN)))
             {
                 sDialog = "x2_associate";
             }
