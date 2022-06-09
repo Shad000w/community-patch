@@ -642,7 +642,7 @@ float fOverride;
  {
  return HoursToSeconds(nDuration);
  }
-WriteTimestampedLogEntry("DurationToSeconds: ERROR, spell "+IntToString(spell.Id)+" doesn't have correctly initialized duration type, using rounds!");
+WriteTimestampedLogEntry("DurationToSeconds: ERROR, spell "+IntToString(GetSpellId())+" doesn't have correctly initialized duration type, using rounds!");
 return RoundsToSeconds(nDuration);
 }
 
