@@ -1,0 +1,11 @@
+2DX V2.0
+DESCRIPTION: adds None as a new choice in toolset + adds compatibility with NWNCX weapon visual effect feature
+     Label      Name   ModelSuffix
+0    ####       ####   acid
+1    ####       ####   frost
+2    ####       ####   elect
+3    ####       ####   fire
+4    ####       ####   sonic
+5    ####       ####   holy
+6    ####       ####   neg
+7    None       202    ****

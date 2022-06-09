@@ -1,0 +1,286 @@
+Neverwinter Nights Community Patch 1.70 (remastered edition) content:
+
+HAK Version
+- works primarily as a tool for builders in order to force their players to use Community Patch
+- includes DOA Base Item models to prevent DOA Baseitem issue to happen
+- includes also three secret Bioware creatures, a Belker (elemental), Goblin without arrow quiver and Goblin chieftant with shield on his back
+- improves spell casting:
+	- Meteor Swarm doesn't need targetting anymore
+	- Invisibility Purge, Firestorm, Storm of Vengeance and Healing Circle can be cast on items, thus allowing default crafting. (The Krit & Shadooow)
+
+Both server and client side content:
+- Familiar & Companion Fixes (Ben Harrison & BCH & The Krit)
+- removed familiar dialog exploit
+- removed companion dialog from summoned Elder Air Elemental, Ghoul, Ghast
+- Wraith – changed alignment to lawful evil (NWNEnhanced team)
+- Spectre – added missing Blind-fight and Improved Initiative feats (NWNEnhanced team)
+- several creatures added missing incorporeal flag: Allip and Summoned creatures: spectre, wraith, shadow, shadow lord and shadow fiend
+- fixed incorporeal flag on spectre summoned from Pale Master feat
+- Skeleton mage - alignment changed from true neutral to neutral evil
+- healing spells were replaced for harming spells from Baelnorn, Dracolich and Vampire Priest
+- Formian queen speed changed to very slow (was immobile which caused AI issues - didn't cast spells)
+- Lizardfolk Shaman (A) blueprint name fixed
+- Halaster's CR in palette have been fixed (was 229)
+- Halaster is not immortal by default now
+- several creature's AI level set to high: Halaster, Masterius, G'Zhorb, Demilich, Lich (21CR), Prismatic dragon and Harat
+- removed Spell Mantle from demilich's spell selection
+- all cobras racial type fixed (from reptilian humanoids to animal)
+- updated flying status on some creatures missing it (parrot, seagull, G'Zhorb, Halaster, Masterius)
+- fixed special AI for summoned shadow from SD feat
+- water breathing creatures are now immune to the drowning (oozes, sharks, sea hag, sahuagin, water and ooze mephit, black, green, bronze and gold wyrmling and dragon)
+- flying creatures are now immune to the Grease and Spike Growth spell
+- fixed the erroneous faction string setting on x0_ruglarge.utc. (NWNEnhanced team)
+- removed emitters from web placeable (px2_g02) and retextured it – resolves “glowing web” issue. (NWNEnhanced team)
+- tilesets fixes
+	- rural cobblestone around groups (helvene)
+	- forest edge fixes (helvene)
+	- City Interior 2 and Fort Interior tilesets visibility node fixes (_six)
+	- tni01_m06_02 - mapping adjustment (Project Q)
+	- tni01_r22_01 - walkmesh fix (Project Q)
+	- tni02_r17_01 - removed rotate texture from floor mesh (Project Q)
+	- tds01_h01_01 - added missing light sources
+	- tdr01_g33_01 - removed additional polygon at -6 (Gerder)
+	- tdr01_g33_02 - added missing polygon (Gerder)
+	- mitu01_d03 - Underdark minimap fixed (Blade Constantine)
+	- ttf01_g02_04 - two floating rocks position fixed
+	- ttf01_h07_01 - canopies didn't faded out with the trunk
+	- ttf01_g05_03 - texture fix
+	- tcn01_c02_07 - windows flickering and light in night fixed (Zwerkules)
+	- new areas in Sea Caves tileset are now set to be "natural"
+- itempropdef.2da and itemprops.2da
+	- enabled some itemproperties for ranged weapons, gloves and mage staff (Ben_Harrison)
+	- enabled Turn resistance itemproperty for all items
+	- new itemproperty "Item Cost Parameter" that allows to adjust item cost (see full readme for details)
+- iprp_vfx.2da
+	- added None visual effect for weapons (Ben_Harrison)
+	- compatible now with NWNCX's weapon visual models solution
+- iprp_neg10cost.2da
+	- cost values balanced
+- iprp_onhitspell.2da
+	- lines 86 - 90 fixed name, making inflict spells available in toolset (The PRC Team)
+- iprp_spells .2da
+	- Barkskin (6) changed to 7 (which will allow to make potions +4AC)
+	- Barkskin (12) changed to 13 (which will allow to make potions +5AC)
+	- several spells can be added into potion in toolset now
+	- all (non-epic) spells can be added into wand in toolset now
+	- ioun stones spell cannot be placed into potion/wand anymore
+	- Mestil's Acid Sheath cost increased in order to match other fifth lvl spells
+- iprp_spellcost.2da
+	- added immunity to Blade Barrier spell
+	- added immunity to Destruction spell
+- iprp_weightcost.2da
+	- added new values 1,2,3,4,250,500 and 750 lbs (Ben Harrison)
+- cls_feat_*.2da
+	- removed Improved Critical (whip) from Paladin epic bonus feat list (NWN Wiki)
+	- removed Planar Turning feat from Weapon master epic bonus feat list (NWN Wiki)
+	- Harper scout can take martial weapon proficiency when leveling (NWN Wiki)
+	- Assassin can take epic skill focus: use magic device as a general epic bonus feat
+	- Wizards, Clerics and Druids can now take epic spells at class level 17 provided they fullfils other prerequisities
+	- Sorcerers can now take epic spells at class level 18 provided they fullfils other prerequisities
+- cls_spgn_rang.2da
+	- Ranger gets one more 1. lvl spell at lvl 14
+- epicattacks.2da
+	- epic BAB progression increased until max possible level nwn can handle (255) for legendary level systems
+- visualeffects.2da
+	- VFX_CONJ_MIND and VFX_CONJ_FIRE type changed from F to D, so they now work properly
+	- banshee visual effect accelerated
+- spells.2da
+	- corrected InnateLevel of Identify (2->1), Sunbeam (7->8) and Find Traps (3->2)
+	- Find traps spell cannot be extended anymore
+	- Balagarn's Iron Horn school changed to transmutation
+	- Balagarn's iron horn changed to be hostile
+	- verbal component removed from various feats and abilities allowing to use it even under silence 
+	- Aura of Hellfire spell values corrected: VS, MetaMagic, Category and UseConcentration (so AI doesn't cast this self protection spell on enemy)
+	- Epic Mage Armor spell values corrected: school -> conjuration
+	- Epic Warding spell values corrected; school -> abjuration, range -> personal, projectile removed, set as non-hostile
+	- Polymorph self subspells InnateLevel raised to 4
+	- Vine mine subspells InnateLevel raised to 5
+	- ioun stones spell icons changed to reflect better what are they doing
+	- Death Arrow feat now appears with correct icon when used
+	- Imbue Arrow can be fired at ground now
+	- Aura of Vitality range increased to Long
+	- Darkness is now additional counterspell to Light spell
+	- enabled Dragon Wing Buffet special ability
+	- enabled Shadowblend special ability
+	- enabled Belker's Smoke Claws special ability
+	- Hail of Arrows range and projectile fixed for AI
+	- Divine Might and Shield range fixed for AI (so now npc can use it without getting bugged)
+	- Silence allowed to cast by NPCs
+	- Battletide and Dirge projectile removed (personal range) and category changed so AI casts them on self
+	- Petrify gaze (both normal and shifter's) casting values united with other gazes (range, casttime, castspot, category...)
+	- Cloud of bewilderment - allowed empower/maximize metamagic
+	- Bane spell Category fixed
+- feat.2da
+	- removed category from Horse menu (and submenus) - caused AI issues (Melliuc)
+	- removed category from Paladin Summon Mount - caused AI issues too
+	- Mighty Rage now doesn't need targetting
+	- disabled BG strenght and Harper's dexterity and charisma stacking with normal spells variants
+	- Epic Fiendish Servant now requires also to be an epic character
+- baseitems.2da 
+	- added DOA Baseitem Models 2.0 (DOA team), dyes are not included
+	- torch enchant AC type changed from none to deflection
+	- creature skin is now unaffected by ILR, will always have zero cost
+	- whip can be dual wielded (Ben Harrison)
+	- helmets now can utilize model numbers up to 100 (NWNEnhanced team)
+	- Tower shield base item cost changed from 100 to 1000.
+- encumbrance.2da
+	- expanded to allow insane strenght values above 50 to maximum strength NWN can handle (255)
+- des_crft_scroll.2da
+	- allowed to scribe War Cry, Dirge, Amplify, Aura vs. Alignment, Shades, Undeath to Death (for wiz/sorc) and Blade Thirst scrolls (The Krit & Shadooow)
+- des_crft_spells.2da
+	- War cry spell level fixed for purposes of crafting feats (makes no longer possible to brew potion of this spell anymore)
+	- Shades, Shadow Conjuration and Vine Mine subspells level fixed for purposes of crafting feats (makes no longer possible to craft these spells into wand/potion) (The Krit)
+	- all spells now could be crafted into wand (if a buider changes maximum spell level)
+	- various spells now can be brewed into potion - Invisibility purge, Inflict Minor/Light/Moderate/Serious Wounds (something for undead)
+	- various spells now could be brewed into potion - Inflict Critical Wounds, Shadow conjuration, Shades, Greater Shadow Conjuration and Vine Mine (if a buider changes maximum spell level)
+	- various spells now can't be brewed into potion anymore - Raise dead, Resurrection (although buider changes maximum spell level)
+- classes.2da
+	- created new prerequisities 2da for base classes in order to allow builder their disabling via scripting, see notes
+- statescripts.2da
+	- fixed OnDeath script when possessed by DM, now it runs new script 70_npc_ondeath which will then run default script for given creature
+- items
+	- major change in scrolls, all classes now can cast scrolls of the spells they have in their spell list. This means that Bard no longer can automatically cast all scrolls without UMD skill, and Assassin, Harper Scout, Blackguard and Pale Master now can cast from some spellscrolls too.
+	- UMD DC for spellscrolls was changed to 7+(InnateLevel*3) in order to allow use scrolls of lesser power to lower level characters
+	- pre-X2 version of Cat's Grace scroll now can be cast by Ranger too
+	- various unidentified scrolls were identified - Sanctuary, Remove paralyse, Remove fear, Cure critical wounds, Ice storm, Find traps, Energy buffer, Shadow shield, Legend lore, Word of faith, Storm of vengeance, Spell resistance, Slay living, Regenerate, Tide of battle, Virtue, Poison, Implosion, Searing light, Divine power, Evil blight, Freedom of movement, Hammer of the gods, Aura versus alignment, Awaken, Sunbeam, Prayer
+	- magic circle agains alignment scroll is now unusable by druids and rangers
+	- added War Cry spell scroll
+	- few robes appearance was changed to use robe model (Duergar Mage Robe, Master Adventurer's Robe, Robe of Energy)
+	- epic traps identified
+        - some wands can now be used by more classes, basically those who have the spell on it in their spellbook too.
+	- added Immunity: Death Magic into all demilich properties
+	- Dusty Rose Ioun Stone ac type is now dodge
+	- added +1 ride skill bonus into Luckstone amulet
+- fixed the Z-Axis positioning error with the Potion placeable model (gi_potion.mdl). (NWNEnhanced team)
+- removed default wooden door portrait, most pre-1.70 placed door won't show up any portrait, only radial menu
+- projectile traps:
+	- spells fired from projectile traps now ignores spell resistance/immunity/mantle
+	- spells fired from projectile traps now have correct caster level as per trap script
+	- spell DC changed between different trap difficulty versions
+	- projectile trap dart, shuriken, arrow and bolt rewritten from scratch as they did nothing
+
+Server-side only:
+- fixed server crash at death/unpolymorph of the polymorphed character with low on hitpoints
+- DM possessed NPC (any) now fires default OnDeath script nw_c2_default7 when dies - this fixes custom XP rewards or any death-based script issues possible
+
+Client-side only:
+- added emote icons for easy use (The Amethyst Dragon)
+- rebalanced recommended starting abilities for each class
+- Sounds:
+	- annoying sound when firing elemental projectiles or from bow with elemental damage itemproperties removed
+	- loud sounds from patch 1.69 were deadened a bit (golems soundset, crystal material -5dB)
+	- Dumb hero voiceset fixed (cuss wasn't available)
+- actions.2da
+	- icon for walking around changed to new custom one (Gerder)
+- Fixed Scroll Alpha (fire&ice & Melliuc)
+- Drider animation fix (kroko)
+- Platinum-haired Nymph (Blackfire)
+- gorgon uv mapping fix (Ben Harrison)
+- dire boar uv mapping fix (Ben Harrison)
+- Linu head fix (Mordaedil)
+- Immunity Icons (Mordaedil)
+- added better hands and foots (kurairyu & NWNEnhanced team)
+- added colored lips/eyes/eyebrows (DeathFace & Shadooow)
+- fixed textures on five large shields from patch 1.69 (NWNEnhanced team)
+- shrinked oversized gnome shin and forearm models to 70% of their size
+- large phenotype model parts size corrected (see full readme for details)
+- itempropdef.2da - changed bonus name for ability itemproperties to "Ability bonus"
+
+Scripts:
+- benefits for incorporeal creatures are now supernatural, thus they won't disappear after (force) rest
+- Turn resistance enabled for player characters
+- fixed not copying local variables when dyeing an item
+- fixed double respawn bug
+- fixed action cancel from death effect if the character is immune (only applies for spells rewritten onto new spell engine)
+- fixed a bug in "target check" function that made creatures to hurt themselves with their spells on higher difficulties
+- fixed a bug in several spells and special abilities that made creatures to hurt others from their own faction
+- magic immunity is applied before spell mantle effect. Which means, that for example Fire Arrow spell won't remove spell mantle effect if the target is also protected by globe of invulnerability spell
+- mobile AOE spells now works 100% reliable
+- AOE effects created from special abilities such as auras were set to be permanent, supernatural and undispellable
+- fixed bug in ResistSpell function when used inside AOEs that allowed to bypass target immunity or make yourself immune -> this also comes with a change that a spell mantle effect is no longer used for AOE effects
+- empower metamagic calculation has been united to the OC formula: empower full result of the normal spell damage, this improves mostly spells from SoU which used less powerfull formula
+- all saving throws in any spell or special ability united to the "don't roll if immune" behavior
+- AI:
+	- creatures at very high difficulty are using auras instantly
+	- confused creatures will now attack only those they can see or hear
+	- creatures in any disabled state (confused, frightened, turned) won't attack when spell is cast on them anymore.
+	- creatures will spam knockdown feat a little less often.
+	- creatures will never ignore the Greater Sanctuary effect anymore. This effectively fixes the inv+GS issue.
+	- creatures now won't waste smites on wrong (neutral) targets	
+	- creatures now won't use rapid shot with melee weapon (which resulted in doing nothing)
+	- spellcasters won't attack melee earlier than they cast everything what works.
+	- creatures inside (multiple) AOEs won't stop attacking. Also they won't teleport to the caster once he leave the current area.
+	- clever creatures will ignore or immediately dispell the Black Blade of Disaster.
+	- fixed turning undeads used by NPCs on vermins
+	- npcs won't try to turn undead anymore, if their turning level is not high enough
+	- casters switch back to offensive if their target suddenly can sees them
+	- casters with HIPS won't attack melee anymore but rather HIPS-cast
+	- creatures won't waste full-heal talents if they are not wounded badly
+	- undead creatures are now able to use Harm and lesser inflict spells, and even custom potions with these spells to heal themselves
+	- creatures won't move towards target when casting Time Stop spell
+	- creatures won't recast true seeing/see invisible spells if they still have old spell's effects on them
+	- creatures will use level draining bolt or pulse despite their target is drained already
+	- creatures will ignore AOEs they are inside, if they are immune to that AOEs effects
+	- creatures will substitute a negative energy talent with best healing talent if they are dealing with undead opponent
+	- and many minor improvements in AI (removed some immunity checks so creatures will try certain spells even when target is immune, better code to handle HP limit in Power Word: Death spell, creatures with true seeing itemproperty may cast darkness, and mainly improved efficiency)
+	- Shadow's special AI rewritten to make his attack more effective and to fix an issue when shadow stopped attacking
+* For hundred of spell/feat/special ability/trap related changes see 170scriptfixes.txt
+
+TOOLSET:
+- Item level restrictions have been dropped for level 40 characters. If a builder wishes to make an "uber" item that is usable (at level 40) with item level restrictions on, he is now able to.
+- added new module switches that triggers module-related features:
+	- switch to fix AOE heartbeat issue
+	- switch to fix "overfilled stores causing lags" issue
+	- switch to disable ResistSpell check inside AOE spell effects
+	- switch to enforce Spell Immunity precedence inside ResistSpell check
+	- and many spell/creature/item related switches (see full readme for details)
+- several new creature flags for custom content that allows to set creature being immune to drown, mark it as flying or mindless being
+- several spell-related creature/item flags to allow override some spell informations
+- new Item Cost adjust itemproperty to allow increase or decrease cost by any ammount
+- new weapon visual effect "None" to allow disable default weapon VFX thats coming from high damage/other itemproperty
+- added portraits into fish group placeables (CEP2 team)
+- new placeable blueprints for secret placeables (Slasher & Shadooow & Pstemarie)
+- added missing description to some doors
+- reorganized trigger palette, namely traps
+- all projectile traps placeables are now set non-static
+
+TEXT DESCRIPTIONS (dialog.tlk) changes:
+- Devastating critical - removed weapon focus prereq
+- Artist (missing prereq, bonus)
+- Clarity - spell school was changed to Necromancy
+- Disable trap - anyone can disarm DC 35
+- Extra smiting - use: automatic
+- Great smiting - use: automatic, character level changed to "smiting-able classes level"
+- Epic Dodge - removed Dodge prereq
+- Stonecunning - interior -> underground
+- Thundering rage - Epic Barbarian -> Epic character, 50% -> 25% added note about saving throw
+- Death armor - no save, no SR
+- Dispells - no SR
+- Mass charm - 1round/2levels
+- Contagion - added filth fever
+- Barkskin (6) changed to 7 and Barkskin (12) changed to 13
+- Good Aim - mentioned it applies for sling as well
+- Darkness - no SR
+- Terrifying rage (description) - 1d6 to 1d3
+- Bombardment spell description - capped at 20d8 (to reflect the spell balance coming with this patch)
+- Sunbeam spell description - added note "affect oozes and plants as if they were undead" (to reflect new feature coming with this patch)
+- Acid Traps names unified with other traps
+- hide skill - invisibility wrong note removed
+- Destruction - added Death descriptor
+- Feeblemind - touch attack note removed
+- all dispells - DC calculation corrected
+- Continual flame - innate level and description corrected
+- Blackstaff - spell resistance correction
+- Ball of lightning - area of effect correction
+- Creeping doom - damage correction
+- Horrid wilting - range correction
+- Planar Turning - automatic
+- Vine mine duration corrected to round/level to match script
+- corrected names of few spells in specific spell immunity itemproperty
+- PDK feats feedback externalized
+- changed outdated loadhints to refer to the new NWN community site at www.neverwinternights.info
+- Some typos fixed, missing spaces added, extra spaces removed...
+
+SPECIAL EXTERNAL UTILITIES:
+- Auto 2DA Merger Utility to easily merge your 2da files (see readme inside builders resources)
+- "Skloòování jména postavy", the CZECH version-only utility that implements language inflection into main character name for all three official campaigns

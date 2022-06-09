@@ -1,0 +1,12 @@
+2DX V2.0
+DESCRIPTION: Adds Item Cost Parameter, Boomerang and Wounding, changes ingame name of ability bonus + some minor corrections in names.
+      Name    Label                       SubTypeResRef      Cost    CostTableResRef   GameStrRef   Description
+0     ####    ####                        ####               ####    ####              649          ####
+10    ####    EnhancementPenalty          ####               ####    ####              ####         ####
+14    ####    ####                        ####               ####    ####              667          ****
+40    ####    ####                        ####               ####    1                 ####         ####
+41    ####    ####                        ####               ####    1                 ####         ####
+42    7849    ItemCostParameter           iprp_value         ####    31                ****         ****
+60    ####    AttackPenalty               ####               ####    ####              ####         ####
+68    695     Metamagic                   iprp_metamagic     0       0                 695          ****
+69    741     ####                        ####               ####    21                ####         ####

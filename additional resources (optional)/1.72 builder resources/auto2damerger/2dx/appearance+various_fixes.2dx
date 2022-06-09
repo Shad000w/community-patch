@@ -1,0 +1,13 @@
+2DX V2.0
+DESCRIPTION: Fixes invisible stalker weapon visibility, helmet horror footsteps, kobolds reflection setting, oozes sounds and changes lantern archon and will-o-wisps sounds to new custom one (they have ghost sounds normally).
+       ENVMAP         WEAPONSCALE    FOOTSTEPTYPE   SOUNDAPPTYPE
+64     ####           1              ####           ####
+100    ####           ####           -1             ####
+103    ####           ####           ####           16
+116    ####           ####           ####           16
+300    default        ####           ####           ####
+303    default        ####           ####           ####
+393    ####           ####           ####           27
+394    ####           ####           ####           27
+396    ####           ####           ####           27
+398    ####           ####           ####           27

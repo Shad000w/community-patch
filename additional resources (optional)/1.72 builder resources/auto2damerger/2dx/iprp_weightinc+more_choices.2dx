@@ -1,0 +1,10 @@
+2DX V2.0
+DESCRIPTION: Adds more choices.
+        Name          Lable         Value
+6       58655         1_lb          10
+7       58658         2_lbs         20
+8       58659         3_lbs         30
+9       58660         4_lbs         40
+10      58661         250_lbs       2500
+11      58677         500_lbs       5000
+12      58678         750_lbs       7500

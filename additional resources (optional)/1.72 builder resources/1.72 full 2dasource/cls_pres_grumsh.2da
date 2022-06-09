@@ -1,0 +1,9 @@
+2DA V2.0
+
+   LABEL         ReqType ReqParam1       ReqParam2 
+0  Base_Attack   BAB     6               ****      
+1  HalfOrc       RACE    5               ****      
+2  Orc           RACE    14              ****      
+3  Exotic_Prof   FEAT    44              ****      
+4  WeapFocDAxe   FEAT    126             ****      
+5  ScriptVar     VAR     70_AllowGruumsh 0

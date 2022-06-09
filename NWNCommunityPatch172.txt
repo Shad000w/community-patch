@@ -1,0 +1,221 @@
+Neverwinter Nights Community Patch 1.72 (release 06.02.2019)
+
+Fixed broken stuff from previous Patch versions:
+- Fixed critical issue with community polymorph system that could happen under very specific rare circumstances and lockdown a server.
+- Fixed entangle spell not removing the movement speed decrease effect upon exiting the AOE.
+- Fixed bug in AI causing sometimes creatures using KD to stop attacking.
+- Unequipping Nasher items will no longer show fancy visual effects without having full set completed.
+
+Revised features from previous Patch versions:
+- Revised the method used for making auras and other AOEs undispellable to avoid unwanted effect of aura staying "up" for a few seconds even after owner dies.
+- Revised the 70_mod_petrify script - it will now contain the whole original content of the DoPetrification function in order to allow modify how petrification works without need to recompile all scripts using that function.
+- Revised the module switch 70_AOE_IGNORE_SPELL_RESISTANCE, the switch will now ignore spell resistance but still allow spell immunity to work against AOE spells (without the immunity it makes all creatures even demilich vulnerable to them which I think is not appropriate)
+- Revised the CPP code for multiplayer-friendly placeable spawning skeleton/zombie, will fix the fact that the AOE was not destroyed after spawn and will now also use AOE with smaller radius size to make it more "precise".
+
+New fixes and features:
+- [spell] Sunburst: fixed Arcane Defense feat not working against this spell (note this was actually fixed already long time ago in 1.71, it just wasn't announced, so I am adding this now for clarity)
+- [spell] Bigby's Clenched Fist: allowed to stack with Bigby's Crushing Hand
+- [spell] Bigby's Crushing Hand: allowed to stack with Bigby's Clenched Fist (seriously, clenched fist is the weakest of all of them there is no need to disallow stacking)
+- [scripts] Fixed bug manifesting in large modules in multiplayer where traps sometimes randomly trigger where they aren't.
+- [monster ability] Bolt: Charm, Confusion, Daze, Domination, Knockdown, Paralyse, Slow, Stun, Web - bolt abilities effects made undispellable
+- [feat] Curse Song: added a new variable "IMMUNITY_CURSE_SONG" that will grant the creature immunity to this feat.
+- [ruleset] Added dracolich and all 3 variants of Masterius into list of creatures immune to polymorphing.
+- [ruleset] Added new module switch MODULE_SWITCH_SHIFTER_ADDS_CASTER_LEVEL - this switch will add shifter levels into caster level of druid.
+- [ruleset] Added new module switch MODULE_SWITCH_JUMP_ASSOCIATES_WITH_PLAYER - this switch will move all associates with player when using an area transition within same area.
+- [spell engine] Added possibility to set SAVING_THROW_NONE as saving throw override and dynamically remove a saving throw from a spell (this was intented to work already but some mechanics could still have shown before).
+- [class change] Blackguard can now select Extra Turning feat.
+- [AI] Fixed bug in henchman AI that, when the creature was surrounded by many monsters, caused re-starting combat round over and over which led to attacking sporadically or not at all.
+- [AI] Fixed bug in AI where creatures (mostly PC's associates) with sneak attack tried to attack enemy they couldn't see and reach.
+- [AI] henchmen and other associates will not break the Stand Ground command anymore. If you tell them stay then they won't attack on their own anymore unless you give the order.
+- [AI] Added new variable "IGNORE_AOE" int 1/0, if set to creature with value 1, creature will ignore all AOEs - this will workaround the usual issues with creatures such as dropping into flat very frequently or canceling their spellcasting
+- [item] Bolt of Frostbite - damage changed from 1d4 to 1d6 to fix/workaround bug of unlimited ammo 1d6 cold that was instead doing 1d4 as it was using these bolts (will not automatically change damage on already existing or pre-placed bolts or on any copies made out of them)
+- [tile] tdc01_p18_01, tdc01_o18_01, tdc01_p19_01, tdc01_o19_01 - fixed "up in the air" walkmesh issue (https://drive.google.com/open?id=1J6dl8KpY3RbmBLJEKPb-3dhuyA96Bkp4)
+- [tile] tdc01_p19_01, tdc01_o19_01 - fixed few polygon gaps (https://drive.google.com/open?id=1rEywhT7ZVYLNtZteK6DQvGbzuzL3_pKT)
+- [tile] ttd01_o19_01 - fixed upper part of the tent (https://drive.google.com/open?id=1JcJlDgo1xrTesE3Vk42jf_6h3vxQP6_8)
+- [tile] tii01_p18_01, tii04_p19_01 (Illithid tileset Corridor Stairs Up/Down) - added missing invisible door transition, this will only affect newly placed tiles of course, more comfortable for builder and player to use than triggers on ground (https://drive.google.com/open?id=1GEpmnI5QjzKKp5rtVQJhp2Y8HOY5amH2)
+- [tile] tdm01_g02_01 - flying crystals were lowered to touch the ground
+- [2DA] appearance.2da - assigned default portrait for Archer Dummy and Combat Dummy
+- [scripts] Improved/rewritten vanilla code for secret door triggers - now, players will be re-rolling automatically while inside the trigger each 3/6 seconds. (Normally, when entering trigger player rolls only once, to get a new roll player must exit and re-enter trigger.)
+
+Version for NWN:EE only:
+- Fixed Toolset Script Debugger feature. (if you don't know what is it read this - https://neverwintervault.org/article/tutorial/script-debugging-tutorial)
+- Fixed NWN:EE bug that causes AoE spells to sometimes ignore monsters that has auras.
+- Fixed NWN:EE bug that sometimes causes monsters to ignore or stop attacking players. (Note: there might still be some instances where this happens + to get both fixes you need to recompile all scripts and use CPP includes)
+- Fixed NWN:EE bug where invisible area transition door was making sounds of wooden door.
+- Fixed ugly transparent texture issue in dungeon tileset. (https://drive.google.com/open?id=1VetlHm8mm4XGQnilf_PopRaA_mfyj_5N)
+- Added 'EE Familiar Glitter Removal' from Symphony to workaround huge fps drop with Fairy Dragon/Pixie familiars. (https://neverwintervault.org/project/nwnee/hakpak/ee-familiar-glitter-removal)
+- Added 'EE UHD Safe Lightning Hotfix' from Symphony. (https://neverwintervault.org/project/nwnee/hakpak/ee-uhd-safe-lightning-hotfix)
+- Added a workaround for NWN:EE bug that disallows casting polymorph spells with metamagic - community patch will automatically enhance spells cast by shifter in polymorph by empower or maximize metamagic if player has the corresponding feat.
+- Re-added extraneous NWScript constants that were under NWN:DE defined inside nwscript.nss file, you can find them now inside 70_inc_main library.
+- Removed the ShutdownServer() function from 70_inc_main as NWN:EE fixed the crash bug that it was using so it was no longer functional.
+- Re-added nwnx-related scripts and nwnx-using scripts (community patch is newly distributed with nwnx_patch for EE (windows, server only)).
+
+NWNX_Patch (both versions):
+- fixed longstanding issue in NWN, bugged AC after being hit by entangle/web and similar effects
+- fixed bug in softcoded script for special attacks not decreasing uses of smite evil
+- fixed bug in new feat uses calculation that caused infinity shape feats not working properly
+- fixed GetPCBicFileName sometimes returning "garbage data" if the character bic file name was 16 characters long
+- corrected the fact that the fix for darkness was giving lowlight vision and fix for lowlight vision was not giving anything
+- fix for persistent AOE spells not allowing spellcraft bonus for their saving throw rolls. (coded inside softcoded saving throw script)
+- removed the feature to prevent level-up in polymorph to prevent exploits (players in polymorph found it confusing as they didn't know they reached next level) - either way community patch forces to redo levelling up if player is polymorphed, this was just for the fancy effect
+- GetPlayerLanguage function fixed (I think it never worked properly) and improved to store the result from NWNX into local variable and return it from local variable on later calls, function now has extra parameter you can set to TRUE to force it to read value from NWNX (this should be done in OnClientEnter)
+- fixed the STACK UNDERFLOW error when using ForceRest on invalid or dead creature
+- disabled the possibility to automatically equip unidentified arrows (wasn't intented)
+- improvement for the hardcore Initiative feature - now, the conditions for this to trigger will be resetted whenever new initiative roll is made (this means that if you initiate attack, then start running around till initiative expires and attack again, you will again be able to consider enemy flatfooted (if he rolls less), this also makes players vulnerable to this mechanic when they previously were subject to it only first time they attacked in same session)
+- new function ShutdownServer (because the vanilla way no longer work under EE)
+- new feature "Hide Classes On Character List=1" (under [Server Options] in nwnx_patch.ini) this will as name suggest hide classes in the list of players when logging in (I am aware that nwnx_fixes has this functionality, I had to however make it for NWN:EE and I want to keep my plugins as much identical across platforms as possible hence why it is now in nwnx_patch for 1.69 too)
+
+NWNX_Patch for NWN:EE:
+This is a new version for NWN:EE only for server, nwncx_patch is no longer supported. This version differs in functionalities - some were removed because they were obsolete, some were (temporarily) removed because I couldn't make the functional on EE yet.
+
+Now, for those who already seen and maybe used the previous first release for NWN:EE that I published outside of community patch, here are changes in this release:
+- re-implemented monk speed+haste calculation bugfix
+- re-implemented the Shou Disciple+Monk 2d20 unarmed bug
+- discovered that making weapons to be monk weapons is not working right now
+- re-implemented softcoded special attacks and all the fixes/features associated with that (quivering palm&pm immunity, smite good/evil stacking with custom classes, ability to set AoO to be death/sneak attack, option to make custom special ability)
+- re-implemented option to detach paralysis immunity from mind-spells immunity
+- re-implement the possibility to use SetCustomToken for values 0-9
+- re-implement duplicated events feature. However, now nwnx_patch will only run 70_mod_def_load script which runs in paralel with default module OnModuleLoad script. This script then replace original module script events with its own using new NWN:EE feature SetEventScript. These scripts then runs original scripts after they are done. If you don't want this to happen, modify 70_mod_load script and remove the code doing this.
+- re-implemented hardcore initiative rule
+- fixed function NWNXPatch_BootPCWithMessage to work under NWN:EE (but it is kind of redundant now, it allows to send player custom text from TLK opposed to the NWN:EE BootPC that allows to send player text you can directly specify in NWScript - so candidate for removal)
+- fixed function NWNXPatch_Get/SetTileAnimLoop to work under NWN:EE
+-------------------------------------------------------------------------------------------------------------
+
+Neverwinter Nights Community Patch 1.72 Release Candidate 5
+
+Fixed broken stuff from previous Patch versions:
+- fixed Balagarn's iron horn spell issues affecting caster and his allies, if cast by henchman under specific conditions
+- fixed stunning fist, quivering palm and smite evil/good feats decreasing uses only when they hit when using NWN(C)X in 1.69 version of the 1.72
+- fixed nonfunction PC Widget tool option to deactivate Musical Instruments rules module switch
+
+Revisited features from previous Patch versions:
+- the "allow boost ammo" module switch changed into "allow boost ranged weapons&ammo" - this is neccessary because some of the weapon boost spell benefits aren't working on ammo and some of the benefits aren't working on ranged weapon
+- fixed description of PC Widget Tool item (was description of garlick)
+- added DM check into PC Widget Tool conversation when used in multiplayer to prevent players to modify server switches on localvault servers (and players abusing certain exploit)
+- changed prefix of scripts used in PC Widget Tool conversation (to avoid confusion with disease scripts)
+
+New fixes and features:
+
+Campaign fixes:
+- improved the scripting behind OC Chapter 1 Black Lake arena - player will now acquire the proof amulet even when the corpses of the enemies are still there (see: https://forum.neverwintervault.org/t/bug-cant-get-advance-past-hrusk-in-the-gauntlet/1040 for details)
+- fixed bugginess of henchmen in SoU happening after moving between chapters. Note, that this won't fix the already bugged henchmen, the fix will work only for those not yet finished chapter1 - to fix already bugged henchmen, follow this - https://neverwintervault.org/forums/neverwinter-nights-1/players-corner-nwn1/sou-fixing-dorna-when-she-stops-disarming-traps
+- fixed the <UNRECOGNIZED TOKEN> when talking with the Illithid in charge of pits in HotU chapter2
+
+Spells and spellabilities:
+- Entangle, Vine Mine: Entangle: spells will now apply movement speed decrease effect upon entrance to match description
+- Battletide, Doom, Prayer, War Cry, Bard Song, Curse Song, Doom Howl, Doom Gaze, Hellfire Inferno: spells will now provide physical bonus or penalty instead of slashing or bludgeoning (note: visual change only, the bludgeoning/slashing was "melded" and worked as physical so nothing really changed)
+- Raise Dead: added feedback when cast on placeable (unification with Resurrect spell which does that)
+- Restoration - Other: will no longer remove rage and horse related effects (unification with standard restoration spells)
+- Inferno: allowed spell to do at least initial damage in case target is already affected by the continuous damage
+- Daze, Magic Missile, (Greater) Stoneskin, Divine Favor, Shield of Faith, Greater Magic Fang, Quillfire, Ball Lightning, Combust, Death Armor, Darkfire, Flame Weapon, Magic Vestment, Greater Magic Weapon: added spell.Limit support (daze - number of HD max affected, magic missile - number of maximum missiles, (greater) stoneskin - number of maximum hitpoints reduced, favor - the maximum bonus to attack/damage, shield of faith - the maximum bonus to AC, greater magic fang - max attack/dmg bonus, quillfire - max bonus damage, ball of lightning - max number of missiles, combust - max bonus dmg, death armor - max bonus dmg, gmw - max enhancement bonus)
+- Ball Lightning: added spell.DamageCap support - in this case DamageCap is by default 1 - 1d6 damage per missile
+- Blackstaff: will now work on a magic staff as well
+- Blade Thirst: spell duration reduced from 2 to 1 round per level to match description, as a compensation, spell will now grant also +3 vampiric regeneration along with the enhancement bonus
+- Major rewrite of weapon boosting spells in order to add support for boosting ranged weapons along with ammunition: (note: this is optional feature that player/builder must enable first for this to apply)
+ - made the spells to apply different benefits when cast on a ranged weapon and ammo instead of a normal benefit of the spell that doesn't work for such item type (for example, instead of enhancement bonus spells will provide attack bonus when cast on a ranged weapon and raw damage bonus when cast on ammo)
+ - spells will support custom ranged weapons and custom ammunition (as custom ranged weapon/ammunition are possible to do with nwn(c)x_patch plugin and BeamDog might add this functionality too in future)
+ - in a case spell has no effect on a ranged weapon (flame weapon/darkfire) and the spell is cast on a player holding ranged weapon, spells will automatically attempt to target ammunition if available
+ - Blade Thirst: if ranged/ammo boosting is enabled, spell will be possible to cast on a ranged weapons/ammunition despite not slashing weapon, this is intented balance change
+ - Bless Weapon: if ranged/ammo boosting is allowed, spell will apply also default benefits not just rakshasa onhit when cast on bolts
+
+Scripts:
+- added a new category * Community Patch into standard door palette; currently it provides pre-defined blueprints of all vanilla generic door models that are set to plot and locked on nonexisting key
+- functions IPGetIsThrownWeapon and IPGetIsProjectile in x2_inc_itemprop rewritten to check 2DA values in order to make them custom content compatible
+- 70_inc_itemprop: new function IPGetIPConstDamageBonusConstantFromNumber that returns the IP_CONST_DAMAGEBONUS_* constant
+- added support for spellability lesser body adjustment into 70_s0_curewounds multi spellscript
+- Spell Engine: added possibility to dynamically modify spell dice value, use variables:
+ - SPELL_DICE_OVERRIDE int X
+ - SPECIAL_ABILITY_DICE_OVERRIDE int X
+ - ITEM_DICE_OVERRIDE int X
+ - (spell_id)_DICE_OVERRIDE int X, where X = new dice value; ie 58_DICE_OVERRIDE int 20 on a creature will cause (casterlevel)d20 damage from fireball cast by this creature
+- added a new option in PC Widget Tool to hide helmet model
+- re-added the module switch 72_POLYMORPH_MERGE_CASTING_ABILITY, this was removed in NWN:EE version because NWN:EE fixes removal of spellslots when polymorphing; however, spell slots are still lost/consumed which makes this module switch still usefull
+
+Other:
+- tile ttu01_s06_01: fixed gaps in the floor texture and stretched texture on the floor corner and small stalagmites
+- fixed elder water elemental's script set
+- fixed old white dragon's alignment from true neutral to chaotic evil
+- updated multispell script auto 2da merger scheme to change script of the spellability lesser body adjustment as well
+- added new itemproperty called Metamagic, this itemproperty is supposed to provide extra feedback to players for items that has their spells enhanced with metamagic and additionally acts as such enhancement itself so builder can use this method instead of using variables. Itemproperty stacks, meaning that if you grant item Metamagic: Extend Spell + Empower Spell + Maximize Spell it will grant the spell benefits of all 3 metamagics together (though not every spell can take effect of all three).
+
+Dialog.tlk:
+Doom spell description: removed the mention about ability checks (which spell doesn't affect)
+Blade thirst description: added mention about newly granted vampiric regeneration
+
+-------------------------------------------------------------------------------------------------------------
+Neverwinter Nights Community Patch 1.72 Release Candidate 4
+
+Fixed broken stuff from previous Patch versions:
+- re-enabled spellscripts to be forwards compatible again (when spellscript from cpp was used by player without cpp installed, spell were missing spellhook related features such as crafting support or firing user defined spellhook script)
+- Mestil's Acid Arrow: fixed bug that prevented the subsequent damage when the spell was cast by PM or any custom prestige class granting caster level on target with spell resistance
+- Storm or Vengeance damage type fixed to electricity.
+- Blade Thirst: added missing support for 72_DISABLE_WEAPON_BOOST_STACKING module switch
+
+Revisited features from previous Patch versions:
+- removed possibility of showing wings and tails for bodak and orc chieftant A models to avoid issues with preexisting custom content blueprints with errorneous wings/tails
+- Community Patch PC Widget tool will now work even in modules without tag-based scripting enabled
+
+New fixes and features:
+
+Campaign fixes:
+- fixed SoU campaign bug in chapter 1 that prevented the conversation option to charm Hanniah work properly
+- fixed HotU campaign bug in chapter 3 that didn't kill henchmen after surrendering their soul
+- following items from SoU and HotU will now work in every module player will play including vanilla NWN campaign: Djinni Bottle, Ragged Cloak of the Worg, SoU starting class items
+
+Spells and spellabilities:
+All weapon buff spells: the duration visual effect is no longer dispellable (this makes the spell completely undispellably by vanilla dispells, but vanilla dispell could only remove hidden visual effect, the actual benefits on weapon were always undispellable - this will just prevent confusion)
+All dispel spells: dispel effect externalized into‘70_mod_dispel’ script, if builder would want to change the behavior of the dispel effect it can be done here without modifying spellscripts
+Clarity, Lesser Mind Blank, Mind Blank: added supernatural effect check as is in restoration spells - this allows to make a mind-affecting effect which won’t be removed with these spells
+Planar Binding: signal event will fire for non-outsiders too
+
+Scripts:
+x3_inc_horse/x3_mod_def_enter: - fixed horse scripts causing appearance change when loading/entering module with character with custom appearance or non-standard racial type
+x2_mod_def_load: corrected comment above Use Poison switch+
+- x2_inc_itemprops library: function IPGetItemPropertyByID will now support Damage Decrease itemproperty too
+- 70_inc_itemprops library: function GetItemPropertyByID will now support Damage Decrease itemproperty too
+Additions into community patch "spell engine":
+- variable "SPELL_TARGET_OVERRIDE" can be also location
+- new feature to cheat spells, see custom function ActionCastCheatSpellAtObject in 70_inc_spells
+- possibility to modify belonging to the racial type, set local int variable named "IsRacialType_X" where X is racial type ID, values 1 will consider oTarget to be that race, value -1 will not consider target to be that race
+
+Other:
+- fixed few vanilla blueprints having erroneous tail or wings assigned
+
+-------------------------------------------------------------------------------
+
+Community Patch 1.72 Enhanced Edition release
+
+Changes over previous version of community patch for 1.69:
+- community patch "unhardcoded", files are no longer inside BIF file but are distributed into internal override folder - this makes it easy to choose/modify what features/fixes you want
+- changes from NWN:EE incorporated into files modified by CPP (portraits.2da, xp2_gui.erf texture pack)
+- removed all nwnx related fixes, features and additional content (almost all - some of the nwnx-specific code remains as there is no point removing it as I hope those functionalities will be soon restored)
+- restored original nwn main music theme
+- removed community patch custom main GUI image
+- added new community patch "logo" under expansion stickers
+- removed all changes from nwscript.nss - additional constants were added into 70_inc_main.nss include instead
+- restored default module event script changes that were reworked in previous last CPP version using NWNX feature
+- duplicated changes from NWN:EE into dialog.tlk
+
+Removed fixes for issues fixed in NWN:EE
+- removed fix for DC bug with feat-based spells
+- removed fixes for exploits with metamagic
+- removed fix caster level bug with special abilities
+- removed fix for action cancel issue with EffectDeath()
+- removed fix for casting in polymorph exploit
+- removed fix for cleric domains in radial menu
+- removed changes in description of dispelling spells as the bug with spell resist and tie was fixed
+- removed function ShutdownServer and custom 2da file restart.2da related to this as NWN:EE fixed the crash that allowed this to work :)
+- removed workaround for losing spellslots in polymorph
+- removed workaround for losing creature skin when relogging
+- inventory "height" for creature skin restored to 2x2 (was changed to 0x0 in order to prevent issue with losing skin on relog during polymorph while having full inventory)
+- removed fix for exploit with prolonging duration of a temporary polymorph
+
+Removed features:
+- removed module switch for Hardcore Uncanny Dodge II
+- all switches requiring NWNX removed from PC Widget Tool
+
+Fixes to previous community patch content:
+- added code for *_METAMAGIC_MODIFIER that somehow disappeared during beta development
+- added missing henchman switch into pc widget tool
+- fixed few more scripts that could generate PC Skin item
+- added new packages in packages.2da for Shou Disciple and Eye of the Gruumsh to be used with LevelUpHenchman function, constants for these packages (plus PDK) are in 70_inc_main library

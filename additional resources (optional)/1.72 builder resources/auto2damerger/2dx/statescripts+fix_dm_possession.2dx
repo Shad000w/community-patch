@@ -1,0 +1,4 @@
+2DX V2.0
+DESCRIPTION: Fixes not running the OnDeath script when creature controlled by DM dies.
+    SCRIPTNAME       
+33  70_npc_ondeath

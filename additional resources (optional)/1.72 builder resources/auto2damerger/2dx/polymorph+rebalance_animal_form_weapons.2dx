@@ -1,0 +1,13 @@
+2DX V2.0
+DESCRIPTION: Rebalances druid animal form weapons per DnD rules and their normal creature counterparts.
+       CreatureWeapon1    CreatureWeapon2    CreatureWeapon3    
+21     nw_it_crewpsp010   nw_it_crewpsp010   nw_it_crewps017   
+22     nw_it_crewpsp001   nw_it_crewpsp001   nw_it_crewps005     
+23     ****               ****               nw_it_crewps005   
+24     ****               ****               nw_it_crewpp010   
+25     nw_it_crewpsp001   nw_it_crewpsp001   nw_it_crewps014   
+33     nw_it_crewpsp006   nw_it_crewpsp006   nw_it_crewps017   
+34     nw_it_crewpsp026   nw_it_crewpsp026   nw_it_crewps005     
+35     ****               ****               nw_it_crewps010   
+36     ****               ****               nw_it_crewpp010   
+37     nw_it_crewpsp026   nw_it_crewpsp026   nw_it_crewps005   

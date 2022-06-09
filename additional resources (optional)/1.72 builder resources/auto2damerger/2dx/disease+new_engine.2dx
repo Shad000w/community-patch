@@ -1,0 +1,34 @@
+2DX V2.1
+---
+description: |
+ Upgrades disease onto new softcoded engine using script for each disease.
+ 
+column_rename:
+  Dice_1: Dice1
+  Dam_1: Dam1
+  Type_1: Type1
+  Dice_2: Dice2
+  Dam_2: Dam2
+  Type_2: Type2
+  Dice_3: Dice3
+  Dam_3: Dam3
+  Type_3: Type3
+---
+      End_Incu_Script   24_Hour_Script    
+0     70_d1_disease0    ####
+1     70_d1_disease1    70_d2_disease1
+2     70_d1_disease2    ####
+3     70_d1_disease3    70_d2_disease3
+4     70_d1_disease4    70_d2_disease4
+5     70_d1_disease5    70_d2_disease5
+6     70_d1_disease6    70_d2_disease6
+7     70_d1_disease7    70_d2_disease7
+8     70_d1_disease8    70_d2_disease8
+9     70_d1_disease9    70_d2_disease9
+10    ####              70_d2_disease10
+11    70_d1_disease11   70_d2_disease11
+12    70_d1_disease12   70_d2_disease12
+13    70_d1_disease13   70_d2_disease13
+14    70_d1_disease14   70_d2_disease14
+15    70_d1_disease15   ####
+16    70_d1_disease16   70_d2_disease16

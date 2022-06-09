@@ -1,0 +1,7 @@
+2DX V2.1          
+---                                                                         
+description: |
+ Adds Epic skill focus Use Magic Device into Assassin's epic bonus feat list
+---
+     FeatLabel                            FeatIndex   List   GrantedOnLevel   OnMenu   
+#    FEAT_EPIC_SKILL_FOCUS_USEMAGICDEVICE 609         0      -1               0

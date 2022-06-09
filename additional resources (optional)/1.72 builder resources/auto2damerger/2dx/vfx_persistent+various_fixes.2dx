@@ -1,0 +1,5 @@
+2DX V2.0
+DESCRIPTION: Removes needless scripts from silence and incendial cloud aoes.
+     ONEXIT   HEARTBEAT
+1    ****     ####
+30   ####     ****

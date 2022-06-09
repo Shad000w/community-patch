@@ -1,0 +1,7 @@
+2DX V2.0
+DESCRIPTION: Speeds up wail of banshee vfx, changes negative hit vfx and few minor fixes.
+       Type_FD   SoundImpact        ShakeDelay
+39     ####      ####               1.6
+288    ####      sim_negative       ####
+466    D         ####               ####
+467    D         ####               ####

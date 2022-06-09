@@ -1,0 +1,33 @@
+HOW TO INSTALL COMMUNITY PATCH 1.72 INTO NWN:ENHANCED EDITION
+
+1) Copy content of the folder "copy into game's user folder" into NWN:EE user folder - this should be ~/Documents/Neverwinter Nights but cany vary based on OS. This action should not require to overwrite anything (unless you installed 1.72 once already).
+2) Copy content of the folder "copy into game's installation folder" into NWN:EE installation folder - the default path for windows is ~/Program Files/Beamdog/00829/ but can vary based on OS. This action *should* require to overwrite some of the files, allow it. If it didn't you are in wrong path. Also note that you might need admin permissions if NWN:EE is installed into Program Files.
+3) Start NWN:EE, you should notice a 1.72 "sticker" below Hordes of Underdark logo and you should hear original NWN theme music in menu.
+
+BeamDog client should not force an update on you, however when new headstart version will be released, re-installing this package will be needed.
+
+Only english language is supported right now. If you don't want to use english language, remove dialog.tlk from your NWN:EE user folder - this will restore language of the installation (which will not reflect changes done by this modification).
+
+Additionally, there are some extra resources in "additional resources (optional)" folder. This is purely optional and usual user shouldn't need to worry about this.
+1) Folder "restore vanilla icons" contains vanilla (original) colorless icons for those disliking colored icons that this unofficial patch brings, in such case copy content of this folder into NWN:EE user folder
+2) Folder "1.72 builder resources" contains resources for module builders.
+
+
+HOW TO UNINSTALL THIS MODIFICATION
+
+1) Remove dialog.tlk from NWN:EE user folder
+2) Run Beamdog client and select NWN:EE. There should be a new button right next to [Options], this button will let you restore your installation to default.
+
+USING COMMUNITY PATCH ON A DEDICATED SERVER
+
+Is doable, but obviously it cannot be installed in a same way as for client/dev machine. Instead content of the /ovr folder needs to be copied into /override. (Other files should be irrelevant for a server.)
+
+
+
+DISCLAIMER:
+
+This is unofficial, fanmade modification. It changes several files inside NWN:EE installation folder, folder that should not be changed.
+
+This modification is using a technique, that might be there only for BeamDog's internal usage, and it is possible that this functionality will be removed in future. If that should happen this modification will no longer work at all (but if this happens I will fix this).
+
+Use at your own risk.

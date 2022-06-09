@@ -1,0 +1,5 @@
+2DX V2.0
+DESCRIPTION: Fixes boat polymorph portrait and super chicken race.
+     RacialType  Portrait
+67   8           ####
+95   ####        po_C_BoatHack          

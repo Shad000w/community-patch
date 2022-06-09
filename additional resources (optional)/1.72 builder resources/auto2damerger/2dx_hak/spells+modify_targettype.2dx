@@ -1,0 +1,8 @@
+2DX V2.0
+DESCRIPTION: Modifies five spells targettype (ie. on what can spell be cast) to fix issues with gameplay (firestorm) or crafting.
+       TARGETTYPE
+57     0x09
+80     0x09
+91     0x09
+116    0x09
+173    0x09

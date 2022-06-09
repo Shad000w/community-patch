@@ -1,0 +1,4 @@
+2DX V2.0
+DESCRIPTION: Moves Sunbeam to the spell level 7 for druid to match DnD rules and common sense (by default 8 where is also Sunbeam a stronger version of this spell).
+     MetaMagic  Druid  Innate
+183  0x3d       7      7

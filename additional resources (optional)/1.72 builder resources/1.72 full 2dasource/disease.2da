@@ -1,0 +1,20 @@
+2DA V2.0
+
+      Label               Name   First_Save   Subs_Save   Incu_Hours   Dice1   Dam1   Type1   Dice2   Dam2   Type2   Dice3   Dam3   Type3   Type    End_Incu_Script   24_Hour_Script
+0     Blinding_Sickness   4689   16           16          1            4       1      0       ****    ****   ****    ****    ****   ****    EXTRA   70_d1_disease0    NW_S3_BlindSick
+1     Cackle_Fever        4690   16           16          1            6       1      4       ****    ****   ****    ****    ****   ****    EXTRA   70_d1_disease1    70_d2_disease1
+2     Demon_Fever         4691   18           18          1            6       1      2       ****    ****   ****    ****    ****   ****    SUPER   70_d1_disease2    Nw_S3_DemonFev
+3     Devil_Chills        4692   14           14          1            4       1      0       ****    ****   ****    ****    ****   ****    SUPER   70_d1_disease3    70_d2_disease3
+4     Filth_Fever         4693   12           12          1            3       1      3       3       1      2       ****    ****   ****    EXTRA   70_d1_disease4    70_d2_disease4
+5     Mindfire            4694   12           12          1            4       1      3       ****    ****   ****    ****    ****   ****    EXTRA   70_d1_disease5    70_d2_disease5
+6     Mummy_Rot           4695   20           20          1            6       1      2       ****    ****   ****    ****    ****   ****    SUPER   70_d1_disease6    70_d2_disease6
+7     Red_Ache            4696   15           15          1            6       1      0       ****    ****   ****    ****    ****   ****    EXTRA   70_d1_disease7    70_d2_disease7
+8     Shakes              4697   13           13          1            6       1      0       ****    ****   ****    ****    ****   ****    EXTRA   70_d1_disease8    70_d2_disease8
+9     Slimy_Doom          4698   14           14          1            4       1      1       ****    ****   ****    ****    ****   ****    EXTRA   70_d1_disease9    70_d2_disease9
+10    Red_Slaad_Eggs      4699   17           17          1            6       2      1       6       2      0       6       2      2       EXTRA   NW_S3_SlaadEgg    70_d2_disease10
+11    Ghoul_Rot           4700   18           18          1            6       1      2       6       1      0       ****    ****   ****    SUPER   70_d1_disease11   70_d2_disease11
+12    Zombie_Creep        4701   15           15          1            4       1      2       4       1      1       ****    ****   ****    SUPER   70_d1_disease12   70_d2_disease12
+13    Dread_Blisters      4702   13           13          1            4       1      2       4       1      5       ****    ****   ****    SUPER   70_d1_disease13   70_d2_disease13
+14    Burrow_Maggots      4703   17           17          1            4       1      3       4       1      4       ****    ****   ****    SUPER   70_d1_disease14   70_d2_disease14
+15    Soldier_Shakes      4704   25           25          1            ****    ****   ****    ****    ****   ****    ****    ****   ****    ****    70_d1_disease15   Nw_S3_SoldShake
+16    Vermin_Madness      4705   13           13          1            1       1      3       1       1      4       1       1      5       EXTRA   70_d1_disease16   70_d2_disease16

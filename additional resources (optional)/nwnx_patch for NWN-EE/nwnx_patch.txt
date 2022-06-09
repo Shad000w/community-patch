@@ -1,0 +1,159 @@
+Community Patch Patch plugin by Shadooow v 2.2b (NWN:EE Server Edition)
+
+o SetLocalString function patched succesfully.
+o GetLocalString function patched succesfully.
+o GetLocalObject function patched succesfully.
+o Global pointer #1 patched succesfully.
+o Global pointer #2 patched succesfully.
+o Global pointer #3 patched succesfully.
+o Global pointer #4 patched succesfully.
+o LoadModuleFinish function patched succesfully.
+o Enabling to disable classes in character list patched succesfully.
+o GetWeaponFinesse function patched succesfully.
+o GetWeaponFocus function patched succesfully.
+o GetWeaponImprovedCritical function patched succesfully.
+o GetWeaponsSpec patched succesfully.
+o GetEpicWeaponFocus function patched succesfully.
+o GetEpicWeaponSpecialization function patched succesfully.
+o GetEpicWeaponOverwhelmingCritical function patched succesfully.
+o GetEpicWeaponDevastatingCritical function patched succesfully.
+o GetIsWeaponOfChoice function patched succesfully.
+o GetUseMonkAttackTables function patched succesfully.
+o Ki critical offhand bug patched succesfully.
+o Enabling critical hit multiplier modification patched succesfully.
+o Enabling unarmed damage modifications #1 patched succesfully.
+o Enabling unarmed damage modifications #2 patched succesfully.
+o Enabling unarmed damage modifications #3 patched succesfully.
+o Enabling hardcore DnD uncanny dodge 2 rule. patched succesfully.
+o Tumble AC patched succesfully.
+o Monk abilities in polymorph patched succesfully.
+o Making Circle Kick great again patched succesfully.
+o Detaching paralysis from mind-spells immunity patched succesfully.
+o Detaching critical immunity from sneak attack immunity #1 patched succesfully.
+o Detaching critical immunity from sneak attack immunity #2 patched succesfully.
+o Enabling DnD Initiative patched succesfully.
+o Animal companion summoning patched succesfully.
+o Familiar summoning patched succesfully.
+o CanUseItem function patched succesfully.
+o Use items in polymorph patched succesfully.
+o GetEffectImmunity function patched succesfully.
+o Itemproperty ability decrease patched succesfully.
+o Curse ability decrease patched succesfully.
+o Fixing monk speed interaction with haste patched succesfully.
+o Enabling custom applied effect event handler patched succesfully.
+o Enabling custom remove effect event handler patched succesfully.
+o Effect damage shield versus alignment patched succesfully.
+o ToggleMode function patched succesfully.
+o Flurry of blows modification patched succesfully.
+o Spell Resistance override patched succesfully.
+o ApplyEffectToObject extension patched succesfully.
+o ForceRest extension patched succesfully.
+o Enabling effect modifications and additional effect information functions patched succesfully.
+o Enabling VersusEffect to work with EffectDamageShield patched succesfully.
+o Enabling to set <CUSTOM0> to <CUSTOM9> patched succesfully.
+o Enabling uncapped EffectAttackIncrease patched succesfully.
+o Enabling EffectModifyBAB patched succesfully.
+o Enabling EffectPolymorph improvements patch disabled.
+o Disallow New Characters server option patched succesfully.
+o FeatRequirements function #1. patched succesfully.
+o FeatRequirements function #2. patched succesfully.
+o ResolveInitiative function. patched succesfully.
+o Effect caster level bug patched succesfully.
+o More data in OnAttacked event patched succesfully.
+o Buying with full inventory bug patched succesfully.
+o OnLevelDown event for player patched succesfully.
+o Fixed combat info update after level down patched succesfully.
+o Enabling immunity to dying patched succesfully.
+o Enabling to modify hitpoints patched succesfully.
+o Enabling custom ranged weapons patched succesfully.
+o Enabling Boomerang item property patched succesfully.
+o Defensive stance feat softcoding #1 patched succesfully.
+o Defensive Stance feat softcoding #2 patched succesfully.
+o Item level restriction patched succesfully.
+o Flying creatures immunity to traps feature patched succesfully.
+o Favored Enemy calculation patched succesfully.
+o Learn scroll sofcoding patched succesfully.
+o Enabling modifications into speed patched succesfully.
+o Enabling modifications into reflex saving throw patched succesfully.
+o Enabling modifications into fortitude saving throw patched succesfully.
+o Enabling modifications into will saving throw patched succesfully.
+o Correcting several issues with saving throws patched succesfully.
+o Enabling combat round modifications. patched succesfully.
+o Enabling number of attacks modifications. patched succesfully.
+o Enabling custom special attacks #1 patched succesfully.
+o Enabling custom special attacks #2 patched succesfully.
+o Enabling custom special attacks #3 patched succesfully.
+o Enabling custom special attacks #4 patched succesfully.
+o Enabling custom special attacks #5 patched succesfully.
+o Hooking neccessary functions to fix feat uses after relogging/reloading: o Enabling modify number of feat uses patched succesfully.
+o Enabling modify number of feat uses patched succesfully.
+o Enabling Gruumsh rage stacking patched succesfully.
+o Enabling modify number of feat uses patched succesfully.
+o Enabling modify number of feat uses patched succesfully.
+o Enabling modify number of feat uses patched succesfully.
+o Enabling modify number of feat uses patched succesfully.
+o Enabling modify number of feat uses patched succesfully.
+o AddFeat function patched succesfully.
+SUCCESS.
+PRC-Lite related hooks:
+o Enabling Canny Defense feat patched succesfully.
+
+o Initializing weaponfeats.2da.
+o  weaponfeats.2da loaded.
+o  done.
+o Initializing effects.2da.
+o  effects.2da loaded.
+o  done.
+o Initializing racial_types.2da.
+o  racial_types.2da loaded.
+o  done.
+o Initializing feat_extra.2da.
+o  feat_extra.2da loaded.
+o  done.
+o Initializing classes.2da.
+o  classes.2da loaded.
+ o Initializing cls_spopt_wiz.2da.
+ o  ERROR loading cls_spopt_wiz.2da!
+ o Initializing cls_prog_palema.2da.
+ o  ERROR loading cls_prog_palema.2da!
+ o Initializing cls_prog_mystic.2da.
+ o  ERROR loading cls_prog_mystic.2da!
+ o Initializing cls_prog_eldkni.2da.
+ o  ERROR loading cls_prog_eldkni.2da!
+ o Initializing cls_prog_sacfis.2da.
+ o  ERROR loading cls_prog_sacfis.2da!
+o  done.
+NWNXPatch_Funcs DEBUG: func 17, params ./nwnplayer.ini|Server Options|Saving Throw Automatic Failure On 1
+DEBUG: GetINIString - ./nwnplayer.ini, Server Options, Saving Throw Automatic Failure On 1, 
+NWNXPatch_Funcs DEBUG: func 442, params 7ffffffe|1|0
+NWNXPatch_Funcs DEBUG: func 513, params 7ffffffe|2
+NWNXPatch_Funcs DEBUG: func GetEffect, oCreature: 7ffffffe, nTh: 0
+NWNXPatch_Funcs DEBUG: func GetEffectTrueType
+NWNXPatch_Funcs DEBUG: func GetEffectTrueType
+NWNXPatch_Funcs DEBUG: func GetEffect, oCreature: 7ffffffe, nTh: 1
+NWNXPatch_Funcs DEBUG: func GetEffectTrueType
+NWNXPatch_Funcs DEBUG: func 16, params 7ffffffe
+NWNXPatch_Funcs DEBUG: func 1, params 7ffffffe
+NWNXPatch_Funcs DEBUG: func 410, params 7ffffffe
+NWNXPatch_Funcs DEBUG: func 410, params 7ffffffe
+NWNXPatch_Funcs DEBUG: func 410, params 7ffffffe
+NWNXPatch_Funcs DEBUG: func 410, params 7ffffffe
+NWNXPatch_Funcs DEBUG: func 410, params 7ffffffe
+NWNXPatch_Funcs DEBUG: func 410, params 7ffffffe
+NWNXPatch_Funcs DEBUG: func 410, params 7ffffffe
+NWNXPatch_Funcs DEBUG: func 410, params 7ffffffe
+NWNXPatch_Funcs DEBUG: func 410, params 7ffffffe
+NWNXPatch_Funcs DEBUG: func 513, params 7ffffffe|2
+NWNXPatch_Funcs DEBUG: func GetEffect, oCreature: 7ffffffe, nTh: 0
+NWNXPatch_Funcs DEBUG: func GetEffectTrueType
+NWNXPatch_Funcs DEBUG: func GetEffectTrueType
+NWNXPatch_Funcs DEBUG: func GetEffect, oCreature: 7ffffffe, nTh: 1
+NWNXPatch_Funcs DEBUG: func GetEffectTrueType
+NWNXPatch_Funcs DEBUG: func 16, params 7ffffffe
+NWNXPatch_Funcs DEBUG: func 513, params 7ffffffe|2
+NWNXPatch_Funcs DEBUG: func GetEffect, oCreature: 7ffffffe, nTh: 0
+NWNXPatch_Funcs DEBUG: func GetEffectTrueType
+NWNXPatch_Funcs DEBUG: func GetEffectTrueType
+NWNXPatch_Funcs DEBUG: func GetEffect, oCreature: 7ffffffe, nTh: 1
+NWNXPatch_Funcs DEBUG: func GetEffectTrueType
+NWNXPatch_Funcs DEBUG: func 16, params 7ffffffe

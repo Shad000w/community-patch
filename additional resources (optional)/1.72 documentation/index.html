@@ -1,0 +1,99 @@
+<html>
+ <head>
+  <title>Community Patch 1.72 Documentation</title>
+   <style ref="text/css">
+   p{font-size: medium; font-weight: normal;}
+   ul{font-size: large; font-weight: bolder;}
+   li{font-size: medium; font-weight: normal;}                   
+   </style>
+  </head>
+ <body>
+  <h1>Community Patch 1.72 Documentation</h1>
+  <ul>On this page:
+   <li><a href="#about">About the patch</a></li>
+   <li><a href="#install">Instalation</a></li>
+   <li><a href="#issues">Known issues</a></li>
+   <li><a href="#faq">Frequently Asked Questions</a></li>
+   <li><a href="#fmf">Frequently Misinterpreted Features/Fixes</a></li>
+   <li><a href="#contact">Contact and useful links</a></li>
+  </ul>
+  <ul>Patch content documentation
+   <li><a href="full171.html">Community Patch main documentation</a></li>
+   <li><a href="172.pdf">1.72 documentation</a></li>
+   <li><a href="nwnx_patch.pdf">NWNX Patch and NWNCX Patch plugins documentation</a></li>
+   <li><a href="171_spell_changes.pdf">Spell changes detailed documentation</a></li>
+   <li><a href="171_specabil_changes.pdf">Special ability&feat changes detailed documentation</a></li>                                                
+   <li><a href="NWNv172.txt">1.72 very strict patch readme</a></li>
+   <li><a href="NWNv171.txt">1.71 very strict patch readme</a></li>   
+   <li><a href="NWNv170.txt">1.70 very strict patch readme</a></li>
+  </ul>
+  <h2><a name="about">About the patch</a> <span style="font-size: small;margin-top: -5px"><a href="#top">back to top</a></span></h2>
+  <p>The Community Patch 1.70-1 is an unofficial patch, that is compiled from work of numerous NWN community members and completed by Shadooow. Patch contains thousands of bugfixes and brings into game several new possibilities, especially for module builders.</p>  
+  <p>This patch does work almost the same way as old official patches in past. The only difference is that, the Community patch doesn't affect the game version and its fully compatible with previous official patch - 1.69. Players without this unofficial patch will still be able to play on servers with the patch and viceversa. Also, players without patch will still be able to see your server in gamespy server list <i>(or history now when gamespy is gone).</i></p>
+  <p>Also, this patch is fully compatible with any custom content like CEP, PRC, Project Q etc. meaning, that if you install the patch, non of these will break, everything will still work fine. But obviously you won't take advantage of all patch features and fixes until you (or CEP/PRC/Q team) merge 2DAs (and possibly spell scripts). This is standard behaviour of any patch. It was always like this, the problem now is that its been quite a while and nobody expected there will ever be another patch, so merging could be quite problematic. For this reason community patch contains a 3rd party tool called Auto 2DA Merger that will automatically update any 2DAs.</p>
+  <h3>About patch content</h3>
+  <p>There was a lot of controversy about what is included in this patch. But most, if not all these doubts were caused by misinterpretations of certain fixes which wasn't fully explained. There are a lot of different issues and not everyone is aware of them and some folks who didn't even know how that things worked or whats was broken on it misinterpreted certain fix/change and instead they ask, they simply stated that the Patch is wrong.</p>
+  <p>Also note that this project doesn't fixes only so called "confirmed" bugs. Certain NWN experts claim that not everything is a bug unless it's definitely clear and confirmed. But since there is noone official who could really confirm what is bug and what is not, an opinions on certain issues vary. Therefore this project describe bug as anything that doesn't make a sense. This is why despite the fact that the Bioware in past stated that they know about UMD issue and that it is intented, community patch changed and "fixed" it anyway. It simply didn't make sense.</p>
+  <p>Due to this fact it could be hard to distinguish between a feature or a fix, but it shouldn't matter. Every single change included in this patch was designed to be balanced for all kinds of environments and game types and mainly: <b>to make sense</b>.</p>
+  <p>The patch contains also many new and unique features, like a possibility to make a trap with DC of 65 and damage of 500-1000. Of course none of these features are "on" by default. Its simply a possibility for buiders of specific environments and its up to them if they uses it or not.</p>   
+  <p>&nbsp;</p>
+  <h2><a name="install">Installation</a> <span style="font-size: small;margin-top: -5px"><a href="#top">back to top</a></span></h2>
+  <p>This patch requires the official english version of the patch 1.69 with both expansions installed! Also please note that several game distributions are bugged and doesn't contain all the required files to install this patch. This is namely the problem of the Diamond edition. Running 1.69 Critical rebuild before installing community patch is recommended.</p>
+  <p>Due to the custom intaller, instalation on windows is simple, just choose your current language version when the installer ask you about language and you are ready to go. Installation on unix/MAC is different, users of these OS will have to download 7zip archive with patch files and extract it in NWN root folder and confirm any overwrites. The instalation on all OSs require to close all NWN instances!</p>
+  <h3>Auto 2DA Merger:</h3>
+  <p>This wonderfull utility is located in builder's resources package and allows to automatically merge all your 2DA files with the community patch changes. To do this you have to copy all your 2DAs into folders "yours" and then run the program from one of the batch files. See README.txt in the folder with automerger for details.</p>
+  <h3>Uninstalation:</h3>
+  <p>In case of any issues its possible to revert to 1.69 easily using 1.69 critical rebuild. If this is not an option or 1.69 critical rebuild doesn't work, then simply download uninstall.zip from the CPP vault page and extract in in main NWN folder, it will want to overwrite the xp2patch.key file, confirm this and its done.</p>
+  <p>&nbsp;</p>
+  <h2><a name="issues">Known Issues</a> <span style="font-size: small;margin-top: -5px"><a href="#top">back to top</a></span></h2>
+  <h3>Patch can crash game on unsupported unofficial 1.69 patch translation</h3>
+  <p>CPP supports only the English 1.69 version. Installing onto unofficial 1.69 translations is not possible, and will cause crashing. In case you have such unofficial translation, please run the 1.69 English Critical Rebuild and then choose the community patch with the language of your choice. In case your language is not supported, backup the file dialog.tlk before an replace it after community patch installation. (That way you get all the community patch content but with the texts of your old language installation).</p>
+  <p>Also, installing on a game without both expansions is not supported and neither will be!
+  <h3>DOA Baseitems issue</h3>
+  <p><b>Very important!!</b> If you want to use this patch at server and you also don't want to force your players to have patch installed (thus not adding patch170.hak/patch171.hak into your module hak list) and you also merge baseitems.2da to use DOA base item models, then you must add the content of the patch170.hak (also available in builders resources) into your top hak along with changed baseitems, otherwise players who didn't installed community patch will experience strange issues with inventory, possibly even crashing. This is not an issue on "no-HAK" servers though.</p>
+  <p>&nbsp;</p>
+  <h2><a name="faq">Frequently Asked Questions</a> <span style="font-size: small;margin-top: -5px"><a href="#top">back to top</a></span></h2>
+  <h3>When I tried to run the patch171.exe it says Im missing MSVCR100.DLL. Where do I get this file?</h3>
+  <p>The installer for 1.71 is a bit older now and more modern OSes will not have some of the files that it uses. If you get this error, install Visual C++ 2010 redistributable (available for free from Microsoft's <a href="http://www.microsoft.com/download/en/details.aspx?id=5555">website</a>).</p>
+  <p>Note: you want 32bit version even on 64bit windows as the installer is 32bit, it's not wrong.</p>
+  <h3>When I tried to run the patch171.exe it says I have wrong NWN version, but my version is 1.69!</h3>
+  <p>It looks like you skipped the whole bunch of warnings that CPP works only on English version with proper 1.69 installed.</p>
+  <p>If you get this message, it means you got either non-english game distribution or bugged nwn edition that doesn't contain all files from Patch 1.69.</p>
+  <p>Download and install <a href="http://neverwintervault.org/patch/nwn1/english/nwn-sou-hotu">1.69 Critical Rebuild</a> then it should work.</p>
+  <p>Note: if you got non-english distribution you will probably need to get <a href="http://neverwintervault.org/sites/all/modules/pubdlcnt/pubdlcnt.php?file=http://neverwintervault.org/sites/neverwintervault.org/files/project/785/files/171_lang_english.7z&nid=785">english dialog.tlk</a> first and put it into your folder with NWN to be able to install 1.69 Critical Rebuild. Then you should be able to install community patch with language of your choice (if available).</p>
+  <h3>The server I play stated, that they don't support the Patch 1.70, does it mean, that I shouldn't install it?</h3>
+  <p>You can install the patch whenever the server you want to play uses the patch or not. You can also ignore any recommendation of server admins, not to use this patch as well. Make your own test, install it and then if it makes some issues or you won't like it, just uninstall it. But so far these recommendations had only one purpose: to discredit the Patch project in general.</p>
+  <h3>Does patch 1.70 works with a module created on older version?</h3>
+  <p>Yes it does, you can play whatever module you wish with patch. But of course, it is possible that some features and fixes won't work in such module.</p>
+  <h2>Frequently Asked Questions by builders</a> <span style="font-size: small;margin-top: -5px"><a href="#top">back to top</a></span></h2>
+  <h3>I already made many changes across spells, do I need to do them again after I install the patch?</h3>
+  <p>No you don't have to. If you install the patch, it still will be yours spell versions which will be used. However, unless you do this, the new spell related features or fixes won't be applicable for these spells as they uses the old spell engine.</p>
+  <h3>I already made many changes to the 2DA files, do I need to do them again after I install the patch?</h3>
+  <p>No, yours 2DA in hak/override will overwrite new defaults. However you should definitely merge yours 2DA with the community patch version you had chosen. Unlike old days where builder had to do this hard work manually, Community Patch comes with a 3rd party utility that handles this task automatically in few minutes. See Auto 2DA Merger paragraph in the Installation section above.</p> 
+  <h3>Does files from Patch 1.70 counts towards to 16k limit?</h3>
+  <p>No Patch 1.70 doesn't have any such issue, neither it slows down game/server loading.</p>
+  <h3>Is there any difference with installing patch on the dedicated server?</h3>
+  <p>The exe installer won't be able to install patch on dedicated server as it has no registry. So you need to download one of the manual instal distributions with the language you need. Then simply unpack the content of the archive in the folder with dedicated server and its done.</p>
+  <p>&nbsp;</p>
+  <h2><a name="fmf">Frequently Misinterpreted Features/Fixes</a> <span style="font-size: small;margin-top: -5px"><a href="#top">back to top</a></span></h2>
+  <p>All of these misinterpetations were caused either due to lack of effort to understand the issue or to the fact that some issues are known only to experienced players and builders, so it may really confuse the less experienced ones. However I assure you, that the Patch 1.70 have been tested in different environments, single player, low magic, high magic and even in pvp arena. It has not caused any balance issues or anything. Mostly you don't event notice the difference unless you are really a NWN guru. In this section I will explain any such misunderstanding that already been reported to the right measure.</p> 
+  <h3>Why Patch 1.70 made Devastating Critical feat easier to attain?</h3>
+  <p>It didn't. The Patch simply corrected the description to match the game behavior, devastating critical never needed Weapon focus feat, although it has been written in the earlier patches in the feat's ingame description.</p>
+  <h3>Why can spellcasters cast epic spells at lvl 17? Thats not epic!</h3>
+  <p>They can't the way you think. As noted in both strict and detailed readmes, this only corrects the fact that while the ingame description states "beign epic character and the ability to cast lvl 9 spells" the actual game behavior is that you need to be a lvl 21 of sorcerrer, wizard, druid, cleric or 15lvl of Pale Master althought you can cast a lvl 9 spells earlier or in case of Pale Master combined with Bard you can't cast lvl 9 spells at all. Patch 1.70 simply corrected the first issue due to the balance reason to make other spellcasters on par with Pale Master. Therefore you will be able to select epic spell even at lvl 17 of wizard provided you have <b>enough Spellcraft rank</b> and you are <b>epic character</b> (21lvl).</p>
+  <p>Munchkin note: This feature allows to make a spellsword builds like 20paladin 17wizard 3 rogue, however they are still weaker compared to the same builds with Pale Master.</p>
+  <h3>Why did patch removed a sound of firing an elemental projectiles? I like that sound.</h3>
+  <p>Again, it didn't. If you would tried to install patch, you would know it. The sound in question is an odd sound that can be hear only in certain situations like custom content bow with a elemental damage firing a arrows without elemental damage. No reason to think it removes the regular sound of elemental projectiles.</p>
+  <h3>Why did patch uberized Barkskin potion to give more AC? I don't feel it will fit into my environment.</h3>
+  <p>Didn't. There is only one default potion of Barkskin and that one will remain at +3AC even after Patch 1.70 installation. Patch 1.70 only allows builder to create a Barkskin potion of greater power for environments where it may be appropriate.</p>  
+  <h3>Why did patch allowed to craft all spells into wand?</h3>
+  <p>A readme says <b><i>"could be crafted"</i></b> which means that this comes true only if a builder increases the maximum spell level for crafting, which is still at its default state, so nothing had actually changed. Previously if he did it, only like half of all spells could be crafted anyway. This is a simply a feature for specific environments and builder have to "turn it on".</p>
+  <h3>Why did patch added colored icons? I don't like them, is there any way to get rid of them?</h3>
+  <p>Sorry but Community Patch is a monolithic package and doesn't allow to install only specific parts. And believe it or not, the colored icons are long time standard these days, this is a feature aimed for new players. The colored icons that were added to this patch are closest to the original as possible. Except few spells the icon are still the same just colored with a sense. If you are used to old icons and don't want to get used to the new ones the only way to get them is to download <a href="http://neverwintervault.org/project/nwn1/other/patch/vanilla-icons-override-community-patch-project">this package</a> and put it into override.</p>
+  <p>Only if you or specifically those large CC compilations comply with these rules only then it could be the true patch. So please respect this, you wouldn't do it with any official patch in past and just because this patch doesn't force you to upgrade is not a reason to do it.</p>
+  <p>&nbsp;</p>  
+  <h2><a name="contact">Contact and useful links</a> <span style="font-size: small;margin-top: -5px"><a href="#top">back to top</a></span></h2>                                                                                                                        
+  <p>Nwvault page: <a href="http://neverwintervault.org/project/nwn1/other/patch/community-patch-project">http://neverwintervault.org/project/nwn1/other/patch/community-patch-project</a></p> 
+  <p>English Patch 1.69 download: <a href="http://neverwintervault.org/patch/nwn1/english/nwn-sou-hotu">http://neverwintervault.org/patch/nwn1/english/nwn-sou-hotu</a></p>
+ </body>
+</html>

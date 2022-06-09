@@ -1,0 +1,17 @@
+2DX V2.0
+DESCRIPTION: Fixes several spells not being scrollable.
+        Wiz_Sorc           Cleric             Druid              Ranger             Bard
+84      ####               X2_IT_SPDVSCR804   ####               ####               ####
+104     ####               ####               ****               ****               ####
+105     ####               ####               ****               ****               ####
+187     ####               X2_IT_SPDVSCR804   ####               ####               ####
+324     NW_IT_SPARSCR609   ####               ####               ####               ####
+340     NW_IT_SPARSCR609   ####               ####               ####               ####
+341     NW_IT_SPARSCR609   ####               ####               ####               ####
+342     NW_IT_SPARSCR609   ####               ####               ####               ####
+343     NW_IT_SPARSCR609   ####               ####               ####               ####
+373     ####               ####               ####               ####               70_it_scrwarcry
+442     ####               ####               ####               ####               x1_it_sparscr102
+445     ####               ####               ####               ####               x1_it_sparscr601
+528     x2_it_sparscr601   ####               ####               ####               ####
+535     ####               ####               ####               x2_it_spdvscr303   ####
