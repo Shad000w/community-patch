@@ -762,10 +762,25 @@ int MySavingThrow(int nSavingThrow, object oTarget, int nDC, int nSaveType=SAVIN
         {
             eVis = EffectVisualEffect(VFX_IMP_MAGIC_RESISTANCE_USE);
             if(nSaveType == SAVING_THROW_TYPE_DEATH)//1.70: special workaround for action cancel issue
-            {//this is now fixed in NWN:EE
-                //SetCommandable(FALSE,oTarget);
-                ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectDeath(),oTarget);//1.70: engine hack to get proper feedback
-                //SetCommandable(TRUE,oTarget);
+            {
+                if(GetSpellId() == -1)
+                {
+                    object oWorkaround = GetObjectByTag("72_EC_DEATH");
+                    if(!GetIsObjectValid(oWorkaround))
+                    {
+                        oWorkaround = CreateObject(OBJECT_TYPE_PLACEABLE,"plc_invisobj",GetStartingLocation(),FALSE,"72_EC_DEATH");
+                        ApplyEffectToObject(DURATION_TYPE_PERMANENT,ExtraordinaryEffect(EffectVisualEffect(VFX_DUR_CUTSCENE_INVISIBILITY)),oWorkaround);
+                        SetPlotFlag(oWorkaround,TRUE);
+                    }
+                    SetLocalObject(oWorkaround,"TARGET",oTarget);
+                    AssignCommand(oWorkaround,ActionCastSpellAtObject(386,oWorkaround,METAMAGIC_ANY,TRUE,0,PROJECTILE_PATH_TYPE_DEFAULT,TRUE));
+                }
+                else
+                {//this is now fixed in NWN:EE
+                    //SetCommandable(FALSE,oTarget);
+                    ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectDeath(),oTarget);//1.70: engine hack to get proper feedback
+                    //SetCommandable(TRUE,oTarget);
+                }
             }
             else
             {
