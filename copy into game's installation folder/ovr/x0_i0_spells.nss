@@ -1128,7 +1128,7 @@ int spellsIsTarget(object oTarget, int nTargetType, object oSource)
         }    /*SPELL_TARGET_SINGLETARGET:*/
         case 2://1.70: added new value now 2 == SPELL_TARGET_SINGLETARGET which is used for spells with single target, when these spells
         {      //are cast at neutral target then they are supposed to hurt target which is not possible with SPELL_TARGET_STANDARDHOSTILE
-            if(!GetIsReactionTypeFriendly(oTarget,oSource))
+            if(GetObjectType(oTarget) != OBJECT_TYPE_CREATURE || !GetIsReactionTypeFriendly(oTarget,oSource))
             {
                 nReturnValue = TRUE;
             }
