@@ -938,6 +938,7 @@ int nNewDuration = nActualDuration;
  {
  nNewDuration = 3;
  }
+ if(spell.DurationType == SPELL_DURATION_TYPE_SECONDS) nNewDuration*= 6;//1.72: support for a special case when builder decides to have the duration in seconds and also impose an upper limit
 return nNewDuration < nActualDuration ? nNewDuration : nActualDuration;//1.72: fix for extending duration to 3 rounds if the original duration was 1 or 2 rounds
 }
 
