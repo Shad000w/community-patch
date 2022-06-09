@@ -22,6 +22,7 @@
 void main()
 {
     //1.72: pre-declare some of the spell informations to be able to process them
+    spell.Limit = 40;
     spell.Range = RADIUS_SIZE_LARGE;
     spell.SR = NO;
     spell.TargetType = SPELL_TARGET_STANDARDHOSTILE;
@@ -36,6 +37,15 @@ void main()
     spellsDeclareMajorVariables();
     effect  eVis        = EffectVisualEffect(VFX_IMP_HEAD_ODD);
     effect  eImpact     = EffectVisualEffect(VFX_FNF_DISPEL_DISJUNCTION);
+    int      nCasterLevel = spell.Level;
+
+    //--------------------------------------------------------------------------
+    // Mordenkainen's Disjunction is capped at caster level 40
+    //--------------------------------------------------------------------------
+    if(nCasterLevel > spell.Limit)
+    {
+        nCasterLevel = spell.Limit;
+    }
 
     if (GetIsObjectValid(spell.Target))
     {
