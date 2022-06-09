@@ -902,6 +902,7 @@ return 0.0;
 int GetScaledDuration(int nActualDuration, object oTarget)
 {
 object oCaster = OBJECT_SELF;
+int nNewDuration = nActualDuration;
  if(GetObjectType(oCaster) == OBJECT_TYPE_AREA_OF_EFFECT)
  oCaster = GetAreaOfEffectCreator();
  if(GetIsPC(oTarget) || GetIsPC(GetMaster(oTarget)))
@@ -909,15 +910,15 @@ object oCaster = OBJECT_SELF;
  int nDifficulty = GetGameDifficulty();
   if(nDifficulty == GAME_DIFFICULTY_VERY_EASY)
   {
-  nActualDuration = 1;
+  nNewDuration = 1;
   }
   else if(nDifficulty == GAME_DIFFICULTY_EASY)
   {
-  nActualDuration = 2;
+  nNewDuration = 2;
   }
   else if(nDifficulty == GAME_DIFFICULTY_NORMAL)
   {
-  nActualDuration = 3;
+  nNewDuration = 3;
   }
   else
   {
@@ -928,16 +929,16 @@ object oCaster = OBJECT_SELF;
     break;
    case 2:
    case 3:
-   nActualDuration = 3;
+   nNewDuration = 3;
    break;
    }
   }
  }
  else if(GetModuleSwitchValue("71_SHORTENED_DURATION_OF_DISABLE_EFFECTS") == 3)
  {
- nActualDuration = 3;
+ nNewDuration = 3;
  }
-return nActualDuration;
+return nNewDuration < nActualDuration ? nNewDuration : nActualDuration;//1.72: fix for extending duration to 3 rounds if the original duration was 1 or 2 rounds
 }
 
 effect GetScaledEffect(effect eStandard, object oTarget)
