@@ -438,7 +438,7 @@ int nClass = GetLastSpellCastClass();
   }
   if(bAOE) SetLocalInt(OBJECT_SELF,"AOE_INNATE",nSpellLevel+1);
  }
-int nMaxLevel;
+int nMaxLevel = -1;
  if(GetHasSpellEffect(734,oTarget))
  nMaxLevel = 8;
  else if(GetHasSpellEffect(SPELL_GLOBE_OF_INVULNERABILITY,oTarget))
