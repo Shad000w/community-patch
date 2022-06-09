@@ -29,6 +29,7 @@ void main()
     //1.72: pre-declare some of the spell informations to be able to process them
     spell.Dice = 10;
     spell.DamageType = DAMAGE_TYPE_ACID;
+    spell.SavingThrow = SAVING_THROW_FORT;
     spell.TargetType = SPELL_TARGET_STANDARDHOSTILE;
 
     //Declare major variables
