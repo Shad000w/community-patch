@@ -536,7 +536,7 @@ int bDFBorGlyph = spell.Id == SPELL_DELAYED_BLAST_FIREBALL || spell.Id == SPELL_
  {
  return 0;
  }
- else if(bAOE && !bDFBorGlyph && GetModuleSwitchValue("70_AOE_IGNORE_SPELL_RESISTANCE"))
+ else if(spell.SR != YES && bAOE && !bDFBorGlyph && GetModuleSwitchValue("70_AOE_IGNORE_SPELL_RESISTANCE"))//1.72: allowed to override the global rule of no SR for AOEs
  {
   if(MyResistSpell_GetIsSpellImmune(oTarget,bAOE))
   {
