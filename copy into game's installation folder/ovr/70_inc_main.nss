@@ -31,6 +31,7 @@ const int IP_CONST_SAVEVS_CHAOS            = 19;
 const int IP_CONST_SAVEVS_GOOD             = 20;
 const int IP_CONST_SAVEVS_EVIL             = 21;
 const int ITEM_VISUAL_NONE                 = 7;
+const int DAMAGE_TYPE_PHYSICAL             = 7;
 
 //Adds feat to player. Uses PC Skin system from 1.69 + expanded iprp_feats.2da from patch 1.72.
 void AddFeat(int nFeat, object oPC);
@@ -53,6 +54,9 @@ void SkillTimerInitialize(object oCreature, int nSkill);
 
 //Reduces skill timer by 1 each second.
 void SkillTimerReduce(object oCreature, int nSkill);
+
+//workaround for new issue in NWN-EE where newly spawned items are forcing other items to drop or won't be created at all
+object CreateItemOnObjectOrDropIfFullInventory(string sItemTemplate, object oTarget=OBJECT_SELF, int nStackSize=1, string sNewTag="");
 
 void AddFeat(int nFeat, object oPC)
 {
@@ -292,4 +296,29 @@ void SkillTimerReduce(object oCreature, int nSkill)
 {
 object oModule = GetModule();
 AssignCommand(oModule,DelayCommand(1.0,SkillTimerReduce_internal(oCreature,nSkill)));
+}
+
+object CreateItemOnObjectOrDropIfFullInventory(string sItemTemplate, object oTarget=OBJECT_SELF, int nStackSize=1, string sNewTag="")
+{
+    if(!GetIsPC(oTarget)) return CreateItemOnObject(sItemTemplate,oTarget,nStackSize,sNewTag);
+    object oModule = GetModule();
+    int nBaseItemType = GetLocalInt(oModule,sItemTemplate+"_BASEITEM")-1;
+    if(nBaseItemType < 0)
+    {
+        location lLocation = GetLocation(GetObjectByTag("DM_LOKACE"));
+        object oCopy = CreateObject(OBJECT_TYPE_ITEM,sItemTemplate,lLocation);
+        nBaseItemType = GetBaseItemType(oCopy);
+        SetLocalInt(oModule,sItemTemplate+"_BASEITEM",nBaseItemType+1);
+        DestroyObject(oCopy);
+    }
+    if(GetBaseItemFitsInInventory(nBaseItemType,oTarget))
+    {
+        return CreateItemOnObject(sItemTemplate,oTarget,nStackSize,sNewTag);
+    }
+    AssignCommand(oTarget,PlaySound("gui_magbag_full"));
+    SendMessageToPCByStrRef(oTarget,10426);
+    location lLocation = GetLocation(oTarget);
+    object oItem = CreateObject(OBJECT_TYPE_ITEM,sItemTemplate,lLocation,FALSE,sNewTag);
+    if(GetItemStackSize(oItem) != nStackSize) SetItemStackSize(oItem,nStackSize);
+    return oItem;
 }
