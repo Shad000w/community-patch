@@ -5,6 +5,14 @@
 #include "x2_inc_switches"
 
 //------------------------------------------------------------------------------
+// * This switch will change the spell DC calculation to use spell level for the
+// * class the spell was cast from instead of spell's Innate Level.
+// * Innate Level will be used as a fallback mechanism when the class casting the
+// * spell doesn't have it in his spellbook or when the spell originates from an item.
+//------------------------------------------------------------------------------
+const string MODULE_SWITCH_SPELL_DC_BASED_ON_CLASS_SPELL_LEVEL = "72_SPELL_DC_BASED_ON_CLASS_SPELL_LEVEL";
+
+//------------------------------------------------------------------------------
 // * This switch will modify the curse to bypass the ability decrease immunity
 // * such as from negative energy protection spell.
 // * Note: Dependant on NWN(C)X_Patch plugin.

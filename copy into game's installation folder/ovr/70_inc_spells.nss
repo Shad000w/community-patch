@@ -209,6 +209,32 @@ spell.Meta = GetMetaMagicFeat();
  spell.Class = CLASS_TYPE_INVALID;
  spell.Meta = METAMAGIC_NONE;
  }
+ else if(spell.Item == OBJECT_INVALID && spell.Class != CLASS_TYPE_INVALID && GetModuleSwitchValue("72_SPELL_DC_BASED_ON_CLASS_SPELL_LEVEL"))//1.72: DC based on class spell level feature
+ {
+ string sSpellTableColumn = Get2DAString("classes","SpellTableColumn",spell.Class);
+  if(sSpellTableColumn == "")
+  {
+   switch(spell.Class)
+   {
+   case CLASS_TYPE_BARD: sSpellTableColumn = "Bard"; break;
+   case CLASS_TYPE_CLERIC: sSpellTableColumn = "Cleric"; break;
+   case CLASS_TYPE_DRUID: sSpellTableColumn = "Druid"; break;
+   case CLASS_TYPE_RANGER: sSpellTableColumn = "Ranger"; break;
+   case CLASS_TYPE_PALADIN: sSpellTableColumn = "Paladin"; break;
+   case CLASS_TYPE_WIZARD: case CLASS_TYPE_SORCERER: sSpellTableColumn = "Wiz_Sorc"; break;
+   }
+  }
+  if(sSpellTableColumn != "")
+  {
+  string sSpellLevel = Get2DAString("spells",sSpellTableColumn,spell.Id);
+  int nInnate = StringToInt(Get2DAString("spells","Innate",spell.Id));
+  int nSpellLevel = StringToInt(sSpellLevel);
+   if(nSpellLevel || sSpellLevel == "0")
+   {
+   spell.DC+= nSpellLevel-nInnate;
+   }
+  }
+ }
  if(spell.Item == OBJECT_INVALID && spell.Class != CLASS_TYPE_INVALID && GetClassByPosition(2,spell.Caster) != CLASS_TYPE_INVALID && Get2DAString("spells","UserType",spell.Id) == "1" && Get2DAString("spells","FeatID",spell.Id) == "")
  {//spell can have its caster level increased by prestige classes
  SetLocalInt(GetModule(),"NWNXPATCH_RESULT",-1);
