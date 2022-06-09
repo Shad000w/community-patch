@@ -537,26 +537,17 @@ void IPWildShapeMergeItemProperties(object oOld, object oNew, int bWeapon = FALS
 
 itemproperty ItemPropertyBoomerang()
 {
-object oItem = CreateObject(OBJECT_TYPE_ITEM,"70_ip_14",GetStartingLocation());
-itemproperty ip = GetFirstItemProperty(oItem);
-DestroyObject(oItem);
-return ip;
+return ItemPropertyCustom(ITEM_PROPERTY_BOOMERANG);
 }
 
 itemproperty ItemPropertyWounding(int nWoundingAmount)
 {
-object oItem = CreateObject(OBJECT_TYPE_ITEM,"70_ip_69_"+IntToString(nWoundingAmount),GetStartingLocation());
-itemproperty ip = GetFirstItemProperty(oItem);
-DestroyObject(oItem);
-return ip;
+return ItemPropertyCustom(ITEM_PROPERTY_WOUNDING,-1,nWoundingAmount);
 }
 
 itemproperty ItemPropertyItemCostParameter(int nLetter, int nValue)
 {
-object oItem = CreateObject(OBJECT_TYPE_ITEM,"70_ip_42_"+IntToString(nLetter)+"_"+IntToString(nValue),GetStartingLocation());
-itemproperty ip = GetFirstItemProperty(oItem);
-DestroyObject(oItem);
-return ip;
+return ItemPropertyCustom(ITEM_PROPERTY_ITEM_COST_PARAMETER,nLetter,nValue);
 }
 
 //Private version of the SKIN_SupportEquipSkin function to handle special case after relog
