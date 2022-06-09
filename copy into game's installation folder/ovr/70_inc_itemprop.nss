@@ -487,19 +487,76 @@ void IPWildShapeHandleAbilityBonuses(object oArmorNew, object oWeaponNew)
 
 void ApplyWounding_continue(object oItem, int nNum, int nSlot)
 {
-object oPC = GetItemPossessor(oItem);
- if(GetItemInSlot(nSlot,oPC) == oItem)
- {
-  if(!GetIsResting(oPC) && GetCurrentHitPoints(oPC) > -10)
-  {
-  AssignCommand(oItem,ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectDamage(nNum,DAMAGE_TYPE_MAGICAL),oPC));
-  }
- DelayCommand(6.0,ApplyWounding_continue(oItem,nNum,nSlot));
- }
- else
- {
- SetLocalInt(GetModule(),ObjectToString(oItem)+ObjectToString(OBJECT_SELF),FALSE);
- }
+    object oPC = GetItemPossessor(oItem);
+    if(GetItemInSlot(nSlot,oPC) == oItem)
+    {
+        if(!GetIsResting(oPC) && GetCurrentHitPoints(oPC) > 0)
+        {
+            int nHP = GetCurrentHitPoints(oPC);
+            int nTempHP;
+            effect eSearch = GetFirstEffect(oPC);
+            while(GetIsEffectValid(eSearch))
+            {
+                if(GetEffectType(eSearch) == EFFECT_TYPE_TEMPORARY_HITPOINTS) nTempHP+= GetEffectInteger(eSearch,0);
+                eSearch = GetNextEffect(oPC);
+            }
+            if(nHP-nTempHP >= GetMaxHitPoints(oPC))//we are at max hp so check the amount of regen, if it is same or higher than wounding there is no point reducing hp it will get healed back immediately anyway
+            {
+                int slot, nRegen, nWounding;
+                object oEquipped;
+                itemproperty ip;
+                for(;slot<NUM_INVENTORY_SLOTS;slot++)
+                {
+                    oEquipped = GetItemInSlot(slot,oPC);
+                    if(oEquipped != OBJECT_INVALID && (GetItemHasItemProperty(oEquipped,ITEM_PROPERTY_REGENERATION) || GetItemHasItemProperty(oEquipped,69)))
+                    {
+                        ip = GetFirstItemProperty(oEquipped);
+                        while(GetIsItemPropertyValid(ip))
+                        {
+                            if(GetItemPropertyType(ip) == ITEM_PROPERTY_REGENERATION)
+                            {
+                                nRegen+= GetItemPropertyCostTableValue(ip);
+                            }
+                            else if(GetItemPropertyType(ip) == 69)
+                            {
+                                nWounding+= GetItemPropertyCostTableValue(ip);
+                            }
+                            ip = GetNextItemProperty(oEquipped);
+                        }
+                    }
+                }
+                if(nRegen >= nWounding)
+                {
+                    DelayCommand(6.0,ApplyWounding_continue(oItem,nNum,nSlot));
+                    return;
+                }
+            }
+            if(nHP-nNum > 0)//SetCurrentHitPoints is much more friendly to the players as it doesn't affect animations, but it can only be used above 0 hp
+            {
+                SetCurrentHitPoints(oPC,nHP-nNum);
+                string sMessage;
+                switch(GetPlayerLanguage(oPC))
+                {
+                    case PLAYER_LANGUAGE_FRENCH: sMessage = "Points de vie "+IntToString(nNum)+" perdus."; break;
+                    case PLAYER_LANGUAGE_GERMAN: sMessage = IntToString(nNum)+" TP verloren."; break;
+                    case PLAYER_LANGUAGE_ITALIAN: sMessage = "persi "+IntToString(nNum)+" punti ferita."; break;
+                    case PLAYER_LANGUAGE_SPANISH: sMessage = "Perdió "+IntToString(nNum)+" puntos de vida."; break;
+                    case PLAYER_LANGUAGE_POLISH: sMessage = "Utracono "+IntToString(nNum)+" pkt wytrzyma³oœci."; break;
+                    default: sMessage = "Lost "+IntToString(nNum)+" hit points."; break;
+                }
+                SendMessageToPC(oPC,GetName(oPC)+" : "+sMessage);//feedback message in all official languages
+            }
+            else//fallback to original EffectDamage if it should kill player
+            {
+                AssignCommand(oItem,ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectDamage(nNum,DAMAGE_TYPE_MAGICAL),oPC));
+            }
+        }
+        DelayCommand(6.0,ApplyWounding_continue(oItem,nNum,nSlot));
+    }
+    else
+    {
+        SetLocalInt(GetModule(),ObjectToString(oItem)+ObjectToString(OBJECT_SELF),FALSE);
+    }
 }
 
 //1.71: private function to handle wounding itemproperty
