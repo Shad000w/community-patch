@@ -1100,34 +1100,13 @@ void ActionCastCheatSpellAtObject(int nSpell, object oTarget, int nMetaMagic, in
     }
 }
 
+//Beamdog finally fixed the bug for which this workaround was created, but this cannot be removed to maintain backwards compatibility
 object FIX_GetFirstObjectInShape(int nShape, float fSize, location lTarget, int bLineOfSight=FALSE, int nObjectFilter=OBJECT_TYPE_CREATURE, vector vOrigin=[0.0,0.0,0.0])
 {
-    if(nShape != SHAPE_SPHERE) return GetFirstObjectInShape(nShape,fSize,lTarget,bLineOfSight,nObjectFilter,vOrigin);
-    object oArea = GetAreaFromLocation(lTarget);
-    object oObject = GetFirstObjectInArea(oArea);
-    while(oObject != OBJECT_INVALID)
-    {
-        if((GetObjectType(oObject) & nObjectFilter) && GetDistanceBetweenLocations(lTarget,GetLocation(oObject)) <= fSize && (!bLineOfSight || LineOfSightVector(GetPositionFromLocation(lTarget),GetPosition(oObject))))
-        {
-            return oObject;
-        }
-        oObject = GetNextObjectInArea(oArea);
-    }
-    return oObject;
+    return GetFirstObjectInShape(nShape, fSize, lTarget, bLineOfSight, nObjectFilter, vOrigin);
 }
 
 object FIX_GetNextObjectInShape(int nShape, float fSize, location lTarget, int bLineOfSight=FALSE, int nObjectFilter=OBJECT_TYPE_CREATURE, vector vOrigin=[0.0,0.0,0.0])
 {
-    if(nShape != SHAPE_SPHERE) return GetNextObjectInShape(nShape,fSize,lTarget,bLineOfSight,nObjectFilter,vOrigin);
-    object oArea = GetAreaFromLocation(lTarget);
-    object oObject = GetNextObjectInArea(oArea);
-    while(oObject != OBJECT_INVALID)
-    {
-        if((GetObjectType(oObject) & nObjectFilter) && GetDistanceBetweenLocations(lTarget,GetLocation(oObject)) <= fSize && (!bLineOfSight || LineOfSightVector(GetPositionFromLocation(lTarget),GetPosition(oObject))))
-        {
-            return oObject;
-        }
-        oObject = GetNextObjectInArea(oArea);
-    }
-    return oObject;
+    return GetNextObjectInShape(nShape, fSize, lTarget, bLineOfSight, nObjectFilter, vOrigin);
 }
