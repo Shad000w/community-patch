@@ -258,7 +258,7 @@ ChangedHeight=0
 Count=0
 
 [TILES]
-Count=296
+Count=299
 
 [TILE0]
 Model=tin01_a01_01
@@ -440,7 +440,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE6]
 Model=tin01_a14_01
@@ -475,7 +475,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE7]
 Model=tin01_a15_01
@@ -517,7 +517,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE7DOOR2]
 Type=0
@@ -881,7 +881,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE20]
 Model=tin01_d14_01
@@ -923,7 +923,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE21]
 Model=tin01_d15_01
@@ -958,7 +958,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE22]
 Model=tin01_d16_01
@@ -993,7 +993,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE23]
 Model=tin01_e01_01
@@ -1441,7 +1441,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE38]
 Model=tin01_f14_01
@@ -1476,7 +1476,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE39]
 Model=tin01_f15_01
@@ -1511,7 +1511,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE40]
 Model=tin01_f16_01
@@ -1546,7 +1546,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE41]
 Model=tin01_g01_01
@@ -1994,7 +1994,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE56]
 Model=tin01_h14_01
@@ -2029,7 +2029,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE56DOOR1]
 Type=0
@@ -2071,7 +2071,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE58]
 Model=tin01_h16_01
@@ -2106,7 +2106,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE59]
 Model=tin01_i01_01
@@ -2554,7 +2554,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE74]
 Model=tin01_l14_01
@@ -2589,7 +2589,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE74DOOR1]
 Type=0
@@ -2631,7 +2631,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE76]
 Model=tin01_l16_01
@@ -2666,7 +2666,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE77]
 Model=tin01_m01_01
@@ -3226,7 +3226,7 @@ Type=0
 X=1.16
 Y=0.00
 Z=-0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE96]
 Model=tin01_o13_01
@@ -3261,7 +3261,7 @@ Type=0
 X=1.66
 Y=0.00
 Z=-0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE97]
 Model=tin01_p09_01
@@ -3296,7 +3296,7 @@ Type=0
 X=0.95
 Y=0.00
 Z=-0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE98]
 Model=tin01_p13_01
@@ -3331,7 +3331,7 @@ Type=0
 X=1.35
 Y=0.00
 Z=-0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE99]
 Model=tin01_o16_01
@@ -3443,7 +3443,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE102]
 Model=tin01_b19_01
@@ -3513,7 +3513,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE104]
 Model=tin01_a07_01
@@ -3550,7 +3550,7 @@ Type=24
 X=0.00
 Y=-0.81
 Z=0.00
-Orientation=-180.0
+Orientation=180.0
 
 [TILE105]
 Model=tin01_e15_01
@@ -3585,7 +3585,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE106]
 Model=tin01_e16_01
@@ -3620,7 +3620,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE107]
 Model=tin01_h01_02
@@ -3683,7 +3683,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE109]
 Model=tin01_i16_01
@@ -3718,7 +3718,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE110]
 Model=tin01_i15_01
@@ -3753,7 +3753,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE111]
 Model=tin01_m16_01
@@ -3788,7 +3788,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE112]
 Model=tin01_m15_01
@@ -3823,7 +3823,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE113]
 Model=tin01_a01_02
@@ -4033,7 +4033,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE120]
 Model=tin01_a14_02
@@ -4068,7 +4068,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE121]
 Model=tin01_a07_02
@@ -4390,7 +4390,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE132]
 Model=tin01_d13_03
@@ -4425,7 +4425,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE133]
 Model=tin01_d16_02
@@ -4460,7 +4460,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE134]
 Model=tin01_f01_02
@@ -4747,7 +4747,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE144]
 Model=tin01_f13_03
@@ -4782,7 +4782,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE145]
 Model=tin01_f15_02
@@ -4817,7 +4817,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE146]
 Model=tin01_f16_02
@@ -4852,7 +4852,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE147]
 Model=tin01_h01_03
@@ -5083,7 +5083,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE155]
 Model=tin01_h13_03
@@ -5118,7 +5118,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE156]
 Model=tin01_h15_02
@@ -5153,7 +5153,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE157]
 Model=tin01_h16_02
@@ -5188,7 +5188,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE158]
 Model=tin01_l01_02
@@ -5475,7 +5475,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE168]
 Model=tin01_l13_03
@@ -5510,7 +5510,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE169]
 Model=tin01_l15_02
@@ -5545,7 +5545,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE170]
 Model=tin01_l16_02
@@ -5580,7 +5580,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE171]
 Model=tin01_d01_08
@@ -5615,7 +5615,7 @@ Type=0
 X=2.77
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE172]
 Model=tin01_d01_07
@@ -5650,7 +5650,7 @@ Type=0
 X=2.81
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE173]
 Model=tin01_d15_02
@@ -5685,7 +5685,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE174]
 Model=tin01_g16_01
@@ -5720,7 +5720,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE175]
 Model=tin01_q02_01
@@ -5979,7 +5979,7 @@ Type=0
 X=-1.13
 Y=-1.64
 Z=-1.00
-Orientation=-180.0
+Orientation=180.0
 
 [TILE183]
 Model=tin01_s01_01
@@ -6175,7 +6175,7 @@ Type=0
 X=2.69
 Y=1.20
 Z=-0.01
-Orientation=-90.0
+Orientation=270.0
 
 [TILE189]
 Model=tin01_t03_01
@@ -6238,14 +6238,14 @@ Type=0
 X=-3.02
 Y=3.17
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE190DOOR1]
 Type=0
 X=-3.02
 Y=-0.74
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE191]
 Model=tin01_a09_01
@@ -6315,7 +6315,7 @@ Type=0
 X=5.00
 Y=-0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE192DOOR1]
 Type=0
@@ -6364,7 +6364,7 @@ Type=0
 X=0.00
 Y=-5.00
 Z=0.00
-Orientation=-180.0
+Orientation=180.0
 
 [TILE194]
 Model=tin01_b11_01
@@ -6399,7 +6399,7 @@ Type=0
 X=0.00
 Y=-5.00
 Z=0.00
-Orientation=-180.0
+Orientation=180.0
 
 [TILE194DOOR1]
 Type=0
@@ -6448,7 +6448,7 @@ Type=0
 X=0.00
 Y=-5.00
 Z=0.00
-Orientation=-180.0
+Orientation=180.0
 
 [TILE195DOOR1]
 Type=0
@@ -6644,7 +6644,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE201]
 Model=tin01_b18_01
@@ -6679,7 +6679,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE202]
 Model=tin01_b19_01
@@ -6756,7 +6756,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE204]
 Model=tin01_z20_01
@@ -6882,7 +6882,7 @@ Type=0
 X=2.79
 Y=5.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE208]
 Model=tin01_r17_01
@@ -6917,7 +6917,7 @@ Type=0
 X=2.79
 Y=-5.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE209]
 Model=tin01_y15_01
@@ -6952,7 +6952,7 @@ Type=0
 X=2.50
 Y=5.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE210]
 Model=tin01_x15_01
@@ -7141,7 +7141,7 @@ Type=0
 X=2.50
 Y=-5.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE215]
 Model=tin01_h04_02
@@ -7462,7 +7462,7 @@ Type=0
 X=2.50
 Y=-5.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE226]
 Model=tin01_s07_01
@@ -7499,7 +7499,7 @@ Type=0
 X=2.50
 Y=5.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE227]
 Model=tin01_s08_01
@@ -7657,7 +7657,7 @@ Type=0
 X=4.00
 Y=-2.34
 Z=0.19
-Orientation=-180.0
+Orientation=180.0
 
 [TILE232]
 Model=tin01_r09_01
@@ -7962,7 +7962,7 @@ Type=0
 X=2.31
 Y=-5.00
 Z=-0.01
-Orientation=-90.0
+Orientation=270.0
 
 [TILE242]
 Model=tin01_t11_01
@@ -7997,7 +7997,7 @@ Type=0
 X=2.31
 Y=5.00
 Z=-0.01
-Orientation=-90.0
+Orientation=270.0
 
 [TILE243]
 Model=tin01_t12_01
@@ -8256,7 +8256,7 @@ Type=0
 X=2.65
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE252]
 Model=tin01_w18_01
@@ -8782,7 +8782,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE268]
 Model=tin01_t15_01
@@ -8817,7 +8817,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE269]
 Model=tall_a01_01
@@ -9000,7 +9000,7 @@ Type=0
 X=2.71
 Y=1.20
 Z=-0.01
-Orientation=-90.0
+Orientation=270.0
 
 [TILE275]
 Model=tin01_u03_01
@@ -9323,14 +9323,14 @@ Type=0
 X=0.37
 Y=1.95
 Z=1.40
-Orientation=-90.0
+Orientation=270.0
 
 [TILE284DOOR1]
 Type=0
 X=2.63
 Y=-0.70
 Z=-1.60
-Orientation=-90.0
+Orientation=270.0
 
 [TILE285]
 Model=tin01_d01_05
@@ -9365,7 +9365,7 @@ Type=0
 X=0.37
 Y=1.83
 Z=1.40
-Orientation=-90.0
+Orientation=270.0
 
 [TILE286]
 Model=tin01_d01_06
@@ -9400,7 +9400,7 @@ Type=0
 X=2.69
 Y=1.57
 Z=-1.60
-Orientation=-90.0
+Orientation=270.0
 
 [TILE287]
 Model=tin01_f01_05
@@ -9435,7 +9435,7 @@ Type=0
 X=0.37
 Y=2.30
 Z=1.40
-Orientation=-90.0
+Orientation=270.0
 
 [TILE288]
 Model=tin01_f01_04
@@ -9470,14 +9470,14 @@ Type=0
 X=0.37
 Y=2.46
 Z=1.40
-Orientation=-90.0
+Orientation=270.0
 
 [TILE288DOOR1]
 Type=0
 X=2.63
 Y=-0.22
 Z=-1.60
-Orientation=-90.0
+Orientation=270.0
 
 [TILE289]
 Model=tin01_f01_06
@@ -9512,7 +9512,7 @@ Type=0
 X=2.69
 Y=2.05
 Z=-1.60
-Orientation=-90.0
+Orientation=270.0
 
 [TILE290]
 Model=tin01_f01_07
@@ -9547,7 +9547,7 @@ Type=0
 X=2.70
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE291]
 Model=tin01_f01_08
@@ -9582,7 +9582,7 @@ Type=0
 X=2.70
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE292]
 Model=tin01_q02_02
@@ -9656,7 +9656,7 @@ Type=0
 X=-1.13
 Y=-1.64
 Z=-1.00
-Orientation=-180.0
+Orientation=180.0
 
 [TILE294]
 Model=tin01_s02_02
@@ -9732,8 +9732,99 @@ Y=-1.09
 Z=1.60
 Orientation=90.0
 
+[TILE296]
+Model=tin01_l01_04
+WalkMesh=msb01
+TopLeft=Wall
+TopLeftHeight=0
+TopRight=Wall
+TopRightHeight=0
+BottomLeft=Shop
+BottomLeftHeight=0
+BottomRight=Wall
+BottomRightHeight=0
+Top=
+Right=
+Bottom=
+Left=
+MainLight1=1
+MainLight2=1
+SourceLight1=1
+SourceLight2=1
+AnimLoop1=1
+AnimLoop2=1
+AnimLoop3=1
+Doors=1
+Sounds=0
+PathNode=H
+Orientation=0
+ImageMap2D=MIIN01_L01
+
+[TILE296DOOR0]
+Type=0
+X=3.8
+Y=-5.0
+Z=0.0
+Orientation=270.0
+
+[TILE297]
+Model=tin01_l01_05
+WalkMesh=msb01
+TopLeft=Shop
+TopLeftHeight=0
+TopRight=Wall
+TopRightHeight=0
+BottomLeft=Wall
+BottomLeftHeight=0
+BottomRight=Wall
+BottomRightHeight=0
+Top=
+Right=
+Bottom=
+Left=
+MainLight1=1
+MainLight2=1
+SourceLight1=1
+SourceLight2=1
+AnimLoop1=1
+AnimLoop2=1
+AnimLoop3=1
+Doors=0
+Sounds=0
+PathNode=H
+Orientation=0
+ImageMap2D=MIIN01_L01
+
+[TILE298]
+Model=tin01_z20_02
+WalkMesh=msb01
+TopLeft=Wall
+TopLeftHeight=0
+TopRight=Wall
+TopRightHeight=0
+BottomLeft=Wall
+BottomLeftHeight=0
+BottomRight=Wall
+BottomRightHeight=0
+Top=
+Right=Doorway
+Bottom=
+Left=
+MainLight1=1
+MainLight2=1
+SourceLight1=1
+SourceLight2=1
+AnimLoop1=1
+AnimLoop2=1
+AnimLoop3=1
+Doors=1
+Sounds=0
+PathNode=N
+Orientation=270
+ImageMap2D=MIIN01_Z20
+
 [GROUPS]
-Count=54
+Count=56
 
 [GROUP0]
 Name=Livingroom
@@ -10206,4 +10297,17 @@ StrRef=63618
 Rows=1
 Columns=1
 Tile0=171
+
+[GROUP54]
+Name=MidwallDoorway
+Rows=2
+Columns=1
+Tile0=297
+Tile1=296
+
+[GROUP55]
+Name=DoorcapInterior
+Rows=1
+Columns=1
+Tile0=298
 

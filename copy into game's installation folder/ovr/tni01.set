@@ -249,7 +249,7 @@ Changed=shop
 ChangedHeight=0
 
 [TILES]
-Count=366
+Count=372
 
 [TILE0]
 Model=tni01_a01_01
@@ -431,7 +431,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE6]
 Model=tni01_a14_01
@@ -466,7 +466,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE7]
 Model=tni01_a15_01
@@ -508,7 +508,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE7DOOR2]
 Type=0
@@ -872,7 +872,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE20]
 Model=tni01_d14_01
@@ -914,7 +914,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE21]
 Model=tni01_d15_01
@@ -949,7 +949,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE22]
 Model=tni01_d16_01
@@ -984,7 +984,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE23]
 Model=tni01_e01_01
@@ -1432,7 +1432,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE38]
 Model=tni01_f14_01
@@ -1467,7 +1467,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE39]
 Model=tni01_f15_01
@@ -1502,7 +1502,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE40]
 Model=tni01_f16_01
@@ -1537,7 +1537,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE41]
 Model=tni01_g01_01
@@ -1985,7 +1985,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE56]
 Model=tni01_h14_01
@@ -2020,7 +2020,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE56DOOR1]
 Type=0
@@ -2062,7 +2062,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE58]
 Model=tni01_h16_01
@@ -2097,7 +2097,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE59]
 Model=tni01_i01_01
@@ -2545,7 +2545,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE74]
 Model=tni01_l14_01
@@ -2580,7 +2580,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE74DOOR1]
 Type=0
@@ -2622,7 +2622,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE76]
 Model=tni01_l16_01
@@ -2657,7 +2657,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE77]
 Model=tni01_m01_01
@@ -3217,7 +3217,7 @@ Type=0
 X=1.16
 Y=0.00
 Z=-0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE96]
 Model=tni01_o13_01
@@ -3252,7 +3252,7 @@ Type=0
 X=1.66
 Y=0.00
 Z=-0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE97]
 Model=tni01_p09_01
@@ -3287,7 +3287,7 @@ Type=0
 X=0.95
 Y=0.00
 Z=-0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE98]
 Model=tni01_p13_01
@@ -3322,7 +3322,7 @@ Type=0
 X=1.35
 Y=0.00
 Z=-0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE99]
 Model=tni01_o16_01
@@ -3434,7 +3434,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE102]
 Model=tni01_b19_01
@@ -3504,7 +3504,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE104]
 Model=tni01_a07_01
@@ -3541,7 +3541,7 @@ Type=206
 X=0.00
 Y=-0.81
 Z=0.00
-Orientation=-180.0
+Orientation=180.0
 
 [TILE105]
 Model=tni01_e15_01
@@ -3576,7 +3576,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE106]
 Model=tni01_e16_01
@@ -3611,7 +3611,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE107]
 Model=tni01_h01_02
@@ -3674,7 +3674,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE109]
 Model=tni01_i16_01
@@ -3709,7 +3709,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE110]
 Model=tni01_i15_01
@@ -3744,7 +3744,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE111]
 Model=tni01_m16_01
@@ -3779,7 +3779,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE112]
 Model=tni01_m15_01
@@ -3814,7 +3814,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE113]
 Model=tni01_a01_02
@@ -4024,7 +4024,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE120]
 Model=tni01_a14_02
@@ -4059,7 +4059,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE121]
 Model=tni01_a07_02
@@ -4381,7 +4381,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE132]
 Model=tni01_d13_03
@@ -4416,7 +4416,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE133]
 Model=tni01_d16_02
@@ -4451,7 +4451,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE134]
 Model=tni01_f01_02
@@ -4738,7 +4738,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE144]
 Model=tni01_f13_03
@@ -4773,7 +4773,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE145]
 Model=tni01_f15_02
@@ -4808,7 +4808,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE146]
 Model=tni01_f16_02
@@ -4843,7 +4843,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE147]
 Model=tni01_h01_03
@@ -5074,7 +5074,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE155]
 Model=tni01_h13_03
@@ -5109,7 +5109,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE156]
 Model=tni01_h15_02
@@ -5144,7 +5144,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE157]
 Model=tni01_h16_02
@@ -5179,7 +5179,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE158]
 Model=tni01_l01_02
@@ -5466,7 +5466,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE168]
 Model=tni01_l13_03
@@ -5501,7 +5501,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE169]
 Model=tni01_l15_02
@@ -5536,7 +5536,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE170]
 Model=tni01_l16_02
@@ -5571,7 +5571,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE171]
 Model=tni01_d01_08
@@ -5606,7 +5606,7 @@ Type=0
 X=2.77
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE172]
 Model=tni01_d01_07
@@ -5641,7 +5641,7 @@ Type=0
 X=2.81
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE173]
 Model=tni01_d15_02
@@ -5676,7 +5676,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE174]
 Model=tni01_g16_01
@@ -5711,7 +5711,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE175]
 Model=tni01_q02_01
@@ -5970,7 +5970,7 @@ Type=0
 X=-1.13
 Y=-1.64
 Z=-1.00
-Orientation=-180.0
+Orientation=180.0
 
 [TILE183]
 Model=tni01_s01_01
@@ -6166,7 +6166,7 @@ Type=0
 X=2.69
 Y=1.20
 Z=-0.01
-Orientation=-90.0
+Orientation=270.0
 
 [TILE189]
 Model=tni01_t03_01
@@ -6229,14 +6229,14 @@ Type=0
 X=-3.02
 Y=3.17
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE190DOOR1]
 Type=0
 X=-3.02
 Y=-0.74
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE191]
 Model=tni01_a09_01
@@ -6306,7 +6306,7 @@ Type=0
 X=5.00
 Y=-0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE192DOOR1]
 Type=0
@@ -6355,7 +6355,7 @@ Type=0
 X=0.00
 Y=-5.00
 Z=0.00
-Orientation=-180.0
+Orientation=180.0
 
 [TILE194]
 Model=tni01_b11_01
@@ -6390,7 +6390,7 @@ Type=0
 X=0.00
 Y=-5.00
 Z=0.00
-Orientation=-180.0
+Orientation=180.0
 
 [TILE194DOOR1]
 Type=0
@@ -6439,7 +6439,7 @@ Type=0
 X=0.00
 Y=-5.00
 Z=0.00
-Orientation=-180.0
+Orientation=180.0
 
 [TILE195DOOR1]
 Type=0
@@ -6635,7 +6635,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE201]
 Model=tni01_b18_01
@@ -6670,7 +6670,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE202]
 Model=tni01_b19_01
@@ -6747,7 +6747,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE204]
 Model=tni01_z20_01
@@ -6873,7 +6873,7 @@ Type=0
 X=2.79
 Y=5.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE208]
 Model=tni01_r17_01
@@ -6908,7 +6908,7 @@ Type=0
 X=2.79
 Y=-5.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE209]
 Model=tni01_y15_01
@@ -6943,7 +6943,7 @@ Type=0
 X=2.50
 Y=5.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE210]
 Model=tni01_x15_01
@@ -7132,7 +7132,7 @@ Type=0
 X=2.50
 Y=-5.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE215]
 Model=tni01_h04_02
@@ -7453,7 +7453,7 @@ Type=0
 X=2.50
 Y=-5.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE226]
 Model=tni01_s07_01
@@ -7490,7 +7490,7 @@ Type=0
 X=2.50
 Y=5.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE227]
 Model=tni01_s08_01
@@ -7648,7 +7648,7 @@ Type=0
 X=4.00
 Y=-2.34
 Z=0.19
-Orientation=-180.0
+Orientation=180.0
 
 [TILE232]
 Model=tni01_r09_01
@@ -7953,7 +7953,7 @@ Type=0
 X=2.31
 Y=-5.00
 Z=-0.01
-Orientation=-90.0
+Orientation=270.0
 
 [TILE242]
 Model=tni01_t11_01
@@ -7988,7 +7988,7 @@ Type=0
 X=2.31
 Y=5.00
 Z=-0.01
-Orientation=-90.0
+Orientation=270.0
 
 [TILE243]
 Model=tni01_t12_01
@@ -8247,7 +8247,7 @@ Type=0
 X=2.65
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE252]
 Model=tni01_w18_01
@@ -8773,7 +8773,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE268]
 Model=tni01_t15_01
@@ -8808,7 +8808,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE269]
 Model=tall_a01_01
@@ -8991,7 +8991,7 @@ Type=0
 X=2.71
 Y=1.20
 Z=-0.01
-Orientation=-90.0
+Orientation=270.0
 
 [TILE275]
 Model=tni01_u03_01
@@ -9314,14 +9314,14 @@ Type=0
 X=0.37
 Y=1.95
 Z=1.40
-Orientation=-90.0
+Orientation=270.0
 
 [TILE284DOOR1]
 Type=0
 X=2.63
 Y=-0.70
 Z=-1.60
-Orientation=-90.0
+Orientation=270.0
 
 [TILE285]
 Model=tni01_d01_05
@@ -9356,7 +9356,7 @@ Type=0
 X=0.37
 Y=1.83
 Z=1.40
-Orientation=-90.0
+Orientation=270.0
 
 [TILE286]
 Model=tni01_d01_06
@@ -9391,7 +9391,7 @@ Type=0
 X=2.69
 Y=1.57
 Z=-1.60
-Orientation=-90.0
+Orientation=270.0
 
 [TILE287]
 Model=tni01_f01_05
@@ -9426,7 +9426,7 @@ Type=0
 X=0.37
 Y=2.30
 Z=1.40
-Orientation=-90.0
+Orientation=270.0
 
 [TILE288]
 Model=tni01_f01_04
@@ -9461,14 +9461,14 @@ Type=0
 X=0.37
 Y=2.46
 Z=1.40
-Orientation=-90.0
+Orientation=270.0
 
 [TILE288DOOR1]
 Type=0
 X=2.63
 Y=-0.22
 Z=-1.60
-Orientation=-90.0
+Orientation=270.0
 
 [TILE289]
 Model=tni01_f01_06
@@ -9503,7 +9503,7 @@ Type=0
 X=2.69
 Y=2.05
 Z=-1.60
-Orientation=-90.0
+Orientation=270.0
 
 [TILE290]
 Model=tni01_f01_07
@@ -9538,7 +9538,7 @@ Type=0
 X=2.70
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE291]
 Model=tni01_f01_08
@@ -9573,7 +9573,7 @@ Type=0
 X=2.70
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE292]
 Model=tni01_r22_01
@@ -9768,7 +9768,7 @@ AnimLoop3=1
 Doors=1
 Sounds=0
 PathNode=N
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_tni01_r23_01
 
 [TILE296DOOR0]
@@ -9852,7 +9852,7 @@ BottomLeft=wall
 BottomLeftHeight=0
 BottomRight=wall
 BottomRightHeight=0
-Top=
+Top=doorway
 Right=
 Bottom=
 Left=
@@ -9894,7 +9894,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=N
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_tni01_r24_01
 
 [TILE301]
@@ -10155,7 +10155,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=H
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_tni01_k17_01
 
 [TILE309]
@@ -10267,7 +10267,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_tni01_k14_01
 
 [TILE313]
@@ -10295,7 +10295,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=H
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_tni01_k13_01
 
 [TILE314]
@@ -10323,7 +10323,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=I
-Orientation=-180
+Orientation=180
 ImageMap2D=MI_tni01_k12_01
 
 [TILE315]
@@ -10742,7 +10742,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=H
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_tni01_k17_02
 
 [TILE329]
@@ -10854,7 +10854,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_tni01_k14_02
 
 [TILE333]
@@ -10882,7 +10882,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=H
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_tni01_k13_02
 
 [TILE334]
@@ -10910,7 +10910,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=I
-Orientation=-180
+Orientation=180
 ImageMap2D=MI_tni01_k12_02
 
 [TILE335]
@@ -11323,7 +11323,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=H
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_tni01_k17_03
 
 [TILE349]
@@ -11435,7 +11435,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_tni01_k14_03
 
 [TILE353]
@@ -11463,7 +11463,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=H
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_tni01_k13_03
 
 [TILE354]
@@ -11491,7 +11491,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=I
-Orientation=-180
+Orientation=180
 ImageMap2D=MI_tni01_k12_03
 
 [TILE355]
@@ -11809,8 +11809,211 @@ Y=0.81
 Z=0.0
 Orientation=329.0
 
+[TILE366]
+Model=tni01_a07_03
+WalkMesh=msb01
+TopLeft=wall
+TopLeftHeight=0
+TopRight=wall
+TopRightHeight=0
+BottomLeft=wall
+BottomLeftHeight=0
+BottomRight=wall
+BottomRightHeight=0
+Top=
+Right=corridor
+Bottom=
+Left=doorway
+MainLight1=1
+MainLight2=1
+SourceLight1=1
+SourceLight2=1
+AnimLoop1=1
+AnimLoop2=1
+AnimLoop3=1
+Doors=1
+Sounds=0
+PathNode=N
+Orientation=0
+ImageMap2D=MI_tni01_a07_02
+
+[TILE366DOOR0]
+Type=0
+X=0.76
+Y=0.0
+Z=0.00
+Orientation=90.0
+
+[TILE367]
+Model=tni01_r23_05
+WalkMesh=msb01
+TopLeft=wall
+TopLeftHeight=0
+TopRight=wall
+TopRightHeight=0
+BottomLeft=wall
+BottomLeftHeight=0
+BottomRight=wall
+BottomRightHeight=0
+Top=doorway
+Right=
+Bottom=
+Left=
+MainLight1=1
+MainLight2=1
+SourceLight1=1
+SourceLight2=1
+AnimLoop1=1
+AnimLoop2=1
+AnimLoop3=1
+Doors=0
+Sounds=0
+PathNode=P
+Orientation=0
+ImageMap2D=MI_tni01_r23_02
+
+[TILE368]
+Model=tni01_r23_06
+WalkMesh=msb01
+TopLeft=wall
+TopLeftHeight=0
+TopRight=wall
+TopRightHeight=0
+BottomLeft=wall
+BottomLeftHeight=0
+BottomRight=wall
+BottomRightHeight=0
+Top=doorway
+Right=doorway
+Bottom=
+Left=
+MainLight1=1
+MainLight2=1
+SourceLight1=1
+SourceLight2=1
+AnimLoop1=1
+AnimLoop2=1
+AnimLoop3=1
+Doors=1
+Sounds=0
+PathNode=N
+Orientation=270
+ImageMap2D=MI_tni01_r23_01
+
+[TILE368DOOR0]
+Type=0
+X=0.0
+Y=-4.68
+Z=0.0
+Orientation=180.0
+
+[TILE369]
+Model=tni01_l23_01
+WalkMesh=msb01
+TopLeft=shop
+TopLeftHeight=0
+TopRight=wall
+TopRightHeight=0
+BottomLeft=wall
+BottomLeftHeight=0
+BottomRight=wall
+BottomRightHeight=0
+Top=
+Right=
+Bottom=
+Left=
+MainLight1=1
+MainLight2=1
+SourceLight1=1
+SourceLight2=1
+AnimLoop1=1
+AnimLoop2=1
+AnimLoop3=1
+Doors=0
+Sounds=0
+PathNode=A
+Orientation=0
+ImageMap2D=MI_tni01_l03_02
+
+[TILE369DOOR0]
+Type=0
+X=-2.0
+Y=-1.75
+Z=0.0
+Orientation=225.0
+
+[TILE370]
+Model=tni01_l23_02
+WalkMesh=msb01
+TopLeft=shop
+TopLeftHeight=0
+TopRight=shop
+TopRightHeight=0
+BottomLeft=wall
+BottomLeftHeight=0
+BottomRight=wall
+BottomRightHeight=0
+Top=
+Right=
+Bottom=
+Left=
+MainLight1=1
+MainLight2=1
+SourceLight1=1
+SourceLight2=1
+AnimLoop1=1
+AnimLoop2=1
+AnimLoop3=1
+Doors=0
+Sounds=0
+PathNode=A
+Orientation=0
+ImageMap2D=MI_tni01_l03_02
+
+[TILE370DOOR0]
+Type=0
+X=0.0
+Y=-3.75
+Z=0.0
+Orientation=180.0
+
+[TILE371]
+Model=tni01_l23_03
+WalkMesh=msb01
+TopLeft=wall
+TopLeftHeight=0
+TopRight=shop
+TopRightHeight=0
+BottomLeft=wall
+BottomLeftHeight=0
+BottomRight=wall
+BottomRightHeight=0
+Top=
+Right=
+Bottom=
+Left=
+MainLight1=1
+MainLight2=1
+SourceLight1=1
+SourceLight2=1
+AnimLoop1=1
+AnimLoop2=1
+AnimLoop3=1
+Doors=0
+Sounds=0
+PathNode=A
+Orientation=0
+ImageMap2D=MI_tni01_l03_02
+
+[TILE371DOOR0]
+Type=0
+X=2.0
+Y=-1.75
+Z=0.0
+Orientation=135.0
+
 [GROUPS]
-Count=70
+Count=73
 
 [GROUP0]
 Name=Livingroom
@@ -12384,3 +12587,23 @@ Tile12=363
 Tile13=364
 Tile14=365
 
+[GROUP70]
+Name=DoorCapInteriorTransition
+Rows=1
+Columns=1
+Tile0=367
+
+[GROUP71]
+Name=Smithy1x1WithCorridorExit
+Rows=1
+Columns=2
+Tile0=368
+Tile1=366
+
+[GROUP72]
+Name=3CurvedDoors
+Rows=1
+Columns=3
+Tile0=371
+Tile1=370
+Tile2=369

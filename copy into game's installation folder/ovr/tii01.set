@@ -257,7 +257,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE7]
 Model=tii01_d01_01
@@ -432,7 +432,7 @@ Type=0
 X=5.00
 Y=-0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE12DOOR1]
 Type=0
@@ -474,7 +474,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE13DOOR1]
 Type=0
@@ -523,7 +523,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE14DOOR1]
 Type=0
@@ -565,7 +565,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE15DOOR1]
 Type=0
@@ -607,7 +607,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE16DOOR1]
 Type=0
@@ -663,7 +663,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE17DOOR2]
 Type=0
@@ -712,7 +712,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE19]
 Model=tii01_b08_01
@@ -747,7 +747,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE19DOOR1]
 Type=0
@@ -789,7 +789,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE20DOOR1]
 Type=0
@@ -803,7 +803,7 @@ Type=0
 X=5.00
 Y=-40.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE21]
 Model=tii01_b10_01
@@ -838,7 +838,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE22]
 Model=tii01_b11_01
@@ -950,7 +950,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE25]
 Model=tii01_b14_01
@@ -985,7 +985,7 @@ Type=0
 X=5.00
 Y=-0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE26]
 Model=tii01_b15_01
@@ -1062,7 +1062,7 @@ Type=0
 X=-5.00
 Y=-0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE28]
 Model=tii01_b18_01
@@ -1279,7 +1279,7 @@ Type=0
 X=5.00
 Y=-0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE34DOOR1]
 Type=0
@@ -1321,7 +1321,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE36]
 Model=tii01_d15_01
@@ -1356,7 +1356,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE37]
 Model=tii01_d16_01
@@ -1391,7 +1391,7 @@ Type=0
 X=5.00
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE38]
 Model=tii01_d02_02
@@ -1482,7 +1482,7 @@ Type=0
 X=-5.00
 Y=-0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE41]
 Model=tii01_e03_01
@@ -1741,7 +1741,7 @@ Type=0
 X=3.32
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE50]
 Model=tii01_g06_01
@@ -2284,7 +2284,7 @@ Type=108
 X=-3.21
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE68]
 Model=tii01_g12_01
@@ -2495,7 +2495,7 @@ Type=0
 X=-5.00
 Y=-0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE74]
 Model=tii01_e12_01
@@ -2632,7 +2632,7 @@ Type=108
 X=1.79
 Y=-0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE78]
 Model=tii01_e13_01
@@ -2667,7 +2667,7 @@ Type=0
 X=-5.00
 Y=-0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [GROUPS]
 Count=10

@@ -9,6 +9,7 @@ Interior=1
 HasHeightTransition=0
 EnvMap=ttr01__ref01
 Transition=1
+SelectorHeight=4
 DisplayName=111472
 UnlocalizedName=TNO: Fort Interior
 Border=black
@@ -48,9 +49,6 @@ Name=doorway
 [PRIMARY RULES]
 Count=0
 
-[SECONDARY RULES]
-Count=0
-
 [TILES]
 Count=244
 
@@ -79,7 +77,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_a02_05
 
 [TILE1]
@@ -135,7 +133,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=H
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_a01_01
 
 [TILE3]
@@ -163,7 +161,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_a02_01
 
 [TILE4]
@@ -275,7 +273,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_a02_02
 
 [TILE8]
@@ -303,7 +301,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_a02_03
 
 [TILE9]
@@ -331,7 +329,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_a02_06
 
 [TILE10]
@@ -471,7 +469,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_a02_07
 
 [TILE15]
@@ -555,7 +553,7 @@ AnimLoop3=1
 Doors=1
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_a02_08
 
 [TILE17DOOR0]
@@ -944,7 +942,7 @@ AnimLoop3=1
 Doors=1
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_a02_04
 
 [TILE30DOOR0]
@@ -979,7 +977,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=H
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_a01_02
 
 [TILE32]
@@ -1007,7 +1005,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_a02_09
 
 [TILE33]
@@ -1035,7 +1033,7 @@ AnimLoop3=1
 Doors=1
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_a02_10
 
 [TILE33DOOR0]
@@ -1070,7 +1068,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_a11_01
 
 [TILE35]
@@ -1098,7 +1096,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=A
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_a11_02
 
 [TILE36]
@@ -1253,7 +1251,7 @@ AnimLoop3=1
 Doors=1
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_c04_01
 
 [TILE40DOOR0]
@@ -1288,7 +1286,7 @@ AnimLoop3=1
 Doors=1
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_c04_02
 
 [TILE41DOOR0]
@@ -1323,7 +1321,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=N
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_c50_02
 
 [TILE43]
@@ -1471,7 +1469,7 @@ Type=0
 X=0.0
 Y=-4.09
 Z=0.0
-Orientation=-180.0
+Orientation=180.0
 
 [TILE47]
 Model=twc03_xyz_11
@@ -1569,7 +1567,7 @@ Type=0
 X=4.09
 Y=0.0
 Z=0.0
-Orientation=-90.0
+Orientation=270.0
 
 [TILE50]
 Model=twc03_c53_02
@@ -1652,7 +1650,7 @@ AnimLoop3=1
 Doors=1
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_c54_02
 
 [TILE52DOOR0]
@@ -1754,11 +1752,11 @@ Z=0.0
 Orientation=35.0
 
 [TILE55DOOR1]
-Type=217
-X=-2.895
-Y=1.94
-Z=0.2
-Orientation=-35.0
+Type=242
+X=0.4
+Y=3.39
+Z=-2.2
+Orientation=81.0
 
 [TILE55DOOR2]
 Type=0
@@ -1838,11 +1836,11 @@ Orientation=0
 ImageMap2D=MI_twc03_b01_05
 
 [TILE57DOOR0]
-Type=217
-X=2.9
-Y=1.94
-Z=0.0
-Orientation=35.0
+Type=239
+X=-0.79
+Y=3.39
+Z=-3.0
+Orientation=100.5
 
 [TILE57DOOR1]
 Type=0
@@ -2011,7 +2009,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=L
-Orientation=90
+Orientation=270
 VisibilityNode=A
 VisibilityOrientation=0
 ImageMap2D=MI_twc03_c42_04
@@ -2327,7 +2325,7 @@ AnimLoop3=1
 Doors=1
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_c55_01
 
 [TILE73DOOR0]
@@ -2362,7 +2360,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_c55_02
 
 [TILE75]
@@ -2390,7 +2388,7 @@ AnimLoop3=1
 Doors=1
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_c55_03
 
 [TILE75DOOR0]
@@ -2398,7 +2396,7 @@ Type=0
 X=3.3
 Y=0.0
 Z=0.0
-Orientation=-90.0
+Orientation=270.0
 
 [TILE76]
 Model=twc03_c55_04
@@ -2516,7 +2514,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_c56_01
 
 [TILE80]
@@ -2544,7 +2542,7 @@ AnimLoop3=1
 Doors=1
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_c56_02
 
 [TILE80DOOR0]
@@ -2552,7 +2550,7 @@ Type=0
 X=0.0
 Y=1.4
 Z=0.0
-Orientation=-180.0
+Orientation=180.0
 
 [TILE81]
 Model=twc03_xyz_01
@@ -2579,7 +2577,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=H
-Orientation=-180
+Orientation=180
 ImageMap2D=MI_twc03_c43_01
 
 [TILE82]
@@ -2612,7 +2610,7 @@ ImageMap2D=MI_twc03_c43_02
 
 [TILE82DOOR0]
 Type=0
-X=-1.2207e-006
+X=0.0
 Y=-4.13
 Z=0.0
 Orientation=180.0
@@ -2677,7 +2675,7 @@ AnimLoop3=1
 Doors=1
 Sounds=0
 PathNode=H
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_c44_01
 
 [TILE84DOOR0]
@@ -2754,7 +2752,7 @@ AnimLoop3=1
 Doors=2
 Sounds=0
 PathNode=H
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_c44_03
 
 [TILE86DOOR0]
@@ -2796,7 +2794,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=Z
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_i01_01
 
 [TILE88]
@@ -3155,7 +3153,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=B
-Orientation=-90
+Orientation=270
 VisibilityNode=A
 VisibilityOrientation=0
 ImageMap2D=MI_twc03_i01_02
@@ -3185,7 +3183,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=E
-Orientation=-90
+Orientation=270
 VisibilityNode=A
 VisibilityOrientation=0
 ImageMap2D=MI_twc03_i03_02
@@ -3245,7 +3243,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=B
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_i01_03
 
 [TILE103]
@@ -3273,7 +3271,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=E
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_i03_03
 
 [TILE104]
@@ -3364,7 +3362,7 @@ AnimLoop3=1
 Doors=1
 Sounds=0
 PathNode=B
-Orientation=-180
+Orientation=180
 ImageMap2D=MI_twc03_i03_04
 
 [TILE106DOOR0]
@@ -3434,9 +3432,9 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 VisibilityNode=I
-VisibilityOrientation=-90
+VisibilityOrientation=270
 ImageMap2D=MI_twc03_a02_11
 
 [TILE109]
@@ -3464,9 +3462,9 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 VisibilityNode=I
-VisibilityOrientation=-90
+VisibilityOrientation=270
 ImageMap2D=MI_twc03_a02_12
 
 [TILE110]
@@ -3758,7 +3756,7 @@ Type=0
 X=0.0
 Y=-4.09
 Z=0.0
-Orientation=-180.0
+Orientation=180.0
 
 [TILE119]
 Model=twc03_xyz_06
@@ -3813,7 +3811,7 @@ AnimLoop3=1
 Doors=1
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_c54_05
 
 [TILE120DOOR0]
@@ -3821,7 +3819,7 @@ Type=0
 X=4.09
 Y=0.0
 Z=0.0
-Orientation=-90.0
+Orientation=270.0
 
 [TILE121]
 Model=twc03_c54_07
@@ -4317,7 +4315,7 @@ Sounds=0
 PathNode=P
 Orientation=0
 VisibilityNode=I
-VisibilityOrientation=-90
+VisibilityOrientation=270
 ImageMap2D=MI_twc03_d04_01
 
 [TILE137]
@@ -4347,7 +4345,7 @@ Sounds=0
 PathNode=P
 Orientation=0
 VisibilityNode=I
-VisibilityOrientation=-90
+VisibilityOrientation=270
 ImageMap2D=MI_twc03_d04_02
 
 [TILE138]
@@ -4377,7 +4375,7 @@ Sounds=0
 PathNode=P
 Orientation=0
 VisibilityNode=I
-VisibilityOrientation=-90
+VisibilityOrientation=270
 ImageMap2D=MI_twc03_d04_03
 
 [TILE139]
@@ -4407,7 +4405,7 @@ Sounds=0
 PathNode=P
 Orientation=0
 VisibilityNode=H
-VisibilityOrientation=-180
+VisibilityOrientation=180
 ImageMap2D=MI_twc03_d05_01
 
 [TILE140]
@@ -4437,7 +4435,7 @@ Sounds=0
 PathNode=P
 Orientation=0
 VisibilityNode=H
-VisibilityOrientation=-180
+VisibilityOrientation=180
 ImageMap2D=MI_twc03_d05_02
 
 [TILE141]
@@ -4643,7 +4641,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=J
-Orientation=-90
+Orientation=270
 VisibilityNode=A
 VisibilityOrientation=0
 ImageMap2D=MI_twc03_d12_01
@@ -4881,7 +4879,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=H
-Orientation=-90
+Orientation=270
 VisibilityNode=A
 VisibilityOrientation=0
 ImageMap2D=MI_twc03_e01_01
@@ -4911,7 +4909,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=H
-Orientation=-90
+Orientation=270
 VisibilityNode=A
 VisibilityOrientation=0
 ImageMap2D=MI_twc03_e01_02
@@ -5126,7 +5124,7 @@ Sounds=0
 PathNode=N
 Orientation=0
 VisibilityNode=I
-VisibilityOrientation=-90
+VisibilityOrientation=270
 ImageMap2D=MI_twc03_e06_02
 
 [TILE164]
@@ -5210,7 +5208,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=V
-Orientation=-180
+Orientation=180
 ImageMap2D=MI_twc03_e09_01
 
 [TILE167]
@@ -5468,7 +5466,7 @@ AnimLoop3=1
 Doors=1
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_a15_01
 
 [TILE175DOOR0]
@@ -5503,7 +5501,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=H
-Orientation=-90
+Orientation=270
 DoorVisibilityNode=Y
 DoorVisibilityOrientation=0
 ImageMap2D=MI_twc03_a01_03
@@ -6226,7 +6224,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=H
-Orientation=-180
+Orientation=180
 ImageMap2D=MI_twc03_c43_01
 
 [TILE195]
@@ -6328,7 +6326,7 @@ AnimLoop3=1
 Doors=1
 Sounds=0
 PathNode=H
-Orientation=-90
+Orientation=270
 DoorVisibilityNode=N
 DoorVisibilityOrientation=0
 ImageMap2D=MI_twc03_c44_01
@@ -6407,7 +6405,7 @@ AnimLoop3=1
 Doors=2
 Sounds=0
 PathNode=H
-Orientation=-90
+Orientation=270
 DoorVisibilityNode=N
 DoorVisibilityOrientation=90
 ImageMap2D=MI_twc03_c44_03
@@ -6490,7 +6488,7 @@ Sounds=0
 PathNode=H
 Orientation=180
 DoorVisibilityNode=N
-DoorVisibilityOrientation=-90
+DoorVisibilityOrientation=270
 ImageMap2D=MI_twc03_c40_01
 
 [TILE201DOOR0]
@@ -6641,9 +6639,9 @@ AnimLoop3=1
 Doors=1
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 DoorVisibilityNode=H
-DoorVisibilityOrientation=-90
+DoorVisibilityOrientation=270
 ImageMap2D=MI_twc03_c54_05
 
 [TILE205DOOR0]
@@ -6651,7 +6649,7 @@ Type=0
 X=5.0
 Y=0.0
 Z=0.0
-Orientation=-90.0
+Orientation=270.0
 
 [TILE206]
 Model=twc03_c54_07
@@ -6744,7 +6742,7 @@ Type=0
 X=0.0
 Y=-5.0
 Z=0.0
-Orientation=-180.0
+Orientation=180.0
 
 [TILE209]
 Model=twc03_c51_01
@@ -6781,7 +6779,7 @@ Type=0
 X=0.0
 Y=-5.0
 Z=0.0
-Orientation=-180.0
+Orientation=180.0
 
 [TILE210]
 Model=twc03_c54_01
@@ -6836,9 +6834,9 @@ AnimLoop3=1
 Doors=1
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 DoorVisibilityNode=H
-DoorVisibilityOrientation=-90
+DoorVisibilityOrientation=270
 ImageMap2D=MI_twc03_c54_02
 
 [TILE211DOOR0]
@@ -7069,7 +7067,7 @@ Type=0
 X=5.0
 Y=0.0
 Z=0.0
-Orientation=-90.0
+Orientation=270.0
 
 [TILE219]
 Model=twc03_c53_02
@@ -7161,7 +7159,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=N
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_c50_02
 
 [TILE222]
@@ -7233,7 +7231,7 @@ AnimLoop3=1
 Doors=1
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 DoorVisibilityNode=H
 DoorVisibilityOrientation=180
 ImageMap2D=MI_twc03_c55_01
@@ -7270,7 +7268,7 @@ AnimLoop3=1
 Doors=0
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 ImageMap2D=MI_twc03_c55_02
 
 [TILE225]
@@ -7298,9 +7296,9 @@ AnimLoop3=1
 Doors=1
 Sounds=0
 PathNode=I
-Orientation=-90
+Orientation=270
 DoorVisibilityNode=H
-DoorVisibilityOrientation=-90
+DoorVisibilityOrientation=270
 ImageMap2D=MI_twc03_c55_03
 
 [TILE225DOOR0]
@@ -7308,7 +7306,7 @@ Type=0
 X=5.0
 Y=0.0
 Z=0.0
-Orientation=-90.0
+Orientation=270.0
 
 [TILE226]
 Model=twc03_c55_04
@@ -7433,10 +7431,10 @@ ImageMap2D=MI_twc03_c60_01
 
 [TILE229DOOR0]
 Type=217
-X=2.9
-Y=1.94
-Z=0.0
-Orientation=35.0
+X=-0.79
+Y=3.39
+Z=-3.0
+Orientation=100.5
 
 [TILE229DOOR1]
 Type=0
@@ -7527,11 +7525,11 @@ Z=0.0
 Orientation=35.0
 
 [TILE231DOOR1]
-Type=217
-X=-2.895
-Y=1.94
-Z=0.2
-Orientation=-35.0
+Type=242
+X=0.4
+Y=3.39
+Z=-2.2
+Orientation=81.0
 
 [TILE231DOOR2]
 Type=0
@@ -7676,7 +7674,7 @@ Orientation=180
 VisibilityNode=A
 VisibilityOrientation=0
 DoorVisibilityNode=I
-DoorVisibilityOrientation=-90
+DoorVisibilityOrientation=270
 ImageMap2D=MI_twc03_f20_01
 
 [TILE235DOOR0]
@@ -7715,7 +7713,7 @@ Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
 DoorVisibilityNode=I
-DoorVisibilityOrientation=-90
+DoorVisibilityOrientation=270
 ImageMap2D=MI_twc03_f21_01
 
 [TILE236DOOR0]
@@ -7754,7 +7752,7 @@ Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
 DoorVisibilityNode=I
-DoorVisibilityOrientation=-90
+DoorVisibilityOrientation=270
 ImageMap2D=MI_twc03_f24_01
 
 [TILE237DOOR0]
@@ -7793,7 +7791,7 @@ Orientation=180
 VisibilityNode=A
 VisibilityOrientation=0
 DoorVisibilityNode=I
-DoorVisibilityOrientation=-90
+DoorVisibilityOrientation=270
 ImageMap2D=MI_twc03_f25_01
 
 [TILE238DOOR0]
@@ -7832,7 +7830,7 @@ Orientation=180
 VisibilityNode=A
 VisibilityOrientation=0
 DoorVisibilityNode=I
-DoorVisibilityOrientation=-90
+DoorVisibilityOrientation=270
 ImageMap2D=MI_twc03_f26_01
 
 [TILE239DOOR0]
@@ -7871,7 +7869,7 @@ Orientation=180
 VisibilityNode=A
 VisibilityOrientation=0
 DoorVisibilityNode=I
-DoorVisibilityOrientation=-90
+DoorVisibilityOrientation=270
 ImageMap2D=MI_twc03_f27_01
 
 [TILE240DOOR0]
@@ -7910,7 +7908,7 @@ Orientation=180
 VisibilityNode=A
 VisibilityOrientation=0
 DoorVisibilityNode=I
-DoorVisibilityOrientation=-90
+DoorVisibilityOrientation=270
 ImageMap2D=MI_twc03_f28_01
 
 [TILE241DOOR0]
@@ -7949,7 +7947,7 @@ Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
 DoorVisibilityNode=I
-DoorVisibilityOrientation=-90
+DoorVisibilityOrientation=270
 ImageMap2D=MI_twc03_f22_01
 
 [TILE242DOOR0]
@@ -7988,7 +7986,7 @@ Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
 DoorVisibilityNode=I
-DoorVisibilityOrientation=-90
+DoorVisibilityOrientation=270
 ImageMap2D=MI_twc03_f23_01
 
 [TILE243DOOR0]

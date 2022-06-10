@@ -2091,7 +2091,7 @@ Type=65
 X=2.78
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE61]
 Model=ttr01_g17_01
@@ -2504,7 +2504,7 @@ Type=65
 X=3.19
 Y=0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE75]
 Model=ttr01_h18_01
@@ -2951,7 +2951,7 @@ Type=1
 X=-0.00
 Y=-0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE89]
 Model=ttr01_j01_01
@@ -3306,7 +3306,7 @@ Type=2
 X=-0.00
 Y=-0.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE101]
 Model=ttr01_k01_01
@@ -4599,7 +4599,7 @@ Type=4
 X=-1.79
 Y=-1.51
 Z=0.07
-Orientation=-90.0
+Orientation=270.0
 
 [TILE145]
 Model=ttr01_s02_01
@@ -4862,7 +4862,7 @@ Type=0
 X=0.00
 Y=2.40
 Z=0.00
-Orientation=-180.0
+Orientation=180.0
 
 [TILE153]
 Model=ttr01_s08_01
@@ -4899,7 +4899,7 @@ Type=0
 X=1.00
 Y=2.70
 Z=0.00
-Orientation=-180.0
+Orientation=180.0
 
 [TILE154]
 Model=ttr01_s09_01
@@ -6664,7 +6664,7 @@ Type=0
 X=-2.70
 Y=2.00
 Z=-0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE214]
 Model=ttr01_s18_01
@@ -6734,7 +6734,7 @@ Type=0
 X=-0.70
 Y=2.20
 Z=0.00
-Orientation=-180.0
+Orientation=180.0
 
 [TILE216]
 Model=ttr01_s19_01
@@ -7253,7 +7253,7 @@ Type=0
 X=-2.70
 Y=-1.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE234]
 Model=ttr01_o10_01
@@ -7856,7 +7856,7 @@ Type=0
 X=3.50
 Y=-3.00
 Z=0.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE254]
 Model=ttr01_x09_01
@@ -8701,7 +8701,7 @@ Type=0
 X=-1.19
 Y=0.0
 Z=-1.50
-Orientation=-90.0
+Orientation=270.0
 
 [TILE281]
 Model=ttr01_l10_01

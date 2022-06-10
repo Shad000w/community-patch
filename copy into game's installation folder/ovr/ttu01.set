@@ -3476,7 +3476,7 @@ Type=61
 X=0.48
 Y=0.00
 Z=1.91
-Orientation=-90.0
+Orientation=270.0
 
 [TILE114]
 Model=ttu01_j08_01
@@ -3721,7 +3721,7 @@ Type=61
 X=0.48
 Y=-0.00
 Z=1.91
-Orientation=-90.0
+Orientation=270.0
 
 [TILE122]
 Model=ttu01_k08_01
@@ -3926,7 +3926,7 @@ Type=59
 X=0.31
 Y=-0.13
 Z=0.81
-Orientation=-90.0
+Orientation=270.0
 
 [TILE128]
 Model=ttu01_n12_01
@@ -3963,7 +3963,7 @@ Type=59
 X=0.31
 Y=0.35
 Z=2.04
-Orientation=-90.0
+Orientation=270.0
 
 [TILE129]
 Model=ttu01_n10_01
@@ -5132,7 +5132,7 @@ Type=101
 X=-0.24
 Y=-0.12
 Z=1.19
-Orientation=-90.0
+Orientation=270.0
 
 [TILE169]
 Model=ttu01_w08_01
@@ -5253,7 +5253,7 @@ Type=103
 X=-0.90
 Y=4.86
 Z=1.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE173]
 Model=ttu01_v10_01
@@ -5288,7 +5288,7 @@ Type=0
 X=-2.60
 Y=0.00
 Z=1.21
-Orientation=-90.0
+Orientation=270.0
 
 [TILE174]
 Model=ttu01_v11_01
@@ -5358,7 +5358,7 @@ Type=0
 X=-2.24
 Y=5.00
 Z=1.00
-Orientation=-90.0
+Orientation=270
 
 [TILE176]
 Model=ttu01_w11_01
@@ -5600,7 +5600,7 @@ Type=104
 X=1.55
 Y=2.52
 Z=4.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE184]
 Model=ttu01_l01_01
@@ -6155,7 +6155,7 @@ Type=100
 X=2.81
 Y=5.01
 Z=1.87
-Orientation=-90.0
+Orientation=270.0
 
 [TILE202]
 Model=ttu01_w16_01
@@ -8498,7 +8498,7 @@ Type=57
 X=1.21
 Y=0.00
 Z=0.21
-Orientation=-90.0
+Orientation=270.0
 
 [TILE282]
 Model=ttu01_n16_01
@@ -8563,7 +8563,7 @@ Type=111
 X=5.42
 Y=0.06
 Z=1.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE284]
 Model=ttu01_o18_01
@@ -8726,7 +8726,7 @@ Type=0
 X=-0.31
 Y=-0.07
 Z=1.01
-Orientation=-90.0
+Orientation=270.0
 
 [TILE289]
 Model=ttu01_c20_02
@@ -9043,7 +9043,7 @@ Type=112
 X=3.09
 Y=0.09
 Z=1.00
-Orientation=-90.0
+Orientation=270.0
 
 [TILE300]
 Model=ttu01_o14_01
