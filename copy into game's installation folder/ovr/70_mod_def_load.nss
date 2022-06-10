@@ -51,6 +51,10 @@ doing so, do this only if running original event has no longer sense.
 
 void main()
 {
+    if(GetLocalInt(OBJECT_SELF,"70_mod_def_load_DOONCE")) return;//safety check to prevent running this multiple times
+    SetLocalInt(OBJECT_SELF,"70_mod_def_load_DOONCE",TRUE);
+
+//  Do not remove the code below, otherwise the nwn(c)x_patch plugin will not be able to work with global module switches (in database)
     SetLocalInt(OBJECT_SELF,"72_DISABLE_TUMBLE_AC",GetModuleSwitchValue("72_DISABLE_TUMBLE_AC"));
     SetLocalInt(OBJECT_SELF,"72_DISABLE_SNEAK_CRITICAL_IMMUNITY",GetModuleSwitchValue("72_DISABLE_SNEAK_CRITICAL_IMMUNITY"));
     SetLocalInt(OBJECT_SELF,"72_DISABLE_MONK_IN_POLYMORPH",GetModuleSwitchValue("72_DISABLE_MONK_IN_POLYMORPH"));
@@ -63,32 +67,53 @@ void main()
 //  Do not remove the code above, otherwise the nwn(c)x_patch plugin will not be able to work with global module switches (in database)
 
     string sScript = GetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_ACQUIRE_ITEM);
-    SetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_ACQUIRE_ITEM,"70_mod_def_aqu");
-    SetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_ACQUIRE_ITEM",sScript);
+    if(sScript != "70_mod_def_aqu")
+    {
+        SetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_ACQUIRE_ITEM,"70_mod_def_aqu");
+        SetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_ACQUIRE_ITEM",sScript);
+    }
 
     sScript = GetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_CLIENT_ENTER);
-    SetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_CLIENT_ENTER,"70_mod_def_enter");
-    SetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_CLIENT_ENTER",sScript);
+    if(sScript != "70_mod_def_enter")
+    {
+        SetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_CLIENT_ENTER,"70_mod_def_enter");
+        SetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_CLIENT_ENTER",sScript);
+    }
 
     sScript = GetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_EQUIP_ITEM);
-    SetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_EQUIP_ITEM,"70_mod_def_equ");
-    SetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_EQUIP_ITEM",sScript);
+    if(sScript != "70_mod_def_equ")
+    {
+        SetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_EQUIP_ITEM,"70_mod_def_equ");
+        SetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_EQUIP_ITEM",sScript);
+    }
 
     sScript = GetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_PLAYER_LEVEL_UP);
-    SetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_PLAYER_LEVEL_UP,"70_mod_def_lvup");
-    SetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_PLAYER_LEVEL_UP",sScript);
+    if(sScript != "70_mod_def_lvup")
+    {
+        SetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_PLAYER_LEVEL_UP,"70_mod_def_lvup");
+        SetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_PLAYER_LEVEL_UP",sScript);
+    }
 
     sScript = GetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_RESPAWN_BUTTON_PRESSED);
-    SetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_RESPAWN_BUTTON_PRESSED,"70_mod_def_resp");
-    SetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_RESPAWN_BUTTON_PRESSED",sScript);
+    if(sScript != "70_mod_def_resp")
+    {
+        SetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_RESPAWN_BUTTON_PRESSED,"70_mod_def_resp");
+        SetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_RESPAWN_BUTTON_PRESSED",sScript);
+    }
 
     sScript = GetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_LOSE_ITEM);
-    SetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_LOSE_ITEM,"70_mod_def_unaqu");
-    SetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_LOSE_ITEM",sScript);
+    if(sScript != "70_mod_def_unaqu")
+    {
+        SetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_LOSE_ITEM,"70_mod_def_unaqu");
+        SetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_LOSE_ITEM",sScript);
+    }
 
     sScript = GetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_UNEQUIP_ITEM);
-    SetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_UNEQUIP_ITEM,"70_mod_def_unequ");
-    SetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_UNEQUIP_ITEM",sScript);
+    if(sScript != "70_mod_def_unequ")
+    {
+        SetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_UNEQUIP_ITEM,"70_mod_def_unequ");
+        SetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_UNEQUIP_ITEM",sScript);
+    }
 
     // * 1.72: Activating this switch below will modify spell DC of all regular spells to
     // * use spell level of the class who cast it instead of innate level.

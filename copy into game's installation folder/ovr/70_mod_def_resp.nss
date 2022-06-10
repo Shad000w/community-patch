@@ -81,7 +81,7 @@ void main()
 
     //Now execute original script
     string sScript = GetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_RESPAWN_BUTTON_PRESSED");
-    if(sScript != "")
+    if(sScript != "" && sScript != "70_mod_def_resp")
     {
         ExecuteScript(sScript,OBJECT_SELF);
     }

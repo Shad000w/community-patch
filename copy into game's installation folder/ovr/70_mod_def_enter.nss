@@ -59,7 +59,7 @@ void main()
 
     //Now execute original script
     string sScript = GetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_CLIENT_ENTER");
-    if(sScript != "")
+    if(sScript != "" && sScript != "70_mod_def_enter")
     {
         ExecuteScript(sScript,OBJECT_SELF);
     }

@@ -135,7 +135,7 @@ ExecuteScript("70_featfix",oPC);
 
     //Now execute original script
     string sScript = GetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_PLAYER_LEVEL_UP");
-    if(sScript != "")
+    if(sScript != "" && sScript != "70_mod_def_lvup")
     {
         ExecuteScript(sScript,OBJECT_SELF);
     }

@@ -89,7 +89,7 @@ void main()
 
     //Now execute original script
     string sScript = GetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_LOSE_ITEM");
-    if(sScript != "")
+    if(sScript != "" && sScript != "70_mod_def_unaqu")
     {
         ExecuteScript(sScript,OBJECT_SELF);
     }

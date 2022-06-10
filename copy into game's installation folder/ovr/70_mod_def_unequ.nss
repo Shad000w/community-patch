@@ -124,7 +124,7 @@ void main()
 
     //Now execute original script
     string sScript = GetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_UNEQUIP_ITEM");
-    if(sScript != "")
+    if(sScript != "" && sScript != "70_mod_def_unequ")
     {
         ExecuteScript(sScript,OBJECT_SELF);
     }
