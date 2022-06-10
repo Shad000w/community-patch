@@ -40,6 +40,7 @@ void main()
     }
     effect eVis = EffectVisualEffect(VFX_DUR_WEB);
     effect eLink = EffectLinkEffects(eWeb, eVis);
+    eLink = ExtraordinaryEffect(eLink);
     object oTarget = GetEnteringObject();
 
     // * the lower the number the faster you go
