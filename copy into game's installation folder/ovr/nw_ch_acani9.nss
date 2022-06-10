@@ -13,53 +13,19 @@ creatures.
 //:: Created By: Preston Watamaniuk
 //:: Created On: Nov 19, 2001
 //:://////////////////////////////////////////////
-//:: Updated By: Georg Zoeller, 2003-08-20: Added variable check for spawn in animation
 /*
 Patch 1.72
-- fixed the henchman distance settings
+- fixed potential incorporeal familiar/animal companion not getting the benefits of this condition
 - added flying and waterbreathing effect icon to the summons that are considered as such
-Patch 1.71
-- implemented multi summoning feature
 */
 
 #include "x0_inc_henai"
-#include "x2_inc_switches"
 #include "70_inc_spells"
 #include "x0_i0_spells"
 
-void main_delayed()
-{
-    object oMaster = GetMaster();
-    //1.72: moved into delay as GetMaster is not valid in initial script
-    if(GetAssociate(ASSOCIATE_TYPE_HENCHMAN, oMaster) == OBJECT_SELF)
-    {
-        SetAssociateState(NW_ASC_DISTANCE_2_METERS);
-    }
-    //1.71: multisummoning feature
-    int maxSummonModule = GetModuleSwitchValue("71_UNLIMITED_SUMMONING");
-    int maxSummonPC = GetLocalInt(oMaster,"71_UNLIMITED_SUMMONING");
-    if(maxSummonModule > 0 || maxSummonPC > 0)
-    {
-        int maxSummon;
-        if(maxSummonModule == 1 || maxSummonPC == 1) maxSummon = 1;
-        else maxSummon = maxSummonPC > maxSummonModule ? maxSummonPC : maxSummonModule;
-
-        int numSummon = 1;
-        while(GetIsObjectValid(GetAssociate(ASSOCIATE_TYPE_SUMMONED,oMaster,numSummon)))
-        {
-           numSummon++;
-        }
-        if(numSummon > 2 && (maxSummon == 1 || maxSummon >= numSummon-1))
-        {
-            object oSummon = GetAssociate(ASSOCIATE_TYPE_SUMMONED,oMaster,1);
-            ExecuteScript("70_ch_multisumm",oSummon);
-        }
-    }
-}
-
 void main()
 {
-     //Sets up the special henchmen listening patterns
+    //Sets up the special henchmen listening patterns
     SetAssociateListenPatterns();
 
     // Set additional henchman listening patterns
@@ -72,18 +38,18 @@ void main()
     SetAssociateState(NW_ASC_DISARM_TRAPS);
     SetAssociateState(NW_ASC_MODE_DEFEND_MASTER, FALSE);
 
-
     //Use melee weapons by default
     SetAssociateState(NW_ASC_USE_RANGED_WEAPON, FALSE);
 
     // Distance: make henchmen stick closer
     SetAssociateState(NW_ASC_DISTANCE_4_METERS);
-/*    if (GetAssociate(ASSOCIATE_TYPE_HENCHMAN, GetMaster()) == OBJECT_SELF) {
-    SetAssociateState(NW_ASC_DISTANCE_2_METERS);
-    }*///1.71: this doesn't work! master always invalid
+    if (GetAssociateType(OBJECT_SELF) == ASSOCIATE_TYPE_HENCHMAN)
+    {
+        SetAssociateState(NW_ASC_DISTANCE_2_METERS);
+    }
 
-    // * If Incorporeal, apply changes
-    if (GetCreatureFlag(OBJECT_SELF, CREATURE_VAR_IS_INCORPOREAL) == TRUE)
+    //1.72: support for incorporeal animal companion or familiar
+    if (GetCreatureFlag(OBJECT_SELF, CREATURE_VAR_IS_INCORPOREAL))
     {
         effect eConceal = EffectConcealment(50, MISS_CHANCE_TYPE_NORMAL);
         effect eGhost = EffectCutsceneGhost();
@@ -113,7 +79,4 @@ void main()
 
     // Set starting location
     SetAssociateStartLocation();
-
-    //1.72: new way of enforcing unlimited summoning feature
-    DelayCommand(0.0,main_delayed());
 }

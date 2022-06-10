@@ -14,7 +14,9 @@ character gets saved).
 //:://////////////////////////////////////////////
 
 #include "70_inc_shifter"
+#include "70_inc_spells"
 #include "x3_inc_skin"
+#include "x0_i0_spells"
 
 void main()
 {
@@ -308,6 +310,21 @@ void main()
         if(bArms)
         {
             IPWildShapeMergeItemProperties(oArmsOld,oArmorNew);
+        }
+        //1.72: custom effect icon to describe polymorph special qualities to player
+        if(spellsIsFlying(oPC))
+        {
+            if(Get2DAString("effecticons","Icon",151) == "ief_fly")//this will make sure the 2DA files are merged and icon is the correct one, if not, do nothing
+            {
+                ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectIcon(151)),oPC);
+            }
+        }
+        if(spellsIsImmuneToDrown(oPC))
+        {
+            if(Get2DAString("effecticons","Icon",152) == "ief_bubble")//this will make sure the 2DA files are merged and icon is the correct one, if not, do nothing
+            {
+                ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectIcon(152)),oPC);
+            }
         }
         //recalculate ability increase/decrease itemproperties
         IPWildShapeHandleAbilityBonuses(oArmorNew,oWeaponNew);
