@@ -1011,7 +1011,7 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=2
 Sounds=0
-PathNode=A
+PathNode=H
 Orientation=0
 ImageMap2D=miii01_b15
 
@@ -1124,7 +1124,7 @@ AnimLoop3=1
 Doors=1
 Sounds=0
 PathNode=N
-Orientation=270
+Orientation=90
 ImageMap2D=miii01_b19
 
 [TILE29DOOR0]
@@ -1214,8 +1214,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=0
 Sounds=0
-PathNode=A
-Orientation=0
+PathNode=I
+Orientation=270
 ImageMap2D=miii01_d10
 
 [TILE33]
@@ -1242,8 +1242,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=0
 Sounds=0
-PathNode=A
-Orientation=0
+PathNode=I
+Orientation=90
 ImageMap2D=miii01_d11
 
 [TILE34]
@@ -1445,8 +1445,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=0
 Sounds=0
-PathNode=A
-Orientation=0
+PathNode=H
+Orientation=90
 ImageMap2D=miii01_e01
 
 [TILE40]
@@ -1508,8 +1508,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=0
 Sounds=0
-PathNode=A
-Orientation=0
+PathNode=H
+Orientation=180
 ImageMap2D=miii01_e03
 
 [TILE42]
@@ -1536,8 +1536,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=0
 Sounds=0
-PathNode=A
-Orientation=0
+PathNode=I
+Orientation=270
 ImageMap2D=miii01_f03
 
 [TILE43]
@@ -1592,8 +1592,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=0
 Sounds=0
-PathNode=A
-Orientation=0
+PathNode=I
+Orientation=90
 ImageMap2D=miii01_f01
 
 [TILE45]
@@ -1620,8 +1620,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=0
 Sounds=0
-PathNode=A
-Orientation=0
+PathNode=H
+Orientation=270
 ImageMap2D=miii01_g03
 
 [TILE46]
@@ -1648,7 +1648,7 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=0
 Sounds=0
-PathNode=A
+PathNode=I
 Orientation=0
 ImageMap2D=miii01_g02
 
@@ -1676,7 +1676,7 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=0
 Sounds=0
-PathNode=A
+PathNode=H
 Orientation=0
 ImageMap2D=miii01_g01
 
@@ -1704,7 +1704,7 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=0
 Sounds=0
-PathNode=A
+PathNode=H
 Orientation=0
 ImageMap2D=miii01_g04
 
@@ -1732,7 +1732,7 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=1
 Sounds=0
-PathNode=A
+PathNode=I
 Orientation=0
 ImageMap2D=miii01_g05
 
@@ -1767,8 +1767,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=0
 Sounds=0
-PathNode=A
-Orientation=0
+PathNode=H
+Orientation=270
 ImageMap2D=miii01_g06
 
 [TILE51]
@@ -1795,8 +1795,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=0
 Sounds=0
-PathNode=A
-Orientation=0
+PathNode=H
+Orientation=180
 ImageMap2D=miii01_e06
 
 [TILE52]
@@ -1823,8 +1823,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=0
 Sounds=0
-PathNode=A
-Orientation=0
+PathNode=I
+Orientation=270
 ImageMap2D=miii01_f06
 
 [TILE53]
@@ -1851,8 +1851,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=1
 Sounds=0
-PathNode=A
-Orientation=0
+PathNode=I
+Orientation=180
 ImageMap2D=miii01_e05
 
 [TILE53DOOR0]
@@ -1914,8 +1914,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=0
 Sounds=0
-PathNode=A
-Orientation=0
+PathNode=H
+Orientation=90
 ImageMap2D=miii01_e04
 
 [TILE56]
@@ -1942,8 +1942,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=0
 Sounds=0
-PathNode=A
-Orientation=0
+PathNode=I
+Orientation=90
 ImageMap2D=miii01_f04
 
 [TILE57]
@@ -1970,8 +1970,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=0
 Sounds=0
-PathNode=A
-Orientation=0
+PathNode=H
+Orientation=90
 ImageMap2D=miii01_e07
 
 [TILE58]
@@ -1998,8 +1998,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=0
 Sounds=0
-PathNode=A
-Orientation=0
+PathNode=I
+Orientation=180
 ImageMap2D=miii01_e08
 
 [TILE59]
@@ -2026,8 +2026,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=0
 Sounds=0
-PathNode=A
-Orientation=0
+PathNode=H
+Orientation=180
 ImageMap2D=miii01_e09
 
 [TILE60]
@@ -2054,8 +2054,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=1
 Sounds=0
-PathNode=A
-Orientation=0
+PathNode=I
+Orientation=90
 ImageMap2D=miii01_f07
 
 [TILE60DOOR0]
@@ -2117,8 +2117,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=1
 Sounds=0
-PathNode=A
-Orientation=0
+PathNode=I
+Orientation=270
 ImageMap2D=miii01_f09
 
 [TILE62DOOR0]
@@ -2152,7 +2152,7 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=0
 Sounds=0
-PathNode=A
+PathNode=H
 Orientation=0
 ImageMap2D=miii01_g07
 
@@ -2180,7 +2180,7 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=0
 Sounds=0
-PathNode=A
+PathNode=I
 Orientation=0
 ImageMap2D=miii01_g08
 
@@ -2208,8 +2208,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=0
 Sounds=0
-PathNode=A
-Orientation=0
+PathNode=H
+Orientation=270
 ImageMap2D=miii01_g09
 
 [TILE66]
@@ -2236,10 +2236,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=1
 Sounds=0
-PathNode=A
+PathNode=H
 Orientation=0
-DoorVisibilityNode=A
-DoorVisibilityOrientation=0
 ImageMap2D=miii01_g10
 
 [TILE66DOOR0]
@@ -2273,10 +2271,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=1
 Sounds=0
-PathNode=A
+PathNode=I
 Orientation=0
-DoorVisibilityNode=A
-DoorVisibilityOrientation=0
 ImageMap2D=miii01_g11
 
 [TILE67DOOR0]
@@ -2310,10 +2306,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=1
 Sounds=0
-PathNode=A
-Orientation=0
-DoorVisibilityNode=A
-DoorVisibilityOrientation=0
+PathNode=H
+Orientation=270
 ImageMap2D=miii01_g12
 
 [TILE68DOOR0]
@@ -2347,10 +2341,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=1
 Sounds=0
-PathNode=A
-Orientation=0
-DoorVisibilityNode=A
-DoorVisibilityOrientation=0
+PathNode=I
+Orientation=90
 ImageMap2D=miii01_f10
 
 [TILE69DOOR0]
@@ -2412,10 +2404,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=1
 Sounds=0
-PathNode=A
-Orientation=0
-DoorVisibilityNode=A
-DoorVisibilityOrientation=0
+PathNode=I
+Orientation=270
 ImageMap2D=miii01_f12
 
 [TILE71DOOR0]
@@ -2449,10 +2439,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=1
 Sounds=0
-PathNode=A
-Orientation=0
-DoorVisibilityNode=A
-DoorVisibilityOrientation=0
+PathNode=H
+Orientation=90
 ImageMap2D=miii01_e10
 
 [TILE72DOOR0]
@@ -2521,10 +2509,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=1
 Sounds=0
-PathNode=A
-Orientation=0
-DoorVisibilityNode=A
-DoorVisibilityOrientation=0
+PathNode=H
+Orientation=180
 ImageMap2D=miii01_e12
 
 [TILE74DOOR0]
@@ -2614,10 +2600,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=2
 Sounds=0
-PathNode=A
-Orientation=0
-DoorVisibilityNode=A
-DoorVisibilityOrientation=0
+PathNode=N
+Orientation=90
 ImageMap2D=miii01_e14
 
 [TILE77DOOR0]
@@ -2658,8 +2642,8 @@ AnimLoop2=1
 AnimLoop3=1
 Doors=1
 Sounds=0
-PathNode=A
-Orientation=0
+PathNode=N
+Orientation=90
 ImageMap2D=miii01_e13
 
 [TILE78DOOR0]
