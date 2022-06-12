@@ -676,7 +676,7 @@ return nResist;
 
 int MySavingThrow(int nSavingThrow, object oTarget, int nDC, int nSaveType=SAVING_THROW_TYPE_NONE, object oSaveVersus = OBJECT_SELF, float fDelay = 0.0)
 {
-    if(nSavingThrow == 4) return FALSE;
+    if(nSavingThrow == 4/*SAVING_THROW_NONE*/) return FALSE;
     // -------------------------------------------------------------------------
     // GZ: sanity checks to prevent wrapping around
     // -------------------------------------------------------------------------
@@ -717,7 +717,7 @@ int MySavingThrow(int nSavingThrow, object oTarget, int nDC, int nSaveType=SAVIN
         }
         if(nSavingThrow == SAVING_THROW_FORT)
         {
-            bValid = FortitudeSave(oTarget, nDC, nSaveType, oSaveVersus);
+            bValid = SavingThrowSave(oTarget, nSavingThrow, nDC, nSaveType, oSaveVersus);
             if(bValid == 1)
             {
                 eVis = EffectVisualEffect(VFX_IMP_FORTITUDE_SAVING_THROW_USE);
@@ -725,7 +725,7 @@ int MySavingThrow(int nSavingThrow, object oTarget, int nDC, int nSaveType=SAVIN
         }
         else if(nSavingThrow == SAVING_THROW_REFLEX)
         {
-            bValid = ReflexSave(oTarget, nDC, nSaveType, oSaveVersus);
+            bValid = SavingThrowSave(oTarget, nSavingThrow, nDC, nSaveType, oSaveVersus);
             if(bValid == 1)
             {
                 eVis = EffectVisualEffect(VFX_IMP_REFLEX_SAVE_THROW_USE);
@@ -733,7 +733,7 @@ int MySavingThrow(int nSavingThrow, object oTarget, int nDC, int nSaveType=SAVIN
         }
         else if(nSavingThrow == SAVING_THROW_WILL)
         {
-            bValid = WillSave(oTarget, nDC, nSaveType, oSaveVersus);
+            bValid = SavingThrowSave(oTarget, nSavingThrow, nDC, nSaveType, oSaveVersus);
             if(bValid == 1)
             {
                 eVis = EffectVisualEffect(VFX_IMP_WILL_SAVING_THROW_USE);

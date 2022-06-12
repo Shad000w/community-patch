@@ -141,6 +141,19 @@ int GetSpellMinAbilityMet(object oCreature, int nClass, int nSpellLevel);
 // - nLevel: caster level at which the spell will be cast
 void ActionCastCheatSpellAtObject(int nSpell, object oTarget, int nMetaMagic, int nLevel);
 
+// Does a Saving Throw Save check for the given DC
+// - oCreature
+// - nSave: SAVING_THROW_*
+// - nDC: Difficulty check
+// - nSaveType: SAVING_THROW_TYPE_*
+// - oSaveVersus
+// Returns: 0 if the saving throw roll failed
+// Returns: 1 if the saving throw roll succeeded
+// Returns: 2 if the target was immune to the save type specified
+// Note: If used within an Area of Effect Object Script (On Enter, OnExit, OnHeartbeat), you MUST pass
+// GetAreaOfEffectCreator() into oSaveVersus!!
+int SavingThrowSave(object oCreature, int nSave, int nDC, int nSaveType=SAVING_THROW_TYPE_NONE, object oSaveVersus=OBJECT_SELF);
+
 struct spells
 {
 int Id,DC,Level,Class,DamageCap,Dice,DamageType,Meta,DurationType,Limit,SavingThrow,TargetType,SR,SaveType,DmgVfxS,DmgVfxL;
@@ -749,7 +762,7 @@ int GetSavingThrowAdjustedDamage(int nDamage, object oTarget, int nDC, int nSavi
  {
   if((!GetHasFeat(FEAT_EVASION,oTarget) && !GetHasFeat(FEAT_IMPROVED_EVASION,oTarget)) || (GetModuleSwitchValue("72_HARDCORE_EVASION_RULES") && !GetEvasionApplicable(oTarget)))
   {
-  nDC = ReflexSave(oTarget,nDC,nSaveType,oSaveVersus);
+  nDC = SavingThrowSave(oTarget,nSavingThrow,nDC,nSaveType,oSaveVersus);
    if(nDC == 1)
    {
    ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectVisualEffect(VFX_IMP_REFLEX_SAVE_THROW_USE),oTarget);
@@ -767,7 +780,7 @@ int GetSavingThrowAdjustedDamage(int nDamage, object oTarget, int nDC, int nSavi
  }
  else if(nSavingThrow == SAVING_THROW_FORT)
  {
- nDC = FortitudeSave(oTarget,nDC,nSaveType,oSaveVersus);
+ nDC = SavingThrowSave(oTarget,nSavingThrow,nDC,nSaveType,oSaveVersus);
   if(nDC == 1)
   {
   ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectVisualEffect(VFX_IMP_REFLEX_SAVE_THROW_USE),oTarget);
@@ -781,7 +794,7 @@ int GetSavingThrowAdjustedDamage(int nDamage, object oTarget, int nDC, int nSavi
  }
  else if(nSavingThrow == SAVING_THROW_WILL)
  {
- nDC = WillSave(oTarget,nDC,nSaveType,oSaveVersus);
+ nDC = SavingThrowSave(oTarget,nSavingThrow,nDC,nSaveType,oSaveVersus);
   if(nDC == 1)
   {
   ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectVisualEffect(VFX_IMP_REFLEX_SAVE_THROW_USE),oTarget);
@@ -1157,4 +1170,42 @@ object FIX_GetFirstObjectInShape(int nShape, float fSize, location lTarget, int 
 object FIX_GetNextObjectInShape(int nShape, float fSize, location lTarget, int bLineOfSight=FALSE, int nObjectFilter=OBJECT_TYPE_CREATURE, vector vOrigin=[0.0,0.0,0.0])
 {
     return GetNextObjectInShape(nShape, fSize, lTarget, bLineOfSight, nObjectFilter, vOrigin);
+}
+
+int SavingThrowSave(object oCreature, int nSave, int nDC, int nSaveType=SAVING_THROW_TYPE_NONE, object oSaveVersus=OBJECT_SELF)
+{
+    if(ResManGetAliasFor("70_s2_savthrow",RESTYPE_NCS) == "")
+    {
+        if(nSaveType == SAVING_THROW_FORT)
+        {
+            return FortitudeSave(oCreature, nDC, nSaveType, oSaveVersus);
+        }
+        else if(nSaveType == SAVING_THROW_REFLEX)
+        {
+            return ReflexSave(oCreature, nDC, nSaveType, oSaveVersus);
+        }
+        else if(nSaveType == SAVING_THROW_WILL)
+        {
+            return WillSave(oCreature, nDC, nSaveType, oSaveVersus);
+        }
+        return 0;
+    }
+    SetLocalInt(oCreature,"SAVINGTHROW_TYPE",nSave);
+    SetLocalInt(oCreature,"SAVINGTHROW_DC",nDC);
+    SetLocalInt(oCreature,"SAVINGTHROW_SAVETYPE",nSaveType);
+    SetLocalObject(oCreature,"SAVINGTHROW_VERSUS",oSaveVersus);
+    SetLocalInt(oCreature,"SAVINGTHROW_FEAT",-1);
+    SetLocalInt(oCreature,"SAVINGTHROW_SPELL",spell.Id);
+    SetLocalInt(oCreature,"SAVINGTHROW_FEEDBACKSHOW",TRUE);
+    ExecuteScript("70_s2_savthrow",oCreature);
+    int nResult = GetLocalInt(oCreature,"SAVINGTHROW_RETURN");
+    DeleteLocalInt(oCreature,"SAVINGTHROW_RETURN");
+    DeleteLocalInt(oCreature,"SAVINGTHROW_TYPE");
+    DeleteLocalInt(oCreature,"SAVINGTHROW_DC");
+    DeleteLocalInt(oCreature,"SAVINGTHROW_SAVETYPE");
+    DeleteLocalObject(oCreature,"SAVINGTHROW_VERSUS");
+    DeleteLocalInt(oCreature,"SAVINGTHROW_FEAT");
+    DeleteLocalInt(oCreature,"SAVINGTHROW_SPELL");
+    DeleteLocalInt(oCreature,"SAVINGTHROW_FEEDBACKSHOW");
+    return nResult;
 }
