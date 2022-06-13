@@ -329,4 +329,14 @@ void main()
     {
         SetLocalString(OBJECT_SELF,"DEATH_SCRIPT",GetEventScript(OBJECT_SELF,EVENT_SCRIPT_CREATURE_ON_DEATH));
     }
+    //1.72: High AI will buff self instantly on spawn as it often takes 6 seconds before this gets called normally sometimes
+    //which significantly reduces the threat level of the npc and allows it to slay her too fast and too easy
+    if(GetAILevel() == AI_LEVEL_HIGH && GetSpawnInCondition(NW_FLAG_FAST_BUFF_ENEMY))
+    {
+        if(TalentAdvancedBuff(40.0))
+        {
+            // This is a one-shot deal
+            SetSpawnInCondition(NW_FLAG_FAST_BUFF_ENEMY, FALSE);
+        }
+    }
 }
