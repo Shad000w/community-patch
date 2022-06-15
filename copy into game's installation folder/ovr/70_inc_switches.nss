@@ -32,6 +32,7 @@ const string MODULE_SWITCH_DISABLE_DAMAGE_SHIELD_STACKING = "72_DISABLE_DAMAGE_S
 // * keen edge, darkfire and black staff.
 // * When one of these spells is cast on same item, the item gets stripped of all
 // * temporary itemproperties.
+// * Can be also set locally on specific weapon to force this rule only on a handful of weapons.
 //------------------------------------------------------------------------------
 const string MODULE_SWITCH_DISABLE_WEAPON_BOOST_STACKING = "72_DISABLE_WEAPON_BOOST_STACKING";
 
@@ -49,7 +50,7 @@ const string MODULE_SWITCH_DISABLE_AOE_SPELLS_STACKING = "72_DISABLE_AOE_SPELLS_
 // * Character who loses initiative roll is considered flatfooted against attacker who won
 // * the check until he attacks for the first time. Unlike DnD, the ammount of time the
 // * character is flatfooted is reduced to first flurry. Still, that gives considerable
-// * benefit to the attacker and makes intiative and feats improving initiative usefull.
+// * benefit to the attacker and makes initiative and feats improving initiative usefull.
 // * Note: Dependant on NWN(C)X_Patch plugin.
 //------------------------------------------------------------------------------
 const string MODULE_SWITCH_HARDCORE_INITIATIVE = "72_HARDCORE_INITIATIVE";

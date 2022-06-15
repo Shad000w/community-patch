@@ -26,7 +26,7 @@ Patch 1.71
 
 void AddHolyAvengerEffectToWeapon(object oMyWeapon, float fDuration)
 {
-    if(GetModuleSwitchValue("72_DISABLE_WEAPON_BOOST_STACKING"))
+    if(GetLocalInt(oMyWeapon,"72_DISABLE_WEAPON_BOOST_STACKING") || GetModuleSwitchValue("72_DISABLE_WEAPON_BOOST_STACKING"))
     {
         IPRemoveAllItemProperties(oMyWeapon,DURATION_TYPE_TEMPORARY);
     }
