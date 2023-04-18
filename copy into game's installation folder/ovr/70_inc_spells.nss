@@ -54,6 +54,7 @@ const int SPELL_DURATION_TYPE_HOURS   = 4;
 const int SPELL_DURATION_TYPE_HOURS_2MINUTES = 65536;
 const int YES = 1;
 const int NO = -1;
+const int DEFAULT = 0;
 
 //declare major variables for every spell
 //start every spell script with this at top
@@ -211,7 +212,7 @@ spell.Id = GetSpellId();
   }
  }
 spell.DC = GetSpellSaveDC();
- if(!spell.SR) spell.SR = TRUE;//unless SR is disabled, we assume its enabled
+spell.SR = DEFAULT;
  if(!spell.Class) spell.Class = GetLastSpellCastClass();//support for feats
 spell.Meta = GetMetaMagicFeat();
  if(GetLocalInt(spell.Caster,"CHEAT_SPELL") > 0)//Cheat spell
