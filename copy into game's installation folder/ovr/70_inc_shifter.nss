@@ -356,7 +356,7 @@ void ApplyPolymorph(object oTarget, int nPolymorph, int nSubType=SUBTYPE_EXTRAOR
     effect eHP, ePolymorph = EffectPolymorph(nPolymorph,bLocked);
     if(nHP > 0)
     {
-        eHP = EffectTemporaryHitpoints(nHP);
+        eHP = TagEffect(EffectTemporaryHitpoints(nHP),"POLYMORPH");
     }
     if(nSubType == SUBTYPE_EXTRAORDINARY)
     {
