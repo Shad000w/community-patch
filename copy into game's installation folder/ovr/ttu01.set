@@ -1837,7 +1837,7 @@ PathNode=T
 Orientation=0
 VisibilityNode=A
 VisibilityOrientation=0
-ImageMap2D=mitu01_z05
+ImageMap2D=mitu01_d20
 
 [TILE59]
 Model=ttu01_h01_01
