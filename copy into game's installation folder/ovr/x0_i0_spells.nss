@@ -1128,13 +1128,16 @@ int spellsIsTarget(object oTarget, int nTargetType, object oSource)
         }    /*SPELL_TARGET_SINGLETARGET:*/
         case 2://1.70: added new value now 2 == SPELL_TARGET_SINGLETARGET which is used for spells with single target, when these spells
         {      //are cast at neutral target then they are supposed to hurt target which is not possible with SPELL_TARGET_STANDARDHOSTILE
-            if(GetObjectType(oTarget) != OBJECT_TYPE_CREATURE || !GetIsReactionTypeFriendly(oTarget,oSource))
+            if(oTarget == spell.Target)//1.72: this allows to turn AoE spell into singletarget spell dynamically without need to rewrite the spellscript
             {
-                nReturnValue = TRUE;
-            }
-            else
-            {
-                SendMessageToPCByStrRef(oSource,66245);
+                if(GetObjectType(oTarget) != OBJECT_TYPE_CREATURE || !GetIsReactionTypeFriendly(oTarget,oSource))
+                {
+                    nReturnValue = TRUE;
+                }
+                else
+                {
+                    SendMessageToPCByStrRef(oSource,66245);
+                }
             }
         }
         case SPELL_TARGET_STANDARDHOSTILE:
