@@ -37,7 +37,7 @@ void main()
         if(TouchAttackRanged(oTarget))
         {
             //Apply the VFX impact and effects
-            ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(nCount));
+            ApplyEffectToObject(DURATION_TYPE_TEMPORARY, ExtraordinaryEffect(eLink), oTarget, RoundsToSeconds(nCount));
             ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
         }
     }

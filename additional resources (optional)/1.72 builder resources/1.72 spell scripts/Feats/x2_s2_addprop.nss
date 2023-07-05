@@ -28,10 +28,12 @@
 //:: Created By: Georg Zoeller
 //:: Created On: 2003-06-11
 //:://////////////////////////////////////////////
+/*
+Patch 1.72
+- fixed feedback message not being multi-languaged when it could have been
+*/
 
 #include "x2_inc_itemprop"
-
-
 
 void main()
 {
@@ -73,11 +75,6 @@ void main()
     nStrRef = 83386;
   }
 
-  if (nStrRef != 0)  // Handle bioware StrRefs
-  {
-     sSuccess = GetStringByStrRef(nStrRef);
-  }
-
 
   if (GetItemHasItemProperty(oTarget,nPropID))
   {
@@ -104,7 +101,7 @@ void main()
       IPSafeAddItemProperty(oTarget, ip, fDuration,X2_IP_ADDPROP_POLICY_KEEP_EXISTING, FALSE,TRUE);
       if (GetItemHasItemProperty(oTarget,nPropID))
       {
-         FloatingTextStringOnCreature(sSuccess,oUser);
+         FloatingTextStrRefOnCreature(nStrRef,oUser);
          effect eVis = EffectVisualEffect(VFX_IMP_BREACH);
          ApplyEffectToObject(DURATION_TYPE_INSTANT,eVis,oUser);
       }

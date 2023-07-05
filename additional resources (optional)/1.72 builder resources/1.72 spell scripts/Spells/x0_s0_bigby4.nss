@@ -23,6 +23,11 @@
 //:: Created On: September 7, 2002
 //:://////////////////////////////////////////////
 //:: Last Updated By: Georg Zoeller October 15, 2003
+/*
+Patch 1.72
+
+- allowed the spell to stack with Bigby's Crushing Hand
+*/
 
 #include "70_inc_spells"
 #include "x2_inc_spellhook"
@@ -51,7 +56,7 @@ void main()
     //--------------------------------------------------------------------------
     // This spell no longer stacks. If there is one hand, that's enough
     //--------------------------------------------------------------------------
-    if (GetHasSpellEffect(spell.Id,spell.Target) ||  GetHasSpellEffect(SPELL_BIGBYS_CRUSHING_HAND,spell.Target))
+    if (GetHasSpellEffect(spell.Id,spell.Target))
     {
         FloatingTextStrRefOnCreature(100775,spell.Caster,FALSE);
         return;
@@ -66,9 +71,8 @@ void main()
     if(spellsIsTarget(spell.Target, spell.TargetType, spell.Caster))
     {
         SignalEvent(spell.Target, EventSpellCastAt(spell.Caster, spell.Id, TRUE));
-        int nResult = MyResistSpell(spell.Caster, spell.Target);
 
-        if(nResult == 0)
+        if(!MyResistSpell(spell.Caster, spell.Target))
         {
             int nCasterModifier = GetCasterAbilityModifier(spell.Caster);
             effect eHand = EffectVisualEffect(VFX_DUR_BIGBYS_CLENCHED_FIST);

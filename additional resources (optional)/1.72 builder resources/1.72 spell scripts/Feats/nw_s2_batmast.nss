@@ -42,7 +42,7 @@ void main()
     effect eAttack = EffectAttackIncrease(nBonus);
     effect eCon = EffectAbilityIncrease(ABILITY_CONSTITUTION, nBonus);
     effect eDex = EffectAbilityIncrease(ABILITY_DEXTERITY, nBonus);
-    effect eDam = EffectDamageIncrease(nDamBonus, DAMAGE_TYPE_BLUDGEONING);
+    effect eDam = EffectDamageIncrease(nDamBonus, DAMAGE_TYPE_BLUDGEONING|DAMAGE_TYPE_SLASHING|DAMAGE_TYPE_PIERCING);
     nBonus *= 2;
     effect eDamRed = EffectDamageReduction(nBonus, DAMAGE_POWER_PLUS_FIVE);
     effect eVis = EffectVisualEffect(VFX_IMP_HOLY_AID);

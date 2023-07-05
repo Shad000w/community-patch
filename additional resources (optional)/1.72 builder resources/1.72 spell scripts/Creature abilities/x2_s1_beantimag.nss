@@ -16,6 +16,11 @@
 //:: Created By: Georg Zoeller
 //:: Created On: 2003-08-19
 //:://////////////////////////////////////////////
+/*
+Patch 1.72
+
+- fixed spell failure not being undispellable as was intented
+*/
 
 #include "x0_i0_spells"
 
@@ -46,8 +51,8 @@ void main()
     effect eVis = EffectVisualEffect(VFX_IMP_BREACH);
     effect eAntiMag = EffectSpellFailure(100);
 //    effect eImmune = EffectSpellImmunity();
-    eAntiMag = ExtraordinaryEffect(eAntiMag);
     eAntiMag = EffectLinkEffects(eDur, eAntiMag);
+    eAntiMag = ExtraordinaryEffect(eAntiMag);
 
 
     object oTarget;
@@ -63,7 +68,7 @@ void main()
             if (GetObjectType(oTarget) == OBJECT_TYPE_AREA_OF_EFFECT )
             {
                // only dispel AoEs done by creatures
-               if (GetObjectType(GetAreaOfEffectCreator(oTarget)) == OBJECT_TYPE_CREATURE)
+               if (GetLocalInt(oTarget, "X1_L_IMMUNE_TO_DISPEL") != 10 && GetObjectType(GetAreaOfEffectCreator(oTarget)) == OBJECT_TYPE_CREATURE)
                {
                    DestroyObject(oTarget,0.1f);
                }

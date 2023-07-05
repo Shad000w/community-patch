@@ -12,15 +12,21 @@ undeads are healed for 20d6 hitpoints
 //:: Created On: 03-04-2011
 //:://////////////////////////////////////////////
 
+#include "70_inc_spells"
 #include "nw_i0_spells"
 
 void main()
 {
+    //1.72: fix for bug where traps are being triggered where they really aren't
+    if(GetObjectType(OBJECT_SELF) == OBJECT_TYPE_TRIGGER && !GetIsInSubArea(GetEnteringObject()))
+    {
+        return;
+    }
     //Declare major variables
     object oTarget = GetEnteringObject();
 
     // Undead are healed by Negative Energy.
-    if(GetRacialType(oTarget) == RACIAL_TYPE_UNDEAD)
+    if(spellsIsRacialType(oTarget, RACIAL_TYPE_UNDEAD))
     {
 
         ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectHeal(d6(20)), oTarget);

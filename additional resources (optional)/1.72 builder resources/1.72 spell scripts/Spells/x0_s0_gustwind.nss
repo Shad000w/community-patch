@@ -99,14 +99,14 @@ void main()
                         AssignCommand(oTarget, ActionPlayAnimation(ANIMATION_DOOR_CLOSE));
                     }
                 }
-                if(!MyResistSpell(spell.Caster, oTarget, fDelay) && !MySavingThrow(spell.SavingThrow, oTarget, spell.DC, SAVING_THROW_TYPE_NONE, spell.Caster, fDelay))
-                {
-                    effect eKnockdown = EffectKnockdown();
-                    ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eKnockdown, oTarget, RoundsToSeconds(3));
-                    //This visual effect is applied to the target object not the location as above.  This visual effect
-                    //represents the flame that erupts on the target not on the ground.
-                    DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
-                }
+            }
+            else if(!MyResistSpell(spell.Caster, oTarget, fDelay) && !MySavingThrow(spell.SavingThrow, oTarget, spell.DC, SAVING_THROW_TYPE_NONE, spell.Caster, fDelay))
+            {
+                effect eKnockdown = EffectKnockdown();
+                ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eKnockdown, oTarget, RoundsToSeconds(3));
+                //This visual effect is applied to the target object not the location as above.  This visual effect
+                //represents the flame that erupts on the target not on the ground.
+                DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
             }
         }
         //Select the next target within the spell shape.

@@ -25,18 +25,12 @@ void main()
     {
         //Search through the valid effects on the target.
         effect eAOE = GetFirstEffect(oTarget);
-        while(GetIsEffectValid(eAOE))
+        while (GetIsEffectValid(eAOE))
         {
-            if(GetEffectCreator(eAOE) == aoe.Creator)
+            //If the effect was created by the Acid_Fog then remove it
+            if (GetEffectCreator(eAOE) == aoe.Creator && GetEffectSpellId(eAOE) == spell.Id)
             {
-                if(GetEffectType(eAOE) == EFFECT_TYPE_ENTANGLE)
-                {
-                    //If the effect was created by the Acid_Fog then remove it
-                    if(GetEffectSpellId(eAOE) == spell.Id)
-                    {
-                        RemoveEffect(oTarget, eAOE);
-                    }
-                }
+                RemoveEffect(oTarget, eAOE);
             }
             //Get next effect on the target
             eAOE = GetNextEffect(oTarget);

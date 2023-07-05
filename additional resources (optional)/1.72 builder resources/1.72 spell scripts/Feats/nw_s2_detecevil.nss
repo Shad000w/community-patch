@@ -19,6 +19,8 @@ Patch 1.71
 Blackguard class it will work as detect good instead
 */
 
+#include "70_inc_spells"
+
 void main()
 {
     //Declare major variables

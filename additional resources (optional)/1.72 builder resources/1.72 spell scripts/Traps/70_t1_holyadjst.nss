@@ -24,8 +24,15 @@ variables list below (may differ per trap type)
 //:: Created On: 11-11-2011
 //:://////////////////////////////////////////////
 
+#include "70_inc_spells"
+
 void main()
 {
+    //1.72: fix for bug where traps are being triggered where they really aren't
+    if(GetObjectType(OBJECT_SELF) == OBJECT_TYPE_TRIGGER && !GetIsInSubArea(GetEnteringObject()))
+    {
+        return;
+    }
     //Declare major variables
     object oTarget = GetEnteringObject();
     int minDamage = GetLocalInt(OBJECT_SELF,"DamageMin");
@@ -45,7 +52,7 @@ void main()
             }
             nDamage = minDamage+Random(maxDamage-minDamage+1);//get random value between min and max
         }
-        if(GetRacialType(oTarget) == RACIAL_TYPE_UNDEAD)//undeads should take more damage
+        if(spellsIsRacialType(oTarget, RACIAL_TYPE_UNDEAD))//undeads should take more damage
         {
             nDamage+= nDamage/2;
         }

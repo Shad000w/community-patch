@@ -37,6 +37,12 @@ void main()
     spellsDeclareMajorVariables();
     effect eAOE = EffectAreaOfEffect(AOE_PER_WEB);
 
+    //1.72: web casted by spiders shouldn't be dispellable
+    if(GetRacialType(spell.Caster) == RACIAL_TYPE_VERMIN)
+    {
+        eAOE = ExtraordinaryEffect(eAOE);
+    }
+
     int nDuration = spell.Level / 2;
     //Make sure duration does no equal 0
     if(nDuration < 1)

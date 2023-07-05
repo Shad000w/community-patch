@@ -16,8 +16,9 @@
 //:: Created On: Aug 8, 2001
 //:://////////////////////////////////////////////
 /*
+Patch 1.72
+- added custom icon to show up for this effect
 Patch 1.71
-
 - AOE effects made undispellable
 */
 
@@ -33,8 +34,13 @@ void main()
     //Declare major variables
     aoesDeclareMajorVariables();
     effect eWeb = EffectEntangle();
+    if(Get2DAString("effecticons","Icon",150) == "ief_web")//this will make sure the 2DA files are merged and icon is the correct one, if not, do nothing
+    {
+        eWeb = EffectLinkEffects(HideEffectIcon(eWeb),EffectIcon(150));
+    }
     effect eVis = EffectVisualEffect(VFX_DUR_WEB);
     effect eLink = EffectLinkEffects(eWeb, eVis);
+    eLink = ExtraordinaryEffect(eLink);
     object oTarget = GetEnteringObject();
 
     // * the lower the number the faster you go

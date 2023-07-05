@@ -389,7 +389,7 @@ void main()
         if(spellsIsTarget(oTarget, SPELL_TARGET_SELECTIVEHOSTILE, OBJECT_SELF))
         {
              // * GZ Oct 2003: If we are deaf, we do not have negative effects from curse song
-            if (GetIsAbleToHear(oTarget))
+            if (GetIsAbleToHear(oTarget) && !GetLocalInt(oTarget, "IMMUNITY_CURSE_SONG"))
             {
                 if(!IsUnderCursedSongInfluence(oTarget))
                 {

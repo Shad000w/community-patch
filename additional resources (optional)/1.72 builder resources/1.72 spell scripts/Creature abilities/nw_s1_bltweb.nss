@@ -13,8 +13,9 @@
 //:: Updated On: July 15, 2003 Georg Zoeller - Removed saving throws
 //:://////////////////////////////////////////////
 /*
+Patch 1.72
+- added custom icon to show up for this effect
 Patch 1.71
-
 - incorporeal creatures could been affected
 - added duration scaling per game difficulty
 */
@@ -29,6 +30,10 @@ void main()
     int nHD = GetHitDice(OBJECT_SELF);
     effect eVis = EffectVisualEffect(VFX_DUR_WEB);
     effect eStick = EffectEntangle();
+    if(Get2DAString("effecticons","Icon",150) == "ief_web")//this will make sure the 2DA files are merged and icon is the correct one, if not, do nothing
+    {
+        eStick = EffectLinkEffects(HideEffectIcon(eStick),EffectIcon(150));
+    }
     effect eLink = EffectLinkEffects(eVis, eStick);
 
     int nDC = 10 + (nHD/2);
@@ -45,7 +50,7 @@ void main()
             if(!GetHasFeat(FEAT_WOODLAND_STRIDE, oTarget) && !GetCreatureFlag(oTarget, CREATURE_VAR_IS_INCORPOREAL))
             {
                 //Apply the VFX impact and effects
-                ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(nCount));
+                ApplyEffectToObject(DURATION_TYPE_TEMPORARY, ExtraordinaryEffect(eLink), oTarget, RoundsToSeconds(nCount));
             }
         }
     }

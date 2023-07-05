@@ -12,10 +12,17 @@
 //:: Created By: Preston Watamaniuk
 //:: Created On: Nov 16, 2001
 //:://////////////////////////////////////////////
-#include "NW_I0_SPELLS"
+
+#include "70_inc_spells"
+#include "nw_i0_spells"
 
 void main()
 {
+    //1.72: fix for bug where traps are being triggered where they really aren't
+    if(GetObjectType(OBJECT_SELF) == OBJECT_TYPE_TRIGGER && !GetIsInSubArea(GetEnteringObject()))
+    {
+        return;
+    }
     //Declare major variables
     object oTarget = GetEnteringObject();
     effect eNeg = EffectAbilityDecrease(ABILITY_STRENGTH, 1);
@@ -24,7 +31,7 @@ void main()
     effect eVis = EffectVisualEffect(VFX_IMP_REDUCE_ABILITY_SCORE);
 
     // Undead are healed by Negative Energy.
-    if ( GetRacialType(oTarget) == RACIAL_TYPE_UNDEAD )
+    if(spellsIsRacialType(oTarget, RACIAL_TYPE_UNDEAD))
     {
         effect eHeal = EffectHeal(d6(3));
         effect eVisHeal = EffectVisualEffect(VFX_IMP_HEALING_M);

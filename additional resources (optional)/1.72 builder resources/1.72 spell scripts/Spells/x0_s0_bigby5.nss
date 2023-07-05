@@ -23,6 +23,7 @@
 //:: VFX Pass By:
 /*
 Patch 1.72
+- allowed the spell to stack with Bigby's Clenched Fist
 - fixed few declarations of the caster level to account for spell overrides
 Patch 1.71
 - added duration scaling per game difficulty
@@ -55,7 +56,7 @@ void main()
     //--------------------------------------------------------------------------
     // This spell no longer stacks. If there is one hand, that's enough
     //--------------------------------------------------------------------------
-    if (GetHasSpellEffect(spell.Id,spell.Target) ||  GetHasSpellEffect(SPELL_BIGBYS_CLENCHED_FIST,spell.Target))
+    if (GetHasSpellEffect(spell.Id,spell.Target))
     {
         FloatingTextStrRefOnCreature(100775,spell.Caster,FALSE);
         return;

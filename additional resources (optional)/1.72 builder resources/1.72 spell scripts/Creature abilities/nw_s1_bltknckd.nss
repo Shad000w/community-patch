@@ -44,7 +44,7 @@ void main()
         if(nTouch > 0)
         {
             //Apply the VFX impact and effects
-            ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eBolt, oTarget, RoundsToSeconds(nCount));
+            ApplyEffectToObject(DURATION_TYPE_TEMPORARY, ExtraordinaryEffect(eBolt), oTarget, RoundsToSeconds(nCount));
             ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
             effect eDam = EffectDamage(d6(nTouch), DAMAGE_TYPE_BLUDGEONING);
             ApplyEffectToObject(DURATION_TYPE_INSTANT, eDam, oTarget);

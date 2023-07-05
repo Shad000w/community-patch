@@ -16,7 +16,13 @@
 
 void main()
 {
+    //1.72: fix for bug where traps are being triggered where they really aren't
+    if(GetObjectType(OBJECT_SELF) == OBJECT_TYPE_TRIGGER && !GetIsInSubArea(GetEnteringObject()))
+    {
+        return;
+    }
     //Declare major variables
+    float fDuration = 6.0;
     object oTarget = GetEnteringObject();
     effect eDam = EffectDamage(d6(3), DAMAGE_TYPE_ACID);;
     effect eHold = EffectParalyze();
@@ -31,7 +37,7 @@ void main()
     {
         //Apply Hold and Damage
         ApplyEffectToObject(DURATION_TYPE_INSTANT, eDam, oTarget);
-        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(2));
+        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
     }
     else
     {

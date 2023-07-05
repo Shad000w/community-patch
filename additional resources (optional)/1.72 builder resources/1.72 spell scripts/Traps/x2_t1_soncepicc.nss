@@ -14,7 +14,13 @@
 
 void main()
 {
+    //1.72: fix for bug where traps are being triggered where they really aren't
+    if(GetObjectType(OBJECT_SELF) == OBJECT_TYPE_TRIGGER && !GetIsInSubArea(GetEnteringObject()))
+    {
+        return;
+    }
     //Declare major variables
+    float fDuration = 18.0;
     object oTarget = GetEnteringObject();
     location lTarget = GetLocation(oTarget);
     int nDamage;
@@ -37,7 +43,7 @@ void main()
             //Make a Will roll to avoid being stunned
             if(!MySavingThrow(SAVING_THROW_WILL, oTarget, 30, SAVING_THROW_TYPE_SONIC))
             {
-                ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(4));
+                ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
             }
             //Set the damage effect
             eDam = EffectDamage(nDamage, DAMAGE_TYPE_SONIC);

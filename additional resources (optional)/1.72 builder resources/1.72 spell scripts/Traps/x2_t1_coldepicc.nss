@@ -17,6 +17,11 @@
 
 void main()
 {
+    //1.72: fix for bug where traps are being triggered where they really aren't
+    if(GetObjectType(OBJECT_SELF) == OBJECT_TYPE_TRIGGER && !GetIsInSubArea(GetEnteringObject()))
+    {
+        return;
+    }
     //Declare major variables
     object oTarget = GetEnteringObject();
     effect eDam = EffectDamage(d4(40), DAMAGE_TYPE_COLD);
