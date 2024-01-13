@@ -172,18 +172,19 @@ void main()
             }
         }
 
+        int nAbilityLimit = GetAbilityBonusLimit();
         if(abil.Str > 0)
-            eAbil = EffectAbilityIncrease(ABILITY_STRENGTH,abil.Str > 12 ? 12 : abil.Str);
+            eAbil = EffectAbilityIncrease(ABILITY_STRENGTH,abil.Str > nAbilityLimit ? nAbilityLimit : abil.Str);
         if(abil.Dex > 0)
-            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_DEXTERITY,abil.Dex > 12 ? 12 : abil.Dex));
+            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_DEXTERITY,abil.Dex > nAbilityLimit ? nAbilityLimit : abil.Dex));
         if(abil.Con > 0)
-            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_CONSTITUTION,abil.Con > 12 ? 12 : abil.Con));
+            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_CONSTITUTION,abil.Con > nAbilityLimit ? nAbilityLimit : abil.Con));
         if(abil.Wis > 0)
-            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_WISDOM,abil.Wis > 12 ? 12 : abil.Wis));
+            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_WISDOM,abil.Wis > nAbilityLimit ? nAbilityLimit : abil.Wis));
         if(abil.Int > 0)
-            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_INTELLIGENCE,abil.Int > 12 ? 12 : abil.Int));
+            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_INTELLIGENCE,abil.Int > nAbilityLimit ? nAbilityLimit : abil.Int));
         if(abil.Cha > 0)
-            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_CHARISMA,abil.Cha > 12 ? 12 : abil.Cha));
+            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_CHARISMA,abil.Cha > nAbilityLimit ? nAbilityLimit : abil.Cha));
 
         if(eAdditional != eNull)
         {
