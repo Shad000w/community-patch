@@ -132,7 +132,7 @@ void main()
     object oIntruder, oParty = GetFirstFactionMember(oKiller,FALSE);
     while(GetIsObjectValid(oParty))
     {
-        if(oParty != oKiller && GetAssociateType(oParty) != ASSOCIATE_TYPE_NONE && GetCommandable(oParty) && !GetAssociateState(NW_ASC_MODE_STAND_GROUND,oParty) && !GetAssociateState(0x02000000,oParty))
+        if(oParty != oKiller && GetAssociateType(oParty) != ASSOCIATE_TYPE_NONE && GetCommandable(oParty) && !GetAssociateState(NW_ASC_MODE_STAND_GROUND,oParty) && !GetAssociateState(NW_ASC_MODE_FOLLOW_MASTER,oParty))
         {
             oIntruder = GetAttackTarget(oParty);
             if(oIntruder == OBJECT_SELF || GetIsDead(oIntruder) || !GetIsObjectValid(oIntruder))
