@@ -14,8 +14,9 @@
 //:: Last Updated By: Andrew Nobbs May 09, 2003
 //:: 2003-07-07: Stacking Spell Pass, Georg Zoeller
 /*
+Patch 1.72
+- added initial heal "tick"
 Patch 1.71
-
 - duration doubled in order to balance with regenerate spell
 */
 
@@ -38,7 +39,7 @@ void main()
 
     /* Bug fix 21/07/03: Andrew. Lowered regen to 3 HP per round, instead of 10. */
     effect eRegen = EffectRegenerate(3, 6.0);
-
+    effect eHeal = EffectHeal(3);
     effect eVis = EffectVisualEffect(VFX_IMP_HEAD_NATURE);
     effect eDur = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
 
@@ -59,4 +60,5 @@ void main()
     //Apply effects and VFX
     ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, spell.Target, DurationToSeconds(nLevel));
     ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, spell.Target);
+    ApplyEffectToObject(DURATION_TYPE_INSTANT, eHeal, spell.Target);
 }
