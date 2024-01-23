@@ -14,6 +14,16 @@ penalties or even to remove the petrification effect entirely.
 #include "70_inc_spells"
 #include "x0_i0_spells"
 
+//1.72: this will continuously bring up death GUI if player is still petrified, this is especially useful if you allow player to respawn
+void Petrify_PopUpDeathGUIPanel(object oTarget, int bRespawnButtonEnabled=TRUE, int bWaitForHelpButtonEnabled=TRUE)
+{
+    if(GetHasEffect(EFFECT_TYPE_PETRIFY,oTarget))
+    {
+        PopUpDeathGUIPanel(oTarget, TRUE, TRUE, 40579);
+        DelayCommand(10.0, Petrify_PopUpDeathGUIPanel(oTarget,bRespawnButtonEnabled,bWaitForHelpButtonEnabled));
+    }
+}
+
 int GetIsSupernaturalCurse(effect eEff)
 {
     switch(GetEffectSpellId(eEff))
@@ -119,7 +129,7 @@ void main()
                 RemoveAllBeneficialEffects(oTarget);//1.72: under hardcore rules or higher, dispell all beneficial effects to make it easier to finish off target
                 // * under hardcore rules or higher, this is an instant death
                 ApplyEffectToObject(DURATION_TYPE_PERMANENT, eLink, oTarget);
-                AssignCommand(oTarget, DelayCommand(2.75, PopUpDeathGUIPanel(oTarget, FALSE , TRUE, 40579)));//1.72: assign the popup to target as it can happen that the caster will be destroyed before the delay command would be executed
+                AssignCommand(oTarget, DelayCommand(2.75, Petrify_PopUpDeathGUIPanel(oTarget,FALSE,TRUE)));//1.72: assign the popup to target as it can happen that the caster will be destroyed before the delay command would be executed
                 // if in hardcore, treat the player as an NPC
                 //bIsPC = FALSE;
                 //fDifficulty = TurnsToSeconds(nPower); // One turn per hit-die
