@@ -59,7 +59,7 @@ void main()
            if(GetEffectType(eSearch) == EFFECT_TYPE_POLYMORPH)
            {
                int spell = GetSpellId();
-               if(spell > 0 && GetLocalInt(oTarget,"Polymorph_ID") > 0 && Get2DAString("spells","Innate",spell) != "10" && GetHasSpell(spell) && spell != GetLocalInt(oTarget,"Polymorph_SPELL1") && spell != GetLocalInt(oTarget,"Polymorph_SPELL2") && spell != GetLocalInt(oTarget,"Polymorph_SPELL3"))
+               if(spell > 0 && GetLocalInt(oTarget,"Polymorph_ID") > 0 && Get2DAString("spells","Innate",spell) != "10" && GetHasSpell(spell) && spell != GetLocalInt(oTarget,"Poly_SPELL1") && spell != GetLocalInt(oTarget,"Poly_SPELL2") && spell != GetLocalInt(oTarget,"Poly_SPELL3"))
                {
                    //block the spell for exploit abuse
                    FloatingTextStrRefOnCreature(3734,OBJECT_SELF,FALSE);//prints "Spell failed!"
