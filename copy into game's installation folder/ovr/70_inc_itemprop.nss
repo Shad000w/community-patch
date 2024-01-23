@@ -580,10 +580,13 @@ void IPWildShapeMergeItemProperties(object oOld, object oNew, int bWeapon = FALS
             WriteTimestampedLogEntry("WARNING! IPWildShapeMergeItemProperties attempting to merge properties from item onto same item!");
             return;
         }
+        int nType;
         itemproperty ip = GetFirstItemProperty(oOld);
         while (GetIsItemPropertyValid(ip))
         {
-            if(GetItemPropertyType(ip) != ITEM_PROPERTY_ABILITY_BONUS && (!bWeapon || GetWeaponRanged(oOld) == GetWeaponRanged(oNew)))
+            nType = GetItemPropertyType(ip);
+            if(nType != ITEM_PROPERTY_USE_LIMITATION_RACIAL_TYPE && nType != ITEM_PROPERTY_USE_LIMITATION_RACIAL_TYPE && nType != ITEM_PROPERTY_USE_LIMITATION_CLASS &&//1.72: fix for an issue where use limitation properties would cause OnEquip event not to run
+            nType != ITEM_PROPERTY_ABILITY_BONUS && (!bWeapon || GetWeaponRanged(oOld) == GetWeaponRanged(oNew)))
             {
                 AddItemProperty(DURATION_TYPE_PERMANENT,ip,oNew);
             }
