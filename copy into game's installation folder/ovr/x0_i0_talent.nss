@@ -2083,6 +2083,11 @@ int TalentAdvancedBuff(float fDistance, int bInstant = TRUE)
                 {
                     ActionCastSpellAtLocation(SPELL_SUMMON_CREATURE_I, GetLocation(OBJECT_SELF), METAMAGIC_ANY, FALSE, PROJECTILE_PATH_TYPE_DEFAULT, bInstant);
                 }
+                //Druid Protections
+                if(GetHasSpell(SPELL_BARKSKIN)&& !GetHasSpellEffect(SPELL_BARKSKIN))
+                {
+                    ActionCastSpellAtObject(SPELL_BARKSKIN, OBJECT_SELF, METAMAGIC_ANY, FALSE, 0, PROJECTILE_PATH_TYPE_DEFAULT, bInstant);
+                }
 
                 //MyPrintString("TalentAdvancedBuff Successful Exit");
                 return TRUE;
