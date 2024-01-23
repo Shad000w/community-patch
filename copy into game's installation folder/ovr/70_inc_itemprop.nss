@@ -490,7 +490,7 @@ void ApplyWounding_continue(object oItem, int nNum, int nSlot)
     object oPC = GetItemPossessor(oItem);
     if(GetItemInSlot(nSlot,oPC) == oItem)
     {
-        if(!GetIsResting(oPC) && GetCurrentHitPoints(oPC) > 0)
+        if(!GetIsResting(oPC) && GetCurrentHitPoints(oPC) > 1)
         {
             int nHP = GetCurrentHitPoints(oPC);
             int nTempHP;
@@ -531,7 +531,7 @@ void ApplyWounding_continue(object oItem, int nNum, int nSlot)
                     return;
                 }
             }
-            if(nHP-nNum > 0)//SetCurrentHitPoints is much more friendly to the players as it doesn't affect animations, but it can only be used above 0 hp
+            if(nHP-nNum > 1)//SetCurrentHitPoints is much more friendly to the players as it doesn't affect animations, but it can only be used above 1 hp
             {
                 SetCurrentHitPoints(oPC,nHP-nNum);
                 string sMessage;
