@@ -59,6 +59,7 @@ void main()
 
     effect eDur = EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE);
     effect eLink = EffectLinkEffects(eDur, ePetrify);
+    eLink = ExtraordinaryEffect(eLink);//1.72: petrification is not supposed to be dispellable other than by Stone to Flesh spell
 
     // Do a fortitude save check
     if(!MySavingThrow(SAVING_THROW_FORT, oTarget, nFortSaveDC, SAVING_THROW_TYPE_NONE, oSource))
