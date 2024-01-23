@@ -57,7 +57,7 @@ void main()
         //----------------------------------------------------------------------
         // Targeted Dispel - Dispel all
         //----------------------------------------------------------------------
-        spellsDispelMagic(spell.Target, spell.Level, eVis, eImpact,TRUE,TRUE);
+        spellsDispelMagic(spell.Target, nCasterLevel, eVis, eImpact,TRUE,TRUE);
     }
     else
     {
@@ -84,9 +84,9 @@ void main()
             }
             else
             {
-                spellsDispelMagic(oTarget, spell.Level, eVis, eImpact, FALSE, TRUE);
+                spellsDispelMagic(oTarget, nCasterLevel, eVis, eImpact, FALSE, TRUE);
                 effect eNull;
-                spellsDispelMagic(oTarget, spell.Level, eNull, eNull, FALSE, FALSE);
+                spellsDispelMagic(oTarget, nCasterLevel, eNull, eNull, FALSE, FALSE);
             }
             oTarget = GetNextObjectInShape(SHAPE_SPHERE, spell.Range, spell.Loc, TRUE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_AREA_OF_EFFECT | OBJECT_TYPE_PLACEABLE);
         }
