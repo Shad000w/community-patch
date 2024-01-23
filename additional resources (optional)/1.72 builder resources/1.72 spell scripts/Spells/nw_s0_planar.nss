@@ -68,7 +68,7 @@ void main()
                 //Make a Will save
                 if(!MySavingThrow(spell.SavingThrow, spell.Target, spell.DC+2, /*SAVING_THROW_TYPE_PARALYSE*/20, spell.Caster))
                 {
-                    nDuration = GetScaledDuration(spell.Level/2,spell.Target);
+                    nDuration = GetScaledDuration(nDuration/2,spell.Target);
                     //Check for metamagic extend
                     if (spell.Meta & METAMAGIC_EXTEND)
                     {

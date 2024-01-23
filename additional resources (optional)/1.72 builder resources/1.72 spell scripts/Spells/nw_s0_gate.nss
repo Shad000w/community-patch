@@ -9,14 +9,16 @@
 //:: Created On: April 12, 2001
 //:://////////////////////////////////////////////
 /*
+Patch 1.72
+- prevented abuse of summoning hostile balor in No-PvP areas
 Patch 1.71
-
 - NPC casters will always summon balor using EffectSummon from AI implementation reasons
 */
 void CreateBalor(location lLoc);
 
 #include "70_inc_spells"
 #include "x2_inc_spellhook"
+#include "nw_inc_gff"
 
 void main()
 {
@@ -42,9 +44,11 @@ void main()
     //Summon the Balor and apply the VFX impact
     //ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eVis, GetSpellTargetLocation());
 
+    json jGFF = ObjectToJson(GetArea(spell.Caster));
+
     if(GetHasSpellEffect(SPELL_PROTECTION_FROM_EVIL) ||
        GetHasSpellEffect(SPELL_MAGIC_CIRCLE_AGAINST_EVIL) ||
-       GetHasSpellEffect(SPELL_HOLY_AURA))
+       GetHasSpellEffect(SPELL_HOLY_AURA) || JsonGetInt(GffGetByte(jGFF,"PlayerVsPlayer")) == 0)
     {
         eSummon = EffectSummonCreature("NW_S_BALOR",VFX_FNF_SUMMON_GATE,3.0);
         DelayCommand(3.0, ApplyEffectAtLocation(DURATION_TYPE_TEMPORARY, eSummon, spell.Loc, DurationToSeconds(nDuration)));

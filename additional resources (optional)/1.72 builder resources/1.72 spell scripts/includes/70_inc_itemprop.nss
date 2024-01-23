@@ -490,7 +490,7 @@ void ApplyWounding_continue(object oItem, int nNum, int nSlot)
     object oPC = GetItemPossessor(oItem);
     if(GetItemInSlot(nSlot,oPC) == oItem)
     {
-        if(!GetIsResting(oPC) && GetCurrentHitPoints(oPC) > 0)
+        if(!GetIsResting(oPC) && GetCurrentHitPoints(oPC) > 1)
         {
             int nHP = GetCurrentHitPoints(oPC);
             int nTempHP;
@@ -531,7 +531,7 @@ void ApplyWounding_continue(object oItem, int nNum, int nSlot)
                     return;
                 }
             }
-            if(nHP-nNum > 0)//SetCurrentHitPoints is much more friendly to the players as it doesn't affect animations, but it can only be used above 0 hp
+            if(nHP-nNum > 1)//SetCurrentHitPoints is much more friendly to the players as it doesn't affect animations, but it can only be used above 1 hp
             {
                 SetCurrentHitPoints(oPC,nHP-nNum);
                 string sMessage;
@@ -580,12 +580,15 @@ void IPWildShapeMergeItemProperties(object oOld, object oNew, int bWeapon = FALS
             WriteTimestampedLogEntry("WARNING! IPWildShapeMergeItemProperties attempting to merge properties from item onto same item!");
             return;
         }
+        int nType;
         itemproperty ip = GetFirstItemProperty(oOld);
         while (GetIsItemPropertyValid(ip))
         {
-            if(GetItemPropertyType(ip) != ITEM_PROPERTY_ABILITY_BONUS && (!bWeapon || GetWeaponRanged(oOld) == GetWeaponRanged(oNew)))
+            nType = GetItemPropertyType(ip);
+            if(nType != ITEM_PROPERTY_USE_LIMITATION_RACIAL_TYPE && nType != ITEM_PROPERTY_USE_LIMITATION_RACIAL_TYPE && nType != ITEM_PROPERTY_USE_LIMITATION_CLASS &&//1.72: fix for an issue where use limitation properties would cause OnEquip event not to run
+            nType != ITEM_PROPERTY_ABILITY_BONUS && (!bWeapon || GetWeaponRanged(oOld) == GetWeaponRanged(oNew)))
             {
-                AddItemProperty(DURATION_TYPE_PERMANENT,ip,oNew);
+                AddItemProperty(GetItemPropertyDurationType(ip),ip,oNew,IntToFloat(GetItemPropertyDurationRemaining(ip)));//1.72: will no longer convert temporary properties to permanent
             }
             ip = GetNextItemProperty(oOld);
         }
