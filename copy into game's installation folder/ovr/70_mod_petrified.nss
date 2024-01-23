@@ -119,7 +119,7 @@ void main()
                 RemoveAllBeneficialEffects(oTarget);//1.72: under hardcore rules or higher, dispell all beneficial effects to make it easier to finish off target
                 // * under hardcore rules or higher, this is an instant death
                 ApplyEffectToObject(DURATION_TYPE_PERMANENT, eLink, oTarget);
-                DelayCommand(2.75, PopUpDeathGUIPanel(oTarget, FALSE , TRUE, 40579));
+                AssignCommand(oTarget, DelayCommand(2.75, PopUpDeathGUIPanel(oTarget, FALSE , TRUE, 40579)));//1.72: assign the popup to target as it can happen that the caster will be destroyed before the delay command would be executed
                 // if in hardcore, treat the player as an NPC
                 //bIsPC = FALSE;
                 //fDifficulty = TurnsToSeconds(nPower); // One turn per hit-die
