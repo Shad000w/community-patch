@@ -17,13 +17,15 @@
 //:: Created On: Nov 19, 2001
 //:://////////////////////////////////////////////
 /*
+Patch 1.72
+- added flying and waterbreathing effect icon to the henchmen that are considered as such
 Patch 1.70
-
 - added a incorporeal feature in order to fix a Pale Master summoned spectre that uses this OnSpawn script
 */
 
 #include "x0_inc_henai"
 #include "x2_inc_switches"
+#include "x0_i0_spells"
 
 void main()
 {
@@ -100,6 +102,21 @@ void main()
             // greeting in order to designate it. As the creature is actually saying this to
             // himself, don't attach any player responses to the greeting.
 
+    //1.72: custom effect icon to describe henchmen special qualities to player
+    if(spellsIsFlying(OBJECT_SELF))
+    {
+        if(Get2DAString("effecticons","Icon",151) == "ief_fly")//this will make sure the 2DA files are merged and icon is the correct one, if not, do nothing
+        {
+            ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectIcon(151)),OBJECT_SELF);
+        }
+    }
+    if(spellsIsImmuneToDrown(OBJECT_SELF))
+    {
+        if(Get2DAString("effecticons","Icon",152) == "ief_bubble")//this will make sure the 2DA files are merged and icon is the correct one, if not, do nothing
+        {
+            ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectIcon(152)),OBJECT_SELF);
+        }
+    }
 
 // CUSTOM USER DEFINED EVENTS
 /*
