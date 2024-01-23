@@ -534,6 +534,7 @@ int bkTalentFilter(talent tUse, object oTarget, int bJustTest=FALSE)
         if(d2() == 1 && GetDistanceBetween(OBJECT_SELF,oTarget) > 5.0)//at 50%chance and only if target is far enough from caster
         {
             ActionUseTalentAtLocation(tUse, GetLocation(oTarget));
+            return TRUE;
         }
     }
 

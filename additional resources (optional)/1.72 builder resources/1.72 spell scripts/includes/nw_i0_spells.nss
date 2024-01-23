@@ -383,7 +383,11 @@ object oRight = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND,oTarget);
 object oLeft = GetItemInSlot(INVENTORY_SLOT_LEFTHAND,oTarget);
 int bNoChange = GetLocalObject(oTarget,"ITEM_IN_RIGHT") == oRight && GetLocalObject(oTarget,"ITEM_IN_LEFT") == oLeft;
 int nSpellId = GetEffectSpellId(EffectDazed());//AOE spells workaround
- if(bAOE && bNoChange && !GetIsPC(oTarget) && GetLocalInt(oTarget,"IMMUNE_TO_"+IntToString(nSpellId)) == 1)
+ if(nSpellId == -1)//this will happen if the AOE is created outside of the spellscript
+ {
+ return FALSE;
+ }
+ else if(bAOE && bNoChange && !GetIsPC(oTarget) && GetLocalInt(oTarget,"IMMUNE_TO_"+IntToString(nSpellId)) == 1)
  {
  return TRUE;//immunity to AOE is granted via itemproperty, no reason to repeat whole process again
  }
@@ -438,7 +442,7 @@ int nClass = GetLastSpellCastClass();
   }
   if(bAOE) SetLocalInt(OBJECT_SELF,"AOE_INNATE",nSpellLevel+1);
  }
-int nMaxLevel;
+int nMaxLevel = -1;
  if(GetHasSpellEffect(734,oTarget))
  nMaxLevel = 8;
  else if(GetHasSpellEffect(SPELL_GLOBE_OF_INVULNERABILITY,oTarget))
@@ -528,8 +532,25 @@ int MyResistSpell(object oCaster, object oTarget, float fDelay = 0.0)
  if(spell.SR == NO) return 0;//dynamic spell resist override feature, -1 = ignore SR for this spell
 int bAOE = GetObjectType(OBJECT_SELF) == OBJECT_TYPE_AREA_OF_EFFECT;
 int bDFBorGlyph = spell.Id == SPELL_DELAYED_BLAST_FIREBALL || spell.Id == SPELL_GLYPH_OF_WARDING;//1.72: these two spells while AOEs are exception and shouldn't behave as other AOE spells
- if(GetLocalInt(oCaster,"DISABLE_RESIST_SPELL_CHECK") || (bAOE && !bDFBorGlyph && GetModuleSwitchValue("70_AOE_IGNORE_SPELL_RESISTANCE")))
+ if(GetLocalInt(oCaster,"DISABLE_RESIST_SPELL_CHECK"))
  {
+ return 0;
+ }
+ else if(spell.SR != YES && bAOE && !bDFBorGlyph && GetModuleSwitchValue("70_AOE_IGNORE_SPELL_RESISTANCE"))//1.72: allowed to override the global rule of no SR for AOEs
+ {
+  if(MyResistSpell_GetIsSpellImmune(oTarget,bAOE))
+  {
+  //spell should be resisted via various spell immunity!
+  //engine workaround to print "immunity feedback"
+  string sFeedback = GetStringByStrRef(8342);//this will work pretty well for singleplayer
+  sFeedback = GetStringLeft(sFeedback,GetStringLength(sFeedback)-10);//but if would someone with non-english language
+  sFeedback = GetStringRight(sFeedback,GetStringLength(sFeedback)-10);//played english server, then this immunity
+  sFeedback = "<c›þþ>"+GetName(oTarget)+"</c> <cÍþ>"+sFeedback+" "+GetStringByStrRef(8344)+"</c>";//feedback will be
+  SendMessageToPC(oTarget,sFeedback);//in english, while normally it would be in his language...
+  SendMessageToPC(oCaster,sFeedback);
+  DelayCommand(fDelay,ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectVisualEffect(VFX_IMP_GLOBE_USE),oTarget));
+  return 2;
+  }
  return 0;//switch to disable ResistSpell check for specified object or all AoEs
  }
  if(fDelay > 0.5)
@@ -655,6 +676,7 @@ return nResist;
 
 int MySavingThrow(int nSavingThrow, object oTarget, int nDC, int nSaveType=SAVING_THROW_TYPE_NONE, object oSaveVersus = OBJECT_SELF, float fDelay = 0.0)
 {
+    if(nSavingThrow == 4/*SAVING_THROW_NONE*/) return FALSE;
     // -------------------------------------------------------------------------
     // GZ: sanity checks to prevent wrapping around
     // -------------------------------------------------------------------------
@@ -679,28 +701,43 @@ int MySavingThrow(int nSavingThrow, object oTarget, int nDC, int nSaveType=SAVIN
     //1.70: Engine workaround for bug in saving throw functions, where not all subtypes check the immunity correctly.
     bValid = 2;
     }
-    else if(nSavingThrow == SAVING_THROW_FORT)
+    else
     {
-        bValid = FortitudeSave(oTarget, nDC, nSaveType, oSaveVersus);
-        if(bValid == 1)
+        if(oSaveVersus != OBJECT_SELF && GetObjectType(OBJECT_SELF) == OBJECT_TYPE_AREA_OF_EFFECT)//1.72: special AOE handling for new nwnx_patch fix
         {
-            eVis = EffectVisualEffect(VFX_IMP_FORTITUDE_SAVING_THROW_USE);
+            //this checks whether is nwnx_patch or nwncx_patch in use; using internal code to avoid including 70_inc_nwnx
+            SetLocalString(GetModule(),"NWNX!PATCH!FUNCS!12",".");
+            DeleteLocalString(GetModule(),"NWNX!PATCH!FUNCS!12");
+            int retVal = GetLocalInt(GetModule(),"NWNXPATCH_RESULT");
+            DeleteLocalInt(GetModule(),"NWNXPATCH_RESULT");
+            if(retVal >= 201)//in version 2.01 saving throws from AOE spell will count spellcraft, however to make this work requires to put AOE object into the save functions
+            {                //there are good reasons why community patch changed all AOE spells to put AOE creator into this function, namely double debug, so this switcheroo
+                oSaveVersus = OBJECT_SELF;//will be performed only when nwnx_patch/nwncx_patch is running (which also fixes the double debug along other issues)
+            }
         }
-    }
-    else if(nSavingThrow == SAVING_THROW_REFLEX)
-    {
-        bValid = ReflexSave(oTarget, nDC, nSaveType, oSaveVersus);
-        if(bValid == 1)
+        if(nSavingThrow == SAVING_THROW_FORT)
         {
-            eVis = EffectVisualEffect(VFX_IMP_REFLEX_SAVE_THROW_USE);
+            bValid = SavingThrowSave(oTarget, nSavingThrow, nDC, nSaveType, oSaveVersus);
+            if(bValid == 1)
+            {
+                eVis = EffectVisualEffect(VFX_IMP_FORTITUDE_SAVING_THROW_USE);
+            }
         }
-    }
-    else if(nSavingThrow == SAVING_THROW_WILL)
-    {
-        bValid = WillSave(oTarget, nDC, nSaveType, oSaveVersus);
-        if(bValid == 1)
+        else if(nSavingThrow == SAVING_THROW_REFLEX)
         {
-            eVis = EffectVisualEffect(VFX_IMP_WILL_SAVING_THROW_USE);
+            bValid = SavingThrowSave(oTarget, nSavingThrow, nDC, nSaveType, oSaveVersus);
+            if(bValid == 1)
+            {
+                eVis = EffectVisualEffect(VFX_IMP_REFLEX_SAVE_THROW_USE);
+            }
+        }
+        else if(nSavingThrow == SAVING_THROW_WILL)
+        {
+            bValid = SavingThrowSave(oTarget, nSavingThrow, nDC, nSaveType, oSaveVersus);
+            if(bValid == 1)
+            {
+                eVis = EffectVisualEffect(VFX_IMP_WILL_SAVING_THROW_USE);
+            }
         }
     }
 
@@ -725,10 +762,25 @@ int MySavingThrow(int nSavingThrow, object oTarget, int nDC, int nSaveType=SAVIN
         {
             eVis = EffectVisualEffect(VFX_IMP_MAGIC_RESISTANCE_USE);
             if(nSaveType == SAVING_THROW_TYPE_DEATH)//1.70: special workaround for action cancel issue
-            {//this is now fixed in NWN:EE
-                //SetCommandable(FALSE,oTarget);
-                ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectDeath(),oTarget);//1.70: engine hack to get proper feedback
-                //SetCommandable(TRUE,oTarget);
+            {
+                if(GetSpellId() == -1)
+                {
+                    object oWorkaround = GetObjectByTag("72_EC_DEATH");
+                    if(!GetIsObjectValid(oWorkaround))
+                    {
+                        oWorkaround = CreateObject(OBJECT_TYPE_PLACEABLE,"plc_invisobj",GetStartingLocation(),FALSE,"72_EC_DEATH");
+                        ApplyEffectToObject(DURATION_TYPE_PERMANENT,ExtraordinaryEffect(EffectVisualEffect(VFX_DUR_CUTSCENE_INVISIBILITY)),oWorkaround);
+                        SetPlotFlag(oWorkaround,TRUE);
+                    }
+                    SetLocalObject(oWorkaround,"TARGET",oTarget);
+                    AssignCommand(oWorkaround,ActionCastSpellAtObject(386,oWorkaround,METAMAGIC_ANY,TRUE,0,PROJECTILE_PATH_TYPE_DEFAULT,TRUE));
+                }
+                else
+                {//this is now fixed in NWN:EE
+                    //SetCommandable(FALSE,oTarget);
+                    ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectDeath(),oTarget);//1.70: engine hack to get proper feedback
+                    //SetCommandable(TRUE,oTarget);
+                }
             }
             else
             {
@@ -850,6 +902,7 @@ return 0.0;
 int GetScaledDuration(int nActualDuration, object oTarget)
 {
 object oCaster = OBJECT_SELF;
+int nNewDuration = nActualDuration;
  if(GetObjectType(oCaster) == OBJECT_TYPE_AREA_OF_EFFECT)
  oCaster = GetAreaOfEffectCreator();
  if(GetIsPC(oTarget) || GetIsPC(GetMaster(oTarget)))
@@ -857,15 +910,15 @@ object oCaster = OBJECT_SELF;
  int nDifficulty = GetGameDifficulty();
   if(nDifficulty == GAME_DIFFICULTY_VERY_EASY)
   {
-  nActualDuration = 1;
+  nNewDuration = 1;
   }
   else if(nDifficulty == GAME_DIFFICULTY_EASY)
   {
-  nActualDuration = 2;
+  nNewDuration = 2;
   }
   else if(nDifficulty == GAME_DIFFICULTY_NORMAL)
   {
-  nActualDuration = 3;
+  nNewDuration = 3;
   }
   else
   {
@@ -876,16 +929,17 @@ object oCaster = OBJECT_SELF;
     break;
    case 2:
    case 3:
-   nActualDuration = 3;
+   nNewDuration = 3;
    break;
    }
   }
  }
- else if(GetModuleSwitchValue("71_SHORTENED_DURATION_OF_DISABLE_EFFECTS") == 3)
+ else if(GetLocalInt(oTarget,"71_SHORTENED_DURATION_OF_DISABLE_EFFECTS") || GetModuleSwitchValue("71_SHORTENED_DURATION_OF_DISABLE_EFFECTS") == 3)
  {
- nActualDuration = 3;
+ nNewDuration = 3;
  }
-return nActualDuration;
+ if(spell.DurationType == SPELL_DURATION_TYPE_SECONDS) nNewDuration*= 6;//1.72: support for a special case when builder decides to have the duration in seconds and also impose an upper limit
+return nNewDuration < nActualDuration ? nNewDuration : nActualDuration;//1.72: fix for extending duration to 3 rounds if the original duration was 1 or 2 rounds
 }
 
 effect GetScaledEffect(effect eStandard, object oTarget)

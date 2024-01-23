@@ -14,7 +14,9 @@ character gets saved).
 //:://////////////////////////////////////////////
 
 #include "70_inc_shifter"
+#include "70_inc_spells"
 #include "x3_inc_skin"
+#include "x0_i0_spells"
 
 void main()
 {
@@ -170,18 +172,19 @@ void main()
             }
         }
 
+        int nAbilityLimit = GetAbilityBonusLimit();
         if(abil.Str > 0)
-            eAbil = EffectAbilityIncrease(ABILITY_STRENGTH,abil.Str > 12 ? 12 : abil.Str);
+            eAbil = EffectAbilityIncrease(ABILITY_STRENGTH,abil.Str > nAbilityLimit ? nAbilityLimit : abil.Str);
         if(abil.Dex > 0)
-            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_DEXTERITY,abil.Dex > 12 ? 12 : abil.Dex));
+            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_DEXTERITY,abil.Dex > nAbilityLimit ? nAbilityLimit : abil.Dex));
         if(abil.Con > 0)
-            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_CONSTITUTION,abil.Con > 12 ? 12 : abil.Con));
+            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_CONSTITUTION,abil.Con > nAbilityLimit ? nAbilityLimit : abil.Con));
         if(abil.Wis > 0)
-            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_WISDOM,abil.Wis > 12 ? 12 : abil.Wis));
+            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_WISDOM,abil.Wis > nAbilityLimit ? nAbilityLimit : abil.Wis));
         if(abil.Int > 0)
-            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_INTELLIGENCE,abil.Int > 12 ? 12 : abil.Int));
+            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_INTELLIGENCE,abil.Int > nAbilityLimit ? nAbilityLimit : abil.Int));
         if(abil.Cha > 0)
-            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_CHARISMA,abil.Cha > 12 ? 12 : abil.Cha));
+            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_CHARISMA,abil.Cha > nAbilityLimit ? nAbilityLimit : abil.Cha));
 
         if(eAdditional != eNull)
         {
@@ -308,6 +311,21 @@ void main()
         if(bArms)
         {
             IPWildShapeMergeItemProperties(oArmsOld,oArmorNew);
+        }
+        //1.72: custom effect icon to describe polymorph special qualities to player
+        if(spellsIsFlying(oPC))
+        {
+            if(Get2DAString("effecticons","Icon",151) == "ief_fly")//this will make sure the 2DA files are merged and icon is the correct one, if not, do nothing
+            {
+                ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectIcon(151)),oPC);
+            }
+        }
+        if(spellsIsImmuneToDrown(oPC))
+        {
+            if(Get2DAString("effecticons","Icon",152) == "ief_bubble")//this will make sure the 2DA files are merged and icon is the correct one, if not, do nothing
+            {
+                ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectIcon(152)),oPC);
+            }
         }
         //recalculate ability increase/decrease itemproperties
         IPWildShapeHandleAbilityBonuses(oArmorNew,oWeaponNew);

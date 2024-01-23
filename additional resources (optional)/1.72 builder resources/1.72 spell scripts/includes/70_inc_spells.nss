@@ -54,6 +54,7 @@ const int SPELL_DURATION_TYPE_HOURS   = 4;
 const int SPELL_DURATION_TYPE_HOURS_2MINUTES = 65536;
 const int YES = 1;
 const int NO = -1;
+const int DEFAULT = 0;
 
 //declare major variables for every spell
 //start every spell script with this at top
@@ -141,6 +142,19 @@ int GetSpellMinAbilityMet(object oCreature, int nClass, int nSpellLevel);
 // - nLevel: caster level at which the spell will be cast
 void ActionCastCheatSpellAtObject(int nSpell, object oTarget, int nMetaMagic, int nLevel);
 
+// Does a Saving Throw Save check for the given DC
+// - oCreature
+// - nSave: SAVING_THROW_*
+// - nDC: Difficulty check
+// - nSaveType: SAVING_THROW_TYPE_*
+// - oSaveVersus
+// Returns: 0 if the saving throw roll failed
+// Returns: 1 if the saving throw roll succeeded
+// Returns: 2 if the target was immune to the save type specified
+// Note: If used within an Area of Effect Object Script (On Enter, OnExit, OnHeartbeat), you MUST pass
+// GetAreaOfEffectCreator() into oSaveVersus!!
+int SavingThrowSave(object oCreature, int nSave, int nDC, int nSaveType=SAVING_THROW_TYPE_NONE, object oSaveVersus=OBJECT_SELF);
+
 struct spells
 {
 int Id,DC,Level,Class,DamageCap,Dice,DamageType,Meta,DurationType,Limit,SavingThrow,TargetType,SR,SaveType,DmgVfxS,DmgVfxL;
@@ -175,8 +189,30 @@ location overrideLocation = GetLocalLocation(spell.Caster,"SPELL_TARGET_OVERRIDE
  spell.Loc = overrideLocation;
  }
 spell.Id = GetSpellId();
+ if(spell.Target == spell.Caster && spell.Loc == GetLocation(spell.Caster))//1.72: fix for cone-like spells being cast by polymorphed characters on themselves
+ {
+ string sHex = GetStringLowerCase(Get2DAString("spells","TargetType",spell.Id));
+ //converts hex value into integer
+ if(GetStringLeft(sHex, 2) == "0x") sHex = GetStringRight(sHex, GetStringLength(sHex) - 2);
+ int allowedTarget, nVal, nLoop = GetStringLength(sHex) - 1;
+ string sConv = "0123456789abcdef";
+  while(sHex != "")
+  {
+  nVal = FindSubString(sConv, GetStringLeft(sHex, 1));
+  nVal = nVal * FloatToInt(pow(16.0, IntToFloat(nLoop)));
+  allowedTarget+= nVal;
+  sHex = GetStringRight(sHex, nLoop--);
+  }
+  if(!(allowedTarget & 1))
+  {
+  vector vFinalPosition = GetPositionFromLocation(spell.Loc);
+  vFinalPosition.x+= cos(GetFacing(spell.Caster));
+  vFinalPosition.y+= sin(GetFacing(spell.Caster));
+  spell.Loc = Location(GetAreaFromLocation(spell.Loc),vFinalPosition,GetFacingFromLocation(spell.Loc));
+  }
+ }
 spell.DC = GetSpellSaveDC();
- if(!spell.SR) spell.SR = TRUE;//unless SR is disabled, we assume its enabled
+spell.SR = DEFAULT;
  if(!spell.Class) spell.Class = GetLastSpellCastClass();//support for feats
 spell.Meta = GetMetaMagicFeat();
  if(GetLocalInt(spell.Caster,"CHEAT_SPELL") > 0)//Cheat spell
@@ -186,6 +222,32 @@ spell.Meta = GetMetaMagicFeat();
  spell.Item = OBJECT_INVALID;
  spell.Class = CLASS_TYPE_INVALID;
  spell.Meta = METAMAGIC_NONE;
+ }
+ else if(spell.Item == OBJECT_INVALID && spell.Class != CLASS_TYPE_INVALID && GetModuleSwitchValue("72_SPELL_DC_BASED_ON_CLASS_SPELL_LEVEL"))//1.72: DC based on class spell level feature
+ {
+ string sSpellTableColumn = Get2DAString("classes","SpellTableColumn",spell.Class);
+  if(sSpellTableColumn == "")
+  {
+   switch(spell.Class)
+   {
+   case CLASS_TYPE_BARD: sSpellTableColumn = "Bard"; break;
+   case CLASS_TYPE_CLERIC: sSpellTableColumn = "Cleric"; break;
+   case CLASS_TYPE_DRUID: sSpellTableColumn = "Druid"; break;
+   case CLASS_TYPE_RANGER: sSpellTableColumn = "Ranger"; break;
+   case CLASS_TYPE_PALADIN: sSpellTableColumn = "Paladin"; break;
+   case CLASS_TYPE_WIZARD: case CLASS_TYPE_SORCERER: sSpellTableColumn = "Wiz_Sorc"; break;
+   }
+  }
+  if(sSpellTableColumn != "")
+  {
+  string sSpellLevel = Get2DAString("spells",sSpellTableColumn,spell.Id);
+  int nInnate = StringToInt(Get2DAString("spells","Innate",spell.Id));
+  int nSpellLevel = StringToInt(sSpellLevel);
+   if(nSpellLevel || sSpellLevel == "0")
+   {
+   spell.DC+= nSpellLevel-nInnate;
+   }
+  }
  }
  if(spell.Item == OBJECT_INVALID && spell.Class != CLASS_TYPE_INVALID && GetClassByPosition(2,spell.Caster) != CLASS_TYPE_INVALID && Get2DAString("spells","UserType",spell.Id) == "1" && Get2DAString("spells","FeatID",spell.Id) == "")
  {//spell can have its caster level increased by prestige classes
@@ -250,6 +312,10 @@ spell.Meta = GetMetaMagicFeat();
     }
    }
   }
+  if(spell.Class == CLASS_TYPE_DRUID && GetModuleSwitchValue("72_SHIFTER_ADDS_CASTER_LEVEL"))
+  {
+  spell.Level+= GetLevelByClass(CLASS_TYPE_SHIFTER,spell.Caster);
+  }
  }
  if(spell.DC > 126)//DC bug with negative primary ability
  {
@@ -274,6 +340,26 @@ spell.Meta = GetMetaMagicFeat();
  else if((spell.Meta == METAMAGIC_EMPOWER && !GetHasFeat(FEAT_EMPOWER_SPELL,spell.Caster)) || (spell.Meta == METAMAGIC_MAXIMIZE && !GetHasFeat(FEAT_MAXIMIZE_SPELL,spell.Caster)))
  {
  spell.Meta = METAMAGIC_NONE;//metamagic exploit with polymorph into Rakshasa
+ }
+ else if(GetIsPC(spell.Caster) && spell.Meta == METAMAGIC_NONE && spell.Item == OBJECT_INVALID && GetLevelByClass(CLASS_TYPE_SHIFTER,spell.Caster) > 0)
+ {//1.72: Workaround for NWN:EE bug that disallow casting polymorph spells with metamagic
+ effect eSearch = GetFirstEffect(spell.Caster);
+  while(GetIsEffectValid(eSearch))
+  {
+   if(GetEffectType(eSearch) == EFFECT_TYPE_POLYMORPH)
+   {
+    if(GetHasFeat(FEAT_EMPOWER_SPELL,spell.Caster))//if shifter has empower spell we will assume he wants to use it on spells from polymorph
+    {
+    spell.Meta = METAMAGIC_EMPOWER;
+    }
+    else if(GetHasFeat(FEAT_MAXIMIZE_SPELL,spell.Caster))//if shifter has maximize spell we will assume he wants to use it on spells from polymorph
+    {
+    spell.Meta = METAMAGIC_MAXIMIZE;
+    }
+   break;
+   }
+  eSearch = GetNextEffect(spell.Caster);
+  }
  }
 string sPrefix, sId = IntToString(spell.Id);
 object oSource = spell.Item != OBJECT_INVALID ? spell.Item : spell.Caster;
@@ -618,7 +704,7 @@ float fOverride;
  {
  return HoursToSeconds(nDuration);
  }
-WriteTimestampedLogEntry("DurationToSeconds: ERROR, spell "+IntToString(spell.Id)+" doesn't have correctly initialized duration type, using rounds!");
+WriteTimestampedLogEntry("DurationToSeconds: ERROR, spell "+IntToString(GetSpellId())+" doesn't have correctly initialized duration type, using rounds!");
 return RoundsToSeconds(nDuration);
 }
 
@@ -661,11 +747,23 @@ return !GetIsDead(oCreature);
 
 int GetSavingThrowAdjustedDamage(int nDamage, object oTarget, int nDC, int nSavingThrow, int nSaveType=SAVING_THROW_TYPE_NONE, object oSaveVersus=OBJECT_SELF)
 {
+    if(oSaveVersus != OBJECT_SELF && GetObjectType(OBJECT_SELF) == OBJECT_TYPE_AREA_OF_EFFECT)//1.72: special AOE handling for new nwnx_patch fix
+    {
+        //this checks whether is nwnx_patch or nwncx_patch in use; using internal code to avoid including 70_inc_nwnx
+        SetLocalString(GetModule(),"NWNX!PATCH!FUNCS!12",".");
+        DeleteLocalString(GetModule(),"NWNX!PATCH!FUNCS!12");
+        int retVal = GetLocalInt(GetModule(),"NWNXPATCH_RESULT");
+        DeleteLocalInt(GetModule(),"NWNXPATCH_RESULT");
+        if(retVal >= 201)//in version 2.01 saving throws from AOE spell will count spellcraft, however to make this work requires to put AOE object into the save functions
+        {                //there are good reasons why community patch changed all AOE spells to put AOE creator into this function, namely double debug, so this switcheroo
+            oSaveVersus = OBJECT_SELF;//will be performed only when nwnx_patch/nwncx_patch is running (which also fixes the double debug along other issues)
+        }
+    }
  if(nSavingThrow == SAVING_THROW_REFLEX)
  {
   if((!GetHasFeat(FEAT_EVASION,oTarget) && !GetHasFeat(FEAT_IMPROVED_EVASION,oTarget)) || (GetModuleSwitchValue("72_HARDCORE_EVASION_RULES") && !GetEvasionApplicable(oTarget)))
   {
-  nDC = ReflexSave(oTarget,nDC,nSaveType,oSaveVersus);
+  nDC = SavingThrowSave(oTarget,nSavingThrow,nDC,nSaveType,oSaveVersus);
    if(nDC == 1)
    {
    ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectVisualEffect(VFX_IMP_REFLEX_SAVE_THROW_USE),oTarget);
@@ -683,7 +781,7 @@ int GetSavingThrowAdjustedDamage(int nDamage, object oTarget, int nDC, int nSavi
  }
  else if(nSavingThrow == SAVING_THROW_FORT)
  {
- nDC = FortitudeSave(oTarget,nDC,nSaveType,oSaveVersus);
+ nDC = SavingThrowSave(oTarget,nSavingThrow,nDC,nSaveType,oSaveVersus);
   if(nDC == 1)
   {
   ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectVisualEffect(VFX_IMP_REFLEX_SAVE_THROW_USE),oTarget);
@@ -697,7 +795,7 @@ int GetSavingThrowAdjustedDamage(int nDamage, object oTarget, int nDC, int nSavi
  }
  else if(nSavingThrow == SAVING_THROW_WILL)
  {
- nDC = WillSave(oTarget,nDC,nSaveType,oSaveVersus);
+ nDC = SavingThrowSave(oTarget,nSavingThrow,nDC,nSaveType,oSaveVersus);
   if(nDC == 1)
   {
   ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectVisualEffect(VFX_IMP_REFLEX_SAVE_THROW_USE),oTarget);
@@ -783,7 +881,7 @@ object oNew, oAOE = sTag != "" ? GetObjectByTag(sTag) : GetNearestObjectToLocati
    }
   oNew = oAOE;
   }
- oAOE = GetNearestObjectToLocation(OBJECT_TYPE_AREA_OF_EFFECT,spell.Loc,++nTh);
+ oAOE = sTag != "" ? GetObjectByTag(sTag,++nTh) : GetNearestObjectToLocation(OBJECT_TYPE_AREA_OF_EFFECT,spell.Loc,++nTh);
  }
 int nLimit = GetModuleSwitchValue("72_DISABLE_AOE_SPELLS_STACKING");
  if(nLimit > 0 && oNew != OBJECT_INVALID)
@@ -808,7 +906,7 @@ return oNew;
 void SetAreaOfEffectUndispellable(object oAOE)
 {
 SetLocalInt(oAOE,"X1_L_IMMUNE_TO_DISPEL",10);
-AssignCommand(oAOE,SetIsDestroyable(FALSE));
+//AssignCommand(oAOE,SetIsDestroyable(FALSE));//removed, this leaves aura "alive" for few extra seconds after owner death
 }
 
 void aoesCheckStillValid_continue(object oAOE, object oOwner, object oCreator, int nSpellId)//private
@@ -934,6 +1032,10 @@ int spellsIsImmuneToPolymorph(object oCreature)
     {
     case APPEARANCE_TYPE_LICH:
     case APPEARANCE_TYPE_DEMI_LICH:
+    case APPEARANCE_TYPE_DRACOLICH:
+    case 464://Masterius
+    case 465://Masterius, Full Power
+    case 466://Witch King, Disguised
         return TRUE;
     }
     return GetLocalInt(oCreature,"IMMUNITY_POLYMORPH");
@@ -1060,36 +1162,51 @@ void ActionCastCheatSpellAtObject(int nSpell, object oTarget, int nMetaMagic, in
     }
 }
 
-int GetMonsterAbilityCasterLevel(int nDivideBy = 1, int nMultipliedBy = 1);
-int GetMonsterAbilityDC(int nDivideBy = 1);
-
-int GetMonsterAbilityCasterLevel(int nDivideBy = 1, int nMultipliedBy = 1)
+//Beamdog finally fixed the bug for which this workaround was created, but this cannot be removed to maintain backwards compatibility
+object FIX_GetFirstObjectInShape(int nShape, float fSize, location lTarget, int bLineOfSight=FALSE, int nObjectFilter=OBJECT_TYPE_CREATURE, vector vOrigin=[0.0,0.0,0.0])
 {
- if(nDivideBy < 1)nDivideBy = 1;
-int retVal = GetHitDice(OBJECT_SELF)/nDivideBy;
- if(retVal < 1) retVal = 1;
- if(GetLocalInt(OBJECT_SELF,"MONSTER_ABILITY_CASTER_LEVEL_OVERRIDE") > 0)
- {
- return GetLocalInt(OBJECT_SELF,"MONSTER_ABILITY_CASTER_LEVEL_OVERRIDE");
- }
- else if(GetLocalInt(OBJECT_SELF,IntToString(GetSpellId())+"_ABILITY_CASTER_LEVEL_OVERRIDE") > 0)
- {
- return GetLocalInt(OBJECT_SELF,IntToString(GetSpellId())+"_ABILITY_CASTER_LEVEL_OVERRIDE");
- }
-return retVal*nMultipliedBy+GetLocalInt(OBJECT_SELF,"MONSTER_ABILITY_CASTER_LEVEL_MODIFIER");
+    return GetFirstObjectInShape(nShape, fSize, lTarget, bLineOfSight, nObjectFilter, vOrigin);
 }
 
-int GetMonsterAbilityDC(int nDivideBy = 1)
+object FIX_GetNextObjectInShape(int nShape, float fSize, location lTarget, int bLineOfSight=FALSE, int nObjectFilter=OBJECT_TYPE_CREATURE, vector vOrigin=[0.0,0.0,0.0])
 {
- if(nDivideBy < 1)nDivideBy = 1;
-int retVal = GetHitDice(OBJECT_SELF)/nDivideBy;
- if(GetLocalInt(OBJECT_SELF,"MONSTER_ABILITY_DC_OVERRIDE") > 0)
- {
- return GetLocalInt(OBJECT_SELF,"MONSTER_ABILITY_DC_OVERRIDE");
- }
- else if(GetLocalInt(OBJECT_SELF,IntToString(GetSpellId())+"_ABILITY_DC_OVERRIDE") > 0)
- {
- return GetLocalInt(OBJECT_SELF,IntToString(GetSpellId())+"_ABILITY_DC_OVERRIDE");
- }
-return 70+retVal+GetLocalInt(OBJECT_SELF,"MONSTER_ABILITY_DC_MODIFIER");
+    return GetNextObjectInShape(nShape, fSize, lTarget, bLineOfSight, nObjectFilter, vOrigin);
+}
+
+int SavingThrowSave(object oCreature, int nSave, int nDC, int nSaveType=SAVING_THROW_TYPE_NONE, object oSaveVersus=OBJECT_SELF)
+{
+    if(ResManGetAliasFor("70_s2_savthrow",RESTYPE_NCS) == "")
+    {
+        if(nSaveType == SAVING_THROW_FORT)
+        {
+            return FortitudeSave(oCreature, nDC, nSaveType, oSaveVersus);
+        }
+        else if(nSaveType == SAVING_THROW_REFLEX)
+        {
+            return ReflexSave(oCreature, nDC, nSaveType, oSaveVersus);
+        }
+        else if(nSaveType == SAVING_THROW_WILL)
+        {
+            return WillSave(oCreature, nDC, nSaveType, oSaveVersus);
+        }
+        return 0;
+    }
+    SetLocalInt(oCreature,"SAVINGTHROW_TYPE",nSave);
+    SetLocalInt(oCreature,"SAVINGTHROW_DC",nDC);
+    SetLocalInt(oCreature,"SAVINGTHROW_SAVETYPE",nSaveType);
+    SetLocalObject(oCreature,"SAVINGTHROW_VERSUS",oSaveVersus);
+    SetLocalInt(oCreature,"SAVINGTHROW_FEAT",-1);
+    SetLocalInt(oCreature,"SAVINGTHROW_SPELL",spell.Id);
+    SetLocalInt(oCreature,"SAVINGTHROW_FEEDBACKSHOW",TRUE);
+    ExecuteScript("70_s2_savthrow",oCreature);
+    int nResult = GetLocalInt(oCreature,"SAVINGTHROW_RETURN");
+    DeleteLocalInt(oCreature,"SAVINGTHROW_RETURN");
+    DeleteLocalInt(oCreature,"SAVINGTHROW_TYPE");
+    DeleteLocalInt(oCreature,"SAVINGTHROW_DC");
+    DeleteLocalInt(oCreature,"SAVINGTHROW_SAVETYPE");
+    DeleteLocalObject(oCreature,"SAVINGTHROW_VERSUS");
+    DeleteLocalInt(oCreature,"SAVINGTHROW_FEAT");
+    DeleteLocalInt(oCreature,"SAVINGTHROW_SPELL");
+    DeleteLocalInt(oCreature,"SAVINGTHROW_FEEDBACKSHOW");
+    return nResult;
 }

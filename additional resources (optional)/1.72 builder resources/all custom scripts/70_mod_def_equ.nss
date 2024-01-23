@@ -115,6 +115,12 @@ void main()
             }
             ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_GOOD_HELP), oPC);
         }
-    return;
+    }
+
+    //Now execute original script
+    string sScript = GetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_EQUIP_ITEM");
+    if(sScript != "" && sScript != "70_mod_def_equ")
+    {
+        ExecuteScript(sScript,OBJECT_SELF);
     }
 }

@@ -15,6 +15,11 @@
 
 void main()
 {
+    //1.72: fix for bug where traps are being triggered where they really aren't
+    if(GetObjectType(OBJECT_SELF) == OBJECT_TYPE_TRIGGER && !GetIsInSubArea(GetEnteringObject()))
+    {
+        return;
+    }
     //Declare major variables
     object oTarget = GetEnteringObject();
     int nDamage = GetSavingThrowAdjustedDamage(d8(16), oTarget, 30, SAVING_THROW_REFLEX, SAVING_THROW_TYPE_TRAP);

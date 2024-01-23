@@ -775,6 +775,25 @@ void CTG_CreateTreasure(int nTreasureType,
     // To avoid code duplication, this actually just uses the specific
     // version and passes an invalid item type
     CTG_CreateSpecificBaseTypeTreasure(nTreasureType, oAdventurer, oCont);
+
+    //1.72: automatic identification based on item value and player's lore rank
+    int nRank = GetSkillRank(SKILL_LORE,oAdventurer);
+    int nLastRow = Get2DARowCount("skillvsitemcost");
+    if(nRank > nLastRow) nRank = nLastRow;
+    int nMaxCost = StringToInt(Get2DAString("skillvsitemcost","DeviceCostMax",nRank));
+    object oItem = GetFirstItemInInventory(oCont);
+    while(GetIsObjectValid(oItem))
+    {
+        if(!GetIdentified(oItem))
+        {
+            SetIdentified(oItem,TRUE);
+            if(GetGoldPieceValue(oItem) > nMaxCost)
+            {
+                SetIdentified(oItem,FALSE);
+            }
+        }
+        oItem = GetNextItemInInventory(oCont);
+    }
 }
 
 

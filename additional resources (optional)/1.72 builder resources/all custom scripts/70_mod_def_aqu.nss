@@ -52,20 +52,27 @@ doing so, do this only if running original event has no longer sense.
 
 void main()
 {
-     object oPC = GetModuleItemAcquiredBy();
-     object oItem = GetModuleItemAcquired();
-     object oOwner = GetModuleItemAcquiredFrom();
-     int nStackSize =GetModuleItemAcquiredStackSize();
+    object oPC = GetModuleItemAcquiredBy();
+    object oItem = GetModuleItemAcquired();
+    object oOwner = GetModuleItemAcquiredFrom();
+    int nStackSize =GetModuleItemAcquiredStackSize();
 
-     //1.71: craft dupe fix
-     if(GetLocalInt(oItem,"DUPLICATED_ITEM") == TRUE)
-     {
-        DestroyObject(oItem);
-        return;
-     }
+    //1.71: craft dupe fix
+    if(GetLocalInt(oItem,"DUPLICATED_ITEM") == TRUE)
+    {
+       DestroyObject(oItem);
+       return;
+    }
      //1.72: support for OC henchman inventory across levelling
-     if(GetAssociateType(oPC) == ASSOCIATE_TYPE_HENCHMAN && !GetLocalInt(oItem,"70_MY_ORIGINAL_POSSESSION") && oOwner == GetMaster(oPC))
-     {
-         SetLocalInt(oItem,"70_ACQUIRED_FROM_MASTER",TRUE);
-     }
+    if(GetAssociateType(oPC) == ASSOCIATE_TYPE_HENCHMAN && !GetLocalInt(oItem,"70_MY_ORIGINAL_POSSESSION") && oOwner == GetMaster(oPC))
+    {
+        SetLocalInt(oItem,"70_ACQUIRED_FROM_MASTER",TRUE);
+    }
+
+    //Now execute original script
+    string sScript = GetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_ACQUIRE_ITEM");
+    if(sScript != "" && sScript != "70_mod_def_aqu")
+    {
+        ExecuteScript(sScript,OBJECT_SELF);
+    }
 }

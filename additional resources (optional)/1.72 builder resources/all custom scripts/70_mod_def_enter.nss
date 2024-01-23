@@ -1,6 +1,6 @@
 //::///////////////////////////////////////////////
-//:: Default community patch OnPlayerRespawn module event script
-//:: 70_mod_def_resp
+//:: Default community patch OnClientEnter module event script
+//:: 70_mod_def_enter
 //:: Copyright (c) 2001 Bioware Corp.
 //:://////////////////////////////////////////////
 /*
@@ -44,44 +44,22 @@ doing so, do this only if running original event has no longer sense.
 */
 //:://////////////////////////////////////////////
 //:: Created By: Shadooow for Community Patch 1.72
-//:: Created On: 31-05-2017
+//:: Created On: 24-06-2018
 //:://////////////////////////////////////////////
-
-#include "x0_i0_spells"
 
 void main()
 {
-    object oRespawner = GetLastRespawnButtonPresser();
+    object oPC = GetEnteringObject();
+    DeleteLocalInt(oPC,"70_applied_darkvision");
+    DeleteLocalInt(oPC,"70_applied_lowlightvision");
+    ExecuteScript("70_featfix",oPC);
 
-    //1.70: double respawn protection: if player isn't dead, dying or petrified, cancel respawn
-    if(!GetIsDead(oRespawner) && !GetHasEffect(EFFECT_TYPE_PETRIFY,oRespawner))
-    {
-        return;
-    }
-
-    //1.72: changed to remove all effects even positive ones - as those could still be on player in case he respawned from dying
-    effect eEffect = GetFirstEffect(oRespawner);
-    while(GetIsEffectValid(eEffect))
-    {
-        RemoveEffect(oRespawner,eEffect);
-        eEffect = GetNextEffect(oRespawner);
-    }
-    RemoveEffects(oRespawner);
-    //1.72: clean outgoing AOE spells, at this moment only in the area PC died and respawned
-    int nTh = 1;
-    object oAOE = GetNearestObject(OBJECT_TYPE_AREA_OF_EFFECT,oRespawner,nTh);
-    while(oAOE != OBJECT_INVALID)
-    {
-        if(GetAreaOfEffectCreator(oAOE) == oRespawner)
-        {
-            DestroyObject(oAOE);
-        }
-        oAOE = GetNearestObject(OBJECT_TYPE_AREA_OF_EFFECT,oRespawner,++nTh);
-    }
+    //SetEventScript(oPC,EVENT_SCRIPT_CREATURE_ON_MELEE_ATTACKED,"70_mod_attacked");
+    //SetEventScript(oPC,EVENT_SCRIPT_CREATURE_ON_DAMAGED,"70_mod_damaged");
 
     //Now execute original script
-    string sScript = GetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_RESPAWN_BUTTON_PRESSED");
-    if(sScript != "" && sScript != "70_mod_def_resp")
+    string sScript = GetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_CLIENT_ENTER");
+    if(sScript != "" && sScript != "70_mod_def_enter")
     {
         ExecuteScript(sScript,OBJECT_SELF);
     }

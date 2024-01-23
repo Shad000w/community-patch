@@ -1,5 +1,4 @@
 #include "x2_inc_switches"
-//#include "70_inc_nwnx"
 
 void SecondaryDamage(object oTarget, int nPoisonID, effect eTrack)
 {
@@ -86,17 +85,10 @@ effect e = GetFirstEffect(oTarget);
     }while(--nDam > 0);
     if(nDamage < 1) nDamage = 0;//sanity check
    ePoison = EffectLinkEffects(ePoison,EffectAbilityDecrease(nAbility,nDamage));
-    /*
-    if(bPoisonCanStack)//1.72: with nwnx, poison icon and hp bar color is restored with stacked poisons!
+    if(bPoisonCanStack)//1.72: poison icon and hp bar color is restored with stacked poisons!
     {
-    effect eTemp = EffectPoison(20);
-    effect eIcon = NWNXPatch_SetEffectTrueType(eTemp,EFFECT_TRUETYPE_ICON);
-     if(GetEffectType(eIcon) == EFFECT_TYPE_INVALIDEFFECT)
-     {
-     ePoison = EffectLinkEffects(eIcon,ePoison);
-     }
+    ePoison = EffectLinkEffects(ePoison,EffectIcon(EFFECT_ICON_POISON));
     }
-    */
    ePoison = ExtraordinaryEffect(ePoison);
    }
   DelayCommand(0.1,ApplyEffectToObject(DURATION_TYPE_PERMANENT,ePoison,oTarget));
@@ -148,14 +140,12 @@ object GetPoisonEffectCreator(object oTarget)
 object oCreator = GetObjectByTag("70_EC_POISON");
  if(!GetIsObjectValid(oCreator))
  {
- oCreator = CreateObject(OBJECT_TYPE_PLACEABLE,"plc_invisobj",GetLocation(oTarget),FALSE,"70_EC_POISON");
+ location lLocation = GetStartingLocation();
+ vector vPosition = GetPositionFromLocation(lLocation);
+ vPosition.z -= 10.0;
+ oCreator = CreateObject(OBJECT_TYPE_PLACEABLE,"plc_invisobj",Location(GetAreaFromLocation(lLocation),vPosition,0.0),FALSE,"70_EC_POISON");
  ApplyEffectToObject(DURATION_TYPE_PERMANENT,ExtraordinaryEffect(EffectVisualEffect(VFX_DUR_CUTSCENE_INVISIBILITY)),oCreator);
  SetPlotFlag(oCreator,TRUE);
-  if(oCreator == OBJECT_INVALID)
-  {
-  WriteTimestampedLogEntry("ERROR: Poison Effect Creator not found, some features might not work properly!");
-  oCreator = oTarget;
-  }
  }
 return oCreator;
 }

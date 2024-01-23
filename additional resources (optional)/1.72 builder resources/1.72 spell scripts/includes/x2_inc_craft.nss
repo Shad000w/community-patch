@@ -201,7 +201,8 @@ object CICraftBrewPotion(object oCreator, int nSpellID )
 {
     object oTarget;
     //1.71: Handle optional material components
-    string sMat = GetMaterialComponentTag(nSpellID,"brew_tag");
+    int nPropID = IPGetIPConstCastSpellFromSpellID(nSpellID);
+    string sMat = GetMaterialComponentTag(nPropID,"brew_tag");
     if (sMat != "")
     {
         object oMat = GetItemPossessedBy(oCreator,sMat);
@@ -233,8 +234,6 @@ object CICraftBrewPotion(object oCreator, int nSpellID )
             return oTarget;
         }
     }
-
-    int nPropID = IPGetIPConstCastSpellFromSpellID(nSpellID);
 
     // * GZ 2003-09-11: If the current spell cast is not acid fog, and
     // *                returned property ID is 0, bail out to prevent
@@ -283,7 +282,8 @@ object CICraftCraftWand(object oCreator, int nSpellID )
 {
     object oTarget;
     //1.71: Handle optional material components
-    string sMat = GetMaterialComponentTag(nSpellID,"wand_tag");
+    int nPropID = IPGetIPConstCastSpellFromSpellID(nSpellID);
+    string sMat = GetMaterialComponentTag(nPropID,"wand_tag");
     if (sMat != "")
     {
         object oMat = GetItemPossessedBy(oCreator,sMat);
@@ -326,7 +326,6 @@ object CICraftCraftWand(object oCreator, int nSpellID )
     }
 
     int nClass = GetLastSpellCastClass();
-    int nPropID = IPGetIPConstCastSpellFromSpellID(nSpellID);
 
     // * GZ 2003-09-11: If the current spell cast is not acid fog, and
     // *                returned property ID is 0, bail out to prevent
@@ -418,7 +417,7 @@ object CICraftScribeScroll(object oCreator, int nSpellID)
     object oTarget;
 
     // Handle optional material components
-    string sMat = GetMaterialComponentTag(nSpellID);
+    string sMat = GetMaterialComponentTag(nPropID);
     if (sMat != "")
     {
         object oMat = GetItemPossessedBy(oCreator,sMat);
@@ -442,7 +441,7 @@ object CICraftScribeScroll(object oCreator, int nSpellID)
      }
 
     // get scroll resref from scrolls lookup 2da
-    int nClass =GetLastSpellCastClass ();
+    int nClass = GetLastSpellCastClass();
     string sClass = "Wiz_Sorc";
     switch (nClass)
     {
@@ -590,12 +589,8 @@ int CICraftCheckBrewPotion(object oSpellTarget, object oCaster)
         FloatingTextStrRefOnCreature(8502, oCaster); // Item Creation successful
         return TRUE;
      }
-     else
-     {
-         FloatingTextStrRefOnCreature(76417, oCaster); // Item Creation Failed
-        return TRUE;
-     }
-
+     FloatingTextStrRefOnCreature(76417, oCaster); // Item Creation Failed
+     return TRUE;
 }
 
 
@@ -612,8 +607,8 @@ int CICraftCheckScribeScroll(object oSpellTarget, object oCaster)
     // -------------------------------------------------------------------------
     if (GetHasFeat(X2_CI_SCRIBESCROLL_FEAT_ID, oCaster) != TRUE)
     {
-      FloatingTextStrRefOnCreature(40487, oCaster); // Item Creation Failed - Don't know how to create that type of item
-      return TRUE;
+        FloatingTextStrRefOnCreature(40487, oCaster); // Item Creation Failed - Don't know how to create that type of item
+        return TRUE;
     }
 
     // -------------------------------------------------------------------------
@@ -684,13 +679,8 @@ int CICraftCheckScribeScroll(object oSpellTarget, object oCaster)
         FloatingTextStrRefOnCreature(8502, oCaster); // Item Creation successful
         return TRUE;
      }
-     else
-     {
-        FloatingTextStrRefOnCreature(76417, oCaster); // Item Creation Failed
-        return TRUE;
-     }
-
-    return FALSE;
+     FloatingTextStrRefOnCreature(76417, oCaster); // Item Creation Failed
+     return TRUE;
 }
 
 

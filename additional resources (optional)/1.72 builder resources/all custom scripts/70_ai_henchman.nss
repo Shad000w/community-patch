@@ -31,7 +31,7 @@ void main()
     }
     //SpeakString("in combat round. Is an enemy");
     // * This is the nearest enemy
-    object oNearestTarget = GetNearestCreature(CREATURE_TYPE_REPUTATION,REPUTATION_TYPE_ENEMY,OBJECT_SELF,1,CREATURE_TYPE_PERCEPTION,PERCEPTION_SEEN);
+    object oNearestTarget = GetNearestSeenEnemy();//1.72: using GetNearestSeenEnemy now in order to apply fix for EE issue
 
     //    SpeakString("Henchman combat dude");
 
@@ -54,7 +54,7 @@ void main()
     // MODIFIED FEBRUARY 13 2003
     // The associate will not engage in battle if in Stand Ground mode unless
     // he takes damage
-    if(GetAssociateState(NW_ASC_MODE_STAND_GROUND) && !GetIsObjectValid(GetLastHostileActor()))
+    if(GetAssociateState(NW_ASC_MODE_STAND_GROUND))//1.72: no longer will associates breaks the stand ground command
     {
         return;
     }

@@ -995,6 +995,16 @@ int ArcaneArcherCalculateBonus()
 // * nFortSaveDC: pass in this number from the spell script
 void DoPetrification(int nPower, object oSource, object oTarget, int nSpellID, int nFortSaveDC)
 {
+    SetLocalInt(OBJECT_SELF,"Petrify_nPower",nPower);
+    SetLocalInt(OBJECT_SELF,"Petrify_nSpellID",nSpellID);
+    SetLocalInt(OBJECT_SELF,"Petrify_nFortSaveDC",nFortSaveDC);
+    SetLocalObject(OBJECT_SELF,"Petrify_oSource",oSource);
+    SetLocalObject(OBJECT_SELF,"Petrify_oTarget",oTarget);
+    if(ExecuteScriptAndReturnInt("70_mod_petrified",OBJECT_SELF) == X2_EXECUTE_SCRIPT_END)
+    {
+        return;
+    }
+    //Vanilla code fallback, 70_mod_petrified has not been found
     // * exit if creature is immune to petrification
     if(spellsIsImmuneToPetrification(oTarget))
     {
@@ -1063,7 +1073,6 @@ void DoPetrification(int nPower, object oSource, object oTarget, int nSpellID, i
         }
         // April 2003: Clearing actions to kick them out of conversation when petrified
         AssignCommand(oTarget, ClearAllActions(TRUE));
-        ExecuteScript("70_mod_petrified",oTarget);
     }
 }
 
@@ -1119,13 +1128,20 @@ int spellsIsTarget(object oTarget, int nTargetType, object oSource)
         }    /*SPELL_TARGET_SINGLETARGET:*/
         case 2://1.70: added new value now 2 == SPELL_TARGET_SINGLETARGET which is used for spells with single target, when these spells
         {      //are cast at neutral target then they are supposed to hurt target which is not possible with SPELL_TARGET_STANDARDHOSTILE
-            if(!GetIsReactionTypeFriendly(oTarget,oSource))
+            if(spell.Caster == OBJECT_INVALID || (GetIsObjectValid(spell.Target) && oTarget == spell.Target))//1.72: this allows to turn AoE spell into singletarget spell dynamically without need to rewrite the spellscript
             {
-                nReturnValue = TRUE;
+                if(GetObjectType(oTarget) != OBJECT_TYPE_CREATURE || !GetIsReactionTypeFriendly(oTarget,oSource))
+                {
+                    nReturnValue = TRUE;
+                }
+                else
+                {
+                    SendMessageToPCByStrRef(oSource,66245);
+                }
             }
-            else
+            else if(GetIsObjectValid(spell.Target))
             {
-                SendMessageToPCByStrRef(oSource,66245);
+                return FALSE;
             }
         }
         case SPELL_TARGET_STANDARDHOSTILE:

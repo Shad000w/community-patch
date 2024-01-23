@@ -443,6 +443,7 @@ int bkTalentFilterTest(int nTalentType, int nTalentId, object oTarget)
         int nLimit = GetLocalInt(GetModule(),"131_LIMIT_OVERRIDE");//1.72: if the 100hp limit is overriden, AI will count with it
         if(!nLimit) nLimit = GetLocalInt(OBJECT_SELF,"131_LIMIT_OVERRIDE");
         if(!nLimit) nLimit = 100;
+        if(GetAILevel() != AI_LEVEL_VERY_HIGH) nLimit+= d10(GetAbilityScore(OBJECT_SELF,ABILITY_INTELLIGENCE,TRUE) < 10 ? 4 : 2);//1.72: +2d10 or 4d10 to hitpoints to not make normal creatures so precise
         return GetCurrentHitPoints(oTarget) <= nLimit;
     }
     //1.72: intelligence controls - remaining spell checks should be only performed by smart creatures

@@ -266,6 +266,8 @@ void LookUpWalkWayPoints()
 // to the nearest waypoint in our new set.
 object GetNextWalkWayPoint(object oCreature=OBJECT_SELF)
 {
+    object oCurrentWP = GetLocalObject(OBJECT_SELF,"WP_CUR");
+    if(GetIsObjectValid(oCurrentWP)) return oCurrentWP;//1.72: fix for talking with npcs skipping current waypoint that the npc didn't arrive at yet
     string sPrefix = "WP_";
 
     // Check to see if we have to switch to day/night
@@ -413,6 +415,7 @@ void WalkWayPoints(int nRun = FALSE, float fPause = 1.0)
     object oWay = GetNextWalkWayPoint(OBJECT_SELF);
     if (GetIsObjectValid(oWay) == TRUE)
     {
+        SetLocalObject(OBJECT_SELF,"WP_CUR",oWay);
         SetWalkCondition(NW_WALK_FLAG_CONSTANT);
         // * Feb 7 2003: Moving this from 299 to 321, because I don't see the point
         // * in clearing actions unless I actually have waypoints to walk
@@ -420,6 +423,7 @@ void WalkWayPoints(int nRun = FALSE, float fPause = 1.0)
 
         //SpeakString("Moving to waypoint: " + GetTag(oWay));
         ActionMoveToObject(oWay, nRun);
+        ActionDoCommand(DeleteLocalObject(OBJECT_SELF,"WP_CUR"));
         if(GetLocalInt(oWay,"X2_L_WAYPOINT_SETFACING") == 1)
         {
             ActionDoCommand(SetFacing(GetFacing(oWay)));

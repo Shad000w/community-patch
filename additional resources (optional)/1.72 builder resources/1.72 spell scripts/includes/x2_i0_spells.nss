@@ -452,6 +452,7 @@ int GetEpicSpellSaveDC(object oCaster)
 // --------------------------------------------------------------------------------
 int GetBestAOEBehavior(int nSpellID)
 {
+    if(GetLocalInt(OBJECT_SELF,"IGNORE_AOE")) return X2_SPELL_AOEBEHAVIOR_IGNORE;
     switch(nSpellID)
     {
     case SPELL_EVARDS_BLACK_TENTACLES:

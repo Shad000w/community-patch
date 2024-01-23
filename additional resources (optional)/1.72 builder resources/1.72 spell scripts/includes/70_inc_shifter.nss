@@ -127,7 +127,12 @@ int GetLastPolymorphEventType()
     {
         if(GetEffectType(eSearch) == EFFECT_TYPE_POLYMORPH)
         {
-            return GetLocalInt(OBJECT_SELF,"UnPolymorph") ? POLYMORPH_EVENTTYPE_POLYMORPH_REPOLYMORPH : POLYMORPH_EVENTTYPE_POLYMORPH_ONPOLYMORPH;
+            if(GetLocalInt(OBJECT_SELF,"UnPolymorph"))
+            {
+                return GetAppearanceType(OBJECT_SELF) == GetLocalInt(OBJECT_SELF,"Polymorph_App") ? POLYMORPH_EVENTTYPE_POLYMORPH_REPOLYMORPH : POLYMORPH_EVENTTYPE_POLYMORPH_UNPOLYMORPH;
+            }
+            SetLocalInt(OBJECT_SELF,"Polymorph_App",GetAppearanceType(OBJECT_SELF));
+            return POLYMORPH_EVENTTYPE_POLYMORPH_ONPOLYMORPH;
         }
         eSearch = GetNextEffect(OBJECT_SELF);
     }
@@ -351,7 +356,7 @@ void ApplyPolymorph(object oTarget, int nPolymorph, int nSubType=SUBTYPE_EXTRAOR
     effect eHP, ePolymorph = EffectPolymorph(nPolymorph,bLocked);
     if(nHP > 0)
     {
-        eHP = EffectTemporaryHitpoints(nHP);
+        eHP = TagEffect(EffectTemporaryHitpoints(nHP),"POLYMORPH");
     }
     if(nSubType == SUBTYPE_EXTRAORDINARY)
     {

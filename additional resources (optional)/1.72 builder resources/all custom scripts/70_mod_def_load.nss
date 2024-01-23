@@ -51,6 +51,10 @@ doing so, do this only if running original event has no longer sense.
 
 void main()
 {
+    if(GetLocalInt(OBJECT_SELF,"70_mod_def_load_DOONCE")) return;//safety check to prevent running this multiple times
+    SetLocalInt(OBJECT_SELF,"70_mod_def_load_DOONCE",TRUE);
+
+//  Do not remove the code below, otherwise the nwn(c)x_patch plugin will not be able to work with global module switches (in database)
     SetLocalInt(OBJECT_SELF,"72_DISABLE_TUMBLE_AC",GetModuleSwitchValue("72_DISABLE_TUMBLE_AC"));
     SetLocalInt(OBJECT_SELF,"72_DISABLE_SNEAK_CRITICAL_IMMUNITY",GetModuleSwitchValue("72_DISABLE_SNEAK_CRITICAL_IMMUNITY"));
     SetLocalInt(OBJECT_SELF,"72_DISABLE_MONK_IN_POLYMORPH",GetModuleSwitchValue("72_DISABLE_MONK_IN_POLYMORPH"));
@@ -62,8 +66,61 @@ void main()
     SetLocalInt(OBJECT_SELF,"72_HARDCORE_INITIATIVE",GetModuleSwitchValue("72_HARDCORE_INITIATIVE"));
 //  Do not remove the code above, otherwise the nwn(c)x_patch plugin will not be able to work with global module switches (in database)
 
+    string sScript = GetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_ACQUIRE_ITEM);
+    if(sScript != "70_mod_def_aqu")
+    {
+        SetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_ACQUIRE_ITEM,"70_mod_def_aqu");
+        SetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_ACQUIRE_ITEM",sScript);
+    }
+
+    sScript = GetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_CLIENT_ENTER);
+    if(sScript != "70_mod_def_enter")
+    {
+        SetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_CLIENT_ENTER,"70_mod_def_enter");
+        SetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_CLIENT_ENTER",sScript);
+    }
+
+    sScript = GetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_EQUIP_ITEM);
+    if(sScript != "70_mod_def_equ")
+    {
+        SetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_EQUIP_ITEM,"70_mod_def_equ");
+        SetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_EQUIP_ITEM",sScript);
+    }
+
+    sScript = GetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_PLAYER_LEVEL_UP);
+    if(sScript != "70_mod_def_lvup")
+    {
+        SetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_PLAYER_LEVEL_UP,"70_mod_def_lvup");
+        SetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_PLAYER_LEVEL_UP",sScript);
+    }
+
+    sScript = GetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_RESPAWN_BUTTON_PRESSED);
+    if(sScript != "70_mod_def_resp")
+    {
+        SetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_RESPAWN_BUTTON_PRESSED,"70_mod_def_resp");
+        SetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_RESPAWN_BUTTON_PRESSED",sScript);
+    }
+
+    sScript = GetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_LOSE_ITEM);
+    if(sScript != "70_mod_def_unaqu")
+    {
+        SetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_LOSE_ITEM,"70_mod_def_unaqu");
+        SetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_LOSE_ITEM",sScript);
+    }
+
+    sScript = GetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_UNEQUIP_ITEM);
+    if(sScript != "70_mod_def_unequ")
+    {
+        SetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_UNEQUIP_ITEM,"70_mod_def_unequ");
+        SetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_UNEQUIP_ITEM",sScript);
+    }
+
+    // * 1.72: Activating this switch below will modify spell DC of all regular spells to
+    // * use spell level of the class who cast it instead of innate level.
+    SetModuleSwitch (MODULE_SWITCH_SPELL_DC_BASED_ON_CLASS_SPELL_LEVEL, TRUE);
+
    // * 1.72: Activating this switch below will modify curse effect to ignore immunity to ability decrease.
-   // * Note: Dependant on NWN(C)X_Patch plugin. CURRENTLY NONFUNCTIONAL !!!
+   // * Note: Dependant on NWN(C)X_Patch plugin.
    // SetModuleSwitch (MODULE_SWITCH_CURSE_IGNORE_ABILITY_DECREASE_IMMUNITY, TRUE);
 
    // * 1.72: Activating this switch below will enable hardcore DnD rules for initiative.
@@ -71,7 +128,7 @@ void main()
    // * the check until he attacks for the first time. Unlike DnD, the ammount of time the
    // * character is flatfooted is reduced to first flurry. Still, that gives considerable
    // * benefit to the attacker and makes intiative and feats improving initiative usefull.
-   // * Note: Dependant on NWN(C)X_Patch plugin. CURRENTLY NONFUNCTIONAL !!!
+   // * Note: Dependant on NWN(C)X_Patch plugin.
    SetModuleSwitch (MODULE_SWITCH_HARDCORE_INITIATIVE, TRUE);
 
    // * 1.72: Activating this switch below will enable hardcore DnD rules for uncanny dodge 2.
@@ -79,30 +136,30 @@ void main()
    // * This defense denies another rogue the ability to sneak attack the character by flanking
    // * her, unless the attacker has at least four more rogue levels than the target does.
    // * Classes granting uncanny dodge stacks together for a purpose of this calculation.
-   // * Note: Dependant on NWN(C)X_Patch plugin. CURRENTLY NONFUNCTIONAL !!!
+   // * Note: Dependant on NWN(C)X_Patch plugin.
    // SetModuleSwitch (MODULE_SWITCH_HARDCORE_UNCANNY_DODGE, TRUE);
 
    // * 1.72: Activating this switch below will enable new feature granting immunity to traps to
    // * flying creatures.
-   // * Note: Dependant on NWN(C)X_Patch plugin. CURRENTLY NONFUNCTIONAL !!!
+   // * Note: Dependant on NWN(C)X_Patch plugin.
    // SetModuleSwitch (MODULE_SWITCH_ENABLE_FLYING_TRAP_IMMUNITY, TRUE);
 
    // * 1.72: Activating this switch below will disable all monk abilities in polymorph. That is monk AC
    // * from high wisdom, monk AC from class levels, monk speed and monk unarmed attack progression.
-   // * Note: Dependant on NWN(C)X_Patch plugin. CURRENTLY NONFUNCTIONAL !!!
+   // * Note: Dependant on NWN(C)X_Patch plugin.
    // SetModuleSwitch (MODULE_SWITCH_DISABLE_MONK_ABILITIES_IN_POLYMORPH, TRUE);
 
    // * 1.72: Activating this switch below will detach immunity to paralysis from immunity
    // * to mind-affecting spells.
    // * This is usefull if you want to nerf the classic mind immunity spells and give higher
    // * meaning to the freedom of movement, PM/RDD or items with paralysis immunity.
-   // * Note: Dependant on NWN(C)X_Patch plugin. CURRENTLY NONFUNCTIONAL !!!
+   // * Note: Dependant on NWN(C)X_Patch plugin.
    // SetModuleSwitch (MODULE_SWITCH_DISABLE_PARALYZE_MIND_SPELL_IMMUNITY, TRUE);
 
    // * 1.72: Activating this switch below will detach immunity to sneak attacks from the immunity
    // * to critical hits. This will allow to make a creature immune to critical hits but not sneak attack.
    // * Applies also to the Death Attack.
-   // * Note: Dependant on NWN(C)X_Patch plugin. CURRENTLY NONFUNCTIONAL !!!
+   // * Note: Dependant on NWN(C)X_Patch plugin.
    // SetModuleSwitch (MODULE_SWITCH_DISABLE_SNEAK_ATTACK_CRITICAL_IMMUNITY, TRUE);
 
    // * 1.72: Activating this switch below will will completely disable all AC bonuses from tumble.

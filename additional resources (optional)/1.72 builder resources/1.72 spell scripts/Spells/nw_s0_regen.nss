@@ -12,8 +12,9 @@
 //:: Created On: Oct 22, 2001
 //:://////////////////////////////////////////////
 /*
+Patch 1.72
+- added initial heal "tick"
 Patch 1.70
-
 - removed stacking with itself
 */
 
@@ -37,7 +38,7 @@ void main()
     effect eRegen = EffectRegenerate(6, 6.0);
     effect eVis = EffectVisualEffect(VFX_IMP_HEAD_NATURE);
     effect eDur = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
-
+    effect eHeal = EffectHeal(6);
     effect eLink = EffectLinkEffects(eRegen, eDur);
 
     int nLevel = spell.Level;
@@ -54,4 +55,5 @@ void main()
     //Apply effects and VFX
     ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, spell.Target, DurationToSeconds(nLevel));
     ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, spell.Target);
+    ApplyEffectToObject(DURATION_TYPE_INSTANT, eHeal, spell.Target);
 }

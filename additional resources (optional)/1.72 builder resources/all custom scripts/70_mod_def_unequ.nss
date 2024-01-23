@@ -75,39 +75,57 @@ void main()
     string sItemTag = GetTag(oItem);
     // * When wearing Nasher's set of items, get special (Brent)
     // * benefits
-    if (sItemTag == "x2_nash_boot" || sItemTag == "x2_nash_cloak" || sItemTag == "x2_nash_glove" || sItemTag == "x2_nash_ring")
+    if (GetLocalInt(oPC,"NASHER_SET_FULL") && (sItemTag == "x2_nash_boot" || sItemTag == "x2_nash_cloak" || sItemTag == "x2_nash_glove" || sItemTag == "x2_nash_ring"))
     {
-        effect eVis = EffectVisualEffect(VFX_IMP_DISPEL);
+        object oRing1 = GetItemInSlot(INVENTORY_SLOT_RIGHTRING, oPC);
+        object oRing2 = GetItemInSlot(INVENTORY_SLOT_LEFTRING, oPC);
+        if(sItemTag == "x2_nash_ring" && GetTag(oRing1) == "x2_nash_ring" && GetTag(oRing2) == "x2_nash_ring")//1.72: special case for player wearing 2 Nasher rings
+        {
+            itemproperty itProp = ItemPropertyAbilityBonus(IP_CONST_ABILITY_STR, 3);
+            IPSafeAddItemProperty(oItem, itProp , 0.0f, X2_IP_ADDPROP_POLICY_REPLACE_EXISTING);
+        }
+        else
+        {
+            SetLocalInt(oPC,"NASHER_SET_FULL",FALSE);
+            effect eVis = EffectVisualEffect(VFX_IMP_DISPEL);
 
-        // * Do I have them all on?
-        object oBoot =  GetItemPossessedBy(oPC, "x2_nash_boot");
-        object oCloak = GetItemPossessedBy(oPC, "x2_nash_cloak");
-        object oGlove = GetItemPossessedBy(oPC, "x2_nash_glove");
-        object oRing = GetItemPossessedBy(oPC, "x2_nash_ring");
+            // * Do I have them all on?
+            object oBoot =  GetItemPossessedBy(oPC, "x2_nash_boot");
+            object oCloak = GetItemPossessedBy(oPC, "x2_nash_cloak");
+            object oGlove = GetItemPossessedBy(oPC, "x2_nash_glove");
+            object oRing = GetItemPossessedBy(oPC, "x2_nash_ring");
 
-        string sBoot = GetTag(oBoot);
-        string sCloak = GetTag(oCloak);
-        string sGlove = GetTag(oGlove);
-        string sRing = GetTag(oRing);
+            string sBoot = GetTag(oBoot);
+            string sCloak = GetTag(oCloak);
+            string sGlove = GetTag(oGlove);
+            string sRing = GetTag(oRing);
 
-        itemproperty itProp = ItemPropertyAbilityBonus(IP_CONST_ABILITY_DEX, 3);
+            itemproperty itProp = ItemPropertyAbilityBonus(IP_CONST_ABILITY_DEX, 3);
 
-        if (GetIsObjectValid(oBoot))
-            IPSafeAddItemProperty(oBoot, itProp , 0.0f, X2_IP_ADDPROP_POLICY_REPLACE_EXISTING);
+            if (GetIsObjectValid(oBoot))
+                IPSafeAddItemProperty(oBoot, itProp , 0.0f, X2_IP_ADDPROP_POLICY_REPLACE_EXISTING);
 
-        itProp = ItemPropertyACBonus(3);
+            itProp = ItemPropertyACBonus(3);
 
-        if (GetIsObjectValid(oCloak))
-            IPSafeAddItemProperty(oCloak, itProp , 0.0f, X2_IP_ADDPROP_POLICY_REPLACE_EXISTING);
+            if (GetIsObjectValid(oCloak))
+                IPSafeAddItemProperty(oCloak, itProp , 0.0f, X2_IP_ADDPROP_POLICY_REPLACE_EXISTING);
 
-        itProp = ItemPropertySkillBonus(SKILL_DISCIPLINE, 5);
-        if (GetIsObjectValid(oGlove))
-            IPSafeAddItemProperty(oGlove, itProp , 0.0f, X2_IP_ADDPROP_POLICY_REPLACE_EXISTING);
+            itProp = ItemPropertySkillBonus(SKILL_DISCIPLINE, 5);
+            if (GetIsObjectValid(oGlove))
+                IPSafeAddItemProperty(oGlove, itProp , 0.0f, X2_IP_ADDPROP_POLICY_REPLACE_EXISTING);
 
-        itProp = ItemPropertyAbilityBonus(IP_CONST_ABILITY_STR, 3);
-        if (GetIsObjectValid(oRing))
-            IPSafeAddItemProperty(oRing, itProp , 0.0f, X2_IP_ADDPROP_POLICY_REPLACE_EXISTING);
+            itProp = ItemPropertyAbilityBonus(IP_CONST_ABILITY_STR, 3);
+            if (GetIsObjectValid(oRing))
+                IPSafeAddItemProperty(oRing, itProp , 0.0f, X2_IP_ADDPROP_POLICY_REPLACE_EXISTING);
 
-        ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oPC);
+            ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oPC);
+        }
+    }
+
+    //Now execute original script
+    string sScript = GetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_UNEQUIP_ITEM");
+    if(sScript != "" && sScript != "70_mod_def_unequ")
+    {
+        ExecuteScript(sScript,OBJECT_SELF);
     }
 }

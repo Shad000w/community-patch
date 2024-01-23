@@ -1905,6 +1905,8 @@ int HorseGetCanBeMounted(object oTarget,object oRider=OBJECT_INVALID,int bAssign
         { // paladin mount
             if (HorseGetOwner(oTarget)!=oRider) return FALSE;
         } // paladin mount
+        object oOwner = GetLocalObject(oTarget,"oX3_HorseOwner");
+        if(oOwner != OBJECT_INVALID && oOwner != oRider) return FALSE;//1.72: fix for being able to mount another player's horse
         if (!HorseGetIsAMount(oTarget)) return FALSE;
         return TRUE;
     } // valid oTarget type
