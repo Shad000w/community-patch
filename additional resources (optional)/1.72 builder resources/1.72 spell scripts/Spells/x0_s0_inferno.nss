@@ -93,7 +93,7 @@ void main()
                 //--------------------------------------------------------------------------
                 // This spell no longer stacks. If there is one of that type, thats ok
                 //--------------------------------------------------------------------------
-                if (GetHasSpellEffect(spell.Id,spell.Target) || GetHasSpellEffect(SPELL_COMBUST,spell.Target))
+                if (bHasSpellEffects)
                 {
                     FloatingTextStrRefOnCreature(100775,spell.Caster,FALSE);
                     return;
