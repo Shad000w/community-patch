@@ -699,7 +699,7 @@ int nAC = GetItemACValue(oArmor);
    }
   ip = GetNextItemProperty(oArmor);
   }
-  if(nAC > 3) return FALSE;
+  if(nAC > 3 && !GetLocalInt(oArmor,"70_ALLOW_EVASION")) return FALSE;
  }
 effect eSearch = GetFirstEffect(oCreature);
  while(GetIsEffectValid(eSearch))
