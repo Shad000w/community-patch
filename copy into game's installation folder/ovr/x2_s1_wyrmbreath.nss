@@ -18,6 +18,7 @@ Pach 1.72
 - fixed bug in "cast on self" workaround that prevented the breath to work properly in case it was used at non zero Z position
 */
 
+#include "70_inc_spells"
 #include "NW_I0_SPELLS"
 #include "x2_inc_shifter"
 
@@ -143,7 +144,7 @@ void main()
             }
             SignalEvent(oTarget, EventSpellCastAt(OBJECT_SELF, nSpell));
             fDelay = GetDistanceBetween(OBJECT_SELF, oTarget)/20;
-            nDamStrike =  GetReflexAdjustedDamage(nDamage, oTarget, nDC, nSave);
+            nDamStrike = GetSavingThrowAdjustedDamage(nDamage, oTarget, nDC, SAVING_THROW_REFLEX, nSave, OBJECT_SELF);
             if (nDamStrike > 0)
             {
                 eBreath = EffectDamage(nDamStrike, nDamageType);
