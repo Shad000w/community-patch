@@ -131,7 +131,6 @@ effect eEffect = GetFirstEffect(oPC);
   return;//ensures, the default OnLevelUp event will not fire
   }
  }
-ExecuteScript("70_featfix",oPC);
 
     //Now execute original script
     string sScript = GetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_PLAYER_LEVEL_UP");
