@@ -728,8 +728,8 @@ int chooseTactics(object oIntruder)
     // * June 2003
     // * If has more than 5% chance of spell failure don't try casting
     // 5% chance changed to 15%
-    if (GetHasFeatEffect(FEAT_BARBARIAN_RAGE) || GetShouldNotCastSpellsBecauseofArmor(OBJECT_SELF, nClass)
-        || GetLocalInt(OBJECT_SELF, "X2_L_STOPCASTING") == 10 || GetHasFeatEffect(FEAT_MIGHTY_RAGE))//1.71: added mighty rage and polymorph check
+    if ((GetHasFeat(FEAT_BARBARIAN_RAGE) && (GetHasFeatEffect(FEAT_BARBARIAN_RAGE) || GetHasFeatEffect(FEAT_MIGHTY_RAGE))) || GetShouldNotCastSpellsBecauseofArmor(OBJECT_SELF, nClass)//1.72: fixed creatures affected by terrifying rage stop casting
+        || GetLocalInt(OBJECT_SELF, "X2_L_STOPCASTING") == 10)//1.71: added mighty rage check
     {
         nMagic = 0;
     }
