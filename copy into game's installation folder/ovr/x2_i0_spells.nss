@@ -111,6 +111,7 @@ effect CreateGoodTideEffectsLink()
 // AN, 2003
 // Returns TRUE if oItem is a slashing weapon
 // 1.70: made the function custom content weapons compatible
+// 1.72: weapons with extra melee/ranged damage type [slashing] are considered as slashing too
 //------------------------------------------------------------------------------
 int GetSlashingWeapon(object oItem)
 {
@@ -122,6 +123,15 @@ int GetSlashingWeapon(object oItem)
     case 3://slashing
     case 4://slashing+piercing
         return TRUE;
+    }
+    itemproperty ip = GetFirstItemProperty(oItem);
+    while(GetIsItemPropertyValid(ip))
+    {
+        if((GetItemPropertyType(ip) == ITEM_PROPERTY_EXTRA_MELEE_DAMAGE_TYPE || GetItemPropertyType(ip) == ITEM_PROPERTY_EXTRA_RANGED_DAMAGE_TYPE) || GetItemPropertySubType(ip) == IP_CONST_DAMAGETYPE_SLASHING)
+        {
+            return TRUE;
+        }
+        ip = GetNextItemProperty(oItem);
     }
     return FALSE;
 }
