@@ -104,7 +104,7 @@ void main()
         //1.72: if ranged/ammo boosting is allowed, make the spell to apply also default benefits not just rakshasa onhit
         if(GetModuleSwitchValue("72_ALLOW_BOOST_AMMO"))
         {
-            AddBlessEffectToWeapon(spell.Target, TurnsToSeconds(nDuration));
+            AddBlessEffectToWeapon(spell.Target, DurationToSeconds(nDuration));
         }
         if(GetIsObjectValid(oPossessor))
         {
@@ -124,7 +124,7 @@ void main()
    {
         SignalEvent(oPossessor, EventSpellCastAt(spell.Caster, spell.Id, FALSE));
 
-        AddBlessEffectToWeapon(oMyWeapon, TurnsToSeconds(nDuration));
+        AddBlessEffectToWeapon(oMyWeapon, DurationToSeconds(nDuration));
         if(GetIsObjectValid(oPossessor))
         {
             ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oPossessor);
