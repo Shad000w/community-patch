@@ -36,6 +36,7 @@ void main()
 {
    object oTarget = GetSpellTargetObject();
    object oItem = GetSpellCastItem();
+   int spell = GetSpellId();
 
    if(oItem != OBJECT_INVALID)
    {
@@ -52,14 +53,14 @@ void main()
    else if(GetIsPC(OBJECT_SELF))
    {
        //1.72: polymorph exploit handling
+       string sInnate = Get2DAString("spells","Innate",spell);
        int bPoly;
        effect eSearch = GetFirstEffect(OBJECT_SELF);
        while(GetIsEffectValid(eSearch))
        {
            if(GetEffectType(eSearch) == EFFECT_TYPE_POLYMORPH)
            {
-               int spell = GetSpellId();
-               if(spell > 0 && GetLocalInt(oTarget,"Polymorph_ID") > 0 && Get2DAString("spells","Innate",spell) != "10" && GetHasSpell(spell) && spell != GetLocalInt(oTarget,"Polymorph_SPELL1") && spell != GetLocalInt(oTarget,"Polymorph_SPELL2") && spell != GetLocalInt(oTarget,"Polymorph_SPELL3"))
+               if(spell > 0 && GetLocalInt(OBJECT_SELF,"Polymorph_ID") > 0 && sInnate != "10" && GetHasSpell(spell) && spell != GetLocalInt(OBJECT_SELF,"Polymorph_SPELL1") && spell != GetLocalInt(OBJECT_SELF,"Polymorph_SPELL2") && spell != GetLocalInt(OBJECT_SELF,"Polymorph_SPELL3"))
                {
                    //block the spell for exploit abuse
                    FloatingTextStrRefOnCreature(3734,OBJECT_SELF,FALSE);//prints "Spell failed!"
@@ -262,7 +263,7 @@ void main()
        }
    }
 
-   if(GetLocalInt(oItem,"MUSICAL_INSTRUMENT"))//variable indicating musical instrument
+   if(nContinue && GetLocalInt(oItem,"MUSICAL_INSTRUMENT"))//variable indicating musical instrument
    {
        nContinue = MusicalInstrumentsCheck(oItem);
    }

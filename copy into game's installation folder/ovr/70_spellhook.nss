@@ -263,7 +263,7 @@ void main()
        }
    }
 
-   if(GetLocalInt(oItem,"MUSICAL_INSTRUMENT"))//variable indicating musical instrument
+   if(nContinue && GetLocalInt(oItem,"MUSICAL_INSTRUMENT"))//variable indicating musical instrument
    {
        nContinue = MusicalInstrumentsCheck(oItem);
    }
