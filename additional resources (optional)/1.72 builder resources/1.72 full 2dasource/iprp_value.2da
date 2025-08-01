@@ -1,9 +1,0 @@
-2DA V2.0
-
-  Name  Label                Cost
-0 10658 Adjust_Value_by10   -0.01
-1 10659 Adjust_Value_by100  -0.1
-2 10660 Adjust_Value_by1k   -1
-3 10661 Adjust_Value_by10k  -10
-4 10662 Adjust_Value_by100k -100
-5 10663 Adjust_Value_by1M   -1000

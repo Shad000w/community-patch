@@ -1,8 +1,0 @@
-2DX V2.1
----
-description: |
- This modification will remove the default temporary hitpoints feature as this is now handled in polymorph new engine in a new way in order to fix temporary hitpoints stacking issue. Note: do not merge unless you are using polymorph scripts from 1.72.
-
-column_rename:
-  HPBONUS: TEMPHP
----

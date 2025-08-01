@@ -1,4 +1,0 @@
-2DX V2.0
-DESCRIPTION: adds Item Cost Parameter new itemproperty dependancies.
-           Name                 Label                   ClientLoad
-31         iprp_valuecost       Item_cost_parameter     0

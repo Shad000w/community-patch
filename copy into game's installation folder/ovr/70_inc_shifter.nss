@@ -63,8 +63,7 @@ merged into shape)
 - fixed losing spell slots from both ability bonuses and itemproperties, instead the spells in slots
 will be "consumed" (dependant on NWNX_Patch)
 - merged ability decreases now ignores immunity to ability decrease from shape or from other merged
-items (without NWNX, that is - if NWNX_Patch is in use this will be handled in engine and pass
-through even negative energy immunity spell - which this solution can't)
+items
 - fixed dying after unpolymorph (which happened due to the fact that all constitution bonuses
 were lost for a short while)
 - skill bonuses and saving throw bonuses are now stacked as well, if ability bonuses are

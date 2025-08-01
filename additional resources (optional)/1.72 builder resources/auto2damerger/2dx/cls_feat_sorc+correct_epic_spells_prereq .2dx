@@ -1,9 +1,0 @@
-2DX V2.0                                                                                      
-DESCRIPTION: Changes min class level needed to attain epic spells from 21 to 17 to match with the feat description (ie. "ability to cast lvl 9 spells").
-      GrantedOnLevel
-88    18
-89    18
-90    18
-91    18
-92    18
-93    18

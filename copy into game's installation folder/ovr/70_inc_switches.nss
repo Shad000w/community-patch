@@ -136,10 +136,6 @@ const string MODULE_SWITCH_POLYMORPH_MERGE_EVERYTHING = "72_POLYMORPH_MERGE_EVER
 // * losing spellslots from ability increases on items while polymorphed.
 // * In case the player is a monk, he will get AC decrease matching the increase in wisdom
 // * over what shape normally allows.
-// * Note, use this switch only when module is not running NWNX. NWNX_Patch handles this
-// * automatically in a better way - slots which would be normally lost will only be
-// * consumed. Also note this won't fix, unlike NWNX, losing spell slots from bonus spell slot
-// * itemproperties.
 //------------------------------------------------------------------------------
 const string MODULE_SWITCH_POLYMORPH_MERGE_CASTING_ABILITY = "72_POLYMORPH_MERGE_CASTING_ABILITY";
 
@@ -278,31 +274,6 @@ const string MODULE_SWITCH_OVERFILLED_STORES_ISSUE_FIX = "70_OVERFILLED_STORES_I
 // * that "no SR" behavior is appropriate to your setting.
 //------------------------------------------------------------------------------
 const string MODULE_SWITCH_AOE_IGNORES_SPELL_RESISTANCE = "70_AOE_IGNORE_SPELL_RESISTANCE";
-
-//------------------------------------------------------------------------------
-// * By setting this variable with a value of 1 on a player will allow this
-// * creature to ignore dying. As such he will be able to controll his character
-// * even with hitpoints under 1. This feature works only on players as NPCs dies
-// * immediately on 0 hitpoints.
-// * NOTE: this feature requires the NWNX_Patch plugin and won't work without it!
-//------------------------------------------------------------------------------
-const string CREATURE_VAR_IMMUNITY_DYING = "IMMUNITY_DYING";
-
-//------------------------------------------------------------------------------
-// * By setting this variable with a value of 1 on a creature will guarantee
-// * this creature immunity to being flanked. That grants immunity to sneak attack
-// * caused by flanking and virtually +2AC as the flanking attackers won't get the
-// * +2AB bonus to hit.
-// * NOTE: this feature requires the NWNX_Patch plugin and won't work without it!
-//------------------------------------------------------------------------------
-const string CREATURE_VAR_IMMUNITY_FLANKING = "IMMUNITY_FLANKING";
-
-//------------------------------------------------------------------------------
-// * By setting this variable with a value of 1 on a creature will guarantee
-// * this creature absolute immunity to devastating critical ability
-// * NOTE: this feature requires the NWNX_Patch plugin and won't work without it!
-//------------------------------------------------------------------------------
-const string CREATURE_VAR_IMMUNITY_DEVASTATING_CRITICAL = "IMMUNITY_DEVAST";
 
 //------------------------------------------------------------------------------
 // * By setting this variable with a value of 1 on a creature will guarantee

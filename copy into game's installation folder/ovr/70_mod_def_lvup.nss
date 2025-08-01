@@ -4,9 +4,7 @@
 //:: Copyright (c) 2001 Bioware Corp.
 //:://////////////////////////////////////////////
 /*
-The 70_mod_def_* scripts are a new feature of nwn(c)x_patch plugin and will fire
-just before normal module events. Note, that this script will run only if game
-is loaded via NWNX or NWNCX and Community Patch plugin!
+The 70_mod_def_* scripts are a new feature and will fire just before normal module events.
 
 The purpose of this is to automatically enforce fixes/features that requires changes
 in module events in any module player will play. Also, PW builders no longer needs

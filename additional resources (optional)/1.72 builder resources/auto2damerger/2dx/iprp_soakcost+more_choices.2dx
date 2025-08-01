@@ -1,4 +1,0 @@
-2DX V2.0
-DESCRIPTION: adds a Soak0 choice into toolset, this is very useful to allow creature to penetrate certain level of damage reduction but not have any reduction on her own.
-           Name   Label    Amount   Cost   
-0          5177   Soak0    0        0      
