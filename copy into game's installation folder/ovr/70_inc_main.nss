@@ -12,6 +12,7 @@
 //:://////////////////////////////////////////////
 
 #include "x3_inc_skin"
+#include "nw_inc_gff"
 
 const int ATTACK_BONUS_CWEAPON1            = 3;
 const int ATTACK_BONUS_CWEAPON2            = 4;
@@ -56,7 +57,11 @@ void SkillTimerInitialize(object oCreature, int nSkill);
 void SkillTimerReduce(object oCreature, int nSkill);
 
 //workaround for new issue in NWN-EE where newly spawned items are forcing other items to drop or won't be created at all
-object CreateItemOnObjectOrDropIfFullInventory(string sItemTemplate, object oTarget=OBJECT_SELF, int nStackSize=1, string sNewTag="");
+//bStackingWorkaround - set TRUE if you want to make sure the newly created item will not stack with existing pieces in inventory
+object CreateItemOnObjectOrDropIfFullInventory(string sItemTemplate, object oTarget=OBJECT_SELF, int nStackSize=1, string sNewTag="", int bStackingWorkaround=FALSE);
+
+//returns TRUE if the door is invisible transition
+int isInvisibleDoorAppearanceType(object oDoor);
 
 void AddFeat(int nFeat, object oPC)
 {
@@ -298,21 +303,35 @@ object oModule = GetModule();
 AssignCommand(oModule,DelayCommand(1.0,SkillTimerReduce_internal(oCreature,nSkill)));
 }
 
-object CreateItemOnObjectOrDropIfFullInventory(string sItemTemplate, object oTarget=OBJECT_SELF, int nStackSize=1, string sNewTag="")
+object CreateItemOnObjectOrDropIfFullInventory(string sItemTemplate, object oTarget=OBJECT_SELF, int nStackSize=1, string sNewTag="", int bStackingWorkaround=FALSE)
 {
     if(!GetIsPC(oTarget)) return CreateItemOnObject(sItemTemplate,oTarget,nStackSize,sNewTag);
     object oModule = GetModule();
-    int nBaseItemType = GetLocalInt(oModule,sItemTemplate+"_BASEITEM")-1;
+    int nBaseItemType = GetLocalInt(oModule,sItemTemplate+"_BaseItem")-1;
     if(nBaseItemType < 0)
     {
-        location lLocation = GetLocation(GetObjectByTag("DM_LOKACE"));
-        object oCopy = CreateObject(OBJECT_TYPE_ITEM,sItemTemplate,lLocation);
-        nBaseItemType = GetBaseItemType(oCopy);
-        SetLocalInt(oModule,sItemTemplate+"_BASEITEM",nBaseItemType+1);
-        DestroyObject(oCopy);
+        json jItem = TemplateToJson(sItemTemplate,RESTYPE_UTI);
+        nBaseItemType = JsonGetInt(GffGetInt(jItem,"BaseItem"));
+        SetLocalInt(oModule,sItemTemplate+"_BaseItem",nBaseItemType+1);
     }
     if(GetBaseItemFitsInInventory(nBaseItemType,oTarget))
     {
+        if(bStackingWorkaround && sNewTag == "")
+        {
+            string sOriginalTag = GetLocalString(oModule,sItemTemplate+"_Tag");
+            if(sOriginalTag == "")
+            {
+                json jItem = TemplateToJson(sItemTemplate,RESTYPE_UTI);
+                sOriginalTag = JsonGetString(GffGetString(jItem,"Tag"));
+                SetLocalString(oModule,sItemTemplate+"_Tag",sOriginalTag);
+            }
+            if(sOriginalTag != "")
+            {
+                object oReward = CreateItemOnObject(sItemTemplate,oTarget,nStackSize,"questreward");
+                SetTag(oReward,sOriginalTag);
+                return oReward;
+            }
+        }
         return CreateItemOnObject(sItemTemplate,oTarget,nStackSize,sNewTag);
     }
     AssignCommand(oTarget,PlaySound("gui_magbag_full"));
@@ -321,4 +340,17 @@ object CreateItemOnObjectOrDropIfFullInventory(string sItemTemplate, object oTar
     object oItem = CreateObject(OBJECT_TYPE_ITEM,sItemTemplate,lLocation,FALSE,sNewTag);
     if(GetItemStackSize(oItem) != nStackSize) SetItemStackSize(oItem,nStackSize);
     return oItem;
+}
+
+int isInvisibleDoorAppearanceType(object oDoor)
+{
+    if(GetObjectType(oDoor) != OBJECT_TYPE_DOOR) return FALSE;
+    string s2DA = "doortypes";
+    int nApp = JsonGetInt(JsonObjectGet(JsonObjectGet(ObjectToJson(oDoor),"Appearance"),"value"));
+    if(nApp == 0)
+    {
+        s2DA = "genericdoors";
+        nApp = JsonGetInt(JsonObjectGet(JsonObjectGet(ObjectToJson(oDoor),"GenericType_New"),"value"));
+    }
+    return Get2DAString(s2DA,"VisibleModel",nApp) == "0";
 }
