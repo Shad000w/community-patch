@@ -26,6 +26,7 @@
 //::                          Dispel Magic delay until VFX hit has been set down to 0.3
 //:://////////////////////////////////////////////
 
+#include "70_inc_main"
 #include "70_inc_spells"
 #include "nw_i0_spells"
 #include "x0_i0_match"
@@ -1147,6 +1148,10 @@ int spellsIsTarget(object oTarget, int nTargetType, object oSource)
         case SPELL_TARGET_STANDARDHOSTILE:
         {
             if(GetIsDM(oTarget))//1.71: fixed rare case when invisible dungeon master is targeted
+            {
+                return FALSE;
+            }
+            else if(isInvisibleDoorAppearanceType(oTarget))//1.72: prevented spells to affect invisible area transitions
             {
                 return FALSE;
             }
