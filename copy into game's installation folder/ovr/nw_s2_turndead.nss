@@ -19,14 +19,10 @@
 Patch 1.71
 
 - wrong target check (could affect neutral undeads or undead of enemy PC in no-pvp area)
-- takes into account turn resistance of player character (but only from itemproperty)
 */
 
 #include "70_inc_spells"
 #include "x0_i0_spells"
-
-//1.70: private function to count Turn Resistance from items on PC as GetTurnResistanceHD returs 0 for PC
-int GetPCTurnResistance(object oPC);
 
 void main()
 {
@@ -152,11 +148,6 @@ void main()
             {
                   nHD = GetHitDice(oTarget) + GetTurnResistanceHD(oTarget);
             }
-            //1.70: special workaround for player characters wearing custom items with turn resistance and shifter in spectre form
-            if(GetIsPC(oTarget) && !GetIsDMPossessed(oTarget) && !GetIsPossessedFamiliar(oTarget))
-            {
-                nHD+= GetPCTurnResistance(oTarget);
-            }
 
             if(nHD <= nTurnLevel && nHD <= (nTurnHD - nHDCount))
             {
@@ -240,33 +231,4 @@ void main()
         nCnt++;
         oTarget = GetNearestCreature(CREATURE_TYPE_IS_ALIVE,TRUE, OBJECT_SELF, nCnt,CREATURE_TYPE_PERCEPTION , PERCEPTION_SEEN);
     }
-}
-
-int GetPCTurnResistance(object oPC)
-{
- if(!GetIsPC(oPC) || GetIsDMPossessed(oPC) || GetIsPossessedFamiliar(oPC))
- {
- return 0;//in these cases the default function works fine
- }
-int nTurnResistance;
-object oItem;
-int nSlot;
-itemproperty ip;
- for(;nSlot < NUM_INVENTORY_SLOTS;nSlot++)
- {
- oItem = GetItemInSlot(nSlot,oPC);
-  if(GetIsObjectValid(oItem))
-  {
-  ip = GetFirstItemProperty(oItem);
-   while(GetIsItemPropertyValid(ip))
-   {
-    if(GetItemPropertyType(ip) == ITEM_PROPERTY_TURN_RESISTANCE)
-    {
-    nTurnResistance+= GetItemPropertyCostTableValue(ip);//turn resistance stacks even on one item
-    }
-   ip = GetNextItemProperty(oItem);
-   }
-  }
- }
-return nTurnResistance;
 }
