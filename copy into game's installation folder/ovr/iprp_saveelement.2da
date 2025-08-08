@@ -1,25 +1,25 @@
-2DA V2.0                                  
-                                          
-           Name   NameString       Cost   
-0          5152   Universal        1.25   
-1          1027   Acid             0.4    
-2          ****   Backstab         0.4    
-3          1029   Cold             0.4    
-4          5154   Death            0.75   
-5          1006   Disease          0.5    
-6          5155   Divine           0.4    
-7          1030   Electrical       0.4    
-8          993    Fear             0.4    
-9          1028   Fire             0.5    
-10         ****   Illusion         0.5    
-11         5157   Mind-Affecting   0.75   
-12         5158   Negative         0.75   
-13         879    Poison           0.5    
-14         5159   Positive         0.4    
-15         2202   Sonic            0.4    
-16         5563   Traps            0.4    
-17         10566  Spells           0.75   
-18         5621   Law              0.4    
-19         5612   Chaos            0.4    
-20         5618   Good             0.4    
-21         5616   Evil             0.4
+2DA V2.0
+
+           Name   NameString       Cost   SavingThrowType
+0          5152   Universal        1.25   0
+1          1027   Acid             0.4    6
+2          ****   Backstab         0.4    ****
+3          1029   Cold             0.4    12
+4          5154   Death            0.75   11
+5          1006   Disease          0.5    3
+6          5155   Divine           0.4    13
+7          1030   Electrical       0.4    8
+8          993    Fear             0.4    4
+9          1028   Fire             0.5    7
+10         ****   Illusion         0.5    ****
+11         5157   Mind-Affecting   0.75   1
+12         5158   Negative         0.75   10
+13         879    Poison           0.5    2
+14         5159   Positive         0.4    9
+15         2202   Sonic            0.4    5
+16         5563   Traps            0.4    14
+17         10566  Spells           0.75   15
+18         5621   Law              0.4    18
+19         5612   Chaos            0.4    19
+20         5618   Good             0.4    16
+21         5616   Evil             0.4    17
