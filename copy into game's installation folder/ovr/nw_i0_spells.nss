@@ -375,303 +375,165 @@ effect eLook = GetFirstEffect(oTarget);
  }
 }
 
-//private function
-//1.70: Is my target immune to last spell cast?
-int MyResistSpell_GetIsSpellImmune(object oTarget, int bAOE)
-{
-object oRight = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND,oTarget);
-object oLeft = GetItemInSlot(INVENTORY_SLOT_LEFTHAND,oTarget);
-int bNoChange = GetLocalObject(oTarget,"ITEM_IN_RIGHT") == oRight && GetLocalObject(oTarget,"ITEM_IN_LEFT") == oLeft;
-int nSpellId = GetEffectSpellId(EffectDazed());//AOE spells workaround
- if(nSpellId == -1)//this will happen if the AOE is created outside of the spellscript
- {
- return FALSE;
- }
- else if(bAOE && bNoChange && !GetIsPC(oTarget) && GetLocalInt(oTarget,"IMMUNE_TO_"+IntToString(nSpellId)) == 1)
- {
- return TRUE;//immunity to AOE is granted via itemproperty, no reason to repeat whole process again
- }
- else if((nSpellId == SPELL_MAGIC_MISSILE || nSpellId == SPELL_SHADOW_CONJURATION_MAGIC_MISSILE) && GetHasSpellEffect(SPELL_SHIELD,oTarget))
- {
- return TRUE;//magic missile on target with Shield spell effect
- }
- else if((nSpellId == SPELL_DROWN || nSpellId == SPELLABILITY_PULSE_DROWN || nSpellId == SPELL_FLESH_TO_STONE) && GetHasSpellEffect(nSpellId,oTarget))
- {
- return TRUE;//drown and flesh to stone immunity workaround
- }
-int nSpellLevel = 99;
-int nClass = GetLastSpellCastClass();
- if(bAOE)
- {
- nSpellLevel = GetLocalInt(OBJECT_SELF,"AOE_INNATE")-1;
-  if(nSpellLevel < 0)
-  {
-  nSpellLevel = 99;
-   if(GetLocalInt(OBJECT_SELF,"AOE_CLASS") > 0)
-   {
-   nClass = GetLocalInt(OBJECT_SELF,"AOE_CLASS")-1;
-   }
-  }
- }
- if(nSpellLevel == 99)
- {
- nSpellLevel = 0;//in case of some errorneously setup spell, use level 0
- string sCollumn = "Innate";
-  switch(nClass)
-  {
-  case CLASS_TYPE_WIZARD:
-  case CLASS_TYPE_SORCERER:     sCollumn = "Wiz_Sorc";  break;
-  case CLASS_TYPE_CLERIC:       sCollumn = "Cleric";    break;
-  case CLASS_TYPE_DRUID:        sCollumn = "Druid";     break;
-  case CLASS_TYPE_BARD:         sCollumn = "Bard";      break;
-  case CLASS_TYPE_RANGER:       sCollumn = "Ranger";    break;
-  case CLASS_TYPE_PALADIN:      sCollumn = "Paladin";   break;
-  }
- string sResult = Get2DAString("spells",sCollumn,nSpellId);
-  if(sResult != "****" && sResult != "")
-  {
-  nSpellLevel = StringToInt(sResult);
-  }
-  else if(sCollumn != "Innate")//1.72: spell is cast from polymorph, domain or custom content, lets use innate
-  {
-  sResult = Get2DAString("spells","Innate",nSpellId);
-   if(sResult != "****" && sResult != "")
-   {
-   nSpellLevel = StringToInt(sResult);
-   }
-  }
-  if(bAOE) SetLocalInt(OBJECT_SELF,"AOE_INNATE",nSpellLevel+1);
- }
-int nMaxLevel = -1;
- if(GetHasSpellEffect(734,oTarget))
- nMaxLevel = 8;
- else if(GetHasSpellEffect(SPELL_GLOBE_OF_INVULNERABILITY,oTarget))
- nMaxLevel = 4;
- else if(GetHasSpellEffect(SPELL_MINOR_GLOBE_OF_INVULNERABILITY,oTarget) || GetHasSpellEffect(SPELL_GREATER_SHADOW_CONJURATION_MINOR_GLOBE,oTarget))
- nMaxLevel = 3;
- else if(GetHasSpellEffect(SPELL_ETHEREAL_VISAGE,oTarget))
- nMaxLevel = 2;                                                                                                                          //shadow ghostly visage
- else if(GetHasSpellEffect(SPELL_GHOSTLY_VISAGE,oTarget) || GetHasSpellEffect(SPELLABILITY_AS_GHOSTLY_VISAGE,oTarget) || GetHasSpellEffect(SPELL_GREATER_SHADOW_CONJURATION_MIRROR_IMAGE,oTarget))
- nMaxLevel = 1;
- if(nSpellLevel <= nMaxLevel)
- {
- return TRUE;//immunity via spell immunity effect like globe of invulnerability
- }
-string sSchool = Get2DAString("spells","School",nSpellId);
- if(GetHasSpellEffect(SPELL_SHADOW_SHIELD,oTarget) && sSchool == "N")
- {
- return TRUE;//Necromantic spell cast at target with Shadow Shield
- }
-int nSchool = -1;
- if     (sSchool == "A")     nSchool = 0;
- else if(sSchool == "C")     nSchool = 1;
- else if(sSchool == "D")     nSchool = 2;
- else if(sSchool == "E")     nSchool = 3;
- else if(sSchool == "V")     nSchool = 4;
- else if(sSchool == "I")     nSchool = 5;
- else if(sSchool == "N")     nSchool = 6;
- else if(sSchool == "T")     nSchool = 7;
- if(bAOE && !GetIsPC(oTarget))
- {
-  if(bNoChange && GetLocalInt(oTarget,"IMMUNE_TO_"+IntToString(nSpellId)) == -1)
-  {
-  return FALSE;//immunity to AOE is not granted via itemproperty, no reason to repeat whole process again
-  }
-  else
-  {
-  SetLocalObject(oTarget,"ITEM_IN_RIGHT",oRight);
-  SetLocalObject(oTarget,"ITEM_IN_LEFT",oLeft);
-  }
- }
-//still nothing, lets check target items to handle creatures like demilich
-int nSlot;
-object oItem;
-itemproperty ip;
- for(;nSlot < NUM_INVENTORY_SLOTS;nSlot++)
- {
- oItem = GetItemInSlot(nSlot,oTarget);
-  if(GetIsObjectValid(oItem))
-  {
-  itemproperty ip = GetFirstItemProperty(oItem);
-   while(GetIsItemPropertyValid(ip))
-   {
-    switch(GetItemPropertyType(ip))
-    {
-    case ITEM_PROPERTY_IMMUNITY_SPECIFIC_SPELL:
-     if(StringToInt(Get2DAString("iprp_spellcost","SpellIndex",GetItemPropertyCostTableValue(ip))) == nSpellId)
-     {
-      if(bAOE) SetLocalInt(oTarget,"IMMUNE_TO_"+IntToString(nSpellId),1);
-     return TRUE;//immunity specifically on our spell from itemproperty
-     }
-    break;
-    case ITEM_PROPERTY_IMMUNITY_SPELLS_BY_LEVEL:
-     if(nSpellLevel <= GetItemPropertyCostTableValue(ip))
-     {
-      if(bAOE) SetLocalInt(oTarget,"IMMUNE_TO_"+IntToString(nSpellId),1);
-     return TRUE;//immunity to spell by level from itemproperty
-     }
-    break;
-    case ITEM_PROPERTY_IMMUNITY_SPELL_SCHOOL:
-     if(GetItemPropertySubType(ip) == nSchool)
-     {
-      if(bAOE) SetLocalInt(oTarget,"IMMUNE_TO_"+IntToString(nSpellId),1);
-     return TRUE;//immunity to spell school from itemproperty
-     }
-    break;
-    }
-   ip = GetNextItemProperty(oItem);
-   }
-  }
- }
- if(bAOE) SetLocalInt(oTarget,"IMMUNE_TO_"+IntToString(nSpellId),-1);
-return FALSE;
-}
-
 int MyResistSpell(object oCaster, object oTarget, float fDelay = 0.0)
 {
- if(spell.SR == NO) return 0;//dynamic spell resist override feature, -1 = ignore SR for this spell
-int bAOE = GetObjectType(OBJECT_SELF) == OBJECT_TYPE_AREA_OF_EFFECT;
-int bDFBorGlyph = spell.Id == SPELL_DELAYED_BLAST_FIREBALL || spell.Id == SPELL_GLYPH_OF_WARDING;//1.72: these two spells while AOEs are exception and shouldn't behave as other AOE spells
- if(GetLocalInt(oCaster,"DISABLE_RESIST_SPELL_CHECK"))
- {
- return 0;
- }
- else if(spell.SR != YES && bAOE && !bDFBorGlyph && GetModuleSwitchValue("70_AOE_IGNORE_SPELL_RESISTANCE"))//1.72: allowed to override the global rule of no SR for AOEs
- {
-  if(MyResistSpell_GetIsSpellImmune(oTarget,bAOE))
-  {
-  //spell should be resisted via various spell immunity!
-  //engine workaround to print "immunity feedback"
-  string sFeedback = GetStringByStrRef(8342);//this will work pretty well for singleplayer
-  sFeedback = GetStringLeft(sFeedback,GetStringLength(sFeedback)-10);//but if would someone with non-english language
-  sFeedback = GetStringRight(sFeedback,GetStringLength(sFeedback)-10);//played english server, then this immunity
-  sFeedback = "<c›þþ>"+GetName(oTarget)+"</c> <cÍþ>"+sFeedback+" "+GetStringByStrRef(8344)+"</c>";//feedback will be
-  SendMessageToPC(oTarget,sFeedback);//in english, while normally it would be in his language...
-  SendMessageToPC(oCaster,sFeedback);
-  DelayCommand(fDelay,ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectVisualEffect(VFX_IMP_GLOBE_USE),oTarget));
-  return 2;
-  }
- return 0;//switch to disable ResistSpell check for specified object or all AoEs
- }
- if(fDelay > 0.5)
- {
- fDelay -= 0.1;
- }
- //1.70: new ResistSpell behavior, Spell Immunity is checked before spell mantle
- if((bAOE || !GetLocalInt(GetModule(),"70_RESISTSPELL_SPELLMANTLE_GOES_FIRST") && (GetHasSpellEffect(SPELL_LESSER_SPELL_MANTLE,oTarget) ||
- GetHasSpellEffect(SPELL_SPELL_MANTLE,oTarget) || GetHasSpellEffect(SPELL_GREATER_SPELL_MANTLE,oTarget))) &&
- MyResistSpell_GetIsSpellImmune(oTarget,bAOE))
- {
- //spell should be resisted via various spell immunity!
- //engine workaround to print "immunity feedback"
- string sFeedback = GetStringByStrRef(8342);//this will work pretty well for singleplayer
- sFeedback = GetStringLeft(sFeedback,GetStringLength(sFeedback)-10);//but if would someone with non-english language
- sFeedback = GetStringRight(sFeedback,GetStringLength(sFeedback)-10);//played english server, then this immunity
- sFeedback = "<c›þþ>"+GetName(oTarget)+"</c> <cÍþ>"+sFeedback+" "+GetStringByStrRef(8344)+"</c>";//feedback will be
- SendMessageToPC(oTarget,sFeedback);//in english, while normally it would be in his language...
- SendMessageToPC(oCaster,sFeedback);
- DelayCommand(fDelay,ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectVisualEffect(VFX_IMP_GLOBE_USE),oTarget));
- return 2;
- }
-//1.72: added possibility to modify spell resistance penetration strenght
-object oSource = spell.Item != OBJECT_INVALID ? spell.Item : spell.Caster;
-int nPenetrationModifier = GetLocalInt(oSource,IntToString(spell.Id)+"_PENETRATION_MODIFIER");
-string sPrefix = "SPELL";
- if(oSource == spell.Item) sPrefix = "ITEM";
- else if(spell.Class == CLASS_TYPE_INVALID) sPrefix = "SPECIAL_ABILITY";
-nPenetrationModifier+= GetLocalInt(oSource,sPrefix+"_PENETRATION_MODIFIER");
-//1.70: caster level override workaround, since ResistSpell function uses its own values
-//and its hardcoded I apply a spell resistance decrease in the appropriate ammount in order to cheat
-//this hardcoded function. This works pretty well for non-monks. Unfortunately 12+ lvl monks are immune to this solution.
-int clOverride = spell.Level;
-int clDefault = GetCasterLevel(oCaster);
- if(GetLastSpellCastClass() == CLASS_TYPE_INVALID && GetSpellCastItem() == OBJECT_INVALID)//fix for bug in SR check formula
- {//internal SR calculates with CL = innate level*2-1, and yes -1 for cantrips
- int clSR = StringToInt(Get2DAString("spells","Innate",GetEffectSpellId(EffectDazed())))*2-1;
-  if(clDefault != clSR)//if default CL accidentaly matches CL for SR then its fine
-  {
-   if(!clOverride) clOverride = clDefault;
-  clDefault = clSR;
-  }
- }
-int SR = GetSpellResistance(oTarget);
-effect eWorkaround;
- if(bAOE)//AOE workaround to fix various exploits
- {
-  if(bDFBorGlyph && (GetHasSpellEffect(SPELL_LESSER_SPELL_MANTLE,oTarget) || GetHasSpellEffect(SPELL_SPELL_MANTLE,oTarget) || GetHasSpellEffect(SPELL_GREATER_SPELL_MANTLE,oTarget)))
-  {//1.72: glyph or dfb and mantle - proc it, it might be proc'ed with wrong spell level that it should but thats still better than when mantle was ignored
-   if(fDelay > 0.5)
-   {
-   fDelay -= 0.1;
-   }
-  effect eMantle = EffectVisualEffect(VFX_IMP_SPELL_MANTLE_USE);
-  DelayCommand(fDelay,ApplyEffectToObject(DURATION_TYPE_INSTANT,eMantle,oTarget));
-  return ResistSpell(oCaster,oTarget);
-  }
- int nResisted = 0;
-  if(SR > 0)//1.72: fixed custom spell resist calculation not counting spell penetration feats
-  {
-  if(GetHasFeat(FEAT_EPIC_SPELL_PENETRATION)) nPenetrationModifier+= 6;
-  else if(GetHasFeat(FEAT_GREATER_SPELL_PENETRATION)) nPenetrationModifier+= 4;
-  else if(GetHasFeat(FEAT_SPELL_PENETRATION)) nPenetrationModifier+= 2;
-   if(d20()+nPenetrationModifier+clOverride < SR)//resisted
-   {
-   nResisted = 1;
-   DelayCommand(fDelay,ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectVisualEffect(VFX_IMP_MAGIC_RESISTANCE_USE),oTarget));
-   }
-  string sFeedback = GetStringByStrRef(8342);
-  sFeedback = GetStringLeft(sFeedback,GetStringLength(sFeedback)-10);
-  sFeedback = GetStringRight(sFeedback,GetStringLength(sFeedback)-10);
-  sFeedback = "<c›þþ>"+GetName(oTarget)+"</c> <cÍþ>"+sFeedback+" "+GetStringByStrRef(nResisted == 1 ? 8343 : 5353)+"</c>";
-  SendMessageToPC(oTarget,sFeedback);
-  SendMessageToPC(oCaster,sFeedback);
-  }
- return nResisted;
- }
- else if((clOverride > 0 || nPenetrationModifier > 0) && SR > 0)//spell penetration correction
- {
-  //if overriden above default caster level we must alter spell resistance of our target...
-  if(clOverride+nPenetrationModifier > clDefault && clOverride+20 >= SR)
-  {                          //do nothing if there is no chance to penetrate SR anyway
-  //NWNX SR override
-  SetLocalInt(oTarget,"GetSpellResistance",SR-(clOverride+nPenetrationModifier-clDefault));
-   if(GetSpellResistance(oTarget) == SR)//NWNX not working
-   {
-   eWorkaround = EffectSpellResistanceDecrease(clOverride+nPenetrationModifier-clDefault);
-   ApplyEffectToObject(DURATION_TYPE_TEMPORARY,eWorkaround,oTarget,0.01);//temporary workaround to force game use correct values
-   SR = -255;
-   }
-  }
-  else if(clOverride+nPenetrationModifier < clDefault && clDefault+20 >= SR)
-  {                               //do nothing if the default CL has no chance to penetrate SR anyway
-  eWorkaround = EffectSpellResistanceIncrease(SR+clDefault-(clOverride+nPenetrationModifier));
-  ApplyEffectToObject(DURATION_TYPE_TEMPORARY,eWorkaround,oTarget,0.01);//temporary workaround to force game use correct values
-  SR = -255;
-  }
- }//end of caster level workaround
-int nResist = ResistSpell(oCaster,oTarget);
-DeleteLocalInt(oTarget,"GetSpellResistance");//cleanup
- if(SR == -255) RemoveEffect(oTarget,eWorkaround);//cleanup to avoid showing the effect icon for SR workaround entirely
- if(nResist == 1) //Spell Resistance
- {
- effect eSR = EffectVisualEffect(VFX_IMP_MAGIC_RESISTANCE_USE);
- DelayCommand(fDelay,ApplyEffectToObject(DURATION_TYPE_INSTANT,eSR,oTarget));
- }
- else if(nResist == 2) //Globe
- {
- effect eGlobe = EffectVisualEffect(VFX_IMP_GLOBE_USE);
- DelayCommand(fDelay,ApplyEffectToObject(DURATION_TYPE_INSTANT,eGlobe,oTarget));
- }
- else if(nResist == 3) //Spell Mantle
- {
-  if(fDelay > 0.5)
-  {
-  fDelay -= 0.1;
-  }
- effect eMantle = EffectVisualEffect(VFX_IMP_SPELL_MANTLE_USE);
- DelayCommand(fDelay,ApplyEffectToObject(DURATION_TYPE_INSTANT,eMantle,oTarget));
- }
-return nResist;
+    if(spell.SR == NO) return 0;//dynamic spell resist override feature, -1 = ignore SR for this spell
+    if(spell.Level == 0)//1:72: forward-compatibility support; this will happen only in case a vanilla spellscript is compiled with CPP's library
+    {
+        spell.Level = GetCasterLevel(oCaster);
+        spell.Id = GetSpellId();
+    }
+    int bAOE = GetObjectType(OBJECT_SELF) == OBJECT_TYPE_AREA_OF_EFFECT && !(spell.Id == SPELL_DELAYED_BLAST_FIREBALL || spell.Id == SPELL_GLYPH_OF_WARDING);//1.72: these two spells while AOEs are exception and shouldn't behave as other AOE spells
+    if(GetLocalInt(oCaster,"DISABLE_RESIST_SPELL_CHECK"))
+    {
+        return 0;
+    }
+    if(fDelay > 0.5)
+    {
+        fDelay -= 0.1;
+    }
+
+    //1.72: added possibility to modify spell resistance penetration strenght
+    object oSource = spell.Item != OBJECT_INVALID ? spell.Item : spell.Caster;
+    int nPenetrationModifier = GetLocalInt(oSource,IntToString(spell.Id)+"_PENETRATION_MODIFIER");
+    string sPrefix = "SPELL";
+    if(oSource == spell.Item) sPrefix = "ITEM";
+    else if(spell.Class == CLASS_TYPE_INVALID) sPrefix = "SPECIAL_ABILITY";
+    nPenetrationModifier+= GetLocalInt(oSource,sPrefix+"_PENETRATION_MODIFIER");
+
+    //1.70: by default in CPP the immunity to spell is checked before spell mantle, unless varible below is set TRUE
+    int bVanillaOrder = GetModuleSwitchValue("70_RESISTSPELL_SPELLMANTLE_GOES_FIRST");
+    int bAOEIgnoresSRandMantle = spell.SR != YES && bAOE && GetModuleSwitchValue("70_AOE_IGNORE_SPELL_RESISTANCE");
+
+    if(!bAOEIgnoresSRandMantle && bVanillaOrder && SpellAbsorptionLimitedCheck(oTarget,oCaster,spell.Id))
+    {
+        //since the feedback from this function is missing, we have to send players custom feedback, but only to players
+        if(GetIsPC(oTarget) || GetIsPossessedFamiliar(oTarget) || GetIsPC(GetMaster(oTarget)))
+        {
+            string sFeedback = "<c›þþ>"+GetName(oTarget)+"</c> <cÍþ>";
+            if(GetPCPublicCDKey(GetFirstPC()) == "")//single player - use text from player's dialog.tlk which can be in unofficial language like Russian
+            {
+                string sTlkMessage = GetStringByStrRef(8342);//<CUSTOM0> attempts to resist spell : <CUSTOM1>
+                sTlkMessage = GetStringRight(sTlkMessage,GetStringLength(sTlkMessage)-10);//this will remove <CUSTOM0>
+                sTlkMessage = GetStringLeft(sTlkMessage,GetStringLength(sTlkMessage)-9);//this will remove <CUSTOM1>
+                sFeedback+= sTlkMessage+GetStringByStrRef(8345)+"</c>";//this adds: spell absorbed
+            }
+            else//if not singleplayer, then there is no other choice but to send the player message based on the language ID he sends to server
+            {
+                switch(GetPlayerLanguage(oTarget))
+                {
+                    case PLAYER_LANGUAGE_FRENCH: sFeedback+= "tente de résister au sort : sort absorbé</c>"; break;
+                    case PLAYER_LANGUAGE_GERMAN: sFeedback+= " versucht, Zauber zu widerstehen : Zauber absorbiert</c>"; break;
+                    case PLAYER_LANGUAGE_ITALIAN: sFeedback+= "tenta di resistere all'incantesimo: incantesimo assorbito</c>"; break;
+                    case PLAYER_LANGUAGE_POLISH: sFeedback+= "próbuje odeprzeæ zaklêcie : zaklêcie przerwane</c>"; break;
+                    case PLAYER_LANGUAGE_SPANISH: sFeedback+= "intenta resistir el conjuro conjuro absorbido</c>"; break;
+                    default: sFeedback+= "attempts to resist spell : spell absorbed</c>"; break;
+                }
+            }
+            SendMessageToPC(oTarget,sFeedback);
+        }
+        //this also removes the double feedback that is send in vanilla ResistSpell if target and caster is the same creature
+        if(oTarget != oCaster && (GetIsPC(oCaster) || GetIsPossessedFamiliar(oCaster) || GetIsPC(GetMaster(oCaster))))
+        {
+            string sFeedback = "<cÌ™Ì>"+GetName(oTarget)+"</c> <cÍþ>";
+            if(GetPCPublicCDKey(GetFirstPC()) == "")
+            {
+                string sTlkMessage = GetStringByStrRef(8342);
+                sTlkMessage = GetStringRight(sTlkMessage,GetStringLength(sTlkMessage)-10);
+                sTlkMessage = GetStringLeft(sTlkMessage,GetStringLength(sTlkMessage)-9);
+                sFeedback+= sTlkMessage+GetStringByStrRef(8345)+"</c>";
+            }
+            else
+            {
+                switch(GetPlayerLanguage(oTarget))
+                {
+                    case PLAYER_LANGUAGE_FRENCH: sFeedback+= "tente de résister au sort : sort absorbé</c>"; break;
+                    case PLAYER_LANGUAGE_GERMAN: sFeedback+= " versucht, Zauber zu widerstehen : Zauber absorbiert</c>"; break;
+                    case PLAYER_LANGUAGE_ITALIAN: sFeedback+= "tenta di resistere all'incantesimo: incantesimo assorbito</c>"; break;
+                    case PLAYER_LANGUAGE_POLISH: sFeedback+= "próbuje odeprzeæ zaklêcie : zaklêcie przerwane</c>"; break;
+                    case PLAYER_LANGUAGE_SPANISH: sFeedback+= "intenta resistir el conjuro conjuro absorbido</c>"; break;
+                    default: sFeedback+= "attempts to resist spell : spell absorbed</c>"; break;
+                }
+            }
+            SendMessageToPC(oCaster,sFeedback);
+        }
+        if(fDelay > 0.5)
+        {
+            fDelay -= 0.1;
+        }
+        DelayCommand(fDelay,ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectVisualEffect(VFX_IMP_SPELL_MANTLE_USE),oTarget));
+        return 3;
+    }
+    else if(SpellImmunityCheck(oTarget,oCaster,spell.Id) || SpellAbsorptionUnlimitedCheck(oTarget,oCaster,spell.Id))
+    {
+        //since the feedback from this function is missing, we have to send players custom feedback, but only to players
+        if(GetIsPC(oTarget) || GetIsPossessedFamiliar(oTarget) || GetIsPC(GetMaster(oTarget)))
+        {
+            string sFeedback = "<c›þþ>"+GetName(oTarget)+"</c> <cÍþ>";
+            if(GetPCPublicCDKey(GetFirstPC()) == "")//single player - use text from player's dialog.tlk which can be in unofficial language like Russian
+            {
+                string sTlkMessage = GetStringByStrRef(8342);//<CUSTOM0> attempts to resist spell : <CUSTOM1>
+                sTlkMessage = GetStringRight(sTlkMessage,GetStringLength(sTlkMessage)-10);//this will remove <CUSTOM0>
+                sTlkMessage = GetStringLeft(sTlkMessage,GetStringLength(sTlkMessage)-9);//this will remove <CUSTOM1>
+                sFeedback+= sTlkMessage+GetStringByStrRef(8344)+"</c>";//this adds: magic immunity
+            }
+            else//if not singleplayer, then there is no other choice but to send the player message based on the language ID he sends to server
+            {
+                switch(GetPlayerLanguage(oTarget))
+                {
+                    case PLAYER_LANGUAGE_FRENCH: sFeedback+= "tente de résister au sort : immunité contre la magie</c>"; break;
+                    case PLAYER_LANGUAGE_GERMAN: sFeedback+= " versucht, Zauber zu widerstehen : Magieimmunität</c>"; break;
+                    case PLAYER_LANGUAGE_ITALIAN: sFeedback+= "tenta di resistere all'incantesimo: immunità magica</c>"; break;
+                    case PLAYER_LANGUAGE_POLISH: sFeedback+= "próbuje odeprzeæ zaklêcie : niewra¿liwoœæ na magiê</c>"; break;
+                    case PLAYER_LANGUAGE_SPANISH: sFeedback+= "intenta resistir el conjuro inmunidad a la magia</c>"; break;
+                    default: sFeedback+= "attempts to resist spell : magic immunity</c>"; break;
+                }
+            }
+            SendMessageToPC(oTarget,sFeedback);
+        }
+        //this also removes the double feedback that is send in vanilla ResistSpell if target and caster is the same creature
+        if(oTarget != oCaster && (GetIsPC(oCaster) || GetIsPossessedFamiliar(oCaster) || GetIsPC(GetMaster(oCaster))))
+        {
+            string sFeedback = "<cÌ™Ì>"+GetName(oTarget)+"</c> <cÍþ>";
+            if(GetPCPublicCDKey(GetFirstPC()) == "")
+            {
+                string sTlkMessage = GetStringByStrRef(8342);
+                sTlkMessage = GetStringRight(sTlkMessage,GetStringLength(sTlkMessage)-10);
+                sTlkMessage = GetStringLeft(sTlkMessage,GetStringLength(sTlkMessage)-9);
+                sFeedback+= sTlkMessage+GetStringByStrRef(8344)+"</c>";
+            }
+            else
+            {
+                switch(GetPlayerLanguage(oTarget))
+                {
+                    case PLAYER_LANGUAGE_FRENCH: sFeedback+= "tente de résister au sort : immunité contre la magie</c>"; break;
+                    case PLAYER_LANGUAGE_GERMAN: sFeedback+= " versucht, Zauber zu widerstehen : Magieimmunität</c>"; break;
+                    case PLAYER_LANGUAGE_ITALIAN: sFeedback+= "tenta di resistere all'incantesimo: immunità magica</c>"; break;
+                    case PLAYER_LANGUAGE_POLISH: sFeedback+= "próbuje odeprzeæ zaklêcie : niewra¿liwoœæ na magiê</c>"; break;
+                    case PLAYER_LANGUAGE_SPANISH: sFeedback+= "intenta resistir el conjuro inmunidad a la magia</c>"; break;
+                    default: sFeedback+= "attempts to resist spell : magic immunity</c>"; break;
+                }
+            }
+            SendMessageToPC(oCaster,sFeedback);
+        }
+        DelayCommand(fDelay,ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectVisualEffect(VFX_IMP_GLOBE_USE),oTarget));
+        return 2;
+    }
+    else if(!bAOEIgnoresSRandMantle && !bVanillaOrder && SpellAbsorptionLimitedCheck(oTarget,oCaster,spell.Id))
+    {
+        if(fDelay > 0.5)
+        {
+            fDelay -= 0.1;
+        }
+        DelayCommand(fDelay,ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectVisualEffect(VFX_IMP_SPELL_MANTLE_USE),oTarget));
+        return 3;
+    }
+    else if(!bAOEIgnoresSRandMantle && SpellResistanceCheck(oTarget,oCaster,spell.Id,spell.Level+nPenetrationModifier))
+    {
+        DelayCommand(fDelay,ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectVisualEffect(VFX_IMP_MAGIC_RESISTANCE_USE),oTarget));
+        return 1;
+    }
+    return 0;
 }
 
 int MySavingThrow(int nSavingThrow, object oTarget, int nDC, int nSaveType=SAVING_THROW_TYPE_NONE, object oSaveVersus = OBJECT_SELF, float fDelay = 0.0)
