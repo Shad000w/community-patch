@@ -12,7 +12,7 @@ to merge scripts to get these functionalities.
 
 If you are a builder you can reuse these events for your own purposes too. With
 this feature, you can make a system like 3.5 ruleset which will work in any module
-as long player is using patch 1.72 + NWNCX + nwncx_patch plugin.
+as long player is using patch 1.72.
 
 Note: community patch doesn't include scripts for all these events, but only for
 a few. You can create a script with specified name for other events. There was
@@ -52,7 +52,7 @@ void main()
     if(GetLocalInt(OBJECT_SELF,"70_mod_def_load_DOONCE")) return;//safety check to prevent running this multiple times
     SetLocalInt(OBJECT_SELF,"70_mod_def_load_DOONCE",TRUE);
 
-//  Do not remove the code below, otherwise the nwn(c)x_patch plugin will not be able to work with global module switches (in database)
+    //Single Player: this will load module switches stored by player in database
     SetLocalInt(OBJECT_SELF,"72_DISABLE_TUMBLE_AC",GetModuleSwitchValue("72_DISABLE_TUMBLE_AC"));
     SetLocalInt(OBJECT_SELF,"72_DISABLE_SNEAK_CRITICAL_IMMUNITY",GetModuleSwitchValue("72_DISABLE_SNEAK_CRITICAL_IMMUNITY"));
     SetLocalInt(OBJECT_SELF,"72_DISABLE_MONK_IN_POLYMORPH",GetModuleSwitchValue("72_DISABLE_MONK_IN_POLYMORPH"));
