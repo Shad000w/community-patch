@@ -80,9 +80,6 @@ object IPGetIPWorkContainer( object oCaller = OBJECT_SELF );
 // *  ip types we want to use, but it goes into the item property include anyway
 itemproperty IPGetItemPropertyByID( int nPropID, int nParam1 = 0, int nParam2 = 0, int nParam3 = 0, int nParam4 = 0 );
 
-// *  returns true if weapon is throwing weapon
-int IPGetIsThrownWeapon(object oItem);
-
 // *  returns TRUE if oItem is a ranged weapon
 int   IPGetIsRangedWeapon( object oItem );
 
@@ -641,15 +638,6 @@ int IPGetIsProjectile(object oItem)
 {
     int nBaseItemType = GetBaseItemType(oItem);
     return nBaseItemType != BASE_ITEM_INVALID && !GetWeaponRanged(oItem) && Get2DAString("baseitems","PropColumn",nBaseItemType) == "5" && Get2DAString("baseitems","WeaponType",nBaseItemType) == "0";
-}
-
-// ----------------------------------------------------------------------------
-// Returns TRUE if weapon is a throwing weapon.
-// ----------------------------------------------------------------------------
-int IPGetIsThrownWeapon(object oItem)
-{
-    int nBaseItemType = GetBaseItemType(oItem);
-    return nBaseItemType != BASE_ITEM_INVALID && GetWeaponRanged(oItem) && StringToInt(Get2DAString("baseitems","RangedWeapon",nBaseItemType)) == nBaseItemType;
 }
 
 // ----------------------------------------------------------------------------

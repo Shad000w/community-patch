@@ -20,6 +20,8 @@ int ITEM_PROPERTY_BOOMERANG             = 14;
 int ITEM_PROPERTY_ITEM_COST_PARAMETER   = 42;
 int ITEM_PROPERTY_WOUNDING              = 69;
 
+// *  returns true if weapon is throwing weapon
+int IPGetIsThrownWeapon(object oItem);
 
 // Returns Item property Boomerang. Keep in mind this property works only with NWN(C)X
 itemproperty ItemPropertyBoomerang();
@@ -52,6 +54,15 @@ itemproperty GetItemPropertyByID( int nPropID, int nParam1 = 0, int nParam2 = 0,
 // Note that nNumber should be > 0!
 // ----------------------------------------------------------------------------
 int IPGetIPConstDamageBonusConstantFromNumber(int nNumber);
+
+// ----------------------------------------------------------------------------
+// Returns TRUE if weapon is a throwing weapon.
+// ----------------------------------------------------------------------------
+int IPGetIsThrownWeapon(object oItem)
+{
+    int nBaseItemType = GetBaseItemType(oItem);
+    return nBaseItemType != BASE_ITEM_INVALID && GetWeaponRanged(oItem) && StringToInt(Get2DAString("baseitems","RangedWeapon",nBaseItemType)) == nBaseItemType;
+}
 
 int GetSlotByItem(object oItem, object oCreature=OBJECT_SELF)
 {

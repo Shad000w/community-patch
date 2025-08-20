@@ -24,6 +24,7 @@ Patch 1.71
 - halfelves also immune
 */
 
+#include "70_inc_spells"
 #include "nw_i0_spells"
 
 void main()

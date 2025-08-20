@@ -13,6 +13,7 @@
 //:: Updated On: Oct 20, 2003
 //:://////////////////////////////////////////////
 
+#include "70_inc_spells"
 #include "nw_i0_spells"
 
 void main()

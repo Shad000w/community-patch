@@ -21,6 +21,7 @@ Patch 1.70
 */
 
 #include "70_inc_spells"
+#include "70_inc_itemprop"
 #include "x2_i0_spells"
 #include "x2_inc_spellhook"
 

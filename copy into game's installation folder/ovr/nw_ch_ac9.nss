@@ -23,6 +23,7 @@ Patch 1.70
 - added a incorporeal feature in order to fix a Pale Master summoned spectre that uses this OnSpawn script
 */
 
+#include "70_inc_spells"
 #include "x0_inc_henai"
 #include "x2_inc_switches"
 #include "x0_i0_spells"
