@@ -34,7 +34,7 @@ void main()
     //Declare major variables
     object oTarget = GetSpellTargetObject();
 
-    RemoveEffectsFromSpell(spell.Target, SPELL_EXPEDITIOUS_RETREAT);
+    RemoveEffectsFromSpell(oTarget, SPELL_EXPEDITIOUS_RETREAT);
 
     effect eHaste = EffectHaste();
     effect eVis = EffectVisualEffect(460);
