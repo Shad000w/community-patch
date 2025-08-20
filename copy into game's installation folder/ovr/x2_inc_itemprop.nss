@@ -18,6 +18,7 @@
 //:: Created On: 2003-06-05
 //:: Last Update: 2003-10-07
 //:://////////////////////////////////////////////
+#include "70_inc_itemprop"
 #include "x2_inc_switches"
 
 // *  The tag of the ip work container, a placeable which has to be set into each
