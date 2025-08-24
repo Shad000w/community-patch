@@ -13,8 +13,9 @@
 //:: Last Updated By: Aidan Scanlan On: April 11, 2001
 //:: Last Updated By: Preston Watamaniuk, On: June 11, 2001
 /*
+Patch 1.72
+- fixed line of sight not being checked
 Patch 1.71
-
 - cone could in certain circumstances affect caster
 - delay for VFX corrected (was always 0.5 for all targets)
 - added saving throw subtype (paralyse) versus paralyse effect
@@ -49,7 +50,7 @@ void main()
     //Set the delay to apply to effects based on the distance to the target
     float fDelay;
     //Get first target in the spell area
-    object oTarget = GetFirstObjectInShape(SHAPE_SPELLCONE, spell.Range, spell.Loc);
+    object oTarget = GetFirstObjectInShape(SHAPE_SPELLCONE, spell.Range, spell.Loc, TRUE);
     while (GetIsObjectValid(oTarget))
     {
         if (oTarget != spell.Caster && spellsIsTarget(oTarget, spell.TargetType, spell.Caster))
@@ -89,7 +90,7 @@ void main()
             }
         }
         //Get next target in the spell area
-        oTarget = GetNextObjectInShape(SHAPE_SPELLCONE, spell.Range, spell.Loc);
+        oTarget = GetNextObjectInShape(SHAPE_SPELLCONE, spell.Range, spell.Loc, TRUE);
     }
 }
 

@@ -13,6 +13,7 @@
 /*
 Pach 1.72
 - fixed casting the spell on self not finding any targets in AoE
+- fixed line of sight not being checked
 Patch 1.71
 - duration of blindness unified with other breaths (was several times higher than other breaths)
 - delay for VFX corrected (was always 0.5 for all targets)
@@ -50,7 +51,7 @@ void main()
     }
 
     //Get first target in the spell area
-    object oTarget = GetFirstObjectInShape(SHAPE_SPELLCONE, 20.0, lTargetLocation);
+    object oTarget = GetFirstObjectInShape(SHAPE_SPELLCONE, 20.0, lTargetLocation, TRUE);
     while (GetIsObjectValid(oTarget))
     {
         if (oTarget != OBJECT_SELF && spellsIsTarget(oTarget, SPELL_TARGET_STANDARDHOSTILE, OBJECT_SELF))
@@ -87,7 +88,7 @@ void main()
             }
         }
         //Get next target in the spell area
-        oTarget = GetNextObjectInShape(SHAPE_SPELLCONE, 20.0, lTargetLocation);
+        oTarget = GetNextObjectInShape(SHAPE_SPELLCONE, 20.0, lTargetLocation, TRUE);
     }
 }
 
