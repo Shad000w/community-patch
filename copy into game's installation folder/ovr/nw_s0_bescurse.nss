@@ -20,6 +20,7 @@ Patch 1.70
 - wrong signal event fixed
 */
 
+#include "70_inc_switches"
 #include "70_inc_spells"
 #include "x0_i0_spells"
 #include "x2_inc_spellhook"
@@ -40,6 +41,10 @@ void main()
     spellsDeclareMajorVariables();
     effect eVis = EffectVisualEffect(VFX_IMP_REDUCE_ABILITY_SCORE);
     effect eCurse = EffectCurse(2, 2, 2, 2, 2, 2);
+    if(!GetIsImmune(spell.Target,IMMUNITY_TYPE_CURSED,spell.Caster) && GetModuleSwitchValue(MODULE_SWITCH_CURSE_IGNORE_ABILITY_DECREASE_IMMUNITY))
+    {
+        eCurse = IgnoreEffectImmunity(eCurse);//implementation of the module switch to ignore ability decrease immunity for curse
+    }
 
     //Make sure that curse is of type supernatural not magical
     eCurse = SupernaturalEffect(eCurse);

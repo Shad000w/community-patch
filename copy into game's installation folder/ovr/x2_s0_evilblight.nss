@@ -21,6 +21,7 @@ Patch 1.70
 - wrong signal event fixed
 */
 
+#include "70_inc_switches"
 #include "70_inc_spells"
 #include "x0_i0_spells"
 #include "x2_inc_spellhook"
@@ -42,7 +43,7 @@ void main()
     spellsDeclareMajorVariables();
     effect eImpact = EffectVisualEffect(VFX_IMP_DOOM);
     effect eVis = EffectVisualEffect(VFX_IMP_EVIL_HELP);
-    effect eCurse = SupernaturalEffect(EffectCurse(3,3,3,3,3,3));
+    effect eCurse;
 
     //Apply Spell Effects
     ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eVis, spell.Loc);
@@ -68,6 +69,11 @@ void main()
                     // wont stack
                     if (!GetHasSpellEffect(spell.Id, oTarget))
                     {
+                         eCurse = SupernaturalEffect(EffectCurse(3,3,3,3,3,3));
+                         if(!GetIsImmune(oTarget,IMMUNITY_TYPE_CURSED,spell.Caster) && GetModuleSwitchValue(MODULE_SWITCH_CURSE_IGNORE_ABILITY_DECREASE_IMMUNITY))
+                         {
+                             eCurse = IgnoreEffectImmunity(eCurse);//implementation of the module switch to ignore ability decrease immunity for curse
+                         }
                          DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, eImpact, oTarget));
                          DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_PERMANENT, eCurse, oTarget));
                     }

@@ -49,7 +49,8 @@ void main()
    }
 
    // * 1.72: Activating this switch below will modify curse effect to ignore immunity to ability decrease.
-   // * Note: Dependant on NWN(C)X_Patch plugin. CURRENTLY NONFUNCTIONAL !!!
+   // * Note: This is not custom content compatible. If you have custom spell(ability) with curse effect
+   // * you need to add the same code as in nw_s0_bescurse. It also won't work on curse from weapon onhit.
    // SetModuleSwitch (MODULE_SWITCH_CURSE_IGNORE_ABILITY_DECREASE_IMMUNITY, TRUE);
 
    // * 1.72: Activating this switch below will allow to use only one damage shield spell at once.
