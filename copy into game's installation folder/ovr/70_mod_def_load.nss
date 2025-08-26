@@ -105,14 +105,6 @@ void main()
    // * Note: Dependant on NWN(C)X_Patch plugin.
    // SetModuleSwitch (MODULE_SWITCH_CURSE_IGNORE_ABILITY_DECREASE_IMMUNITY, TRUE);
 
-   // * 1.72: Activating this switch below will enable hardcore DnD rules for initiative.
-   // * Character who loses initiative roll is considered flatfooted against attacker who won
-   // * the check until he attacks for the first time. Unlike DnD, the ammount of time the
-   // * character is flatfooted is reduced to first flurry. Still, that gives considerable
-   // * benefit to the attacker and makes intiative and feats improving initiative usefull.
-   // * Note: Dependant on NWN(C)X_Patch plugin.
-   SetModuleSwitch (MODULE_SWITCH_HARDCORE_INITIATIVE, TRUE);
-
    // * 1.72: Activating this switch below will disable all monk abilities in polymorph. That is monk AC
    // * from high wisdom, monk AC from class levels, monk speed and monk unarmed attack progression.
    // * Note: Dependant on NWN(C)X_Patch plugin.
