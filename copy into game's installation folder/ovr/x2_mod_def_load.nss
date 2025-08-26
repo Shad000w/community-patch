@@ -82,12 +82,6 @@ void main()
    // * Note: Dependant on NWN(C)X_Patch plugin. CURRENTLY NONFUNCTIONAL !!!
    // SetModuleSwitch (MODULE_SWITCH_DISABLE_MONK_ABILITIES_IN_POLYMORPH, TRUE);
 
-   // * 1.72: Activating this switch below will detach immunity to sneak attacks from the immunity
-   // * to critical hits. This will allow to make a creature immune to critical hits but not sneak attack.
-   // * Applies also to the Death Attack.
-   // * Note: Dependant on NWN(C)X_Patch plugin. CURRENTLY NONFUNCTIONAL !!!
-   // SetModuleSwitch (MODULE_SWITCH_DISABLE_SNEAK_ATTACK_CRITICAL_IMMUNITY, TRUE);
-
    // * 1.72: Activating this switch below will will completely disable all AC bonuses from tumble.
    // * Note: Dependant on NWN(C)X_Patch plugin. CURRENTLY NONFUNCTIONAL !!!
    // SetModuleSwitch (MODULE_SWITCH_DISABLE_TUMBLE_AC_BONUS, TRUE);

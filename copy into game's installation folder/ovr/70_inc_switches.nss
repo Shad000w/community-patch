@@ -52,14 +52,6 @@ const string MODULE_SWITCH_HARDCORE_EVASION_RULES = "72_HARDCORE_EVASION_RULES";
 const string MODULE_SWITCH_DISABLE_MONK_ABILITIES_IN_POLYMORPH = "72_DISABLE_MONK_IN_POLYMORPH";
 
 //------------------------------------------------------------------------------
-// * This switch will detach immunity to sneak attacks from the immunity to critical hits.
-// * This will allow to make a creature immune to critical hits but not sneak attack.
-// * Applies also to the Death Attack.
-// * Note: Dependant on NWN(C)X_Patch plugin.
-//------------------------------------------------------------------------------
-const string MODULE_SWITCH_DISABLE_SNEAK_ATTACK_CRITICAL_IMMUNITY = "72_DISABLE_SNEAK_CRITICAL_IMMUNITY";
-
-//------------------------------------------------------------------------------
 // * This switch will completely disable all AC bonuses from tumble.
 // * Note: Dependant on NWN(C)X_Patch plugin.
 //------------------------------------------------------------------------------
