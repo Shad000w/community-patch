@@ -82,10 +82,6 @@ void main()
    // * Note: Dependant on NWN(C)X_Patch plugin. CURRENTLY NONFUNCTIONAL !!!
    // SetModuleSwitch (MODULE_SWITCH_DISABLE_MONK_ABILITIES_IN_POLYMORPH, TRUE);
 
-   // * 1.72: Activating this switch below will will completely disable all AC bonuses from tumble.
-   // * Note: Dependant on NWN(C)X_Patch plugin. CURRENTLY NONFUNCTIONAL !!!
-   // SetModuleSwitch (MODULE_SWITCH_DISABLE_TUMBLE_AC_BONUS, TRUE);
-
    // * 1.72: Activating this switch below will disable "polymorph end" check which is
    // * performed every 6 seconds via pseudo heartbeat in order to clean all polymorph
    // * related effects such as ability bonuses, temporary hp etc. in case a module doesn't

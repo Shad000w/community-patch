@@ -127,10 +127,6 @@ void main()
    // * Note: Dependant on NWN(C)X_Patch plugin.
    // SetModuleSwitch (MODULE_SWITCH_DISABLE_MONK_ABILITIES_IN_POLYMORPH, TRUE);
 
-   // * 1.72: Activating this switch below will will completely disable all AC bonuses from tumble.
-   // * Note: Dependant on NWN(C)X_Patch plugin.
-   // SetModuleSwitch (MODULE_SWITCH_DISABLE_TUMBLE_AC_BONUS, TRUE);
-
    // * 1.72: Activating this switch below will allow to use only one damage shield spell at once.
    // * Affected spells: elemental shield, mestil's acid sheat, aura vs alignment, death armor
    // * and wounding whispers.
