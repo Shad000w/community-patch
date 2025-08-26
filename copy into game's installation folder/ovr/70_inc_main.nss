@@ -245,32 +245,25 @@ int GetKnowsFeat(int nFeat, object oCreature)
 
 int GetCommunityPatchVersion()
 {
-int nVersion = GetLocalInt(GetModule(),"GetCommunityPatchVersion()");
- if(nVersion) return nVersion;
-object oTest = CreateObject(OBJECT_TYPE_ITEM,"70_it_scrwarcry",GetStartingLocation());
- if(oTest == OBJECT_INVALID) nVersion = -1;//all versions of CPP has 70_it_scrwarcry if its missing, CPP is not installed
- else
- {
- DestroyObject(oTest);
- oTest = CreateObject(OBJECT_TYPE_PLACEABLE,"70_ec_poison",GetStartingLocation());
-  if(oTest != OBJECT_INVALID)
-  {
-  DestroyObject(oTest);
-  nVersion = 171;//only 1.71 has 70_ec_poison, this file was removed from 1.72
-  }
-  else
-  {
-  oTest = CreateObject(OBJECT_TYPE_ITEM,"70_ip_14",GetStartingLocation());
-   if(oTest != OBJECT_INVALID)
-   {
-   DestroyObject(oTest);
-   nVersion = 172;//70_ip_14 exists only in 1.72
-   }
-   else nVersion = 170;//if all other checks failed it must be 1.70
-  }
- }
-SetLocalInt(GetModule(),"GetCommunityPatchVersion()",nVersion);
-return nVersion;
+    if(ResManGetAliasFor("70_it_scrwarcry",RESTYPE_UTI) == "")
+    {
+        return -1;//all versions of CPP has 70_it_scrwarcry if its missing, CPP is not installed
+    }
+    else if(ResManGetAliasFor("70_ec_poison",RESTYPE_UTI) != "")
+    {
+        return 171;//only 1.71 has 70_ec_poison, this file was removed from 1.72
+    }
+    else if(ResManGetAliasFor("70_ec_poison",RESTYPE_UTI) != "")
+    {
+        return 172;//70_ip_14 exists only in (earlier versions) 1.72
+    }
+    //70_ip_* blueprints were removed in latest version for EE since ItemPropertyCustom now exists, so if it is version for EE we need to do additional check:
+    json jTemplate = TemplateToJson("nw_door_ttr_15",RESTYPE_UTD);
+    if(JsonGetInt(JsonObjectGet(JsonObjectGet(jTemplate,"Plot"),"value")) == 1)//in same version invisible doors are all plot now, so we check that
+    {
+        return 172;
+    }
+    return 170;//if all other checks failed it must be 1.70
 }
 
 int SkillTimerCurrent(object oCreature, int nSkill)
