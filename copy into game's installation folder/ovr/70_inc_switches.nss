@@ -70,14 +70,6 @@ const string MODULE_SWITCH_ENABLE_FLYING_TRAP_IMMUNITY = "72_ENABLE_FLYING_TRAP_
 const string MODULE_SWITCH_DISABLE_MONK_ABILITIES_IN_POLYMORPH = "72_DISABLE_MONK_IN_POLYMORPH";
 
 //------------------------------------------------------------------------------
-// * This switch will detach immunity to paralysis from the immunity to mind spells.
-// * This is usefull if you want to nerf the classic mind immunity spells and give higher
-// * meaning to the freedom of movement, PM/RDD or items with paralysis immunity.
-// * Note: Dependant on NWN(C)X_Patch plugin.
-//------------------------------------------------------------------------------
-const string MODULE_SWITCH_DISABLE_PARALYZE_MIND_SPELL_IMMUNITY = "72_DISABLE_PARALYZE_MIND_SPELL_IMMUNITY";
-
-//------------------------------------------------------------------------------
 // * This switch will detach immunity to sneak attacks from the immunity to critical hits.
 // * This will allow to make a creature immune to critical hits but not sneak attack.
 // * Applies also to the Death Attack.

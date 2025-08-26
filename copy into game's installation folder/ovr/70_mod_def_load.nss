@@ -57,7 +57,6 @@ void main()
     SetLocalInt(OBJECT_SELF,"72_DISABLE_SNEAK_CRITICAL_IMMUNITY",GetModuleSwitchValue("72_DISABLE_SNEAK_CRITICAL_IMMUNITY"));
     SetLocalInt(OBJECT_SELF,"72_DISABLE_MONK_IN_POLYMORPH",GetModuleSwitchValue("72_DISABLE_MONK_IN_POLYMORPH"));
     SetLocalInt(OBJECT_SELF,"72_ENABLE_FLYING_TRAP_IMMUNITY",GetModuleSwitchValue("72_ENABLE_FLYING_TRAP_IMMUNITY"));
-    SetLocalInt(OBJECT_SELF,"72_DISABLE_PARALYZE_MIND_SPELL_IMMUNITY",GetModuleSwitchValue("72_DISABLE_PARALYZE_MIND_SPELL_IMMUNITY"));
     SetLocalInt(OBJECT_SELF,"71_PALEMASTER_ADDS_CASTER_LEVEL",GetModuleSwitchValue("71_PALEMASTER_ADDS_CASTER_LEVEL"));
     SetLocalInt(OBJECT_SELF,"72_CURSE_IGNORE_ABILITY_DECREASE_IMMUNITY",GetModuleSwitchValue("72_CURSE_IGNORE_ABILITY_DECREASE_IMMUNITY"));
     SetLocalInt(OBJECT_SELF,"72_HARDCORE_INITIATIVE",GetModuleSwitchValue("72_HARDCORE_INITIATIVE"));
@@ -133,13 +132,6 @@ void main()
    // * from high wisdom, monk AC from class levels, monk speed and monk unarmed attack progression.
    // * Note: Dependant on NWN(C)X_Patch plugin.
    // SetModuleSwitch (MODULE_SWITCH_DISABLE_MONK_ABILITIES_IN_POLYMORPH, TRUE);
-
-   // * 1.72: Activating this switch below will detach immunity to paralysis from immunity
-   // * to mind-affecting spells.
-   // * This is usefull if you want to nerf the classic mind immunity spells and give higher
-   // * meaning to the freedom of movement, PM/RDD or items with paralysis immunity.
-   // * Note: Dependant on NWN(C)X_Patch plugin.
-   // SetModuleSwitch (MODULE_SWITCH_DISABLE_PARALYZE_MIND_SPELL_IMMUNITY, TRUE);
 
    // * 1.72: Activating this switch below will detach immunity to sneak attacks from the immunity
    // * to critical hits. This will allow to make a creature immune to critical hits but not sneak attack.

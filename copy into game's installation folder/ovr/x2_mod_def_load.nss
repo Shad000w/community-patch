@@ -87,13 +87,6 @@ void main()
    // * Note: Dependant on NWN(C)X_Patch plugin. CURRENTLY NONFUNCTIONAL !!!
    // SetModuleSwitch (MODULE_SWITCH_DISABLE_MONK_ABILITIES_IN_POLYMORPH, TRUE);
 
-   // * 1.72: Activating this switch below will detach immunity to paralysis from immunity
-   // * to mind-affecting spells.
-   // * This is usefull if you want to nerf the classic mind immunity spells and give higher
-   // * meaning to the freedom of movement, PM/RDD or items with paralysis immunity.
-   // * Note: Dependant on NWN(C)X_Patch plugin. CURRENTLY NONFUNCTIONAL !!!
-   // SetModuleSwitch (MODULE_SWITCH_DISABLE_PARALYZE_MIND_SPELL_IMMUNITY, TRUE);
-
    // * 1.72: Activating this switch below will detach immunity to sneak attacks from the immunity
    // * to critical hits. This will allow to make a creature immune to critical hits but not sneak attack.
    // * Applies also to the Death Attack.
