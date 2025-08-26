@@ -103,7 +103,6 @@
 //#include "x0_i0_combat"    - include in x0_i0_anims
 
 //#include "x0_i0_walkway"   - include in x0_i0_anims
-#include "70_inc_main"
 #include "70_inc_ai"
 #include "x0_i0_behavior"
 #include "x0_i0_anims"
@@ -964,7 +963,7 @@ void DetermineCombatRound(object oIntruder = OBJECT_INVALID, int nAI_Difficulty 
     // Community Patch 1.72: function changed in order to allow modify combat AI without need
     // to recompile all creature scripts. The combat AI is now resolved in 70_ai_generic script
     //------------------------------------------------------------------------------
-    if(GetCommunityPatchVersion() == 172)
+    if(ResManGetAliasFor("70_ai_generic",RESTYPE_NSS) != "")
     {
         SetLocalObject(OBJECT_SELF,"Intruder",oIntruder);
         SetLocalInt(OBJECT_SELF,"AI_Difficulty",nAI_Difficulty);

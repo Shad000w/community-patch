@@ -50,7 +50,6 @@ Patch 1.72
 
 // #include "nw_i0_generic"  //...and through this also x0_inc_generic
 
-#include "70_inc_main"
 #include "x0_i0_henchman"
 
 // ****************************
@@ -178,7 +177,7 @@ void HenchmenCombatRound(object oIntruder)
     // Community Patch 1.72: function changed in order to allow modify combat AI without need
     // to recompile all creature scripts. The combat AI is now resolved in 70_ai_generic script
     //------------------------------------------------------------------------------
-    if(GetCommunityPatchVersion() == 172)
+    if(ResManGetAliasFor("70_ai_henchman",RESTYPE_NSS) != "")
     {
         SetLocalObject(OBJECT_SELF,"Intruder",oIntruder);
         ExecuteScript("70_ai_henchman",OBJECT_SELF);
