@@ -52,15 +52,6 @@ void main()
     if(GetLocalInt(OBJECT_SELF,"70_mod_def_load_DOONCE")) return;//safety check to prevent running this multiple times
     SetLocalInt(OBJECT_SELF,"70_mod_def_load_DOONCE",TRUE);
 
-    //Single Player: this will load module switches stored by player in database
-    SetLocalInt(OBJECT_SELF,"72_DISABLE_TUMBLE_AC",GetModuleSwitchValue("72_DISABLE_TUMBLE_AC"));
-    SetLocalInt(OBJECT_SELF,"72_DISABLE_SNEAK_CRITICAL_IMMUNITY",GetModuleSwitchValue("72_DISABLE_SNEAK_CRITICAL_IMMUNITY"));
-    SetLocalInt(OBJECT_SELF,"72_DISABLE_MONK_IN_POLYMORPH",GetModuleSwitchValue("72_DISABLE_MONK_IN_POLYMORPH"));
-    SetLocalInt(OBJECT_SELF,"71_PALEMASTER_ADDS_CASTER_LEVEL",GetModuleSwitchValue("71_PALEMASTER_ADDS_CASTER_LEVEL"));
-    SetLocalInt(OBJECT_SELF,"72_CURSE_IGNORE_ABILITY_DECREASE_IMMUNITY",GetModuleSwitchValue("72_CURSE_IGNORE_ABILITY_DECREASE_IMMUNITY"));
-    SetLocalInt(OBJECT_SELF,"72_HARDCORE_INITIATIVE",GetModuleSwitchValue("72_HARDCORE_INITIATIVE"));
-//  Do not remove the code above, otherwise the nwn(c)x_patch plugin will not be able to work with global module switches (in database)
-
     string sScript = GetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_ACQUIRE_ITEM);
     if(sScript != "70_mod_def_aqu")
     {
