@@ -60,7 +60,6 @@ void main()
     SetLocalInt(OBJECT_SELF,"72_DISABLE_PARALYZE_MIND_SPELL_IMMUNITY",GetModuleSwitchValue("72_DISABLE_PARALYZE_MIND_SPELL_IMMUNITY"));
     SetLocalInt(OBJECT_SELF,"71_PALEMASTER_ADDS_CASTER_LEVEL",GetModuleSwitchValue("71_PALEMASTER_ADDS_CASTER_LEVEL"));
     SetLocalInt(OBJECT_SELF,"72_CURSE_IGNORE_ABILITY_DECREASE_IMMUNITY",GetModuleSwitchValue("72_CURSE_IGNORE_ABILITY_DECREASE_IMMUNITY"));
-    SetLocalInt(OBJECT_SELF,"72_HARDCORE_UNCANNY_DODGE",GetModuleSwitchValue("72_HARDCORE_UNCANNY_DODGE"));
     SetLocalInt(OBJECT_SELF,"72_HARDCORE_INITIATIVE",GetModuleSwitchValue("72_HARDCORE_INITIATIVE"));
 //  Do not remove the code above, otherwise the nwn(c)x_patch plugin will not be able to work with global module switches (in database)
 
@@ -124,14 +123,6 @@ void main()
    // * benefit to the attacker and makes intiative and feats improving initiative usefull.
    // * Note: Dependant on NWN(C)X_Patch plugin.
    SetModuleSwitch (MODULE_SWITCH_HARDCORE_INITIATIVE, TRUE);
-
-   // * 1.72: Activating this switch below will enable hardcore DnD rules for uncanny dodge 2.
-   // * Character with uncanny dodge II can no longer be flanked.
-   // * This defense denies another rogue the ability to sneak attack the character by flanking
-   // * her, unless the attacker has at least four more rogue levels than the target does.
-   // * Classes granting uncanny dodge stacks together for a purpose of this calculation.
-   // * Note: Dependant on NWN(C)X_Patch plugin.
-   // SetModuleSwitch (MODULE_SWITCH_HARDCORE_UNCANNY_DODGE, TRUE);
 
    // * 1.72: Activating this switch below will enable new feature granting immunity to traps to
    // * flying creatures.

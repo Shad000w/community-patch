@@ -48,16 +48,6 @@ const string MODULE_SWITCH_DISABLE_AOE_SPELLS_STACKING = "72_DISABLE_AOE_SPELLS_
 const string MODULE_SWITCH_HARDCORE_INITIATIVE = "72_HARDCORE_INITIATIVE";
 
 //------------------------------------------------------------------------------
-// * This switch will enable hardcore DnD rules for uncanny dodge 2 and sneak attack.
-// * Character with uncanny dodge II can no longer be flanked.
-// * This defense denies another rogue the ability to sneak attack the character by flanking
-// * her, unless the attacker has at least four more rogue levels than the target does.
-// * Classes granting uncanny dodge stacks together for a purpose of this calculation.
-// * Note: Dependant on NWN(C)X_Patch plugin.
-//------------------------------------------------------------------------------
-const string MODULE_SWITCH_HARDCORE_UNCANNY_DODGE = "72_HARDCORE_UNCANNY_DODGE";
-
-//------------------------------------------------------------------------------
 // * This switch will enable hardcore DnD rules for evasion and improved evasion.
 // * Evasion feats will only work in light or no armor. Also a character must not
 // * be helpless ie. under effects of stun, paralysis, petrify, sleep or timestop.
