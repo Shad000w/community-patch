@@ -92,16 +92,6 @@ const string MODULE_SWITCH_DISABLE_SNEAK_ATTACK_CRITICAL_IMMUNITY = "72_DISABLE_
 const string MODULE_SWITCH_DISABLE_TUMBLE_AC_BONUS = "72_DISABLE_TUMBLE_AC";
 
 //------------------------------------------------------------------------------
-// * This switch will enforce a one roll only rule for devastating critical ability.
-// * This is a very efficient method of making this feat more balanced yet still allow
-// * to slain a monster with single blow as this was designed.
-// * Value of 1 - works for everyone
-// * Value of 2 - works only for players, monster's devastating isn't affected
-// * Note: Dependant on NWN(C)X_Patch plugin. CURRENTLY NONFUNCTIONAL !!!
-//------------------------------------------------------------------------------
-const string MODULE_SWITCH_DEVASTATING_CRITICAL_ONCE_PER_TARGET = "72_DEVAST_ONCE_PER_TARGET";
-
-//------------------------------------------------------------------------------
 // * This switch will disable "polymorph end" check which is performed every 6 seconds
 // * via pseudo heartbeat in order to clean all polymorph related effects such as
 // * ability bonuses, temporary hp etc. in case a module doesn't have properly

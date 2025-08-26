@@ -104,12 +104,6 @@ void main()
    // * Note: Dependant on NWN(C)X_Patch plugin. CURRENTLY NONFUNCTIONAL !!!
    // SetModuleSwitch (MODULE_SWITCH_DISABLE_TUMBLE_AC_BONUS, TRUE);
 
-   // * 1.72: Activating this switch below will enforce a one roll only rule for devastating critical
-   // * ability. This is a very efficient method of making this feat more balanced yet still allow
-   // * to slain a monster with single blow as this was designed.
-   // * Note: Dependant on NWN(C)X_Patch plugin. CURRENTLY NONFUNCTIONAL !!!
-   // SetModuleSwitch (MODULE_SWITCH_DEVASTATING_CRITICAL_ONCE_PER_TARGET, TRUE);
-
    // * 1.72: Activating this switch below will disable "polymorph end" check which is
    // * performed every 6 seconds via pseudo heartbeat in order to clean all polymorph
    // * related effects such as ability bonuses, temporary hp etc. in case a module doesn't
