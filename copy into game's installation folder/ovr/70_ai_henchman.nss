@@ -16,6 +16,12 @@ routines without need to recompile all creature events scripts.
 
 void main()
 {
+    //1.72: fix for a new bug in EE that runs familiar AI while controlled by player
+    if(GetIsPossessedFamiliar(OBJECT_SELF))
+    {
+        return;
+    }
+
     object oIntruder = GetLocalObject(OBJECT_SELF,"Intruder");
 
     // * If someone has surrendered, then don't attack them.
