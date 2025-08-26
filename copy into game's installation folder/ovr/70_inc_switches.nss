@@ -55,14 +55,6 @@ const string MODULE_SWITCH_HARDCORE_INITIATIVE = "72_HARDCORE_INITIATIVE";
 const string MODULE_SWITCH_HARDCORE_EVASION_RULES = "72_HARDCORE_EVASION_RULES";
 
 //------------------------------------------------------------------------------
-// * This switch will give flying creatures immunity to all ground traps.
-// * Specific traps can be set to ignore this immunity via "DISALLOW_FLYING" int 1
-// * variable on trigger.
-// * Note: Dependant on NWN(C)X_Patch plugin.
-//------------------------------------------------------------------------------
-const string MODULE_SWITCH_ENABLE_FLYING_TRAP_IMMUNITY = "72_ENABLE_FLYING_TRAP_IMMUNITY";
-
-//------------------------------------------------------------------------------
 // * This switch will disable all monk abilities in polymorph. That is monk AC from
 // * high wisdom, monk AC from class levels, monk speed and monk unarmed attack progression.
 // * Note: Dependant on NWN(C)X_Patch plugin.
