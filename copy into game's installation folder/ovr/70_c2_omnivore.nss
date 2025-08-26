@@ -52,7 +52,7 @@ void main()
         2.  Comment in one other special behavior setting (ONLY ONE).
 */
     SetBehaviorState(NW_FLAG_BEHAVIOR_SPECIAL);
-    SetBehaviorState(NW_FLAG_BEHAVIOR_OMNIVORE_172); //Creature will only attack those that close within 5m and are not friends,
+    SetBehaviorState(16/*NW_FLAG_BEHAVIOR_OMNIVORE_172*/); //Creature will only attack those that close within 5m and are not friends,
                                                    //Rangers or Druids.
     //SetBehaviorState(NW_FLAG_BEHAVIOR_HERBIVORE);//Creature will flee those that close within 7m if they are not friends,
                                                    //Rangers or Druids.

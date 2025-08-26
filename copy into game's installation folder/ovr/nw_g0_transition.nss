@@ -19,6 +19,7 @@
 
 
 #include "x3_inc_horse"
+#include "x2_inc_switches"
 #include "x0_inc_henai"
 
 void TeleportPlayer(object oTarget)

@@ -17,6 +17,7 @@
 //:: Created On: 2003-07-24
 //:://////////////////////////////////////////////
 
+#include "x2_inc_switches"
 #include "X0_INC_HENAI"
 #include "X2_INC_SUMMSCALE"
 

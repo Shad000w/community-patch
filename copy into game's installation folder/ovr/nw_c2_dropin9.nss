@@ -16,6 +16,7 @@ Patch 1.72
 - fixed incorporeal npcs with this script not getting their properties
 */
 
+#include "x2_inc_switches"
 #include "nw_o2_coninclude"
 #include "nw_i0_generic"
 
