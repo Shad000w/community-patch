@@ -38,16 +38,6 @@ const string MODULE_SWITCH_DISABLE_WEAPON_BOOST_STACKING = "72_DISABLE_WEAPON_BO
 const string MODULE_SWITCH_DISABLE_AOE_SPELLS_STACKING = "72_DISABLE_AOE_SPELLS_STACKING";
 
 //------------------------------------------------------------------------------
-// * This switch will enable hardcore DnD rules for initiative.
-// * Character who loses initiative roll is considered flatfooted against attacker who won
-// * the check until he attacks for the first time. Unlike DnD, the ammount of time the
-// * character is flatfooted is reduced to first flurry. Still, that gives considerable
-// * benefit to the attacker and makes initiative and feats improving initiative usefull.
-// * Note: Dependant on NWN(C)X_Patch plugin.
-//------------------------------------------------------------------------------
-const string MODULE_SWITCH_HARDCORE_INITIATIVE = "72_HARDCORE_INITIATIVE";
-
-//------------------------------------------------------------------------------
 // * This switch will enable hardcore DnD rules for evasion and improved evasion.
 // * Evasion feats will only work in light or no armor. Also a character must not
 // * be helpless ie. under effects of stun, paralysis, petrify, sleep or timestop.

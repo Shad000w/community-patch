@@ -77,11 +77,6 @@ void main()
    // * be helpless ie. under effects of stun, paralysis, petrify, sleep or timestop.
    // SetModuleSwitch (MODULE_SWITCH_HARDCORE_EVASION_RULES, TRUE);
 
-   // * 1.72: Activating this switch below will enable new feature granting immunity to traps to
-   // * flying creatures.
-   // * Note: Dependant on NWN(C)X_Patch plugin. CURRENTLY NONFUNCTIONAL !!!
-   // SetModuleSwitch (MODULE_SWITCH_ENABLE_FLYING_TRAP_IMMUNITY, TRUE);
-
    // * 1.72: Activating this switch below will disable all monk abilities in polymorph. That is monk AC
    // * from high wisdom, monk AC from class levels, monk speed and monk unarmed attack progression.
    // * Note: Dependant on NWN(C)X_Patch plugin. CURRENTLY NONFUNCTIONAL !!!
