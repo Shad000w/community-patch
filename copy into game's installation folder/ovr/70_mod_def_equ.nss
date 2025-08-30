@@ -53,6 +53,13 @@ void main()
     object oItem = GetPCItemLastEquipped();
     object oPC   = GetPCItemLastEquippedBy();
 
+    //1.72: workaround for a special case when this script is executed from default.nss
+    if(GetObjectType(OBJECT_SELF) == OBJECT_TYPE_ITEM)
+    {
+        oItem = OBJECT_SELF;
+        oPC = GetItemPossessor(oItem);
+    }
+
     //1.72: code to ignore immunity to ability decrease when equipping items with ability decrease(s)
     if(GetItemHasItemProperty(oItem,ITEM_PROPERTY_DECREASED_ABILITY_SCORE) && GetIsImmune(oPC,IMMUNITY_TYPE_ABILITY_DECREASE))
     {

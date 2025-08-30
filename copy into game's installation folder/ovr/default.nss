@@ -27,6 +27,22 @@ void main()
     else if(GetLocalInt(OBJECT_SELF,"default_DOONCE")) return;//this script already ran once, abort
     SetLocalInt(OBJECT_SELF,"default_DOONCE",TRUE);
 
+    //this will make sure that the items of an already logged player are processed by CPP's equip event properly
+    //which will not be the case if this code runs - as it means the module is not having CPP module events setup
+    if(GetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_EQUIP_ITEM) != "70_mod_def_equ")
+    {
+        int nSlot;
+        object oItem;
+        for(;nSlot < NUM_INVENTORY_SLOTS;nSlot++)
+        {
+            oItem = GetItemInSlot(nSlot,OBJECT_SELF);
+            if(oItem != OBJECT_INVALID)
+            {
+                ExecuteScript("70_mod_def_equ",oItem);
+            }
+        }
+    }
+
     string sScript = GetEventScript(GetModule(),EVENT_SCRIPT_MODULE_ON_MODULE_LOAD);
     if(sScript != "70_mod_def_load")
     {
