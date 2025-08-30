@@ -53,6 +53,26 @@ void main()
     object oItem = GetPCItemLastEquipped();
     object oPC   = GetPCItemLastEquippedBy();
 
+    //1.72: code to ignore immunity to ability decrease when equipping items with ability decrease(s)
+    if(GetItemHasItemProperty(oItem,ITEM_PROPERTY_DECREASED_ABILITY_SCORE) && GetIsImmune(oPC,IMMUNITY_TYPE_ABILITY_DECREASE))
+    {
+        effect eDecrease;
+        itemproperty ip = GetFirstItemProperty(oItem);
+        while(GetIsItemPropertyValid(ip))
+        {
+            if(GetItemPropertyType(ip) == ITEM_PROPERTY_DECREASED_ABILITY_SCORE)
+            {
+                eDecrease = EffectAbilityDecrease(GetItemPropertySubType(ip),GetItemPropertyCostTableValue(ip));
+                eDecrease = SupernaturalEffect(eDecrease);
+                eDecrease = IgnoreEffectImmunity(eDecrease);
+                eDecrease = HideEffectIcon(eDecrease);
+                eDecrease = SetEffectCreator(eDecrease,oItem);
+                ApplyEffectToObject(DURATION_TYPE_INSTANT,eDecrease,oPC);
+            }
+            ip = GetNextItemProperty(oItem);
+        }
+    }
+
     //1.72: OnPolymorph scripted event handler
     if(!GetLocalInt(oPC,"Polymorphed") && GetHasEffect(EFFECT_TYPE_POLYMORPH,oPC))
     {
