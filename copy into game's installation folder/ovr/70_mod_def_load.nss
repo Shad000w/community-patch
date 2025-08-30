@@ -59,13 +59,6 @@ void main()
         SetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_ACQUIRE_ITEM",sScript);
     }
 
-    sScript = GetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_CLIENT_ENTER);
-    if(sScript != "70_mod_def_enter")
-    {
-        SetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_CLIENT_ENTER,"70_mod_def_enter");
-        SetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_CLIENT_ENTER",sScript);
-    }
-
     sScript = GetEventScript(OBJECT_SELF,EVENT_SCRIPT_MODULE_ON_EQUIP_ITEM);
     if(sScript != "70_mod_def_equ")
     {
