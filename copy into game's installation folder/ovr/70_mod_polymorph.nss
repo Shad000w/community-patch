@@ -212,7 +212,13 @@ void main()
                 ApplyEffectToObject(DURATION_TYPE_PERMANENT,SupernaturalEffect(EffectIcon(152)),oPC);
             }
         }
-        //recalculate ability increase/decrease itemproperties
-        IPWildShapeHandleAbilityBonuses(oArmorNew,oWeaponNew);
+
+        //1.71: code to allow stack multiple bonuses on a same item
+        if(GetLocalInt(GetItemPossessor(oArmorNew),"71_POLYMORPH_STACK_ABILITY_BONUSES") || GetModuleSwitchValue("71_POLYMORPH_STACK_ABILITY_BONUSES"))
+        {
+            //recalculate ability increase/decrease itemproperties
+            IPWildShapeHandleAbilityBonuses(oWeaponNew);
+            IPWildShapeHandleAbilityBonuses(oArmorNew);
+        }
     }
 }

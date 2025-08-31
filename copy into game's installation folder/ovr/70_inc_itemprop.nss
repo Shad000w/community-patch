@@ -77,82 +77,92 @@ int nTh;
 return -1;
 }
 
-void IPWildShapeHandleAbilityBonuses_continue(object oArmorNew, object oWeaponNew, int bImmunityArmor, int bImmunityWeapon)
+//1.71: function to handle stacking bonuses from same properties as they do not stack by default on a same item
+void IPWildShapeHandleAbilityBonuses(object oItem)
 {
-    int bStack = GetLocalInt(GetItemPossessor(oArmorNew),"71_POLYMORPH_STACK_ABILITY_BONUSES") || GetModuleSwitchValue("71_POLYMORPH_STACK_ABILITY_BONUSES");
-    int STRmalus,CHAmalus,INTmalus,DEXmalus,CONmalus,WISmalus,Fort,Will,Reflex;
+    if(!GetIsObjectValid(oItem)) return;
+
+    int STRbonus,STRmalus,CHAbonus,CHAmalus,INTbonus,INTmalus,DEXbonus,DEXmalus,CONbonus,CONmalus,WISbonus,WISmalus,Fort,Will,Reflex;
     int nSkill, nSave, nValue, HighestSkill = -1, HighestSave = -1;
 
-    itemproperty ip = GetFirstItemProperty(oArmorNew);
+    itemproperty ip = GetFirstItemProperty(oItem);
     while(GetIsItemPropertyValid(ip))
     {
         switch(GetItemPropertyType(ip))
         {
-        case ITEM_PROPERTY_DECREASED_ABILITY_SCORE:
-            nValue = GetItemPropertyCostTableValue(ip);
-            switch(GetItemPropertySubType(ip))
+            case ITEM_PROPERTY_ABILITY_BONUS:
             {
-            case IP_CONST_ABILITY_CON:
-                if(bStack)
-                CONmalus+= nValue;
-                else if(nValue > CONmalus)
-                CONmalus = nValue;
-            break;
-            case IP_CONST_ABILITY_DEX:
-                if(bStack)
-                DEXmalus+= nValue;
-                else if(nValue > DEXmalus)
-                DEXmalus = nValue;
-            break;
-            case IP_CONST_ABILITY_CHA:
-                if(bStack)
-                CHAmalus+= nValue;
-                else if(nValue > CHAmalus)
-                CHAmalus = nValue;
-            break;
-            case IP_CONST_ABILITY_INT:
-                if(bStack)
-                INTmalus+= nValue;
-                else if(nValue > INTmalus)
-                INTmalus = nValue;
-            break;
-            case IP_CONST_ABILITY_STR:
-                if(bStack)
-                STRmalus+= nValue;
-                else if(nValue > STRmalus)
-                STRmalus = nValue;
-            break;
-            case IP_CONST_ABILITY_WIS:
-                if(bStack)
-                WISmalus+= nValue;
-                else if(nValue > WISmalus)
-                WISmalus = nValue;
-            break;
+                nValue = GetItemPropertyCostTableValue(ip);
+                switch(GetItemPropertySubType(ip))
+                {
+                case IP_CONST_ABILITY_CON:
+                    CONbonus+= nValue;
+                break;
+                case IP_CONST_ABILITY_DEX:
+                    DEXbonus+= nValue;
+                break;
+                case IP_CONST_ABILITY_CHA:
+                    CHAbonus+= nValue;
+                break;
+                case IP_CONST_ABILITY_INT:
+                    INTbonus+= nValue;
+                break;
+                case IP_CONST_ABILITY_STR:
+                    STRbonus+= nValue;
+                break;
+                case IP_CONST_ABILITY_WIS:
+                    WISbonus+= nValue;
+                break;
+                }
+                RemoveItemProperty(oItem,ip);
             }
-            RemoveItemProperty(oArmorNew,ip);
-        break;
-        case ITEM_PROPERTY_SKILL_BONUS:
-            if(bStack)
+            break;
+            case ITEM_PROPERTY_DECREASED_ABILITY_SCORE:
+            {
+                nValue = GetItemPropertyCostTableValue(ip);
+                switch(GetItemPropertySubType(ip))
+                {
+                case IP_CONST_ABILITY_CON:
+                    CONmalus+= nValue;
+                break;
+                case IP_CONST_ABILITY_DEX:
+                    DEXmalus+= nValue;
+                break;
+                case IP_CONST_ABILITY_CHA:
+                    CHAmalus+= nValue;
+                break;
+                case IP_CONST_ABILITY_INT:
+                    INTmalus+= nValue;
+                break;
+                case IP_CONST_ABILITY_STR:
+                    STRmalus+= nValue;
+                break;
+                case IP_CONST_ABILITY_WIS:
+                    WISmalus+= nValue;
+                break;
+                }
+                RemoveItemProperty(oItem,ip);
+            }
+            break;
+            case ITEM_PROPERTY_SKILL_BONUS:
             {
                 nSkill = GetItemPropertySubType(ip);
                 if(nSkill > HighestSkill) HighestSkill = nSkill;
                 nValue = GetItemPropertyCostTableValue(ip);
-                SetLocalInt(oArmorNew,"SKILL_"+IntToString(nSkill),GetLocalInt(oArmorNew,"SKILL_"+IntToString(nSkill))+nValue);
-                RemoveItemProperty(oArmorNew,ip);
+                SetLocalInt(oItem,"SKILL_"+IntToString(nSkill),GetLocalInt(oItem,"SKILL_"+IntToString(nSkill))+nValue);
+                RemoveItemProperty(oItem,ip);
             }
-        break;
-        case ITEM_PROPERTY_DECREASED_SKILL_MODIFIER:
-            if(bStack)
+            break;
+            case ITEM_PROPERTY_DECREASED_SKILL_MODIFIER:
             {
                 nSkill = GetItemPropertySubType(ip);
                 if(nSkill > HighestSkill) HighestSkill = nSkill;
                 nValue = GetItemPropertyCostTableValue(ip);
-                SetLocalInt(oArmorNew,"SKILL_"+IntToString(nSkill),GetLocalInt(oArmorNew,"SKILL_"+IntToString(nSkill))-nValue);
-                RemoveItemProperty(oArmorNew,ip);
+                SetLocalInt(oItem,"SKILL_"+IntToString(nSkill),GetLocalInt(oItem,"SKILL_"+IntToString(nSkill))-nValue);
+                RemoveItemProperty(oItem,ip);
             }
-        break;
-        case ITEM_PROPERTY_SAVING_THROW_BONUS_SPECIFIC:
-            if(bStack)
+            break;
+            case ITEM_PROPERTY_SAVING_THROW_BONUS_SPECIFIC:
             {
                 nValue = GetItemPropertyCostTableValue(ip);
                 int test = GetItemPropertySubType(ip);
@@ -168,11 +178,10 @@ void IPWildShapeHandleAbilityBonuses_continue(object oArmorNew, object oWeaponNe
                     Will+= nValue;
                 break;
                 }
-                RemoveItemProperty(oArmorNew,ip);
+                RemoveItemProperty(oItem,ip);
             }
-        break;
-        case ITEM_PROPERTY_DECREASED_SAVING_THROWS_SPECIFIC:
-            if(bStack)
+            break;
+            case ITEM_PROPERTY_DECREASED_SAVING_THROWS_SPECIFIC:
             {
                 nValue = GetItemPropertyCostTableValue(ip);
                 switch(GetItemPropertySubType(ip))
@@ -187,313 +196,95 @@ void IPWildShapeHandleAbilityBonuses_continue(object oArmorNew, object oWeaponNe
                     Will-= nValue;
                 break;
                 }
-                RemoveItemProperty(oArmorNew,ip);
+                RemoveItemProperty(oItem,ip);
             }
-        break;
-        case ITEM_PROPERTY_SAVING_THROW_BONUS:
-            if(bStack)
+            break;
+            case ITEM_PROPERTY_SAVING_THROW_BONUS:
             {
                 nSave = GetItemPropertySubType(ip);
                 if(nSave > HighestSave) HighestSave = nSave;
                 nValue = GetItemPropertyCostTableValue(ip);
-                SetLocalInt(oArmorNew,"SAVE_"+IntToString(nSave),GetLocalInt(oArmorNew,"SAVE_"+IntToString(nSave))+nValue);
-                RemoveItemProperty(oArmorNew,ip);
+                SetLocalInt(oItem,"SAVE_"+IntToString(nSave),GetLocalInt(oItem,"SAVE_"+IntToString(nSave))+nValue);
+                RemoveItemProperty(oItem,ip);
             }
-        break;
-        case ITEM_PROPERTY_DECREASED_SAVING_THROWS:
-            if(bStack)
+            break;
+            case ITEM_PROPERTY_DECREASED_SAVING_THROWS:
             {
                 nSave = GetItemPropertySubType(ip);
                 if(nSave > HighestSave) HighestSave = nSave;
                 nValue = GetItemPropertyCostTableValue(ip);
-                SetLocalInt(oArmorNew,"SAVE_"+IntToString(nSave),GetLocalInt(oArmorNew,"SAVE_"+IntToString(nSave))-nValue);
-                RemoveItemProperty(oArmorNew,ip);
+                SetLocalInt(oItem,"SAVE_"+IntToString(nSave),GetLocalInt(oItem,"SAVE_"+IntToString(nSave))-nValue);
+                RemoveItemProperty(oItem,ip);
             }
-        break;
+            break;
         }
-        ip = GetNextItemProperty(oArmorNew);
+        ip = GetNextItemProperty(oItem);
     }
+    //reapply the ability increase itemproperties
+    if(STRbonus > 0)
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_STR,STRbonus > 12 ? STRbonus : 12),oItem);
+    if(DEXbonus > 0)
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_DEX,DEXbonus > 12 ? DEXbonus : 12),oItem);
+    if(CONbonus > 0)
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_CON,CONbonus > 12 ? CONbonus : 12),oItem);
+    if(WISbonus > 0)
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_WIS,WISbonus > 12 ? WISbonus : 12),oItem);
+    if(INTbonus > 0)
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_INT,INTbonus > 12 ? INTbonus : 12),oItem);
+    if(CHAbonus > 0)
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_CHA,CHAbonus > 12 ? CHAbonus : 12),oItem);
     //reapply the ability decrease itemproperties
     if(STRmalus > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyDecreaseAbility(IP_CONST_ABILITY_STR,STRmalus),oArmorNew);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyDecreaseAbility(IP_CONST_ABILITY_STR,STRmalus),oItem);
     if(DEXmalus > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyDecreaseAbility(IP_CONST_ABILITY_DEX,DEXmalus),oArmorNew);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyDecreaseAbility(IP_CONST_ABILITY_DEX,DEXmalus),oItem);
     if(CONmalus > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyDecreaseAbility(IP_CONST_ABILITY_CON,CONmalus),oArmorNew);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyDecreaseAbility(IP_CONST_ABILITY_CON,CONmalus),oItem);
     if(WISmalus > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyDecreaseAbility(IP_CONST_ABILITY_WIS,WISmalus),oArmorNew);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyDecreaseAbility(IP_CONST_ABILITY_WIS,WISmalus),oItem);
     if(INTmalus > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyDecreaseAbility(IP_CONST_ABILITY_INT,INTmalus),oArmorNew);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyDecreaseAbility(IP_CONST_ABILITY_INT,INTmalus),oItem);
     if(CHAmalus > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyDecreaseAbility(IP_CONST_ABILITY_CHA,CHAmalus),oArmorNew);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyDecreaseAbility(IP_CONST_ABILITY_CHA,CHAmalus),oItem);
     //reapply saves
     if(Fort > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyBonusSavingThrow(IP_CONST_SAVEBASETYPE_FORTITUDE,Fort > 12 ? 12 : Fort),oArmorNew);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyBonusSavingThrow(IP_CONST_SAVEBASETYPE_FORTITUDE,Fort > 12 ? 12 : Fort),oItem);
     else if(Fort < 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyReducedSavingThrow(IP_CONST_SAVEBASETYPE_FORTITUDE,Fort < -12 ? 12 : abs(Fort)),oArmorNew);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyReducedSavingThrow(IP_CONST_SAVEBASETYPE_FORTITUDE,Fort < -12 ? 12 : abs(Fort)),oItem);
     if(Will > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyBonusSavingThrow(IP_CONST_SAVEBASETYPE_WILL,Will > 12 ? 12 : Will),oArmorNew);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyBonusSavingThrow(IP_CONST_SAVEBASETYPE_WILL,Will > 12 ? 12 : Will),oItem);
     else if(Will < 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyReducedSavingThrow(IP_CONST_SAVEBASETYPE_WILL,Will < -12 ? 12 : abs(Will)),oArmorNew);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyReducedSavingThrow(IP_CONST_SAVEBASETYPE_WILL,Will < -12 ? 12 : abs(Will)),oItem);
     if(Reflex > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyBonusSavingThrow(IP_CONST_SAVEBASETYPE_REFLEX,Reflex > 12 ? 12 : Reflex),oArmorNew);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyBonusSavingThrow(IP_CONST_SAVEBASETYPE_REFLEX,Reflex > 12 ? 12 : Reflex),oItem);
     else if(Reflex < 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyReducedSavingThrow(IP_CONST_SAVEBASETYPE_REFLEX,Reflex < -12 ? 12 : abs(Reflex)),oArmorNew);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyReducedSavingThrow(IP_CONST_SAVEBASETYPE_REFLEX,Reflex < -12 ? 12 : abs(Reflex)),oItem);
     //specific saves needs to be handled differenly (to support custom content)
     for(;HighestSave > -1;HighestSave--)
     {
-        nValue = GetLocalInt(oArmorNew,"SAVE_"+IntToString(HighestSave));
+        nValue = GetLocalInt(oItem,"SAVE_"+IntToString(HighestSave));
         if(nValue > 0)
         {
-            AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyBonusSavingThrowVsX(HighestSave,nValue > 12 ? 12 : nValue),oArmorNew);
+            AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyBonusSavingThrowVsX(HighestSave,nValue > 12 ? 12 : nValue),oItem);
         }
         else if(nValue < 0)
         {
-            AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyReducedSavingThrowVsX(HighestSave,nValue < -12 ? 12 : abs(nValue)),oArmorNew);
+            AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyReducedSavingThrowVsX(HighestSave,nValue < -12 ? 12 : abs(nValue)),oItem);
         }
     }
     //reapply the skills
     for(;HighestSkill > -1;HighestSkill--)
     {
-        nValue = GetLocalInt(oArmorNew,"SKILL_"+IntToString(HighestSkill));
+        nValue = GetLocalInt(oItem,"SKILL_"+IntToString(HighestSkill));
         if(nValue > 0)
         {
-            AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertySkillBonus(HighestSkill,nValue > 50 ? 50 : nValue),oArmorNew);
+            AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertySkillBonus(HighestSkill,nValue > 50 ? 50 : nValue),oItem);
         }
         else if(nValue < 0)
         {
-            AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyDecreaseSkill(HighestSkill,nValue < -50 ? 50 : abs(nValue)),oArmorNew);
+            AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyDecreaseSkill(HighestSkill,nValue < -50 ? 50 : abs(nValue)),oItem);
         }
     }
-
-    if(!GetIsObjectValid(oWeaponNew))//weapon is not valid, stop here
-    {
-        //re-apply the immunity
-        if(bImmunityArmor)
-        AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyImmunityMisc(IP_CONST_IMMUNITYMISC_LEVEL_ABIL_DRAIN),oArmorNew);
-        return;
-    }
-
-    //now do the same for weapon
-    STRmalus = 0;CHAmalus = 0;INTmalus = 0;DEXmalus = 0;CONmalus = 0;WISmalus = 0;Fort = 0;Will = 0;Reflex = 0;
-    ip = GetFirstItemProperty(oWeaponNew);
-    while(GetIsItemPropertyValid(ip))
-    {
-        switch(GetItemPropertyType(ip))
-        {
-        case ITEM_PROPERTY_DECREASED_ABILITY_SCORE:
-            nValue = GetItemPropertyCostTableValue(ip);
-            switch(GetItemPropertySubType(ip))
-            {
-            case IP_CONST_ABILITY_CON:
-               if(bStack)
-                CONmalus+= nValue;
-                else if(nValue > CONmalus)
-                CONmalus = nValue;
-            break;
-            case IP_CONST_ABILITY_DEX:
-                if(bStack)
-                DEXmalus+= nValue;
-                else if(nValue > DEXmalus)
-                DEXmalus = nValue;
-            break;
-            case IP_CONST_ABILITY_CHA:
-                if(bStack)
-                CHAmalus+= nValue;
-                else if(nValue > CHAmalus)
-                CHAmalus = nValue;
-            break;
-            case IP_CONST_ABILITY_INT:
-                if(bStack)
-                INTmalus+= nValue;
-                else if(nValue > INTmalus)
-                INTmalus = nValue;
-            break;
-            case IP_CONST_ABILITY_STR:
-                if(bStack)
-                STRmalus+= nValue;
-                else if(nValue > STRmalus)
-                STRmalus = nValue;
-            break;
-            case IP_CONST_ABILITY_WIS:
-                if(bStack)
-                WISmalus+= nValue;
-                else if(nValue > WISmalus)
-                WISmalus = nValue;
-            break;
-            }
-            RemoveItemProperty(oWeaponNew,ip);
-        break;
-        case ITEM_PROPERTY_SKILL_BONUS:
-            if(bStack)
-            {
-                nSkill = GetItemPropertySubType(ip);
-                if(nSkill > HighestSkill) HighestSkill = nSkill;
-                nValue = GetItemPropertyCostTableValue(ip);
-                SetLocalInt(oWeaponNew,"SKILL_"+IntToString(nSkill),GetLocalInt(oWeaponNew,"SKILL_"+IntToString(nSkill))+nValue);
-                RemoveItemProperty(oWeaponNew,ip);
-            }
-        break;
-        case ITEM_PROPERTY_DECREASED_SKILL_MODIFIER:
-            if(bStack)
-            {
-                nSkill = GetItemPropertySubType(ip);
-                if(nSkill > HighestSkill) HighestSkill = nSkill;
-                nValue = GetItemPropertyCostTableValue(ip);
-                SetLocalInt(oWeaponNew,"SKILL_"+IntToString(nSkill),GetLocalInt(oWeaponNew,"SKILL_"+IntToString(nSkill))-nValue);
-                RemoveItemProperty(oWeaponNew,ip);
-            }
-        break;
-        case ITEM_PROPERTY_SAVING_THROW_BONUS_SPECIFIC:
-            if(bStack)
-            {
-                nValue = GetItemPropertyCostTableValue(ip);
-                switch(GetItemPropertySubType(ip))
-                {
-                case IP_CONST_SAVEBASETYPE_FORTITUDE:
-                    Fort+= nValue;
-                break;
-                case IP_CONST_SAVEBASETYPE_REFLEX:
-                    Reflex+= nValue;
-                break;
-                case IP_CONST_SAVEBASETYPE_WILL:
-                    Will+= nValue;
-                break;
-                }
-                RemoveItemProperty(oWeaponNew,ip);
-            }
-        break;
-        case ITEM_PROPERTY_DECREASED_SAVING_THROWS_SPECIFIC:
-            if(bStack)
-            {
-                nValue = GetItemPropertyCostTableValue(ip);
-                switch(GetItemPropertySubType(ip))
-                {
-                case IP_CONST_SAVEBASETYPE_FORTITUDE:
-                    Fort-= nValue;
-                break;
-                case IP_CONST_SAVEBASETYPE_REFLEX:
-                    Reflex-= nValue;
-                break;
-                case IP_CONST_SAVEBASETYPE_WILL:
-                    Will-= nValue;
-                break;
-                }
-                RemoveItemProperty(oWeaponNew,ip);
-            }
-        break;
-        case ITEM_PROPERTY_SAVING_THROW_BONUS:
-            if(bStack)
-            {
-                nSave = GetItemPropertySubType(ip);
-                if(nSave > HighestSave) HighestSave = nSave;
-                nValue = GetItemPropertyCostTableValue(ip);
-                SetLocalInt(oWeaponNew,"SAVE_"+IntToString(nSave),GetLocalInt(oWeaponNew,"SAVE_"+IntToString(nSave))+nValue);
-                RemoveItemProperty(oWeaponNew,ip);
-            }
-        break;
-        case ITEM_PROPERTY_DECREASED_SAVING_THROWS:
-            if(bStack)
-            {
-                nSave = GetItemPropertySubType(ip);
-                if(nSave > HighestSave) HighestSave = nSave;
-                nValue = GetItemPropertyCostTableValue(ip);
-                SetLocalInt(oWeaponNew,"SAVE_"+IntToString(nSave),GetLocalInt(oWeaponNew,"SAVE_"+IntToString(nSave))-nValue);
-                RemoveItemProperty(oWeaponNew,ip);
-            }
-        break;
-        }
-        ip = GetNextItemProperty(oWeaponNew);
-    }
-    //reapply the ability decrease itemproperties
-    if(STRmalus > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyDecreaseAbility(IP_CONST_ABILITY_STR,STRmalus),oWeaponNew);
-    if(DEXmalus > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyDecreaseAbility(IP_CONST_ABILITY_DEX,DEXmalus),oWeaponNew);
-    if(CONmalus > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyDecreaseAbility(IP_CONST_ABILITY_CON,CONmalus),oWeaponNew);
-    if(WISmalus > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyDecreaseAbility(IP_CONST_ABILITY_WIS,WISmalus),oWeaponNew);
-    if(INTmalus > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyDecreaseAbility(IP_CONST_ABILITY_INT,INTmalus),oWeaponNew);
-    if(CHAmalus > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyDecreaseAbility(IP_CONST_ABILITY_CHA,CHAmalus),oWeaponNew);
-    //reapply saves
-    if(Fort > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyBonusSavingThrow(IP_CONST_SAVEBASETYPE_FORTITUDE,Fort > 12 ? 12 : Fort),oWeaponNew);
-    else if(Fort < 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyReducedSavingThrow(IP_CONST_SAVEBASETYPE_FORTITUDE,Fort > 12 ? 12 : Fort),oWeaponNew);
-    if(Will > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyBonusSavingThrow(IP_CONST_SAVEBASETYPE_WILL,Will > 12 ? 12 : Will),oWeaponNew);
-    else if(Will < 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyReducedSavingThrow(IP_CONST_SAVEBASETYPE_WILL,Will > 12 ? 12 : Will),oWeaponNew);
-    if(Reflex > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyBonusSavingThrow(IP_CONST_SAVEBASETYPE_REFLEX,Reflex > 12 ? 12 : Reflex),oWeaponNew);
-    else if(Reflex < 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyReducedSavingThrow(IP_CONST_SAVEBASETYPE_REFLEX,Reflex > 12 ? 12 : Reflex),oWeaponNew);
-    //specific saves needs to be handled differenly (to support custom content)
-    for(;HighestSave > -1;HighestSave--)
-    {
-        nValue = GetLocalInt(oWeaponNew,"SAVE_"+IntToString(HighestSave));
-        if(nValue > 0)
-        {
-            AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyBonusSavingThrowVsX(HighestSave,nValue > 12 ? 12 : nValue),oWeaponNew);
-        }
-        else if(nValue < 0)
-        {
-            AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyReducedSavingThrowVsX(HighestSave,nValue > 12 ? 12 : nValue),oWeaponNew);
-        }
-    }
-    //reapply the skills
-    for(;HighestSkill > -1;HighestSkill--)
-    {
-        nValue = GetLocalInt(oWeaponNew,"SKILL_"+IntToString(HighestSkill));
-        if(nValue > 0)
-        {
-            AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertySkillBonus(HighestSkill,nValue > 50 ? 50 : nValue),oWeaponNew);
-        }
-        else if(nValue < 0)
-        {
-            AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyDecreaseSkill(HighestSkill,nValue < -50 ? 50 : abs(nValue)),oWeaponNew);
-        }
-    }
-
-    //now re-apply the immunities
-    if(bImmunityArmor)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyImmunityMisc(IP_CONST_IMMUNITYMISC_LEVEL_ABIL_DRAIN),oArmorNew);
-    if(bImmunityWeapon)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyImmunityMisc(IP_CONST_IMMUNITYMISC_LEVEL_ABIL_DRAIN),oWeaponNew);
-}
-
-//1.71 by Shadooow, private function for new way to handle ability bonuses when polymorphing
-void IPWildShapeHandleAbilityBonuses(object oArmorNew, object oWeaponNew)
-{
-    int bImmunityArmor, bImmunityWeapon;
-    //this is a workaround for an issue where shapes with natural immunity to ability/level decrease will be immune to the decreases from merged items
-    itemproperty ip = GetFirstItemProperty(oWeaponNew);
-    while(GetIsItemPropertyValid(ip))
-    {
-        //found ability decrease itemproperty on weapon
-        if(GetItemPropertyType(ip) == ITEM_PROPERTY_IMMUNITY_MISCELLANEOUS && GetItemPropertySubType(ip) == IP_CONST_IMMUNITYMISC_LEVEL_ABIL_DRAIN)
-        {
-            bImmunityWeapon = TRUE;
-            RemoveItemProperty(oWeaponNew,ip);//temporarily remove it
-        }
-        ip = GetNextItemProperty(oWeaponNew);
-    }
-    ip = GetFirstItemProperty(oArmorNew);
-    while(GetIsItemPropertyValid(ip))
-    {
-        //found ability decrease itemproperty on skin
-        if(GetItemPropertyType(ip) == ITEM_PROPERTY_IMMUNITY_MISCELLANEOUS && GetItemPropertySubType(ip) == IP_CONST_IMMUNITYMISC_LEVEL_ABIL_DRAIN)
-        {
-            bImmunityArmor = TRUE;
-            RemoveItemProperty(oArmorNew,ip);//temporarily remove it
-        }
-        ip = GetNextItemProperty(oArmorNew);
-    }
-    //needs a delay to complete the immunity removal
-    DelayCommand(0.0,IPWildShapeHandleAbilityBonuses_continue(oArmorNew,oWeaponNew,bImmunityArmor,bImmunityWeapon));
 }
 
 void ApplyWounding_continue(object oItem, int nNum, int nSlot)
