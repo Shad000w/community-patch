@@ -99,11 +99,6 @@ void main()
    // * you need to add the same code as in nw_s0_bescurse. It also won't work on curse from weapon onhit.
    // SetModuleSwitch (MODULE_SWITCH_CURSE_IGNORE_ABILITY_DECREASE_IMMUNITY, TRUE);
 
-   // * 1.72: Activating this switch below will disable all monk abilities in polymorph. That is monk AC
-   // * from high wisdom, monk AC from class levels, monk speed and monk unarmed attack progression.
-   // * Note: Dependant on NWN(C)X_Patch plugin.
-   // SetModuleSwitch (MODULE_SWITCH_DISABLE_MONK_ABILITIES_IN_POLYMORPH, TRUE);
-
    // * 1.72: Activating this switch below will allow to use only one damage shield spell at once.
    // * Affected spells: elemental shield, mestil's acid sheat, aura vs alignment, death armor
    // * and wounding whispers.

@@ -46,13 +46,6 @@ const string MODULE_SWITCH_DISABLE_AOE_SPELLS_STACKING = "72_DISABLE_AOE_SPELLS_
 const string MODULE_SWITCH_HARDCORE_EVASION_RULES = "72_HARDCORE_EVASION_RULES";
 
 //------------------------------------------------------------------------------
-// * This switch will disable all monk abilities in polymorph. That is monk AC from
-// * high wisdom, monk AC from class levels, monk speed and monk unarmed attack progression.
-// * Note: Dependant on NWN(C)X_Patch plugin.
-//------------------------------------------------------------------------------
-const string MODULE_SWITCH_DISABLE_MONK_ABILITIES_IN_POLYMORPH = "72_DISABLE_MONK_IN_POLYMORPH";
-
-//------------------------------------------------------------------------------
 // * This switch will allow to merge every items the character wears into every
 // * polymorph shape in game even Tenser's transformation. This automatically enables
 // * the "merge arms" switch.
