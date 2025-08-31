@@ -386,8 +386,8 @@ void ApplyPolymorph(object oTarget, int nPolymorph, int nSubType=SUBTYPE_EXTRAOR
             ApplyEffectToObject(DURATION_TYPE_PERMANENT,eHP,oTarget,fDuration);
     }
 
-    //sanity pseudo HB to remove all polymorph related effects (HP, abilities, addition) in case the OnPolymorph event didn't fire
-    if(!GetLocalInt(GetModule(),"72_POLYMORPH_DISABLE_POLYMORPH_END_CHECK"))
+    //pseudo HB to remove all polymorph related effects (HP, abilities, addition) in case the OnPolymorph event won't fire
+    if(!GetLocalInt(GetModule(),"70_mod_def_load_DOONCE"))
     {
         DelayCommand(6.0+fDelay,CheckPolymorphEnd(oTarget,ePolymorph,eHP,oCreator));
     }
