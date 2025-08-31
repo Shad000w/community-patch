@@ -285,8 +285,30 @@ void ApplyPolymorph(object oTarget, int nPolymorph, int nSubType=SUBTYPE_EXTRAOR
     bLocked = GetLocalInt(oTarget,"Polymorph_Locked");
     nHP = GetLocalInt(oTarget,"Polymorph_HP");
 
+    //1:72 EE: Replace vanilla caster level which is equal to 1st class position level with druid or shifter if they are higher.
+    //This fixes the common problem that startng with 1 rogue level makes the build completely useless.
+    int nDefaultCasterLevel = GetLevelByPosition(1,oTarget);
+    int nDruid = GetLevelByClass(CLASS_TYPE_DRUID,oTarget);
+    int nShifter = GetLevelByClass(CLASS_TYPE_SHIFTER,oTarget);
+    int nCasterLevel = 0;
+    if(GetModuleSwitchValue("72_SHIFTER_ADDS_CASTER_LEVEL"))
+    {
+        if(nDefaultCasterLevel < nDruid+nShifter)
+        {
+            nCasterLevel = nDruid+nShifter;
+        }
+    }
+    else if(nDruid > nDefaultCasterLevel)
+    {
+        nCasterLevel = nDruid;
+    }
+    else if(nShifter > nDefaultCasterLevel)
+    {
+        nCasterLevel = nShifter;
+    }
+
     //prepare polymorph and temp HP effects - this is done now so it gets spellID from current spellscript
-    effect eHP, ePolymorph = EffectPolymorph(nPolymorph,bLocked);
+    effect eHP, ePolymorph = EffectPolymorph(nPolymorph,bLocked,VFX_IMP_POLYMORPH,-1,nCasterLevel);
     if(nHP > 0)
     {
         eHP = TagEffect(EffectTemporaryHitpoints(nHP),"POLYMORPH");
