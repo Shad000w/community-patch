@@ -143,17 +143,6 @@ void main()
    // * Note: for unarmed shapes only defensive properties from weapon will merge.
    // SetModuleSwitch (MODULE_SWITCH_POLYMORPH_MERGE_EVERYTHING, TRUE);
 
-   // * 1.72: Activating this switch below will allow to merge intelligence, charisma and wisdom from
-   // * all items no matter if the shape merges them or not. The reason for this is when you want to
-   // * stop losing spellslots from ability increases on items while polymorphed.
-   // * In case the player is a monk, he will get AC decrease matching the increase in wisdom
-   // * over what shape normally allows.
-   // * Note, use this switch only when module is not running NWNX. NWN(C)X_Patch handles this
-   // * automatically in a better way - slots which would be normally lost will only be
-   // * consumed. Also note this won't fix, unlike NWNX, losing spell slots from bonus spell slot
-   // * itemproperties.
-   // SetModuleSwitch (MODULE_SWITCH_POLYMORPH_MERGE_CASTING_ABILITY, TRUE);
-
    // * 1.71: Activating this switch below will enforce the SoU empower spell feat behavior.
    // * This behavior empowers only dice values and any bonuses are added to the final result.
    // * Note: By default, empower spell feat empowers result of dice+bonus reaching much higher

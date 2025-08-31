@@ -72,15 +72,6 @@ const string MODULE_SWITCH_POLYMORPH_DISABLE_POLYMORPH_END_CHECK = "72_POLYMORPH
 const string MODULE_SWITCH_POLYMORPH_MERGE_EVERYTHING = "72_POLYMORPH_MERGE_EVERYTHING";
 
 //------------------------------------------------------------------------------
-// * This switch will merge intelligence, charisma and wisdom from all items no matter
-// * if the shape merges them or not. The reason for this is when you want to stop
-// * losing spellslots from ability increases on items while polymorphed.
-// * In case the player is a monk, he will get AC decrease matching the increase in wisdom
-// * over what shape normally allows.
-//------------------------------------------------------------------------------
-const string MODULE_SWITCH_POLYMORPH_MERGE_CASTING_ABILITY = "72_POLYMORPH_MERGE_CASTING_ABILITY";
-
-//------------------------------------------------------------------------------
 // * This switch will make all associates to jump with player when using area transition
 // * leading into spot within the same area.
 //------------------------------------------------------------------------------

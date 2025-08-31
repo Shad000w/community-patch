@@ -596,8 +596,8 @@ void IPWildShapeMergeItemProperties(object oOld, object oNew, int bWeapon = FALS
         while (GetIsItemPropertyValid(ip))
         {
             nType = GetItemPropertyType(ip);
-            if(nType != ITEM_PROPERTY_USE_LIMITATION_RACIAL_TYPE && nType != ITEM_PROPERTY_USE_LIMITATION_RACIAL_TYPE && nType != ITEM_PROPERTY_USE_LIMITATION_CLASS &&//1.72: fix for an issue where use limitation properties would cause OnEquip event not to run
-            nType != ITEM_PROPERTY_ABILITY_BONUS && (!bWeapon || GetWeaponRanged(oOld) == GetWeaponRanged(oNew)))
+            if(nType != ITEM_PROPERTY_USE_LIMITATION_RACIAL_TYPE && nType != ITEM_PROPERTY_USE_LIMITATION_ALIGNMENT_GROUP && nType != ITEM_PROPERTY_USE_LIMITATION_CLASS &&//1.72: fix for an issue where use limitation properties would cause OnEquip event not to run
+            nType != ITEM_PROPERTY_USE_LIMITATION_SPECIFIC_ALIGNMENT && (!bWeapon || GetWeaponRanged(oOld) == GetWeaponRanged(oNew)))
             {
                 AddItemProperty(GetItemPropertyDurationType(ip),ip,oNew,IntToFloat(GetItemPropertyDurationRemaining(ip)));//1.72: will no longer convert temporary properties to permanent
             }

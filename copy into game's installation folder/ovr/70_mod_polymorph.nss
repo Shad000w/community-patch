@@ -5,8 +5,7 @@
 //:://////////////////////////////////////////////
 /*
 This script uses unique concept to determine OnPolymorph and OnUnPolymorph events.
-Its used for re-merging items after repolymorph (which happens whenever polymorphed
-character gets saved).
+
 */
 //:://////////////////////////////////////////////
 //:: Created By: Shadooow for Community Patch 1.71
@@ -90,101 +89,12 @@ void main()
         SetLocalInt(oBeltOld,"MERGED",bItems);
         SetLocalInt(oArmsOld,"MERGED",bArms);
 
-        //calculate appropriate ability bonuses from items
-        struct abilities abil;
-        if(bArmor)
-        {
-            abil = IPGetAbilityBonuses(abil,oArmorOld);
-            abil = IPGetAbilityBonuses(abil,oHelmetOld);
-            abil = IPGetAbilityBonuses(abil,oShield);
-        }
-        if(bItems)
-        {
-            abil = IPGetAbilityBonuses(abil,oRing1Old);
-            abil = IPGetAbilityBonuses(abil,oRing2Old);
-            abil = IPGetAbilityBonuses(abil,oAmuletOld);
-            abil = IPGetAbilityBonuses(abil,oCloakOld);
-            abil = IPGetAbilityBonuses(abil,oBeltOld);
-            abil = IPGetAbilityBonuses(abil,oBootsOld);
-        }
-        if(bArms)
-        {
-            abil = IPGetAbilityBonuses(abil,oArmsOld);
-        }
-        if(bWeapon)
-        {
-            abil = IPGetAbilityBonuses(abil,oWeaponOld);
-        }
-        effect eNull, eAbil, eAdditional;
+        effect eNull, eAdditional;
         if(nPolymorph == 76)
         {
             //added benefits of being incorporeal into polymorph effect for spectre shape
             eAdditional = EffectLinkEffects(EffectCutsceneGhost(),EffectConcealment(50));
         }
-
-        //extra ability bonus in order to ensure players won't lose spellslots in polymorph
-        if(GetModuleSwitchValue("72_POLYMORPH_MERGE_CASTING_ABILITY"))
-        {
-            struct abilities abil2;
-            if(!bArmor)
-            {
-                abil2 = IPGetAbilityBonuses(abil,oArmorOld);
-                abil2 = IPGetAbilityBonuses(abil,oHelmetOld);
-                abil2 = IPGetAbilityBonuses(abil,oShield);
-            }
-            if(!bItems)
-            {
-                abil2 = IPGetAbilityBonuses(abil,oRing1Old);
-                abil2 = IPGetAbilityBonuses(abil,oRing2Old);
-                abil2 = IPGetAbilityBonuses(abil,oAmuletOld);
-                abil2 = IPGetAbilityBonuses(abil,oCloakOld);
-                abil2 = IPGetAbilityBonuses(abil,oBeltOld);
-                abil2 = IPGetAbilityBonuses(abil,oBootsOld);
-            }
-            if(!bArms)
-            {
-                abil2 = IPGetAbilityBonuses(abil,oArmsOld);
-            }
-            if(!bWeapon)
-            {
-                abil2 = IPGetAbilityBonuses(abil,oWeaponOld);
-            }
-            if(GetLevelByClass(CLASS_TYPE_WIZARD,oPC))
-            {
-                abil.Int+= abil2.Int;
-            }
-            if(GetLevelByClass(CLASS_TYPE_SORCERER,oPC) || GetLevelByClass(CLASS_TYPE_BARD,oPC))
-            {
-                abil.Cha+= abil2.Cha;
-            }
-            if(GetLevelByClass(CLASS_TYPE_CLERIC,oPC) || GetLevelByClass(CLASS_TYPE_DRUID,oPC) || GetLevelByClass(CLASS_TYPE_PALADIN,oPC) > 3 || GetLevelByClass(CLASS_TYPE_RANGER,oPC) > 3)
-            {
-                if(abil2.Wis > 0)
-                {
-                    int nMod = abil.Wis/2;
-                    nMod = (abil.Wis+abil2.Wis)/2 - nMod;
-                    if(nMod > 0 && GetHasFeat(FEAT_MONK_AC_BONUS,oPC))//make sure the extra given wis wont raise AC
-                    {
-                        eAdditional = EffectLinkEffects(eAdditional, EffectACDecrease(nMod,AC_NATURAL_BONUS));
-                    }
-                }
-                abil.Wis+= abil2.Wis;
-            }
-        }
-
-        int nAbilityLimit = GetAbilityBonusLimit();
-        if(abil.Str > 0)
-            eAbil = EffectAbilityIncrease(ABILITY_STRENGTH,abil.Str > nAbilityLimit ? nAbilityLimit : abil.Str);
-        if(abil.Dex > 0)
-            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_DEXTERITY,abil.Dex > nAbilityLimit ? nAbilityLimit : abil.Dex));
-        if(abil.Con > 0)
-            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_CONSTITUTION,abil.Con > nAbilityLimit ? nAbilityLimit : abil.Con));
-        if(abil.Wis > 0)
-            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_WISDOM,abil.Wis > nAbilityLimit ? nAbilityLimit : abil.Wis));
-        if(abil.Int > 0)
-            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_INTELLIGENCE,abil.Int > nAbilityLimit ? nAbilityLimit : abil.Int));
-        if(abil.Cha > 0)
-            eAbil = EffectLinkEffects(eAbil,EffectAbilityIncrease(ABILITY_CHARISMA,abil.Cha > nAbilityLimit ? nAbilityLimit : abil.Cha));
 
         if(eAdditional != eNull)
         {
@@ -192,15 +102,6 @@ void main()
             eAdditional = ExtraordinaryEffect(eAdditional);
             //note all additional effects are permanent since new "engine" will handle them automatically after polymorph ends
             ApplyEffectToObject(DURATION_TYPE_PERMANENT,eAdditional,oPC);
-        }
-        if(eAbil != eNull)
-        {
-            //Apply (stacked) ability bonuses from all merged items before polymorph to ensure no spell slots are lost
-            eAbil = SupernaturalEffect(eAbil);
-            effect eNew = EffectLinkEffects(eNew,eAbil);
-            ApplyEffectToObject(DURATION_TYPE_PERMANENT,eNew,oPC);
-            ApplyEffectToObject(DURATION_TYPE_PERMANENT,eAbil,oPC);
-            RemoveEffect(oPC,eNew);//hack to hide effect icons
         }
     }
     else if(nEvent == POLYMORPH_EVENTTYPE_POLYMORPH_UNPOLYMORPH)
@@ -226,26 +127,10 @@ void main()
             AssignCommand(oPC,SKIN_SupportEquipSkin(oSkin));
         }
     }
-    else if(nEvent == POLYMORPH_EVENTTYPE_POLYMORPH_ONPOLYMORPH || nEvent == POLYMORPH_EVENTTYPE_POLYMORPH_REPOLYMORPH)
+    else if(nEvent == POLYMORPH_EVENTTYPE_POLYMORPH_ONPOLYMORPH)
     {
         SetLocalInt(oPC,"UnPolymorph",0);//system variable do not remove
         object oWeaponNew, oArmorNew = GetItemInSlot(INVENTORY_SLOT_CARMOUR,oPC);
-        if(nEvent == POLYMORPH_EVENTTYPE_POLYMORPH_REPOLYMORPH && GetItemCharges(oArmorNew) > 0)//case of repolymorph from ExportSingleCharacter on servervault character
-        {
-            if(GetLocalInt(oPC,"UnPolymorph_HP_Setup"))//in this situation however, engine refills hitpoints if shape has higher constitution than character
-            {
-                int preHP = GetLocalInt(oPC,"UnPolymorph_HP");
-                int currHP = GetCurrentHitPoints(oPC);
-                if(preHP < currHP)
-                {
-                    if(POLYMORPH_DEBUG) SendMessageToPC(oPC,"OnPolymorph: hitpoints correction.");
-                    ApplyEffectToObject(DURATION_TYPE_INSTANT,EffectDamage(currHP-preHP),oPC);
-                }
-                SetLocalInt(oPC,"UnPolymorph_HP_Setup",FALSE);
-            }
-            if(POLYMORPH_DEBUG) SendMessageToPC(oPC,"OnPolymorph: correct repolymorph, no change to skin/weapon, ending now.");
-            return;
-        }
         //retrieve polymorph spell id
         int nSpellId = GetLocalInt(oPC,"Polymorph_SpellID");
         if(!nSpellId)
@@ -329,7 +214,5 @@ void main()
         }
         //recalculate ability increase/decrease itemproperties
         IPWildShapeHandleAbilityBonuses(oArmorNew,oWeaponNew);
-        //system workaround to determine whether repolymorph copied itemproperties from old items or not
-        SetItemCharges(oArmorNew,1);
     }
 }
