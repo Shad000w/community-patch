@@ -129,14 +129,6 @@ void main()
    // * be helpless ie. under effects of stun, paralysis, petrify, sleep or timestop.
    // SetModuleSwitch (MODULE_SWITCH_HARDCORE_EVASION_RULES, TRUE);
 
-   // * 1.72: Activating this switch below will disable "polymorph end" check which is
-   // * performed every 6 seconds via pseudo heartbeat in order to clean all polymorph
-   // * related effects such as ability bonuses, temporary hp etc. in case a module doesn't
-   // * have properly merged module events with 1.72. Activating this switch will disable
-   // * this check which is useful in multiplayer to make the polymorph new system more optimized.
-   // * Make sure that you got OnEquip and OnUnEquip events merged properly before disabling this!
-   // SetModuleSwitch (MODULE_SWITCH_POLYMORPH_DISABLE_POLYMORPH_END_CHECK, TRUE);
-
    // * 1.72: Activating this switch below will allow to merge every items the character wears into
    // * every polymorph shape in game even Tenser's transformation. This automatically enables
    // * the "merge arms" switch.
