@@ -56,12 +56,6 @@ node dummy lforearm_h
   orientation -1.0 0.0 0.0 -2.73389e-005
   wirecolor 0.101961 0.694118 0.345098
 endnode
-node dummy lforearm
-  parent lforearm_g
-  position -0.0263625 -2.30074e-007 -0.163363
-  orientation 1.50038e-006 -1.0 -5.04775e-005 -0.069811
-  wirecolor 0.333333 0.109804 0.694118 
-endnode
 node dummy lwrist_h
   parent lforearm_h
   position 3.32164e-006 -0.00180857 -0.278605
@@ -391,6 +385,12 @@ node dummy lforearm_g
   position -0.0280343 0.0172191 -0.264421
   orientation -0.549351 0.364488 0.751906 -1.76023
   wirecolor 0.898039 0.65098 0.843137
+endnode
+node dummy lforearm
+  parent lforearm_g
+  position -0.0263625 -2.30074e-007 -0.163363
+  orientation 1.50038e-006 -1.0 -5.04775e-005 -0.069811
+  wirecolor 0.333333 0.109804 0.694118 
 endnode
 node dummy lhand_g
   parent lforearm_g
