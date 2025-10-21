@@ -222,17 +222,17 @@ void IPWildShapeHandleAbilityBonuses(object oItem)
     }
     //reapply the ability increase itemproperties
     if(STRbonus > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_STR,STRbonus > 12 ? STRbonus : 12),oItem);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_STR,STRbonus > 12 ? 12 : STRbonus),oItem);
     if(DEXbonus > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_DEX,DEXbonus > 12 ? DEXbonus : 12),oItem);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_DEX,DEXbonus > 12 ? 12 : DEXbonus),oItem);
     if(CONbonus > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_CON,CONbonus > 12 ? CONbonus : 12),oItem);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_CON,CONbonus > 12 ? 12 : CONbonus),oItem);
     if(WISbonus > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_WIS,WISbonus > 12 ? WISbonus : 12),oItem);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_WIS,WISbonus > 12 ? 12 : WISbonus),oItem);
     if(INTbonus > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_INT,INTbonus > 12 ? INTbonus : 12),oItem);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_INT,INTbonus > 12 ? 12 : INTbonus),oItem);
     if(CHAbonus > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_CHA,CHAbonus > 12 ? CHAbonus : 12),oItem);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_CHA,CHAbonus > 12 ? 12 : CHAbonus),oItem);
     //reapply the ability decrease itemproperties
     if(STRmalus > 0)
     AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyDecreaseAbility(IP_CONST_ABILITY_STR,STRmalus),oItem);
