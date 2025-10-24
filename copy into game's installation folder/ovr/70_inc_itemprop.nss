@@ -221,18 +221,19 @@ void IPWildShapeHandleAbilityBonuses(object oItem)
         ip = GetNextItemProperty(oItem);
     }
     //reapply the ability increase itemproperties
+    int nMax = Get2DARowCount(Get2DAString("iprp_costtable","Name",StringToInt(Get2DAString("itempropdef","CostTableResRef",0))))-1;
     if(STRbonus > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_STR,STRbonus > 12 ? 12 : STRbonus),oItem);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_STR,STRbonus > nMax ? nMax : STRbonus),oItem);
     if(DEXbonus > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_DEX,DEXbonus > 12 ? 12 : DEXbonus),oItem);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_DEX,DEXbonus > nMax ? nMax : DEXbonus),oItem);
     if(CONbonus > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_CON,CONbonus > 12 ? 12 : CONbonus),oItem);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_CON,CONbonus > nMax ? nMax : CONbonus),oItem);
     if(WISbonus > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_WIS,WISbonus > 12 ? 12 : WISbonus),oItem);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_WIS,WISbonus > nMax ? nMax : WISbonus),oItem);
     if(INTbonus > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_INT,INTbonus > 12 ? 12 : INTbonus),oItem);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_INT,INTbonus > nMax ? nMax : INTbonus),oItem);
     if(CHAbonus > 0)
-    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_CHA,CHAbonus > 12 ? 12 : CHAbonus),oItem);
+    AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyAbilityBonus(IP_CONST_ABILITY_CHA,CHAbonus > nMax ? nMax : CHAbonus),oItem);
     //reapply the ability decrease itemproperties
     if(STRmalus > 0)
     AddItemProperty(DURATION_TYPE_PERMANENT,ItemPropertyDecreaseAbility(IP_CONST_ABILITY_STR,STRmalus),oItem);
