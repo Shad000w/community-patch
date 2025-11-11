@@ -43,6 +43,9 @@ void AddFeat(int nFeat, object oPC);
 // - oCreature
 int GetKnowsFeat(int nFeat, object oCreature);
 
+// This function determines which class player took at which level.
+int GetClassByLevel(object oPC, int nLevel);
+
 //returns 170, 171 or 172 depending on the community patch version installed on the running machine
 //returns -1 if community patch is not installed
 int GetCommunityPatchVersion();
@@ -346,4 +349,13 @@ int isInvisibleDoorAppearanceType(object oDoor)
         nApp = JsonGetInt(JsonObjectGet(JsonObjectGet(ObjectToJson(oDoor),"GenericType_New"),"value"));
     }
     return Get2DAString(s2DA,"VisibleModel",nApp) == "0";
+}
+
+int GetClassByLevel(object oPC, int nLevel)
+{
+    json jPlayer = ObjectToJson(oPC);
+    json jList = JsonObjectGet(jPlayer,"LvlStatList");
+    json jElement = JsonArrayGet(JsonObjectGet(jList,"value"),nLevel-1);
+    json jClass = JsonObjectGet(jElement,"LvlStatClass");
+    return JsonGetInt(JsonObjectGet(jClass,"value"));
 }
