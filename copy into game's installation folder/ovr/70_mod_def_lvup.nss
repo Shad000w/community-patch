@@ -90,7 +90,7 @@ effect eEffect = GetFirstEffect(oPC);
   }
  eEffect = GetNextEffect(oPC);
  }
- if(GetKnowsFeat(FEAT_EPIC_SPELL_MAGE_ARMOUR,oPC) || GetKnowsFeat(FEAT_EPIC_SPELL_EPIC_WARDING,oPC))
+ if(GetHasFeat(FEAT_EPIC_SPELL_MAGE_ARMOUR,oPC,TRUE) || GetHasFeat(FEAT_EPIC_SPELL_EPIC_WARDING,oPC,TRUE))
  {
   if(GetLevelByClass(CLASS_TYPE_WIZARD,oPC) < MIN_CLASS_LEVEL_FOR_EPIC_SPELLS_WIZARD &&
      GetLevelByClass(CLASS_TYPE_SORCERER,oPC) < MIN_CLASS_LEVEL_FOR_EPIC_SPELLS_SORCERER &&
@@ -100,8 +100,8 @@ effect eEffect = GetFirstEffect(oPC);
   return;//ensures, the default OnLevelUp event will not fire
   }
  }
- if(GetKnowsFeat(FEAT_EPIC_SPELL_MUMMY_DUST,oPC) || GetKnowsFeat(FEAT_EPIC_SPELL_HELLBALL,oPC) ||
-    GetKnowsFeat(FEAT_EPIC_SPELL_RUIN,oPC) || GetKnowsFeat(FEAT_EPIC_SPELL_DRAGON_KNIGHT,oPC))
+ if(GetHasFeat(FEAT_EPIC_SPELL_MUMMY_DUST,oPC,TRUE) || GetHasFeat(FEAT_EPIC_SPELL_HELLBALL,oPC,TRUE) ||
+    GetHasFeat(FEAT_EPIC_SPELL_RUIN,oPC,TRUE) || GetHasFeat(FEAT_EPIC_SPELL_DRAGON_KNIGHT,oPC,TRUE))
  {
   if(GetLevelByClass(CLASS_TYPE_CLERIC,oPC) < MIN_CLASS_LEVEL_FOR_EPIC_SPELLS_CLERIC &&
      GetLevelByClass(CLASS_TYPE_DRUID,oPC) < MIN_CLASS_LEVEL_FOR_EPIC_SPELLS_DRUID &&
@@ -121,7 +121,7 @@ effect eEffect = GetFirstEffect(oPC);
   return;//ensures, the default OnLevelUp event will not fire
   }
  }
- if(GetKnowsFeat(FEAT_EPIC_EPIC_FIEND,oPC))
+ if(GetHasFeat(FEAT_EPIC_EPIC_FIEND,oPC,TRUE))
  {
   if(GetLevelByClass(CLASS_TYPE_BLACKGUARD,oPC) < MIN_CLASS_LEVEL_FOR_EPIC_FIEND)
   {
