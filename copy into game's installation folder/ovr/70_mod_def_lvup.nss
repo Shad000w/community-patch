@@ -130,6 +130,12 @@ effect eEffect = GetFirstEffect(oPC);
   }
  }
 
+    //1.72: fixes wings being lost after dismount if the 9th RDD level was gained while mounted
+    if(GetLevelByClass(CLASS_TYPE_DRAGON_DISCIPLE,oPC) == 9 && HorseGetIsMounted(oPC) && GetClassByLevel(oPC,GetHitDice(oPC)) == CLASS_TYPE_DRAGON_DISCIPLE)
+    {
+         SetSkinInt(oPC,"nX3_HorseRiderWing",CREATURE_WING_TYPE_DRAGON);
+    }
+
     //Now execute original script
     string sScript = GetLocalString(OBJECT_SELF,"EVENT_SCRIPT_MODULE_ON_PLAYER_LEVEL_UP");
     if(sScript != "" && sScript != "70_mod_def_lvup")
