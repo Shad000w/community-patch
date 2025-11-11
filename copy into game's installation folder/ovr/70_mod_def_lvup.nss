@@ -76,6 +76,7 @@ DelayCommand(0.3,SetXP(oPC,nXP));
 }
 
 #include "70_inc_main"
+#include "x3_inc_horse"
 
 void main()
 {
