@@ -11,15 +11,13 @@
     Modified On : may 6, 2006
     added custom vfx
 
-Patch 1.71
-
+Patch 1.72
+- feedback messages externalized to make sure they appear in player's language
 - fixed improper usage of this ability when character is in any disabled state or dying
 - fixed an exploit allowing to use this ability to target outside of the current area,
 however the possibility to use it via portrait in the same area without line of sight
 on target was kept intentionally
 - fixed a relog issue that prevented further use of this ability
-- feedback messages externalized with a workaround that they returns message from server
-(in order to avoid problems with 1.70 server and 1.69 player)
 - added usual expire visual effect for easier determination when the spell expired
 - effects made undispellable (Ex) as per DnD
 */
