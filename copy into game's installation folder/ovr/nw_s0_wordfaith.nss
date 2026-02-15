@@ -16,6 +16,10 @@
 //:: Sep 2002: fixed the 'level 8' instantkill problem
 //:: description is slightly inaccurate but I won't change it
 //:: Georg: It's nerf time! oh yes. The spell now matches it's description.
+/*
+Patch 1.72
+- fixed spell not doing anything against creatures that aren't summons but have a master which included DM possessed creatures
+*/
 
 #include "70_inc_spells"
 #include "x0_i0_spells"
@@ -82,13 +86,10 @@ void main()
                 // And this is the part where the divine power smashes the
                 // unholy summoned creature and makes it return to its homeplane
                 //----------------------------------------------------------
-                if (GetIsObjectValid(GetMaster(oTarget)))
+                if (GetIsObjectValid(GetMaster(oTarget)) && GetAssociateType(oTarget) == ASSOCIATE_TYPE_SUMMONED)
                 {
-                    if (GetAssociateType(oTarget) == ASSOCIATE_TYPE_SUMMONED)
-                    {
-                        DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, eUnsummon, oTarget));
-                        DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, SupernaturalEffect(eDeath), oTarget));//simplified
-                    }
+                    DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, eUnsummon, oTarget));
+                    DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, SupernaturalEffect(eDeath), oTarget));//simplified
                 }
                 else
                 {
