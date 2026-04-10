@@ -959,6 +959,10 @@ int GetIsAbleToSee(object oCreature)
 
 int spellsIsImmuneToDrown(object oCreature)
 {//undead, construct and any creature that doesn't breath or can breath water are immune to the drown effect
+    if(GetLocalInt(oCreature,"IMMUNITY_DROWN"))
+    {
+        return GetLocalInt(oCreature,"IMMUNITY_DROWN") > 0;
+    }
     if(spellsIsRacialType(oCreature, RACIAL_TYPE_UNDEAD) || spellsIsRacialType(oCreature, RACIAL_TYPE_CONSTRUCT) ||
        spellsIsRacialType(oCreature, RACIAL_TYPE_ELEMENTAL) || spellsIsRacialType(oCreature, RACIAL_TYPE_OOZE))
     {
@@ -985,11 +989,15 @@ int spellsIsImmuneToDrown(object oCreature)
     case APPEARANCE_TYPE_SHARK_HAMMERHEAD:
         return TRUE;
     }
-    return GetLocalInt(oCreature,"IMMUNITY_DROWN");
+    return FALSE;
 }
 
 int spellsIsImmuneToPolymorph(object oCreature)
 {//oozes, plants, incorporeal creatures and specific creatures are immune to polymorphing, shapeshifters aren't but are allowed to polymorph back
+    if(GetLocalInt(oCreature,"IMMUNITY_POLYMORPH"))
+    {
+        return GetLocalInt(oCreature,"IMMUNITY_POLYMORPH") > 0;
+    }
     if(spellsIsRacialType(oCreature, RACIAL_TYPE_OOZE))
     {
         return TRUE;
@@ -1012,7 +1020,7 @@ int spellsIsImmuneToPolymorph(object oCreature)
     case 466://Witch King, Disguised
         return TRUE;
     }
-    return GetLocalInt(oCreature,"IMMUNITY_POLYMORPH");
+    return FALSE;
 }
 
 int spellsIsSightless(object oCreature)
