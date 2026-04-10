@@ -391,14 +391,20 @@ object oModule = GetModule();
  if(overrideLimit > 0) spell.Limit = overrideLimit;
  if(overrideDice > 0) spell.Dice = overrideDice;
 //spell informations modifier feature
-spell.Level+= GetLocalInt(oSource,sPrefix+"_CASTER_LEVEL_MODIFIER");
-spell.Meta|= GetLocalInt(oSource,sPrefix+"_METAMAGIC_MODIFIER");
-spell.DC+= GetLocalInt(oSource,sPrefix+"_DC_MODIFIER");
+int localModifier = GetLocalInt(oSource,sId+"_CASTER_LEVEL_MODIFIER");
+spell.Level+= localModifier ? localModifier : GetLocalInt(oSource,sPrefix+"_CASTER_LEVEL_MODIFIER");
+localModifier = GetLocalInt(oSource,sId+"_METAMAGIC_MODIFIER");
+spell.Meta|= localModifier ? localModifier : GetLocalInt(oSource,sPrefix+"_METAMAGIC_MODIFIER");
+localModifier = GetLocalInt(oSource,sId+"_DC_MODIFIER");
+spell.DC+= localModifier ? localModifier : GetLocalInt(oSource,sPrefix+"_DC_MODIFIER");
 spell.DC+= GetLocalInt(oModule,sId+"_DC_MODIFIER");
-spell.DamageCap+= GetLocalInt(oSource,sPrefix+"_DAMAGE_CAP_MODIFIER");
+localModifier = GetLocalInt(oSource,sId+"_DAMAGE_CAP_MODIFIER");
+spell.DamageCap+= localModifier ? localModifier : GetLocalInt(oSource,sPrefix+"_DAMAGE_CAP_MODIFIER");
 spell.DamageCap+= GetLocalInt(oModule,sId+"_DAMAGE_CAP_MODIFIER");
-spell.DurationType+= GetLocalInt(oSource,sPrefix+"_DURATION_TYPE_MODIFIER");
-spell.Range+= GetLocalFloat(oSource,sPrefix+"_RANGE_MODIFIER");
+localModifier = GetLocalInt(oSource,sId+"_DURATION_TYPE_MODIFIER");
+spell.DurationType+= localModifier ? localModifier : GetLocalInt(oSource,sPrefix+"_DURATION_TYPE_MODIFIER");
+float flocalModifier = GetLocalFloat(oSource,sId+"_RANGE_MODIFIER");
+spell.Range+= flocalModifier != 0.0 ? flocalModifier : GetLocalFloat(oSource,sPrefix+"_RANGE_MODIFIER");
  //support for new metamagic itemproperty, works as modifier
  if(spell.Item != OBJECT_INVALID)
  {
