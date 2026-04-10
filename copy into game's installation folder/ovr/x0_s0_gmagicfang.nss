@@ -47,8 +47,10 @@ void main()
 
     int nCasterLevel = spell.Level;
     int nPower = (nCasterLevel + 1) / 3;
-    if (nPower > spell.Limit)
-     nPower = spell.Limit;  // * max of +5 bonus
+    if (nPower < 1)
+        nPower = 1;
+    else if (nPower > spell.Limit)
+        nPower = spell.Limit;  // * max of +5 bonus
     int nDamagePower = DAMAGE_POWER_PLUS_ONE;
 
     switch (nPower)
@@ -68,7 +70,7 @@ void main()
     effect eVis = EffectVisualEffect(VFX_IMP_HOLY_AID);
 
     effect eAttack = EffectAttackIncrease(nPower);
-    effect eDamage = EffectDamageIncrease(nPower, DAMAGE_TYPE_MAGICAL);
+    effect eDamage = EffectDamageIncrease(IPGetDamageBonusConstantFromNumber(nPower), DAMAGE_TYPE_MAGICAL);
     effect eReduction = EffectDamageReduction(nPower, nDamagePower); // * doing this because
                                                                      // * it creates a true
                                                                      // * enhancement bonus

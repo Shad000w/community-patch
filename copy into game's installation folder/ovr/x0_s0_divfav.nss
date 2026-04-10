@@ -45,7 +45,7 @@ void main()
         nScale = spell.Limit;
     // * determine the damage bonus to apply
     effect eAttack = EffectAttackIncrease(nScale);
-    effect eDamage = EffectDamageIncrease(nScale, DAMAGE_TYPE_MAGICAL);
+    effect eDamage = EffectDamageIncrease(IPGetDamageBonusConstantFromNumber(nScale), DAMAGE_TYPE_MAGICAL);
 
 
     effect eDur = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
